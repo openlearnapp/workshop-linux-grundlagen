@@ -1,0 +1,105 @@
+# Terminal-Simulator Befehle für Lektion 4: Dateiinhalt
+prompt: "user@linux:~$"
+commands:
+  - cmd: "cat Documents/notes.txt"
+    output: |
+      Linux ist toll!
+      Diese Datei wurde mit touch erstellt.
+    hint: "Kurze Datei komplett anzeigen"
+  - cmd: "cat /etc/hostname"
+    output: "ubuntu"
+    hint: "Hostname des Systems — ideal fuer cat"
+  - cmd: "cat /etc/passwd"
+    output: |
+      root:x:0:0:root:/root:/bin/bash
+      daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+      bin:x:2:2:bin:/bin:/usr/sbin/nologin
+      sys:x:3:3:sys:/dev:/usr/sbin/nologin
+      sync:x:4:65534:sync:/bin:/bin/sync
+      www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+      nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+      user:x:1000:1000:user:/home/user:/bin/bash
+    hint: "Alle Benutzerkonten des Systems anzeigen"
+  - cmd: "head -5 /etc/passwd"
+    output: |
+      root:x:0:0:root:/root:/bin/bash
+      daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+      bin:x:2:2:bin:/bin:/usr/sbin/nologin
+      sys:x:3:3:sys:/dev:/usr/sbin/nologin
+      sync:x:4:65534:sync:/bin:/bin/sync
+    hint: "Nur die ersten 5 Zeilen anzeigen"
+  - cmd: "head -20 /etc/ssh/sshd_config"
+    output: |
+      #	$OpenBSD: sshd_config,v 1.103 2018/04/09 20:41:22 tj Exp $
+      # This is the sshd server system-wide configuration file.
+      # See sshd_config(5) for more information.
+
+      Include /etc/ssh/sshd_config.d/*.conf
+
+      #Port 22
+      #AddressFamily any
+      #ListenAddress 0.0.0.0
+      #ListenAddress ::
+
+      #HostKey /etc/ssh/ssh_host_rsa_key
+      #HostKey /etc/ssh/ssh_host_ecdsa_key
+      #HostKey /etc/ssh/ssh_host_ed25519_key
+
+      # Ciphers and keying
+      #RekeyLimit default none
+
+      # Logging
+      #SyslogFacility AUTH
+    hint: "Die ersten 20 Zeilen der SSH-Konfiguration"
+  - cmd: "tail -5 /var/log/syslog"
+    output: |
+      Mar 20 14:20:01 ubuntu CRON[1234]: (root) CMD (test -x /usr/sbin/anacron)
+      Mar 20 14:23:12 ubuntu systemd[1]: Started Session 42 of User user.
+      Mar 20 14:23:15 ubuntu kernel: [42567.123] USB device connected
+      Mar 20 14:23:45 ubuntu NetworkManager[892]: <info> connectivity check succeeded
+      Mar 20 14:24:00 ubuntu CRON[1240]: (user) CMD (/home/user/scripts/backup.sh)
+    hint: "Die letzten 5 Zeilen des Systemlogs"
+  - cmd: "tail -f /var/log/syslog"
+    output: |
+      Mar 20 14:24:00 ubuntu CRON[1240]: (user) CMD (/home/user/scripts/backup.sh)
+      Mar 20 14:24:01 ubuntu systemd[1]: session-42.scope: Deactivated successfully.
+      [Echtzeit-Modus: Ctrl+C zum Beenden]
+    hint: "Systemlog in Echtzeit verfolgen — Ctrl+C beendet"
+  - cmd: "grep -i \"error\" /var/log/syslog"
+    output: |
+      Mar 20 09:12:33 ubuntu kernel: [  3.456] ACPI Error: Method parse failed
+      Mar 20 11:45:22 ubuntu apache2[1023]: [error] File not found: /var/www/html/favicon.ico
+      Mar 20 13:01:55 ubuntu systemd[1]: error reading /proc/self/mountinfo
+    hint: "Fehlermeldungen im Syslog suchen (Gross-/Kleinschreibung egal)"
+  - cmd: "grep -n \"user\" /etc/passwd"
+    output: |
+      8:user:x:1000:1000:user:/home/user:/bin/bash
+    hint: "Suche mit Zeilennummern"
+  - cmd: "grep -r \"TODO\" Documents/"
+    output: |
+      Documents/project/main.py:# TODO: Implementiere Datenbankanbindung
+      Documents/project/main.py:# TODO: Fehlerbehandlung hinzufuegen
+      Documents/project/README.md:- [ ] TODO: Tests schreiben
+    hint: "Rekursiv in allen Unterordnern nach TODO suchen"
+  - cmd: "grep -v \"^#\" /etc/ssh/sshd_config"
+    output: |
+
+      Include /etc/ssh/sshd_config.d/*.conf
+
+
+
+
+
+
+
+
+    hint: "Kommentarzeilen ausblenden — zeigt nur aktive Einstellungen"
+  - cmd: "grep -c \"error\" /var/log/syslog"
+    output: "3"
+    hint: "Nur die Anzahl der Treffer zaehlen"
+  - cmd: "wc Documents/notes.txt"
+    output: "  2  10  52 Documents/notes.txt"
+    hint: "Zeilen, Woerter und Bytes zaehlen"
+  - cmd: "wc -l /etc/passwd"
+    output: "8 /etc/passwd"
+    hint: "Nur Zeilenanzahl zaehlen"

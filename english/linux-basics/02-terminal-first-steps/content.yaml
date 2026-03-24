@@ -1,0 +1,152 @@
+version: 1
+number: 2
+title: "The Terminal — first steps"
+description: "Master pwd, ls and cd — the three fundamental commands for navigating the filesystem"
+sections:
+  - title: "Opening the terminal — where am I?"
+    explanation: |
+      The **terminal** (also: shell, console, command line) is your direct connection
+      to the operating system. No mouse clicking, no menu searching — just you and the computer.
+
+      When you open the terminal, you see the **prompt**:
+      ```
+      alice@ubuntu:~$
+      ```
+      This means:
+      - `alice` = username
+      - `ubuntu` = computer name (hostname)
+      - `~` = you are in the home directory
+      - `$` = regular user (with `#` you are root/administrator)
+
+      **Your most important first command:** `pwd` — *Print Working Directory*.
+      It always tells you where you are.
+    examples:
+      - q: "pwd"
+        a: "Shows the current path, e.g. /home/alice — you always know where you are"
+        rel:
+          - ["en-pwd", "Print Working Directory — show current directory", "command"]
+      - q: "whoami"
+        a: "Prints your username — useful when working as multiple users"
+        rel:
+          - ["en-whoami", "Print the current username", "command"]
+      - q: "date"
+        a: "Shows current date and time"
+        rel:
+          - ["en-date-cmd", "Display current date and time", "date command"]
+
+  - title: "ls — what's here?"
+    explanation: |
+      `ls` lists the contents of the current directory.
+      With flags, `ls` becomes very powerful:
+
+      | Command | What it shows |
+      |---------|--------------|
+      | `ls` | Only filenames |
+      | `ls -l` | Details: permissions, size, date |
+      | `ls -a` | Also hidden files (start with `.`) |
+      | `ls -la` | Details + hidden files (combined!) |
+      | `ls -lh` | File sizes in readable format (KB, MB, GB) |
+      | `ls -lt` | Sorted by modification date (newest first) |
+
+      In the `-l` output, the columns mean:
+      ```
+      -rw-r--r-- 1 alice alice 4096 Mar 20 10:23 document.txt
+      ↑Perms     ↑Links ↑Owner   ↑Size ↑Date  ↑Name
+      ```
+    examples:
+      - q: "ls -la"
+        a: "All files including hidden files with details (permissions, size, date)"
+        rel:
+          - ["en-ls-l", "Long format — detailed view", "flag -l"]
+          - ["en-ls-a", "All — also show hidden files (.dotfiles)", "flag -a"]
+      - q: "ls -lh /var/log"
+        a: "Show log files with human-readable size values (KB, MB)"
+        rel:
+          - ["en-ls-h", "Human-readable — file sizes in KB/MB/GB", "flag -h"]
+      - q: "ls -lt ~/.ssh"
+        a: "Show SSH config files sorted by most recently modified"
+        rel:
+          - ["en-ls-t", "Time — sort by modification time, newest first", "flag -t"]
+          - ["en-ssh-dir", "Directory for SSH keys and configuration", "~/.ssh"]
+      - q: "ls -la /etc/nginx/"
+        a: "Show all Nginx configuration files with full details"
+        rel:
+          - ["en-nginx-dir", "Configuration directory of the Nginx web server", "/etc/nginx/"]
+
+  - title: "cd — where do you want to go?"
+    explanation: |
+      `cd` (Change Directory) is your navigation tool in the filesystem.
+
+      **Key navigation patterns:**
+
+      | Command | Where? |
+      |---------|--------|
+      | `cd /` | To root directory |
+      | `cd ~` | To home directory (also: just `cd`) |
+      | `cd ..` | One directory up |
+      | `cd ../..` | Two levels up |
+      | `cd -` | To the last visited directory (back!) |
+      | `cd /etc/nginx` | Absolute path (starts with /) |
+      | `cd projects/website` | Relative path (from here) |
+
+      **Tab completion** — your best friend:
+      Type `cd /etc/ngi` and press `Tab` → terminal autocompletes to `/etc/nginx/`
+    examples:
+      - q: "cd /var/log"
+        a: "Switch directly to the log directory (absolute path — starts with /)"
+        rel:
+          - ["en-cd-cmd", "Change Directory — switch directories", "cd command"]
+          - ["en-absolute-path", "Path that always starts with /, independent of location", "absolute path"]
+      - q: "cd .."
+        a: "Go one level up — /home/alice becomes /home"
+        rel:
+          - ["en-dotdot", "Two dots = parent directory", ".."]
+      - q: "cd ~"
+        a: "Go to your home directory — no matter where you are"
+        rel:
+          - ["en-tilde", "Shortcut for your own home directory", "~"]
+      - q: "cd -"
+        a: "Switch to the last visited directory — great for toggling between two places"
+        rel:
+          - ["en-cd-minus", "Return to previous directory", "cd -"]
+      - q: "cd /home/alice/projects && pwd"
+        a: "Change to projects directory and immediately confirm the path"
+        rel:
+          - ["en-double-amp", "Chain two commands — second runs only if first succeeds", "&&"]
+
+  - title: "🖥️ Terminal Check"
+    explanation: |
+      Test your knowledge — type the commands yourself!
+    examples:
+      - q: "Which command shows your current directory?"
+        type: input
+        a: "pwd"
+      - q: "What does 'ls -la' show?"
+        type: select
+        options:
+          - "All files including hidden ones, with details"
+          - "Deletes all files"
+          - "Undoes the last action"
+          - "Shows log files"
+        a: "All files including hidden ones, with details"
+      - q: "Which command switches to the last visited directory?"
+        type: select
+        options:
+          - "cd -"
+          - "cd .."
+          - "cd ~"
+          - "cd /"
+        a: "cd -"
+      - q: "Which of these flags belong to the 'ls' command?"
+        type: multiple-choice
+        options:
+          - "-l"
+          - "-a"
+          - "-x"
+          - "-h"
+          - "-t"
+        a:
+          - "-l"
+          - "-a"
+          - "-h"
+          - "-t"

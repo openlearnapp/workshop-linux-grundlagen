@@ -1,0 +1,153 @@
+version: 1
+number: 6
+title: "Prozesse"
+description: "ps, top, kill und Hintergrundjobs — laufende Programme verstehen und steuern"
+sections:
+  - title: "ps und top — was läuft gerade?"
+    explanation: |
+      **Warum ist das wichtig?** Ein Server läuft langsam, eine App reagiert nicht mehr,
+      der Arbeitsspeicher ist voll — in diesen Situationen musst du wissen, welche Prozesse
+      laufen und wie viele Ressourcen sie verbrauchen.
+
+      Jeder laufende Prozess bekommt eine eindeutige **PID** (Process ID).
+
+      | Befehl | Wofür? |
+      |--------|--------|
+      | `ps` | Eigene Prozesse in der aktuellen Shell |
+      | `ps aux` | Alle Prozesse aller Benutzer mit Details |
+      | `top` | Interaktive Live-Übersicht (wie Task-Manager) |
+      | `htop` | Verbessertes top mit Farben (muss installiert werden) |
+      | `pgrep nginx` | PID eines Prozesses nach Namen suchen |
+
+      In `top` kannst du mit `q` beenden, `k` + PID einen Prozess töten, `M` nach
+      Speicher sortieren, `P` nach CPU sortieren.
+    examples:
+      - q: "ps aux"
+        a: "Alle laufenden Prozesse aller Benutzer mit PID, CPU, RAM und Befehlszeile"
+        rel:
+          - ["ps-cmd", "Process Status — laufende Prozesse anzeigen", "Befehl ps"]
+          - ["ps-aux", "a=alle User, u=user-Format, x=auch ohne Terminal", "Flags aux"]
+      - q: "ps aux | grep nginx"
+        a: "Zeigt nur Nginx-Prozesse aus der Prozessliste — Kombination mit grep"
+        rel:
+          - ["ps-grep", "Prozessliste nach bestimmtem Prozessnamen filtern", "ps aux | grep"]
+      - q: "top"
+        a: "Interaktive Echtzeit-Übersicht: CPU, RAM, alle Prozesse — q zum Beenden"
+        rel:
+          - ["top-cmd", "Interaktiver Prozess-Monitor in Echtzeit", "Befehl top"]
+      - q: "pgrep -l python"
+        a: "Alle Python-Prozesse mit ihren PIDs anzeigen"
+        rel:
+          - ["pgrep-cmd", "Prozesse nach Namen suchen und PIDs ausgeben", "Befehl pgrep"]
+          - ["pgrep-l", "List — Prozessnamen zusätzlich zur PID anzeigen", "Flag -l"]
+
+  - title: "kill — Prozesse beenden"
+    explanation: |
+      Prozesse werden über **Signale** gesteuert. `kill` sendet Signale an Prozesse.
+
+      | Signal | Nummer | Wirkung |
+      |--------|--------|---------|
+      | SIGTERM | 15 | Sanftes Beenden (Standard) — Prozess kann aufräumen |
+      | SIGKILL | 9 | Sofortiges Beenden — kein Aufräumen möglich |
+      | SIGHUP | 1 | Konfiguration neu laden (z.B. Nginx) |
+
+      **Faustregel:** Erst `kill PID` (SIGTERM) versuchen. Nur wenn das nicht funktioniert,
+      `kill -9 PID` (SIGKILL) verwenden.
+
+      `killall` beendet alle Prozesse mit einem bestimmten Namen:
+      ```bash
+      killall firefox
+      ```
+    examples:
+      - q: "kill 1234"
+        a: "Sendet SIGTERM (sanftes Beenden) an Prozess mit PID 1234"
+        rel:
+          - ["kill-cmd", "Signal an Prozess senden (Standard: SIGTERM = sanftes Beenden)", "Befehl kill"]
+      - q: "kill -9 1234"
+        a: "Sendet SIGKILL — Prozess wird sofort beendet, kein Speichern möglich"
+        rel:
+          - ["kill-9", "SIGKILL — sofortiges Beenden, nicht abfangbar", "Signal -9"]
+      - q: "kill -1 $(pgrep nginx)"
+        a: "Nginx SIGHUP senden — lädt Konfiguration neu ohne Downtime"
+        rel:
+          - ["kill-1", "SIGHUP — Konfiguration neu laden", "Signal -1"]
+          - ["command-substitution", "$() führt Befehl aus und nutzt die Ausgabe", "$(befehl)"]
+      - q: "killall -9 firefox"
+        a: "Alle Firefox-Prozesse sofort beenden — nützlich wenn der Browser hängt"
+        rel:
+          - ["killall-cmd", "Alle Prozesse mit gegebenem Namen beenden", "Befehl killall"]
+
+  - title: "Hintergrundjobs — Multitasking im Terminal"
+    explanation: |
+      Linux erlaubt mehrere Jobs gleichzeitig in einem Terminal:
+
+      | Befehl/Taste | Wirkung |
+      |-------------|---------|
+      | `befehl &` | Direkt im Hintergrund starten |
+      | `Ctrl+Z` | Laufenden Job pausieren |
+      | `bg` | Pausierten Job im Hintergrund fortsetzen |
+      | `fg` | Hintergrundjob in Vordergrund holen |
+      | `jobs` | Alle Hintergrundjobs anzeigen |
+      | `nohup befehl &` | Job läuft weiter, auch nach Terminal-Schließen |
+
+      **Praktisches Beispiel:**
+      ```bash
+      python3 server.py &   # Server im Hintergrund starten
+      [1] 5892              # Job-Nummer und PID
+      ```
+      Jetzt kannst du weiterarbeiten während der Server läuft.
+    examples:
+      - q: "sleep 60 &"
+        a: "Startet einen 60-Sekunden-Schlafprozess im Hintergrund — Terminal bleibt frei"
+        rel:
+          - ["background-amp", "& am Ende startet Prozess im Hintergrund", "& Operator"]
+          - ["sleep-cmd", "Für N Sekunden warten — nützlich in Skripten", "Befehl sleep"]
+      - q: "jobs -l"
+        a: "Alle Hintergrundjobs mit Job-Nummer und PID anzeigen"
+        rel:
+          - ["jobs-cmd", "Liste aller Hintergrundjobs der aktuellen Shell", "Befehl jobs"]
+          - ["jobs-l", "Long — zusätzlich PIDs der Jobs anzeigen", "Flag -l"]
+      - q: "fg %1"
+        a: "Job Nummer 1 in den Vordergrund holen"
+        rel:
+          - ["fg-cmd", "Foreground — Hintergrundjob in den Vordergrund bringen", "Befehl fg"]
+      - q: "nohup python3 webserver.py > server.log 2>&1 &"
+        a: "Server starten der auch nach Terminal-Schließen weiterläuft, Ausgabe in Logdatei"
+        rel:
+          - ["nohup-cmd", "No Hangup — Prozess läuft weiter wenn Terminal geschlossen wird", "Befehl nohup"]
+          - ["redirect-stderr", "2>&1 leitet Fehlermeldungen in dieselbe Datei wie Standardausgabe", "2>&1"]
+
+  - title: "🖥️ Terminal-Check"
+    explanation: |
+      Teste jetzt dein Wissen — gib die Befehle direkt ein!
+    examples:
+      - q: "Welcher Befehl zeigt alle laufenden Prozesse aller Benutzer?"
+        type: input
+        a: "ps aux"
+      - q: "Was bewirkt 'kill -9 1234'?"
+        type: select
+        options:
+          - "Sendet SIGKILL — Prozess wird sofort beendet"
+          - "Sendet SIGTERM — Prozess kann aufräumen"
+          - "Pausiert den Prozess mit PID 1234"
+          - "Startet den Prozess neu"
+        a: "Sendet SIGKILL — Prozess wird sofort beendet"
+      - q: "Wie startet man einen Prozess direkt im Hintergrund?"
+        type: select
+        options:
+          - "Befehl mit & am Ende ausführen"
+          - "Befehl mit bg am Anfang ausführen"
+          - "Befehl mit nohup am Ende ausführen"
+          - "Strg+Z vor dem Befehl drücken"
+        a: "Befehl mit & am Ende ausführen"
+      - q: "Welche dieser Aussagen über Prozess-Signale stimmen?"
+        type: multiple-choice
+        options:
+          - "SIGTERM (15) ist das sanfte Beenden"
+          - "SIGKILL (9) kann nicht abgefangen werden"
+          - "SIGHUP (1) lädt die Konfiguration neu"
+          - "SIGPAUSE (7) ist das Standard-Signal"
+        a:
+          - "SIGTERM (15) ist das sanfte Beenden"
+          - "SIGKILL (9) kann nicht abgefangen werden"
+          - "SIGHUP (1) lädt die Konfiguration neu"

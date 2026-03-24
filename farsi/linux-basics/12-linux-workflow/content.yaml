@@ -1,0 +1,165 @@
+version: 1
+number: 12
+title: "گردش کار حرفه‌ای لینوکس"
+description: "Pipe‌ها، Redirect‌ها، Alias‌ها و xargs — استفاده حرفه‌ای از خط فرمان"
+sections:
+  - title: "Pipe‌ها — اتصال زنجیره‌ای دستورات"
+    explanation: |
+      **چرا این مهم است؟** قدرت واقعی لینوکس در دستورات تکی نیست،
+      بلکه در ترکیب آنهاست. علامت Pipe `|` خروجی یک دستور را
+      مستقیماً به عنوان ورودی به دستور بعدی هدایت می‌کند.
+
+      ```
+      دستور۱ | دستور۲ | دستور۳
+      ```
+
+      **مثال:** چه کسی بیشترین فضا را اشغال کرده؟
+      ```bash
+      du -sh /home/* | sort -rh | head -5
+      ```
+      1. `du -sh /home/*` → حجم هر پوشه خانگی
+      2. `sort -rh` → مرتب‌سازی بر اساس حجم
+      3. `head -5` → فقط ۵ تای بالا
+
+      **فلسفه یونیکس:** یک ابزار، یک کار — ترکیب از طریق Pipe‌ها.
+    examples:
+      - q: "ps aux | grep python | grep -v grep"
+        a: "تمام پروسس‌های Python — grep دوم خط grep خودش را حذف می‌کند"
+        rel:
+          - ["pipe-operator", "| خروجی یک دستور را به عنوان ورودی به بعدی هدایت می‌کند", "Pipe |"]
+          - ["grep-v-grep", "grep -v grep خط grep را از لیست پروسس‌ها حذف می‌کند", "grep -v grep"]
+      - q: "cat /var/log/nginx/access.log | awk '{print $1}' | sort | uniq -c | sort -rn | head -10"
+        a: "۱۰ آدرس IP برتر بر اساس تعداد دسترسی از لاگ Nginx"
+        rel:
+          - ["awk-ip", "awk '{print $1}' فیلد اول (IP) هر خط را چاپ می‌کند", "awk print"]
+          - ["uniq-c", "uniq -c خطوط یکسان متوالی را می‌شمارد", "uniq -c"]
+      - q: "find /var/log -name \"*.log\" -mtime +30 | xargs ls -lh"
+        a: "پیدا کردن فایل‌های لاگ قدیمی‌تر از ۳۰ روز و نمایش حجم آنها"
+        rel:
+          - ["find-cmd", "جستجوی فایل‌ها بر اساس معیارهای مختلف", "دستور find"]
+          - ["find-mtime", "-mtime +30 = آخرین تغییر بیش از ۳۰ روز پیش", "find -mtime"]
+          - ["xargs-cmd", "ارسال خروجی به عنوان آرگومان به دستور بعدی", "دستور xargs"]
+
+  - title: "Redirect‌ها — هدایت ورودی و خروجی"
+    explanation: |
+      Redirect‌ها خروجی را به فایل‌ها یا از فایل‌ها به عنوان ورودی هدایت می‌کنند:
+
+      | نماد | عملکرد |
+      |--------|---------|
+      | `>` | نوشتن خروجی در فایل (بازنویسی!) |
+      | `>>` | افزودن خروجی به فایل |
+      | `<` | استفاده از فایل به عنوان ورودی |
+      | `2>` | نوشتن پیام‌های خطا در فایل |
+      | `2>&1` | هدایت خطاها به همان فایل خروجی |
+      | `/dev/null` | دور ریختن خروجی (سیاه‌چاله) |
+
+      **اسکریپت لاگ معمولی:**
+      ```bash
+      #!/bin/bash
+      DATUM=$(date +%Y%m%d_%H%M%S)
+      ./backup.sh >> /var/log/backup.log 2>&1
+      echo "[$DATUM] پشتیبان‌گیری تکمیل شد" >> /var/log/backup.log
+      ```
+    examples:
+      - q: "ls -la > verzeichnis.txt"
+        a: "ذخیره محتوای پوشه در فایل — فایل موجود بازنویسی می‌شود"
+        rel:
+          - ["redirect-out", "> خروجی استاندارد را به فایل هدایت می‌کند (بازنویسی)", "Redirect >"]
+      - q: "echo \"[$(date)] Server gestartet\" >> /var/log/myapp.log"
+        a: "افزودن خط به فایل لاگ بدون بازنویسی"
+        rel:
+          - ["redirect-append", ">> خروجی را به فایل اضافه می‌کند (بدون بازنویسی)", "Redirect >>"]
+      - q: "find / -name \"*.conf\" 2>/dev/null"
+        a: "جستجوی فایل‌های پیکربندی — دور ریختن پیام‌های خطا (دسترسی رد شد)"
+        rel:
+          - ["dev-null", "/dev/null تمام خروجی‌ها را دور می‌ریزد — سیاه‌چاله", "/dev/null"]
+          - ["redirect-stderr", "2> خطای استاندارد (stderr) را هدایت می‌کند", "Redirect 2>"]
+      - q: "wc -l < /etc/passwd"
+        a: "شمارش تعداد خطوط /etc/passwd — استفاده از فایل به عنوان ورودی"
+        rel:
+          - ["redirect-input", "< محتوای فایل را به عنوان ورودی دستور استفاده می‌کند", "Redirect <"]
+
+  - title: "Alias‌ها و .bashrc — شخصی‌سازی گردش کار"
+    explanation: |
+      **Alias‌ها** میانبرهایی برای دستورات پرکاربرد هستند.
+      آنها در `~/.bashrc` (یا `~/.zshrc` برای Zsh) ذخیره می‌شوند.
+
+      ```bash
+      # اضافه کردن به ~/.bashrc:
+      alias ll='ls -la'
+      alias update='sudo apt update && sudo apt upgrade -y'
+      alias myip='curl -s https://ipinfo.io/ip'
+      alias grep='grep --color=auto'
+      alias ..='cd ..'
+      alias ...='cd ../..'
+      alias gs='git status'
+      alias gc='git commit -m'
+      ```
+
+      بعد از ویرایش `.bashrc`:
+      ```bash
+      source ~/.bashrc   # اعمال فوری تغییرات
+      ```
+
+      **متغیرهای محیطی** در `.bashrc`:
+      ```bash
+      export EDITOR=vim
+      export PATH="$PATH:/home/alice/.local/bin"
+      ```
+    examples:
+      - q: "alias ll='ls -la --color=auto'"
+        a: "ساخت Alias 'll' برای لیست پوشه با جزئیات و رنگ"
+        rel:
+          - ["alias-cmd", "ساخت میانبر برای دستورات پرکاربرد یا طولانی", "دستور alias"]
+      - q: "alias update='sudo apt update && sudo apt upgrade -y'"
+        a: "به‌روزرسانی سیستم فقط با تایپ کلمه 'update'"
+        rel:
+          - ["alias-complex", "Alias برای زنجیره دستورات پیچیده — یک کلمه به جای دستور طولانی", "مثال Alias"]
+      - q: "source ~/.bashrc"
+        a: "بارگذاری مجدد پیکربندی Bash — Alias‌های جدید فوراً بدون راه‌اندازی مجدد ترمینال فعال می‌شوند"
+        rel:
+          - ["source-cmd", "بارگذاری فایل پیکربندی در Shell فعلی", "source / ."]
+          - ["bashrc-reload", "بارگذاری مجدد ~/.bashrc بعد از تغییرات", "source ~/.bashrc"]
+      - q: "alias | grep git"
+        a: "نمایش تمام Alias‌های مرتبط با git — alias بدون آرگومان همه را نشان می‌دهد"
+        rel:
+          - ["alias-list", "alias بدون آرگومان تمام Alias‌های تعریف‌شده را لیست می‌کند", "alias بدون آرگومان"]
+      - q: "unalias ll"
+        a: "حذف Alias 'll' — فقط برای جلسه فعلی معتبر است"
+        rel:
+          - ["unalias-cmd", "حذف Alias تعریف‌شده", "دستور unalias"]
+
+  - title: "🖥️ آزمون ترمینال"
+    explanation: |
+      حالا دانش خود را تست کنید — دستورات را مستقیماً وارد کنید!
+    examples:
+      - q: "کدام نماد دو دستور را با Pipe متصل می‌کند؟"
+        type: input
+        a: "|"
+      - q: "تفاوت '>>' با '>' چیست؟"
+        type: select
+        options:
+          - ">> خروجی را به فایل اضافه می‌کند، > آن را بازنویسی می‌کند"
+          - ">> فایل را بازنویسی می‌کند، > اضافه می‌کند"
+          - ">> خطاها را هدایت می‌کند، > خروجی را هدایت می‌کند"
+          - ">> و > یک کار را انجام می‌دهند"
+        a: ">> خروجی را به فایل اضافه می‌کند، > آن را بازنویسی می‌کند"
+      - q: "چگونه تغییرات در ~/.bashrc فوراً اعمال می‌شوند؟"
+        type: select
+        options:
+          - "source ~/.bashrc"
+          - "reload ~/.bashrc"
+          - "bash --refresh"
+          - "apply ~/.bashrc"
+        a: "source ~/.bashrc"
+      - q: "کدام‌یک از این جملات درباره Alias‌ها و Pipe‌ها درست هستند؟"
+        type: multiple-choice
+        options:
+          - "alias میانبر برای دستورات پرکاربرد می‌سازد"
+          - "| خروجی را به عنوان ورودی هدایت می‌کند"
+          - "/dev/null تمام خروجی‌ها را دور می‌ریزد"
+          - "source دستورات را برای همیشه در ترمینال ذخیره می‌کند"
+        a:
+          - "alias میانبر برای دستورات پرکاربرد می‌سازد"
+          - "| خروجی را به عنوان ورودی هدایت می‌کند"
+          - "/dev/null تمام خروجی‌ها را دور می‌ریزد"

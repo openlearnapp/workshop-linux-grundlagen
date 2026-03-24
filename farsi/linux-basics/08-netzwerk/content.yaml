@@ -1,0 +1,154 @@
+version: 1
+number: 8
+title: "شبکه"
+description: "ping، curl، wget، ssh و ip — تست اتصالات شبکه، انتقال داده و کار از راه دور"
+sections:
+  - title: "بررسی شبکه — ping، ip و ss"
+    explanation: |
+      **چرا این مهم است؟** به عنوان کاربر لینوکس، سرورها را مدیریت می‌کنید، API‌ها را
+      فراخوانی می‌کنید و مشکلات شبکه را دیباگ می‌کنید. این دستورات پایه کار هستند.
+
+      | دستور | هدف |
+      |--------|-------|
+      | `ping` | تست دسترس‌پذیری |
+      | `ip addr` | آدرس‌های IP رابط‌های شبکه |
+      | `ip route` | نمایش جدول مسیریابی |
+      | `ss -tulpn` | پورت‌های باز و اتصالات |
+      | `netstat -tulpn` | مشابه ss (ابزار قدیمی‌تر) |
+
+      **رابط‌های شبکه** اتصالات به شبکه هستند:
+      - `lo` = Loopback (فقط محلی، 127.0.0.1)
+      - `eth0` یا `enp3s0` = اترنت کابلی
+      - `wlan0` یا `wlp2s0` = WLAN
+    examples:
+      - q: "ping -c 4 google.com"
+        a: "۴ بسته ICMP به google.com ارسال می‌کند — تست اتصال اینترنت و تأخیر"
+        rel:
+          - ["ping-cmd", "تست دسترس‌پذیری و تأخیر شبکه", "دستور ping"]
+          - ["ping-c", "Count — محدود کردن تعداد بسته‌های ارسالی", "فلگ -c"]
+      - q: "ip addr show"
+        a: "تمام رابط‌های شبکه با آدرس‌های IP (جایگزین ifconfig)"
+        rel:
+          - ["ip-cmd", "ابزار مدرن مدیریت شبکه (جایگزین ifconfig)", "دستور ip"]
+          - ["ip-addr", "نمایش آدرس‌های IP تمام رابط‌های شبکه", "ip addr"]
+      - q: "ss -tulpn"
+        a: "تمام پورت‌های باز TCP/UDP و برنامه‌های مربوطه"
+        rel:
+          - ["ss-cmd", "Socket Statistics — اتصالات شبکه و پورت‌های باز", "دستور ss"]
+          - ["ss-tulpn", "t=TCP، u=UDP، l=listening، p=پروسس، n=عددی", "فلگ‌های -tulpn"]
+
+  - title: "curl و wget — دریافت داده از شبکه"
+    explanation: |
+      `curl` و `wget` چاقوی سوئیسی درخواست‌های HTTP هستند.
+
+      **curl** (Client URL) — بسیار انعطاف‌پذیر، ایده‌آل برای API‌ها:
+      ```bash
+      curl https://api.github.com/users/torvalds
+      curl -X POST -H "Content-Type: application/json" \
+           -d '{"name":"test"}' https://api.example.com/data
+      ```
+
+      **wget** — بهتر برای دانلود فایل‌های بزرگ:
+      ```bash
+      wget https://releases.ubuntu.com/22.04/ubuntu-22.04-live-server.iso
+      wget -c großedatei.zip   # ادامه دانلود قطع‌شده
+      ```
+
+      **تفاوت:** curl پاسخ را نمایش می‌دهد، wget مستقیماً در فایل ذخیره می‌کند.
+    examples:
+      - q: "curl -I https://example.com"
+        a: "فقط هدرهای HTTP (کد وضعیت، سرور، Content-Type) بدون بدنه"
+        rel:
+          - ["curl-cmd", "Client URL — ارسال درخواست‌های HTTP و انتقال داده", "دستور curl"]
+          - ["curl-I", "Head — فقط نمایش هدرهای HTTP پاسخ", "فلگ -I"]
+      - q: "curl -s https://ipinfo.io/ip"
+        a: "نمایش آدرس IP عمومی شما — فلگ -s نوار پیشرفت را مخفی می‌کند"
+        rel:
+          - ["curl-s", "Silent — مخفی کردن نمایش پیشرفت و پیام‌های خطا", "فلگ -s"]
+      - q: "wget -O nodejs.tar.gz https://nodejs.org/dist/v20.0.0/node-v20.0.0.tar.gz"
+        a: "دانلود فایل و ذخیره با نام دلخواه"
+        rel:
+          - ["wget-cmd", "Web Get — دانلود فایل از اینترنت", "دستور wget"]
+          - ["wget-O", "Output — ذخیره فایل با نام دیگر", "فلگ -O"]
+      - q: "curl -fsSL https://get.docker.com | sudo sh"
+        a: "دانلود و اجرای مستقیم اسکریپت نصب Docker"
+        rel:
+          - ["curl-fssl", "f=شکست بی‌صدا، s=بی‌صدا، S=خطاها، L=دنبال ریدایرکت‌ها", "فلگ‌های -fsSL"]
+
+  - title: "SSH — اتصال امن به سرور راه دور"
+    explanation: |
+      **SSH** (Secure Shell) مهم‌ترین ابزار برای مدیریت سرورها از راه دور است.
+      همه چیز رمزنگاری‌شده منتقل می‌شود.
+
+      **برقراری اتصال:**
+      ```bash
+      ssh benutzer@server.example.com
+      ssh -p 2222 alice@192.168.1.100    # تعیین پورت
+      ```
+
+      **کلیدهای SSH** امن‌تر از رمز عبور هستند:
+      ```bash
+      ssh-keygen -t ed25519 -C "alice@laptop"  # ساخت جفت کلید
+      ssh-copy-id alice@server.example.com      # انتقال کلید به سرور
+      ssh alice@server.example.com              # حالا بدون رمز عبور!
+      ```
+
+      **انتقال فایل با scp:**
+      ```bash
+      scp datei.txt alice@server:/home/alice/
+      scp -r ordner/ alice@server:/var/www/
+      ```
+    examples:
+      - q: "ssh alice@192.168.1.100"
+        a: "اتصال به سرور از طریق SSH — ورود با رمز عبور یا کلید SSH"
+        rel:
+          - ["ssh-cmd", "Secure Shell — اتصال رمزنگاری‌شده از راه دور", "دستور ssh"]
+      - q: "ssh-keygen -t ed25519 -C \"alice@meinlaptop\""
+        a: "ساخت یک جفت کلید مدرن Ed25519 — امن‌تر از RSA قدیمی"
+        rel:
+          - ["ssh-keygen", "ساخت جفت کلید SSH", "دستور ssh-keygen"]
+          - ["ed25519", "الگوریتم مدرن برای کلیدهای SSH، توصیه‌شده از ۲۰۲۲", "نوع کلید Ed25519"]
+      - q: "ssh-copy-id -i ~/.ssh/id_ed25519.pub alice@server.example.com"
+        a: "کپی کلید عمومی روی سرور — بعد از آن دیگر نیاز به رمز عبور نیست"
+        rel:
+          - ["ssh-copy-id", "نصب کلید عمومی SSH روی سرور راه دور", "دستور ssh-copy-id"]
+      - q: "scp -r ~/projekte/webseite/ alice@server:/var/www/html/"
+        a: "انتقال کل پوشه وبسایت از طریق scp به سرور"
+        rel:
+          - ["scp-cmd", "Secure Copy — انتقال رمزنگاری‌شده فایل از طریق SSH", "دستور scp"]
+          - ["scp-r", "Recursive — انتقال پوشه‌ها", "فلگ -r"]
+
+  - title: "🖥️ آزمون ترمینال"
+    explanation: |
+      حالا دانش خود را تست کنید — دستورات را مستقیماً وارد کنید!
+    examples:
+      - q: "کدام دستور دسترس‌پذیری google.com را با ۴ بسته تست می‌کند؟"
+        type: input
+        a: "ping -c 4 google.com"
+      - q: "دستور 'curl -s https://ipinfo.io/ip' چه کار می‌کند؟"
+        type: select
+        options:
+          - "آدرس IP عمومی شما را نشان می‌دهد"
+          - "سرعت اتصال اینترنت را تست می‌کند"
+          - "پایگاه داده IP را دانلود می‌کند"
+          - "تمام رابط‌های شبکه را نشان می‌دهد"
+        a: "آدرس IP عمومی شما را نشان می‌دهد"
+      - q: "کدام دستور تمام پورت‌های باز و برنامه‌های مربوطه را نشان می‌دهد؟"
+        type: select
+        options:
+          - "ss -tulpn"
+          - "ip addr show"
+          - "ping -a localhost"
+          - "netstat --list"
+        a: "ss -tulpn"
+      - q: "کدام‌یک از این جملات درباره SSH درست هستند؟"
+        type: multiple-choice
+        options:
+          - "SSH اتصال را رمزنگاری می‌کند"
+          - "کلیدهای SSH امن‌تر از رمز عبور هستند"
+          - "ssh-keygen یک جفت کلید می‌سازد"
+          - "SSH رمزهای عبور را به صورت متن ساده ارسال می‌کند"
+        a:
+          - "SSH اتصال را رمزنگاری می‌کند"
+          - "کلیدهای SSH امن‌تر از رمز عبور هستند"
+          - "ssh-keygen یک جفت کلید می‌سازد"

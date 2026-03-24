@@ -1,0 +1,150 @@
+version: 1
+number: 11
+title: "اطلاعات سیستم"
+description: "df، du، free، uname و history — نظارت بر وضعیت سیستم"
+sections:
+  - title: "فضای ذخیره‌سازی — df و du"
+    explanation: |
+      **چرا این مهم است؟** پر شدن فضای دیسک یکی از رایج‌ترین
+      دلایل خرابی سرور یا از کار افتادن سرویس‌هاست. `df` و `du` کمک می‌کنند
+      مشکلات فضا را زودتر تشخیص دهید و مقصر را پیدا کنید.
+
+      | دستور | هدف |
+      |--------|-------|
+      | `df -h` | استفاده دیسک تمام پارتیشن‌ها |
+      | `du -sh ordner/` | حجم یک پوشه |
+      | `du -sh * | sort -rh` | حجم تمام فایل‌ها/پوشه‌ها مرتب‌شده |
+      | `du -h --max-depth=1` | فقط یک سطح عمق |
+
+      **آستانه هشدار:** وقتی `df -h` برای `/` بالای ۸۰٪ نشان دهد، باید اقدام کنید.
+      فضاخورهای معمول: `/var/log`، `/var/cache`، ایمیج‌های قدیمی Docker.
+    examples:
+      - q: "df -h"
+        a: "تمام پارتیشن‌ها با فضای استفاده‌شده/آزاد به GB/MB — h = human-readable"
+        rel:
+          - ["df-cmd", "Disk Free — نمایش استفاده دیسک", "دستور df"]
+          - ["df-h", "Human-readable — حجم‌ها به KB/MB/GB به جای بایت", "فلگ -h"]
+      - q: "df -h /"
+        a: "فقط استفاده پارتیشن Root — مهم‌ترین پارتیشن"
+        rel:
+          - ["df-root", "بررسی استفاده پارتیشن Root /", "df -h /"]
+      - q: "du -sh ~/Downloads/*"
+        a: "حجم هر آیتم در پوشه Downloads"
+        rel:
+          - ["du-cmd", "Disk Usage — مصرف فضای فایل‌ها/پوشه‌ها", "دستور du"]
+          - ["du-sh", "s=summary (حجم کل)، h=human-readable", "فلگ‌های -sh"]
+      - q: "du -h --max-depth=1 /var | sort -rh | head -10"
+        a: "۱۰ زیرپوشه بزرگ‌تر /var مرتب بر اساس حجم — پیدا کردن فضاخورها"
+        rel:
+          - ["du-max-depth", "نمایش فقط تا عمق مشخصی از پوشه", "--max-depth=1"]
+          - ["sort-rh", "r=معکوس (نزولی)، h=مرتب‌سازی حجم‌های خوانا", "sort -rh"]
+
+  - title: "حافظه و CPU — free و uptime"
+    explanation: |
+      `free` مصرف RAM را نشان می‌دهد:
+      ```
+      $ free -h
+                    total   used   free  shared  cache  available
+      Mem:           15Gi   4.2Gi  8.1Gi  512Mi  3.1Gi    10.4Gi
+      Swap:          2.0Gi  0B     2.0Gi
+      ```
+
+      **ستون‌های مهم:**
+      - `total`: کل RAM
+      - `used`: RAM استفاده‌شده
+      - **`available`**: RAM واقعاً قابل استفاده (مهم‌تر از `free`!)
+      - `Swap`: حافظه جایگزین روی دیسک — وقتی Swap پر شود، سیستم کند می‌شود
+
+      `uptime` نشان می‌دهد سیستم چقدر روشن بوده و **Load Average**:
+      ```
+      15:42:01 up 7 days, 3:25,  2 users,  load average: 0.52, 0.48, 0.45
+      ```
+      Load Average ۱/۵/۱۵ دقیقه — در یک هسته، 1.0 = ۱۰۰٪ بارگذاری.
+    examples:
+      - q: "free -h"
+        a: "مصرف RAM به MB/GB — ستون available حافظه واقعاً قابل استفاده را نشان می‌دهد"
+        rel:
+          - ["free-cmd", "نمایش مصرف RAM و استفاده Swap", "دستور free"]
+          - ["free-h", "Human-readable — حافظه به MB/GB به جای بایت", "free -h"]
+      - q: "uptime"
+        a: "مدت روشن بودن سیستم، کاربران فعال و CPU Load Average ۱/۵/۱۵ دقیقه اخیر"
+        rel:
+          - ["uptime-cmd", "مدت روشن بودن و بارگذاری سیستم در دقایق اخیر", "دستور uptime"]
+          - ["load-average", "میانگین بارگذاری CPU: 1=۱۰۰٪ در یک هسته", "Load Average"]
+      - q: "vmstat 2 5"
+        a: "آمار سیستم هر ۲ ثانیه، ۵ بار — CPU، RAM، I/O، پروسس‌ها"
+        rel:
+          - ["vmstat-cmd", "Virtual Memory Statistics — داده‌های دقیق عملکرد سیستم", "دستور vmstat"]
+
+  - title: "history و تاریخچه دستورات"
+    explanation: |
+      `history` تمام دستورات اخیراً وارد‌شده را نشان می‌دهد — با شماره.
+      ترمینال به صورت پیش‌فرض ۱۰۰۰ تا ۲۰۰۰ دستور را ذخیره می‌کند.
+
+      **ترفندهای بهره‌وری:**
+      | میانبر | عملکرد |
+      |--------|---------|
+      | `history` | نمایش تمام دستورات |
+      | `history 20` | ۲۰ دستور آخر |
+      | `!!` | تکرار آخرین دستور |
+      | `!50` | اجرای دستور شماره ۵۰ |
+      | `!apt` | آخرین دستوری که با 'apt' شروع شده |
+      | `Ctrl+R` | جستجوی عقب‌رو در history (خیلی مفید!) |
+      | `history | grep ssh` | جستجوی دستورات ssh در history |
+
+      `Ctrl+R` یکی از ارزشمندترین میانبرهاست: عبارت جستجو بنویسید و bash
+      خودکار آخرین دستور مطابق را پیدا می‌کند.
+    examples:
+      - q: "history | tail -20"
+        a: "۲۰ دستور آخر وارد‌شده"
+        rel:
+          - ["history-cmd", "نمایش تاریخچه دستورات واردشده", "دستور history"]
+      - q: "history | grep \"apt install\""
+        a: "جستجوی تمام دستورات apt install در history — چه وقت چه چیزی نصب کرده‌ام؟"
+        rel:
+          - ["history-grep", "ترکیب history با grep — جستجوی دستورات خاص از تاریخچه", "history | grep"]
+      - q: "!!"
+        a: "تکرار فوری آخرین دستور — خصوصاً مفید برای: sudo !!"
+        rel:
+          - ["bang-bang", "!! آخرین دستور واردشده را دوباره اجرا می‌کند", "!!"]
+          - ["sudo-bang-bang", "sudo !! — تکرار آخرین دستور با مجوز مدیر", "sudo !!"]
+      - q: "cat /proc/cpuinfo | grep \"model name\" | head -1"
+        a: "خواندن مدل و نوع CPU از اطلاعات پروسس Kernel"
+        rel:
+          - ["proc-cpuinfo", "فایل Kernel با اطلاعات دقیق CPU", "/proc/cpuinfo"]
+          - ["proc-filesystem", "/proc یک سیستم فایل واقعی نیست — شامل اطلاعات Kernel به صورت فایل", "/proc"]
+
+  - title: "🖥️ آزمون ترمینال"
+    explanation: |
+      حالا دانش خود را تست کنید — دستورات را مستقیماً وارد کنید!
+    examples:
+      - q: "کدام دستور استفاده دیسک تمام پارتیشن‌ها را نشان می‌دهد؟"
+        type: input
+        a: "df -h"
+      - q: "ستون 'available' در 'free -h' چه چیزی را نشان می‌دهد؟"
+        type: select
+        options:
+          - "حافظه RAM واقعاً قابل استفاده"
+          - "فضای آزاد دیسک"
+          - "حافظه Swap استفاده‌شده"
+          - "میزان استفاده CPU به درصد"
+        a: "حافظه RAM واقعاً قابل استفاده"
+      - q: "کدام دستور در تاریخچه دستورات 'apt install' را جستجو می‌کند؟"
+        type: select
+        options:
+          - "history | grep \"apt install\""
+          - "history search \"apt install\""
+          - "grep history \"apt install\""
+          - "find history -name \"apt install\""
+        a: "history | grep \"apt install\""
+      - q: "کدام‌یک از این دستورات اطلاعات سیستم را نشان می‌دهند؟"
+        type: multiple-choice
+        options:
+          - "df -h"
+          - "free -h"
+          - "uptime"
+          - "chmod 755"
+        a:
+          - "df -h"
+          - "free -h"
+          - "uptime"

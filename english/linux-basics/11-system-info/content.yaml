@@ -1,0 +1,149 @@
+version: 1
+number: 11
+title: "System Info"
+description: "df, du, free, uname and history — keeping an eye on system state"
+sections:
+  - title: "Disk space — df and du"
+    explanation: |
+      **Why does this matter?** A full disk is one of the most common reasons why
+      servers crash or services fail. `df` and `du` help you spot storage problems
+      early and find the culprits.
+
+      | Command | Purpose |
+      |---------|---------|
+      | `df -h` | Disk usage of all partitions |
+      | `du -sh folder/` | Size of a folder |
+      | `du -sh * | sort -rh` | Size of all files/folders sorted |
+      | `du -h --max-depth=1` | Show only one level deep |
+
+      **Alert threshold:** When `df -h` shows `/` above 80%, action is needed.
+      Typical disk hogs: `/var/log`, `/var/cache`, old Docker images.
+    examples:
+      - q: "df -h"
+        a: "Shows all partitions with used/free space in GB/MB — h = human-readable"
+        rel:
+          - ["en-df-cmd", "Disk Free — show disk usage", "df command"]
+          - ["en-df-h", "Human-readable — sizes in KB/MB/GB instead of bytes", "flag -h"]
+      - q: "df -h /"
+        a: "Show only root partition usage — the most important partition"
+        rel:
+          - ["en-df-root", "Check usage of root partition /", "df -h /"]
+      - q: "du -sh ~/Downloads/*"
+        a: "Show size of each item in the Downloads folder"
+        rel:
+          - ["en-du-cmd", "Disk Usage — show storage use of files/folders", "du command"]
+          - ["en-du-sh", "s=summary (total size), h=human-readable", "flags -sh"]
+      - q: "du -h --max-depth=1 /var | sort -rh | head -10"
+        a: "Top 10 largest subdirectories in /var sorted by size — find disk hogs"
+        rel:
+          - ["en-du-max-depth", "Only show up to a certain directory depth", "--max-depth=1"]
+          - ["en-sort-rh", "r=reverse (descending), h=sort human-readable sizes", "sort -rh"]
+
+  - title: "Memory and CPU — free and uptime"
+    explanation: |
+      `free` shows RAM usage:
+      ```
+      $ free -h
+                    total   used   free  shared  cache  available
+      Mem:           15Gi   4.2Gi  8.1Gi  512Mi  3.1Gi    10.4Gi
+      Swap:          2.0Gi  0B     2.0Gi
+      ```
+
+      **Key columns:**
+      - `total`: Total RAM
+      - `used`: Used RAM
+      - **`available`**: Actually available RAM (more important than `free`!)
+      - `Swap`: Disk-based swap space — if swap is full, things get slow
+
+      `uptime` shows how long the system has been running and the **Load Average**:
+      ```
+      15:42:01 up 7 days, 3:25,  2 users,  load average: 0.52, 0.48, 0.45
+      ```
+      Load average 1/5/15 minutes — with one core, 1.0 = 100% utilized.
+    examples:
+      - q: "free -h"
+        a: "RAM usage in MB/GB — available column shows truly free memory"
+        rel:
+          - ["en-free-cmd", "Show RAM usage and swap utilization", "free command"]
+      - q: "uptime"
+        a: "System uptime, active users and CPU load average over last 1/5/15 minutes"
+        rel:
+          - ["en-uptime-cmd", "System uptime and load over past minutes", "uptime command"]
+          - ["en-load-average", "Average CPU load: 1.0 = 100% with one core", "Load Average"]
+      - q: "vmstat 2 5"
+        a: "System statistics every 2 seconds, 5 times — CPU, RAM, I/O, processes"
+        rel:
+          - ["en-vmstat-cmd", "Virtual Memory Statistics — detailed system performance data", "vmstat command"]
+
+  - title: "history and the command log"
+    explanation: |
+      `history` shows all recently entered commands — with numbers.
+      The terminal saves 1000–2000 commands by default.
+
+      **Productivity tricks:**
+      | Shortcut | Effect |
+      |----------|--------|
+      | `history` | Show all commands |
+      | `history 20` | Last 20 commands |
+      | `!!` | Repeat last command |
+      | `!50` | Run command number 50 |
+      | `!apt` | Last command that started with 'apt' |
+      | `Ctrl+R` | Search backward in history (very useful!) |
+      | `history | grep ssh` | Search history for ssh commands |
+
+      `Ctrl+R` is one of the most valuable shortcuts: type a search term and bash
+      automatically finds the last matching command.
+    examples:
+      - q: "history | tail -20"
+        a: "Show the last 20 entered commands"
+        rel:
+          - ["en-history-cmd", "Show history of entered commands", "history command"]
+      - q: "history | grep \"apt install\""
+        a: "Find all apt install commands from history — what did I install when?"
+        rel:
+          - ["en-history-grep", "Combine history with grep — find specific commands from log", "history | grep"]
+      - q: "!!"
+        a: "Immediately repeat the last command — especially useful for: sudo !!"
+        rel:
+          - ["en-bang-bang", "!! runs the last entered command again", "!!"]
+          - ["en-sudo-bang-bang", "sudo !! — repeat last command with administrator rights", "sudo !!"]
+      - q: "cat /proc/cpuinfo | grep \"model name\" | head -1"
+        a: "Read the CPU model and type from kernel process information"
+        rel:
+          - ["en-proc-cpuinfo", "Kernel file with detailed CPU information", "/proc/cpuinfo"]
+          - ["en-proc-filesystem", "/proc is not a real filesystem — contains kernel info as files", "/proc"]
+
+  - title: "🖥️ Terminal Check"
+    explanation: |
+      Test your knowledge — type the commands yourself!
+    examples:
+      - q: "Which command shows disk usage of all partitions?"
+        type: input
+        a: "df -h"
+      - q: "What does the 'available' column in 'free -h' show?"
+        type: select
+        options:
+          - "The truly available RAM"
+          - "The free disk space"
+          - "The used swap space"
+          - "The CPU utilization in percent"
+        a: "The truly available RAM"
+      - q: "Which command searches the command history for 'apt install'?"
+        type: select
+        options:
+          - "history | grep \"apt install\""
+          - "history search \"apt install\""
+          - "grep history \"apt install\""
+          - "find history -name \"apt install\""
+        a: "history | grep \"apt install\""
+      - q: "Which of these commands show system information?"
+        type: multiple-choice
+        options:
+          - "df -h"
+          - "free -h"
+          - "uptime"
+          - "chmod 755"
+        a:
+          - "df -h"
+          - "free -h"
+          - "uptime"

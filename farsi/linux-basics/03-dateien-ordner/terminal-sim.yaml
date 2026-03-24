@@ -1,0 +1,58 @@
+# Terminal-Simulator Befehle für Lektion 3: Dateien & Ordner
+prompt: "user@linux:~$"
+commands:
+  - cmd: "touch README.md"
+    output: ""
+    hint: "Erstellt eine leere Datei README.md"
+  - cmd: "touch index.html style.css app.js"
+    output: ""
+    hint: "Erstellt drei Dateien auf einmal"
+  - cmd: "ls"
+    output: "Documents  Downloads  README.md  app.js  index.html  style.css"
+    hint: "Zeigt die neu erstellten Dateien"
+  - cmd: "mkdir projekte"
+    output: ""
+    hint: "Erstellt ein neues Verzeichnis"
+  - cmd: "mkdir -p projekte/webseite/assets/img"
+    output: ""
+    hint: "Erstellt den gesamten Verzeichnisbaum auf einmal"
+  - cmd: "ls -la projekte/webseite/"
+    output: |
+      total 8
+      drwxr-xr-x 3 user user 4096 Mar 20 14:30 .
+      drwxr-xr-x 3 user user 4096 Mar 20 14:30 ..
+      drwxr-xr-x 3 user user 4096 Mar 20 14:30 assets
+    hint: "Zeigt den Inhalt des neuen Verzeichnisbaums"
+  - cmd: "cp ~/.bashrc ~/.bashrc.backup"
+    output: ""
+    hint: "Sicherheitskopie der Konfigurationsdatei erstellen"
+  - cmd: "ls -la ~/.bashrc*"
+    output: |
+      -rw-r--r-- 1 user user 220 Mar 15 09:00 /home/user/.bashrc
+      -rw-r--r-- 1 user user 220 Mar 20 14:31 /home/user/.bashrc.backup
+    hint: "Beide Dateien vergleichen — Original und Backup"
+  - cmd: "cp -r Documents/ Documents_backup/"
+    output: ""
+    hint: "Ordner rekursiv kopieren mit -r Flag"
+  - cmd: "mv README.md projekte/"
+    output: ""
+    hint: "Datei in einen anderen Ordner verschieben"
+  - cmd: "mv index.html startseite.html"
+    output: ""
+    hint: "Datei umbenennen — mv ohne Pfadwechsel"
+  - cmd: "ls projekte/"
+    output: "README.md  webseite"
+    hint: "Bestaetigt: README.md wurde verschoben"
+  - cmd: "rm style.css"
+    output: ""
+    hint: "Datei loeschen — kein Papierkorb!"
+  - cmd: "rm -i app.js"
+    output: "rm: remove regular empty file 'app.js'? y"
+    hint: "Fragt vor dem Loeschen nach — sicherer"
+  - cmd: "rmdir projekte/webseite/assets/img"
+    output: ""
+    hint: "Leeres Verzeichnis loeschen"
+  - cmd: "rm -rf /"
+    output: "rm: it is dangerous to operate recursively on '/'\nrm: use --no-preserve-root to override this failsafe"
+    hint: "NIEMALS ausfuehren! Loescht das gesamte System"
+    error: true

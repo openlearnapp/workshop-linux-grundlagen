@@ -1,0 +1,149 @@
+version: 1
+number: 7
+title: "إدارة الحزم"
+description: "apt و snap و dpkg — تثبيت البرمجيات وتحديثها وإدارتها على Ubuntu/Debian"
+sections:
+  - title: "apt — متجر التطبيقات في سطر الأوامر"
+    explanation: |
+      **لماذا هذا مهم؟** في لينكس لا تثبت البرمجيات عبر تنزيل ملفات .exe،
+      بل عبر **مديري الحزم**. هؤلاء يجلبون البرامج من مصادر موثوقة،
+      يحلون التبعيات ويبقون كل شيء محدّثًا.
+
+      أهم مدير حزم لـ Ubuntu/Debian: **apt** (Advanced Package Tool).
+
+      **سير العمل المعتاد:**
+      ```bash
+      sudo apt update           # ١. تحديث قائمة الحزم
+      sudo apt upgrade          # ٢. ترقية جميع الحزم
+      sudo apt install nginx    # ٣. تثبيت حزمة
+      ```
+
+      **مهم:** `update` يُحدّث فقط *قائمة* الحزم المتاحة،
+      وليس الحزم نفسها. `upgrade` يُحدّث البرامج الفعلية.
+    examples:
+      - q: "sudo apt update"
+        a: "يجلب قوائم الحزم الحالية من جميع مصادر الحزم — نفّذه دائمًا أولاً"
+        rel:
+          - ["apt-cmd", "Advanced Package Tool — إدارة الحزم لـ Debian/Ubuntu", "أمر apt"]
+          - ["apt-update", "تحديث قوائم الحزم من الخوادم (ليس الحزم نفسها)", "apt update"]
+      - q: "sudo apt upgrade"
+        a: "يُحدّث جميع الحزم المثبتة إلى أحدث إصدار"
+        rel:
+          - ["apt-upgrade", "ترقية جميع الحزم المثبتة إلى أحدث إصدار", "apt upgrade"]
+      - q: "sudo apt install git curl wget"
+        a: "تثبيت ثلاث حزم دفعة واحدة — apt يقبل عدة أسماء حزم"
+        rel:
+          - ["apt-install", "تثبيت حزمة أو عدة حزم", "apt install"]
+      - q: "sudo apt update && sudo apt upgrade -y"
+        a: "تحديث كامل في أمر واحد — -y يُجيب تلقائيًا بنعم على جميع الاستفسارات"
+        rel:
+          - ["apt-y-flag", "Yes — تأكيد جميع الاستفسارات تلقائيًا", "العلم -y"]
+
+  - title: "البحث عن الحزم وإزالتها وتنظيفها"
+    explanation: |
+      `apt` يمكنه أيضًا البحث عن حزم وإزالة البرمجيات غير المطلوبة.
+
+      | الأمر | الأثر |
+      |-------|-------|
+      | `apt search nginx` | البحث عن حزم |
+      | `apt show nginx` | عرض تفاصيل حزمة |
+      | `apt remove nginx` | إزالة حزمة (الإعدادات تبقى) |
+      | `apt purge nginx` | إزالة الحزمة + الإعدادات بالكامل |
+      | `apt autoremove` | إزالة التبعيات غير المطلوبة |
+      | `apt list --installed` | عرض جميع الحزم المثبتة |
+
+      **بعد التنظيف** يُنصح بتنفيذ `sudo apt autoremove` — يُزيل
+      الحزم التي تم تثبيتها تلقائيًا ولم تعد مطلوبة.
+    examples:
+      - q: "apt search \"text editor\""
+        a: "يبحث عن حزم تحتوي 'text editor' في الاسم أو الوصف"
+        rel:
+          - ["apt-search", "البحث في قاعدة بيانات الحزم", "apt search"]
+      - q: "apt show nodejs"
+        a: "يعرض تفاصيل nodejs: الإصدار، التبعيات، الوصف، الحجم"
+        rel:
+          - ["apt-show", "عرض معلومات مفصلة عن حزمة", "apt show"]
+      - q: "sudo apt remove --purge apache2"
+        a: "يُزيل Apache2 بالكامل بما في ذلك جميع ملفات الإعداد"
+        rel:
+          - ["apt-purge", "إزالة الحزمة وجميع ملفات الإعداد بالكامل", "apt purge / --purge"]
+      - q: "sudo apt autoremove && sudo apt clean"
+        a: "إزالة الحزم اليتيمة وتنظيف ذاكرة التخزين المؤقت — يحرر مساحة التخزين"
+        rel:
+          - ["apt-autoremove", "إزالة الحزم المثبتة تلقائيًا التي لم تعد مطلوبة", "apt autoremove"]
+          - ["apt-clean", "حذف ملفات الحزم المحمّلة من ذاكرة التخزين المؤقت", "apt clean"]
+
+  - title: "dpkg و snap — طرق تثبيت بديلة"
+    explanation: |
+      أحيانًا لا يتوفر برنامج في مستودع apt — حينها توجد طرق أخرى:
+
+      **dpkg** يثبّت ملفات `.deb` مباشرة (مثل مثبّت .exe لكن لنظام لينكس):
+      ```bash
+      sudo dpkg -i google-chrome.deb
+      sudo apt install -f    # تثبيت التبعيات المفقودة لاحقًا
+      ```
+
+      **snap** نظام حزم أحدث من Canonical (Ubuntu):
+      - الحزم تعمل في بيئة معزولة (sandboxed)
+      - تحديثات تلقائية
+      - أبطأ قليلاً في البدء من حزم apt العادية
+
+      **curl + سكريبت تثبيت** — كثير من البرامج تستخدم هذه الطريقة:
+      ```bash
+      curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+      sudo apt install nodejs
+      ```
+    examples:
+      - q: "sudo dpkg -i vscode.deb"
+        a: "تثبيت ملف .deb محمّل محليًا مباشرة"
+        rel:
+          - ["dpkg-cmd", "Debian Package — إدارة ملفات .deb مباشرة", "أمر dpkg"]
+          - ["dpkg-i", "Install — تثبيت ملف .deb", "العلم -i"]
+      - q: "dpkg -l | grep \"^ii\""
+        a: "عرض جميع الحزم المثبتة بشكل صحيح (ii = installed properly)"
+        rel:
+          - ["dpkg-l", "List — جميع الحزم المعروفة وحالتها", "dpkg -l"]
+      - q: "snap install code --classic"
+        a: "تثبيت Visual Studio Code عبر snap — --classic يسمح بوصول كامل للنظام"
+        rel:
+          - ["snap-cmd", "نظام حزم Snap — تطبيقات معزولة مع تحديث تلقائي", "أمر snap"]
+          - ["snap-classic", "Classic confinement — وصول كامل للنظام لبرامج مثل IDE", "العلم --classic"]
+      - q: "snap list"
+        a: "عرض جميع حزم snap المثبتة وإصداراتها"
+        rel:
+          - ["snap-list", "عرض جميع حزم snap المثبتة", "snap list"]
+
+  - title: "🖥️ اختبار الطرفية"
+    explanation: |
+      اختبر معرفتك الآن — أدخل الأوامر مباشرة!
+    examples:
+      - q: "أي أمر يُحدّث قوائم الحزم في Ubuntu/Debian؟"
+        type: input
+        a: "sudo apt update"
+      - q: "ما الفرق بين 'apt update' و 'apt upgrade'؟"
+        type: select
+        options:
+          - "update يجلب قوائم حزم جديدة، upgrade يُحدّث الحزم نفسها"
+          - "update يثبت الحزم، upgrade يزيل القديمة"
+          - "update و upgrade يفعلان نفس الشيء"
+          - "upgrade يجلب قوائم حزم جديدة، update يُحدّث الحزم"
+        a: "update يجلب قوائم حزم جديدة، upgrade يُحدّث الحزم نفسها"
+      - q: "أي أمر يزيل حزمة بما في ذلك ملفات إعدادها؟"
+        type: select
+        options:
+          - "sudo apt purge nginx"
+          - "sudo apt remove nginx"
+          - "sudo apt delete nginx"
+          - "sudo apt uninstall nginx"
+        a: "sudo apt purge nginx"
+      - q: "أي من العبارات التالية عن apt صحيحة؟"
+        type: multiple-choice
+        options:
+          - "apt يمكنه تثبيت عدة حزم دفعة واحدة"
+          - "apt autoremove يزيل الحزم غير المطلوبة"
+          - "apt search يبحث في قاعدة بيانات الحزم"
+          - "apt لا يحتاج صلاحيات المسؤول"
+        a:
+          - "apt يمكنه تثبيت عدة حزم دفعة واحدة"
+          - "apt autoremove يزيل الحزم غير المطلوبة"
+          - "apt search يبحث في قاعدة بيانات الحزم"

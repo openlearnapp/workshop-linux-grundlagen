@@ -1,0 +1,57 @@
+# Terminal-Simulator Befehle für Lektion 5: Berechtigungen
+prompt: "user@linux:~$"
+commands:
+  - cmd: "ls -la Documents/notes.txt"
+    output: "-rw-r--r-- 1 user user 52 Mar 20 10:23 Documents/notes.txt"
+    hint: "Berechtigungen einer Datei anzeigen: rw-r--r-- = 644"
+  - cmd: "ls -la ~/.ssh/id_rsa"
+    output: "-rw------- 1 user user 2602 Mar 15 09:30 /home/user/.ssh/id_rsa"
+    hint: "SSH-Schluessel sollte 600 haben — nur Besitzer darf lesen/schreiben"
+  - cmd: "ls -l /usr/bin/sudo"
+    output: "-rwsr-xr-x 1 root root 166056 Mar 10 08:00 /usr/bin/sudo"
+    hint: "Das 's' zeigt das SUID-Bit — sudo laeuft mit root-Rechten"
+  - cmd: "ls -la Downloads/setup.sh"
+    output: "-rw-r--r-- 1 user user 1024 Mar 19 15:42 Downloads/setup.sh"
+    hint: "Skript ist noch nicht ausfuehrbar — kein x-Recht"
+  - cmd: "chmod +x Downloads/setup.sh"
+    output: ""
+    hint: "Fuegt Ausfuehrrechte fuer alle hinzu"
+  - cmd: "ls -la Downloads/setup.sh"
+    output: "-rwxr-xr-x 1 user user 1024 Mar 19 15:42 Downloads/setup.sh"
+    hint: "Jetzt ist das x-Recht gesetzt — Skript kann ausgefuehrt werden"
+  - cmd: "chmod 755 Downloads/setup.sh"
+    output: ""
+    hint: "755 = rwxr-xr-x: Standard fuer ausfuehrbare Dateien"
+  - cmd: "chmod 644 Documents/notes.txt"
+    output: ""
+    hint: "644 = rw-r--r--: Besitzer lesen/schreiben, alle anderen nur lesen"
+  - cmd: "chmod 600 ~/.ssh/id_rsa"
+    output: ""
+    hint: "600 = rw-------: Pflicht fuer SSH-Schluessel"
+  - cmd: "chmod -R 755 Documents/"
+    output: ""
+    hint: "Rekursiv Rechte auf alle Unterordner und Dateien setzen"
+  - cmd: "sudo apt update"
+    output: |
+      Hit:1 http://archive.ubuntu.com/ubuntu jammy InRelease
+      Hit:2 http://archive.ubuntu.com/ubuntu jammy-updates InRelease
+      Hit:3 http://security.ubuntu.com/ubuntu jammy-security InRelease
+      Reading package lists... Done
+      Building dependency tree... Done
+      All packages are up to date.
+    hint: "Paketliste aktualisieren — erfordert sudo"
+  - cmd: "sudo chown -R www-data:www-data /var/www/html/"
+    output: ""
+    hint: "Webserver-Dateien dem www-data Benutzer zuweisen"
+  - cmd: "sudo -l"
+    output: |
+      Matching Defaults entries for user on ubuntu:
+          env_reset, mail_badpass
+
+      User user may run the following commands on ubuntu:
+          (ALL : ALL) ALL
+    hint: "Zeigt welche sudo-Befehle erlaubt sind"
+  - cmd: "chmod 777 /etc/passwd"
+    output: "chmod: changing permissions of '/etc/passwd': Operation not permitted"
+    hint: "Systemdateien duerfen nur mit sudo geaendert werden"
+    error: true

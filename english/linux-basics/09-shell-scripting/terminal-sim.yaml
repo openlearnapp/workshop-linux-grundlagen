@@ -1,0 +1,60 @@
+# Terminal Simulator Commands for Lesson 9: Shell Scripting Basics
+prompt: "user@linux:~$"
+commands:
+  - cmd: "echo '#!/bin/bash' > my-script.sh"
+    output: ""
+    hint: "Write the shebang line as the first line of the script"
+  - cmd: "cat my-script.sh"
+    output: "#!/bin/bash"
+    hint: "Show script contents"
+  - cmd: "NAME=\"Alice\" && echo \"Hello, $NAME\""
+    output: "Hello, Alice"
+    hint: "Set and use a variable — no spaces around ="
+  - cmd: "TODAY=$(date +%d.%m.%Y)"
+    output: ""
+    hint: "Store command output in a variable"
+  - cmd: "echo $TODAY"
+    output: "20.03.2024"
+    hint: "Print the stored date"
+  - cmd: "echo \"Path: $HOME, User: $USER\""
+    output: "Path: /home/user, User: user"
+    hint: "Use built-in environment variables"
+  - cmd: "if [ -f \"/etc/nginx/nginx.conf\" ]; then echo \"Nginx installed\"; else echo \"No Nginx\"; fi"
+    output: "Nginx installed"
+    hint: "if-condition: check if a file exists"
+  - cmd: "[ -d /var/www ] && echo \"Web directory exists\""
+    output: "Web directory exists"
+    hint: "Shorthand for if-condition using &&"
+  - cmd: "if [ \"$USER\" = \"root\" ]; then echo \"You are root!\"; else echo \"Regular user: $USER\"; fi"
+    output: "Regular user: user"
+    hint: "String comparison — check if running as root"
+  - cmd: "for i in 1 2 3 4 5; do echo \"Number: $i\"; done"
+    output: |
+      Number: 1
+      Number: 2
+      Number: 3
+      Number: 4
+      Number: 5
+    hint: "For loop over a list of values"
+  - cmd: "for f in Documents/*.txt; do echo \"File: $f\"; done"
+    output: "File: Documents/notes.txt"
+    hint: "For loop with glob pattern over files"
+  - cmd: "chmod +x my-script.sh"
+    output: ""
+    hint: "Make the script executable"
+  - cmd: "./my-script.sh"
+    output: ""
+    hint: "Run the script — ./ is important!"
+  - cmd: "NAME = \"Alice\""
+    output: "bash: NAME: command not found"
+    hint: "ERROR: Spaces around = are not allowed for variables!"
+    error: true
+  - cmd: "cat Downloads/setup.sh"
+    output: |
+      #!/bin/bash
+      # Setup script for development environment
+      echo "Installing packages..."
+      sudo apt update
+      sudo apt install -y git curl wget
+      echo "Done!"
+    hint: "Example of a simple installation script"

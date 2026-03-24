@@ -1,0 +1,8 @@
+workshops:
+  - folder: linux-basics
+    code: fa-IR
+    title: "مبانی لینوکس"
+    description: "۱۲ درس برای یادگیری مهم‌ترین دستورات و مفاهیم لینوکس از صفر"
+    color: "210 35% 94%"
+    primaryColor: "210 70% 42%"
+    image: "linux-basics/thumbnail.svg"

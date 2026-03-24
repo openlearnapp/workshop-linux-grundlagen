@@ -1,0 +1,149 @@
+version: 1
+number: 7
+title: "Paketverwaltung"
+description: "apt, snap und dpkg — Software installieren, aktualisieren und verwalten unter Ubuntu/Debian"
+sections:
+  - title: "apt — der App Store der Kommandozeile"
+    explanation: |
+      **Warum ist das wichtig?** Unter Linux installierst du Software nicht durch das
+      Herunterladen von .exe-Dateien, sondern über **Paketmanager**. Diese holen Programme
+      aus vertrauenswürdigen Quellen, lösen Abhängigkeiten auf und halten alles aktuell.
+
+      Der wichtigste Paketmanager für Ubuntu/Debian: **apt** (Advanced Package Tool).
+
+      **Der Standard-Workflow:**
+      ```bash
+      sudo apt update           # 1. Paketliste aktualisieren
+      sudo apt upgrade          # 2. Alle Pakete upgraden
+      sudo apt install nginx    # 3. Paket installieren
+      ```
+
+      **Wichtig:** `update` aktualisiert nur die *Liste* der verfügbaren Pakete,
+      nicht die Pakete selbst. `upgrade` aktualisiert dann die tatsächlichen Programme.
+    examples:
+      - q: "sudo apt update"
+        a: "Holt die aktuellen Paketlisten von allen Paketquellen — immer zuerst ausführen"
+        rel:
+          - ["apt-cmd", "Advanced Package Tool — Paketverwaltung für Debian/Ubuntu", "Befehl apt"]
+          - ["apt-update", "Paketlisten von Servern aktualisieren (nicht die Pakete selbst)", "apt update"]
+      - q: "sudo apt upgrade"
+        a: "Aktualisiert alle installierten Pakete auf die neueste Version"
+        rel:
+          - ["apt-upgrade", "Alle installierten Pakete auf neueste Version aktualisieren", "apt upgrade"]
+      - q: "sudo apt install git curl wget"
+        a: "Installiert drei Pakete auf einmal — apt akzeptiert mehrere Paketnamen"
+        rel:
+          - ["apt-install", "Paket(e) installieren", "apt install"]
+      - q: "sudo apt update && sudo apt upgrade -y"
+        a: "Komplett-Update in einem Befehl — -y beantwortet alle Rückfragen automatisch mit Ja"
+        rel:
+          - ["apt-y-flag", "Yes — alle Rückfragen automatisch bestätigen", "Flag -y"]
+
+  - title: "Pakete suchen, entfernen und aufräumen"
+    explanation: |
+      `apt` kann auch nach Paketen suchen und nicht mehr benötigte Software entfernen.
+
+      | Befehl | Wirkung |
+      |--------|---------|
+      | `apt search nginx` | Nach Paketen suchen |
+      | `apt show nginx` | Details zu einem Paket anzeigen |
+      | `apt remove nginx` | Paket entfernen (Konfiguration bleibt) |
+      | `apt purge nginx` | Paket + Konfiguration vollständig entfernen |
+      | `apt autoremove` | Nicht mehr benötigte Abhängigkeiten entfernen |
+      | `apt list --installed` | Alle installierten Pakete anzeigen |
+
+      **Nach dem Aufräumen** empfiehlt sich `sudo apt autoremove` — es entfernt
+      Pakete die automatisch installiert wurden, aber nicht mehr gebraucht werden.
+    examples:
+      - q: "apt search \"text editor\""
+        a: "Sucht nach Paketen mit 'text editor' im Namen oder der Beschreibung"
+        rel:
+          - ["apt-search", "In Paketdatenbank suchen", "apt search"]
+      - q: "apt show nodejs"
+        a: "Zeigt Details zu nodejs: Version, Abhängigkeiten, Beschreibung, Größe"
+        rel:
+          - ["apt-show", "Detaillierte Informationen zu einem Paket anzeigen", "apt show"]
+      - q: "sudo apt remove --purge apache2"
+        a: "Entfernt Apache2 komplett inkl. aller Konfigurationsdateien"
+        rel:
+          - ["apt-purge", "Paket und alle Konfigurationsdateien komplett entfernen", "apt purge / --purge"]
+      - q: "sudo apt autoremove && sudo apt clean"
+        a: "Verwaiste Pakete entfernen und Paket-Cache leeren — gibt Speicherplatz frei"
+        rel:
+          - ["apt-autoremove", "Automatisch installierte, nicht mehr benötigte Pakete entfernen", "apt autoremove"]
+          - ["apt-clean", "Heruntergeladene Paketdateien aus Cache löschen", "apt clean"]
+
+  - title: "dpkg und snap — alternative Installationswege"
+    explanation: |
+      Manchmal ist ein Programm nicht im apt-Repository — dann gibt es andere Wege:
+
+      **dpkg** installiert `.deb`-Dateien direkt (wie ein .exe-Installer, aber für Linux):
+      ```bash
+      sudo dpkg -i google-chrome.deb
+      sudo apt install -f    # fehlende Abhängigkeiten nachinstallieren
+      ```
+
+      **snap** ist ein moderneres Paketsystem von Canonical (Ubuntu):
+      - Pakete laufen isoliert (sandboxed)
+      - Automatische Updates
+      - Etwas langsamer beim Start als normale apt-Pakete
+
+      **curl + Installationsskript** — viele Programme nutzen diesen Weg:
+      ```bash
+      curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+      sudo apt install nodejs
+      ```
+    examples:
+      - q: "sudo dpkg -i vscode.deb"
+        a: "Installiert eine lokal heruntergeladene .deb-Datei direkt"
+        rel:
+          - ["dpkg-cmd", "Debian Package — .deb-Dateien direkt verwalten", "Befehl dpkg"]
+          - ["dpkg-i", "Install — .deb-Datei installieren", "Flag -i"]
+      - q: "dpkg -l | grep \"^ii\""
+        a: "Listet alle korrekt installierten Pakete (ii = installed properly)"
+        rel:
+          - ["dpkg-l", "List — alle bekannten Pakete und ihren Status", "dpkg -l"]
+      - q: "snap install code --classic"
+        a: "Visual Studio Code über snap installieren — --classic erlaubt vollen Systemzugriff"
+        rel:
+          - ["snap-cmd", "Snap-Paketsystem — isolierte, auto-updatende Apps", "Befehl snap"]
+          - ["snap-classic", "Classic confinement — volles Systemzugriff für IDE-artige Programme", "Flag --classic"]
+      - q: "snap list"
+        a: "Alle installierten snap-Pakete und ihre Versionen anzeigen"
+        rel:
+          - ["snap-list", "Alle installierten snap-Pakete auflisten", "snap list"]
+
+  - title: "🖥️ Terminal-Check"
+    explanation: |
+      Teste jetzt dein Wissen — gib die Befehle direkt ein!
+    examples:
+      - q: "Welcher Befehl aktualisiert die Paketlisten unter Ubuntu/Debian?"
+        type: input
+        a: "sudo apt update"
+      - q: "Was ist der Unterschied zwischen 'apt update' und 'apt upgrade'?"
+        type: select
+        options:
+          - "update holt neue Paketlisten, upgrade aktualisiert die Pakete selbst"
+          - "update installiert Pakete, upgrade entfernt alte"
+          - "update und upgrade machen dasselbe"
+          - "upgrade holt neue Paketlisten, update aktualisiert die Pakete"
+        a: "update holt neue Paketlisten, upgrade aktualisiert die Pakete selbst"
+      - q: "Welcher Befehl entfernt ein Paket inkl. seiner Konfigurationsdateien?"
+        type: select
+        options:
+          - "sudo apt purge nginx"
+          - "sudo apt remove nginx"
+          - "sudo apt delete nginx"
+          - "sudo apt uninstall nginx"
+        a: "sudo apt purge nginx"
+      - q: "Welche dieser Aussagen über apt stimmen?"
+        type: multiple-choice
+        options:
+          - "apt kann mehrere Pakete auf einmal installieren"
+          - "apt autoremove entfernt nicht mehr benötigte Pakete"
+          - "apt search durchsucht die Paketdatenbank"
+          - "apt benötigt keine Administratorrechte"
+        a:
+          - "apt kann mehrere Pakete auf einmal installieren"
+          - "apt autoremove entfernt nicht mehr benötigte Pakete"
+          - "apt search durchsucht die Paketdatenbank"

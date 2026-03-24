@@ -1,0 +1,175 @@
+version: 1
+number: 9
+title: "Shell Scripting Basics"
+description: "Variables, if-conditions and loops — write your own scripts and automate tasks"
+sections:
+  - title: "Your first script — shebang and variables"
+    explanation: |
+      **Why does this matter?** Shell scripting is the key to automation.
+      Everything you type multiple times in the terminal can go into a script — and then
+      be run with a single command.
+
+      **The first script:**
+      ```bash
+      #!/bin/bash
+      # This is a comment
+
+      NAME="Alice"
+      DATE=$(date +%Y-%m-%d)
+
+      echo "Hello, $NAME!"
+      echo "Today is: $DATE"
+      ```
+
+      The first line `#!/bin/bash` is called the **shebang** — it tells the system which
+      interpreter to use for running the script.
+
+      **Variables:**
+      - Without `$`: assignment: `NAME="Alice"` (no spaces around `=`!)
+      - With `$`: usage: `echo $NAME`
+      - `$(command)`: command output as variable
+    examples:
+      - q: "#!/bin/bash"
+        a: "Shebang — first line of every bash script, specifies the interpreter"
+        rel:
+          - ["en-shebang", "First line of a script that specifies the interpreter", "#!/bin/bash"]
+      - q: "NAME=\"Alice\" && echo \"Hello, $NAME\""
+        a: "Set variable and use it immediately — no spaces around the equals sign!"
+        rel:
+          - ["en-bash-variable", "Variable in Bash: NAME=value (without $), $NAME (when using)", "variable"]
+      - q: "TODAY=$(date +%d.%m.%Y)"
+        a: "Store command output in variable — $(date) returns the current date"
+        rel:
+          - ["en-command-sub2", "Command substitution: $(command) stores output in variable", "$()"]
+      - q: "echo \"Path: $HOME, User: $USER\""
+        a: "Use built-in environment variables — HOME and USER are always available"
+        rel:
+          - ["en-env-user", "Environment variable with current username", "$USER"]
+          - ["en-env-home2", "Environment variable with path to home directory", "$HOME"]
+
+  - title: "if-conditions — decisions in scripts"
+    explanation: |
+      Conditional execution makes scripts intelligent:
+
+      ```bash
+      #!/bin/bash
+      FILE="/etc/nginx/nginx.conf"
+
+      if [ -f "$FILE" ]; then
+          echo "Nginx is installed"
+      elif [ -d "/etc/apache2" ]; then
+          echo "Apache is installed"
+      else
+          echo "No web server found"
+      fi
+      ```
+
+      **Important test operators:**
+      | Operator | Meaning |
+      |----------|---------|
+      | `-f file` | File exists and is a regular file |
+      | `-d path` | Path exists and is a directory |
+      | `-z "$var"` | Variable is empty |
+      | `-n "$var"` | Variable is not empty |
+      | `"$a" = "$b"` | Strings are equal |
+      | `$a -eq $b` | Numbers are equal |
+      | `$a -gt $b` | a is greater than b |
+    examples:
+      - q: "if [ -f \"~/.ssh/id_ed25519\" ]; then echo \"SSH key exists\"; fi"
+        a: "Checks if SSH key exists — -f tests for existing file"
+        rel:
+          - ["en-if-bash", "if [ condition ]; then commands; fi — basic structure", "if-then-fi"]
+          - ["en-test-f", "-f tests whether file exists", "test operator -f"]
+      - q: "[ -d /var/www ] && echo \"Web directory exists\""
+        a: "Shorthand: && runs second command only if first condition is true"
+        rel:
+          - ["en-test-d", "-d tests whether directory exists", "test operator -d"]
+      - q: "if [ \"$USER\" = \"root\" ]; then echo \"You are root!\"; fi"
+        a: "Check if script is running as root — important for installation scripts"
+        rel:
+          - ["en-string-compare", "Compare strings in Bash with =", "string comparison"]
+
+  - title: "Loops — automating repetition"
+    explanation: |
+      Loops run commands multiple times — ideal for batch operations:
+
+      **for loop:**
+      ```bash
+      for FILE in *.log; do
+          echo "Processing: $FILE"
+          gzip "$FILE"
+      done
+      ```
+
+      **while loop:**
+      ```bash
+      COUNTER=1
+      while [ $COUNTER -le 5 ]; do
+          echo "Run $COUNTER"
+          COUNTER=$((COUNTER + 1))
+      done
+      ```
+
+      **Practical example — backup script:**
+      ```bash
+      #!/bin/bash
+      DATE=$(date +%Y%m%d)
+      for DIR in ~/documents ~/pictures ~/projects; do
+          tar -czf "/backup/${DATE}_$(basename $DIR).tar.gz" "$DIR"
+          echo "Backup created: $DIR"
+      done
+      ```
+    examples:
+      - q: "for i in 1 2 3 4 5; do echo \"Number: $i\"; done"
+        a: "For loop over a list — prints numbers 1 through 5"
+        rel:
+          - ["en-for-loop", "For loop: for VAR in LIST; do ... done", "for-do-done"]
+      - q: "for USER in alice bob charlie; do useradd \"$USER\"; done"
+        a: "Create multiple users at once — typical sysadmin task"
+        rel:
+          - ["en-for-list", "For loop over a list of values", "for VAR in val1 val2"]
+      - q: "for f in /var/log/*.log; do echo \"$(wc -l < $f) lines: $f\"; done"
+        a: "Count lines in all log files and list them"
+        rel:
+          - ["en-for-glob", "For loop with glob pattern over files", "for f in *.ext"]
+          - ["en-wc-l", "Word Count -l — count lines in a file", "wc -l"]
+      - q: "while true; do df -h / | grep '/'; sleep 60; done"
+        a: "Monitor disk usage every minute — infinite loop with sleep"
+        rel:
+          - ["en-while-loop", "While loop: while condition; do ... done", "while-do-done"]
+          - ["en-while-true", "while true — infinite loop, only stop with Ctrl+C", "while true"]
+
+  - title: "🖥️ Terminal Check"
+    explanation: |
+      Test your knowledge — type the commands yourself!
+    examples:
+      - q: "What is the first line of every Bash script called (shebang)?"
+        type: input
+        a: "#!/bin/bash"
+      - q: "What must you watch out for when assigning a Bash variable?"
+        type: select
+        options:
+          - "No spaces around the equals sign: NAME=\"Alice\""
+          - "Always put $ before the variable name: $NAME=\"Alice\""
+          - "Variables must be uppercase"
+          - "Variables must be declared with export"
+        a: "No spaces around the equals sign: NAME=\"Alice\""
+      - q: "Which keyword correctly closes an if-condition in Bash?"
+        type: select
+        options:
+          - "fi"
+          - "end"
+          - "endif"
+          - "done"
+        a: "fi"
+      - q: "Which of these statements about shell scripting are true?"
+        type: multiple-choice
+        options:
+          - "$() stores command output in a variable"
+          - "for loops end with 'done'"
+          - "-f checks whether a file exists"
+          - "Spaces around = are required for variables"
+        a:
+          - "$() stores command output in a variable"
+          - "for loops end with 'done'"
+          - "-f checks whether a file exists"

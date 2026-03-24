@@ -1,0 +1,165 @@
+version: 1
+number: 12
+title: "Professioneller Linux-Workflow"
+description: "Pipes, Redirects, Aliases und xargs — die Kommandozeile wie ein Profi nutzen"
+sections:
+  - title: "Pipes — Befehle verketten"
+    explanation: |
+      **Warum ist das wichtig?** Die wahre Stärke von Linux liegt nicht in einzelnen Befehlen,
+      sondern darin, sie zu kombinieren. Das Pipe-Zeichen `|` leitet die Ausgabe eines
+      Befehls direkt als Eingabe in den nächsten.
+
+      ```
+      Befehl1 | Befehl2 | Befehl3
+      ```
+
+      **Beispiel:** Wer belegt den meisten Speicherplatz?
+      ```bash
+      du -sh /home/* | sort -rh | head -5
+      ```
+      1. `du -sh /home/*` → Größe jedes Home-Verzeichnisses
+      2. `sort -rh` → nach Größe sortieren
+      3. `head -5` → nur die Top 5
+
+      **Die Unix-Philosophie:** Ein Werkzeug, eine Aufgabe — kombiniert durch Pipes.
+    examples:
+      - q: "ps aux | grep python | grep -v grep"
+        a: "Alle Python-Prozesse anzeigen — zweites grep entfernt die grep-Zeile selbst"
+        rel:
+          - ["pipe-operator", "| leitet Ausgabe eines Befehls als Eingabe an den nächsten", "Pipe |"]
+          - ["grep-v-grep", "grep -v grep entfernt die grep-Zeile aus der Prozessliste", "grep -v grep"]
+      - q: "cat /var/log/nginx/access.log | awk '{print $1}' | sort | uniq -c | sort -rn | head -10"
+        a: "Top 10 IP-Adressen nach Zugriffsanzahl aus Nginx-Log extrahieren"
+        rel:
+          - ["awk-ip", "awk '{print $1}' gibt das erste Feld (IP) jeder Zeile aus", "awk print"]
+          - ["uniq-c", "uniq -c zählt aufeinanderfolgende gleiche Zeilen", "uniq -c"]
+      - q: "find /var/log -name \"*.log\" -mtime +30 | xargs ls -lh"
+        a: "Log-Dateien älter als 30 Tage finden und deren Größe anzeigen"
+        rel:
+          - ["find-cmd", "Dateien nach verschiedenen Kriterien suchen", "Befehl find"]
+          - ["find-mtime", "-mtime +30 = zuletzt modifiziert vor mehr als 30 Tagen", "find -mtime"]
+          - ["xargs-cmd", "Ausgabe als Argumente an nächsten Befehl übergeben", "Befehl xargs"]
+
+  - title: "Redirects — Ein- und Ausgabe umleiten"
+    explanation: |
+      Redirects leiten die Ausgabe in Dateien oder von Dateien als Eingabe um:
+
+      | Symbol | Wirkung |
+      |--------|---------|
+      | `>` | Ausgabe in Datei schreiben (überschreibt!) |
+      | `>>` | Ausgabe an Datei anhängen |
+      | `<` | Datei als Eingabe verwenden |
+      | `2>` | Fehlermeldungen in Datei schreiben |
+      | `2>&1` | Fehler in dieselbe Datei wie Ausgabe |
+      | `/dev/null` | Ausgabe verwerfen (das schwarze Loch) |
+
+      **Typisches Log-Skript:**
+      ```bash
+      #!/bin/bash
+      DATUM=$(date +%Y%m%d_%H%M%S)
+      ./backup.sh >> /var/log/backup.log 2>&1
+      echo "[$DATUM] Backup abgeschlossen" >> /var/log/backup.log
+      ```
+    examples:
+      - q: "ls -la > verzeichnis.txt"
+        a: "Verzeichnisinhalt in Datei speichern — überschreibt vorhandene Datei"
+        rel:
+          - ["redirect-out", "> leitet Standardausgabe in Datei (überschreibend)", "Redirect >"]
+      - q: "echo \"[$(date)] Server gestartet\" >> /var/log/myapp.log"
+        a: "Zeile an Log-Datei anhängen ohne sie zu überschreiben"
+        rel:
+          - ["redirect-append", ">> hängt Ausgabe an Datei an (kein Überschreiben)", "Redirect >>"]
+      - q: "find / -name \"*.conf\" 2>/dev/null"
+        a: "Nach Konfigurationsdateien suchen — Fehlermeldungen (Zugriff verweigert) verwerfen"
+        rel:
+          - ["dev-null", "/dev/null verwirft alle Ausgaben — das schwarze Loch", "/dev/null"]
+          - ["redirect-stderr", "2> leitet Standardfehler (stderr) um", "Redirect 2>"]
+      - q: "wc -l < /etc/passwd"
+        a: "Anzahl der Zeilen in /etc/passwd zählen — Datei als Eingabe verwenden"
+        rel:
+          - ["redirect-input", "< verwendet Dateiinhalt als Eingabe für Befehl", "Redirect <"]
+
+  - title: "Aliases und .bashrc — den Workflow personalisieren"
+    explanation: |
+      **Aliases** sind Abkürzungen für häufig verwendete Befehle.
+      Sie werden in `~/.bashrc` (oder `~/.zshrc` für Zsh) gespeichert.
+
+      ```bash
+      # In ~/.bashrc hinzufügen:
+      alias ll='ls -la'
+      alias update='sudo apt update && sudo apt upgrade -y'
+      alias myip='curl -s https://ipinfo.io/ip'
+      alias grep='grep --color=auto'
+      alias ..='cd ..'
+      alias ...='cd ../..'
+      alias gs='git status'
+      alias gc='git commit -m'
+      ```
+
+      Nach dem Bearbeiten der `.bashrc`:
+      ```bash
+      source ~/.bashrc   # Änderungen sofort übernehmen
+      ```
+
+      **Umgebungsvariablen** in `.bashrc`:
+      ```bash
+      export EDITOR=vim
+      export PATH="$PATH:/home/alice/.local/bin"
+      ```
+    examples:
+      - q: "alias ll='ls -la --color=auto'"
+        a: "Erstellt den Alias 'll' für detaillierte, farbige Verzeichnisliste"
+        rel:
+          - ["alias-cmd", "Kurzbefehle für häufige oder lange Befehle erstellen", "Befehl alias"]
+      - q: "alias update='sudo apt update && sudo apt upgrade -y'"
+        a: "System-Update als einziges Wort 'update' ausführbar machen"
+        rel:
+          - ["alias-complex", "Alias für komplexe Befehlskette — Tipp nach Wort anstatt langer Befehlsfolge", "Alias Beispiel"]
+      - q: "source ~/.bashrc"
+        a: "Bash-Konfiguration neu laden — neue Aliases sofort verfügbar ohne Terminal neu starten"
+        rel:
+          - ["source-cmd", "Konfigurationsdatei in aktuelle Shell laden", "source / ."]
+          - ["bashrc-reload", "~/.bashrc neu laden nach Änderungen", "source ~/.bashrc"]
+      - q: "alias | grep git"
+        a: "Alle git-bezogenen Aliases anzeigen — alias ohne Argument zeigt alle"
+        rel:
+          - ["alias-list", "alias ohne Argument listet alle definierten Aliases", "alias ohne Argumente"]
+      - q: "unalias ll"
+        a: "Alias 'll' wieder entfernen — gilt nur für die aktuelle Session"
+        rel:
+          - ["unalias-cmd", "Definierten Alias wieder entfernen", "Befehl unalias"]
+
+  - title: "🖥️ Terminal-Check"
+    explanation: |
+      Teste jetzt dein Wissen — gib die Befehle direkt ein!
+    examples:
+      - q: "Welches Zeichen verbindet zwei Befehle per Pipe?"
+        type: input
+        a: "|"
+      - q: "Was macht '>>' im Gegensatz zu '>'?"
+        type: select
+        options:
+          - ">> hängt Ausgabe an die Datei an, > überschreibt sie"
+          - ">> überschreibt die Datei, > hängt an"
+          - ">> leitet Fehler um, > leitet Ausgabe um"
+          - ">> und > machen dasselbe"
+        a: ">> hängt Ausgabe an die Datei an, > überschreibt sie"
+      - q: "Wie wird eine Änderung in ~/.bashrc sofort wirksam?"
+        type: select
+        options:
+          - "source ~/.bashrc"
+          - "reload ~/.bashrc"
+          - "bash --refresh"
+          - "apply ~/.bashrc"
+        a: "source ~/.bashrc"
+      - q: "Welche dieser Aussagen über Aliases und Pipes stimmen?"
+        type: multiple-choice
+        options:
+          - "alias erstellt Abkürzungen für häufige Befehle"
+          - "| leitet Ausgabe als Eingabe weiter"
+          - "/dev/null verwirft alle Ausgaben"
+          - "source speichert Befehle dauerhaft im Terminal"
+        a:
+          - "alias erstellt Abkürzungen für häufige Befehle"
+          - "| leitet Ausgabe als Eingabe weiter"
+          - "/dev/null verwirft alle Ausgaben"

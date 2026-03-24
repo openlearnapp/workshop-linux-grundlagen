@@ -1,0 +1,8 @@
+workshops:
+  - folder: linux-basics
+    code: en-US
+    title: "Linux Basics"
+    description: "12 lessons for absolute beginners — from your first terminal command to a productive Linux workflow."
+    color: "210 35% 94%"
+    primaryColor: "210 70% 42%"
+    image: "linux-basics/thumbnail.svg"

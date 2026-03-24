@@ -1,0 +1,156 @@
+version: 1
+number: 10
+title: "Vim & Text Editors"
+description: "nano for beginners, vim for power users — edit files directly in the terminal"
+sections:
+  - title: "nano — the beginner-friendly editor"
+    explanation: |
+      **Why does this matter?** Servers have no graphical interface.
+      You need to edit configuration files directly in the terminal — `nano` is the
+      easiest way, `vim` is the most powerful.
+
+      **nano** shows all important key combinations at the bottom of the screen:
+      - `Ctrl+O` then `Enter`: Save (Write **O**ut)
+      - `Ctrl+X`: Exit
+      - `Ctrl+W`: Search (**W**here is)
+      - `Ctrl+K`: Cut line (**K**ut)
+      - `Ctrl+U`: Paste (**U**ncut)
+      - `Ctrl+G`: Help (**G**et help)
+
+      Opening nano and editing a file:
+      ```bash
+      nano /etc/hosts
+      sudo nano /etc/nginx/sites-available/default
+      ```
+    examples:
+      - q: "nano ~/.bashrc"
+        a: "Edit bash config with nano — Ctrl+O to save, Ctrl+X to exit"
+        rel:
+          - ["en-nano-cmd", "Beginner-friendly terminal text editor with keyboard hints", "nano command"]
+          - ["en-nano-save", "Ctrl+O then Enter — save file in nano", "nano Ctrl+O"]
+      - q: "nano -l /etc/hosts"
+        a: "Edit hosts file with line numbers — helpful for long files"
+        rel:
+          - ["en-nano-l", "Line numbers — show line numbers in nano", "nano flag -l"]
+      - q: "nano +50 app.conf"
+        a: "Nano opens directly at line 50 — saves scrolling in long configs"
+        rel:
+          - ["en-nano-jump", "+N opens file directly at line N", "nano +line-number"]
+
+  - title: "vim — the power editor"
+    explanation: |
+      **vim** (Vi Improved) is powerful but initially confusing because it has **modes**:
+
+      | Mode | Activate | Used for |
+      |------|----------|----------|
+      | **Normal** | `Esc` | Navigation, commands |
+      | **Insert** | `i`, `a`, `o` | Typing text |
+      | **Visual** | `v`, `V` | Selecting text |
+      | **Command** | `:` | Saving, quitting, searching |
+
+      **The essentials to get started:**
+      1. vim opens in Normal mode
+      2. Press `i` → Insert mode → type text
+      3. `Esc` → back to Normal mode
+      4. `:w` → save
+      5. `:q` → quit
+      6. `:wq` → save and quit
+      7. `:q!` → quit without saving (force)
+
+      **Why learn vim?** It is pre-installed on *every* Linux system. When you're on
+      a freshly installed server, vim is always available.
+    examples:
+      - q: "vim /etc/nginx/nginx.conf"
+        a: "Open Nginx config with vim — always available, even on minimal servers"
+        rel:
+          - ["en-vim-cmd", "Vi Improved — powerful modal terminal text editor", "vim command"]
+      - q: ":wq"
+        a: "In vim: save file (write) and quit — enter in Command mode"
+        rel:
+          - ["en-vim-wq", "Write Quit — save and exit in vim", ":wq"]
+          - ["en-vim-command-mode", "Colon : activates Command mode in vim", "vim :"]
+      - q: ":q!"
+        a: "Exit vim without saving — ! forces the action"
+        rel:
+          - ["en-vim-q-bang", "Quit without saving — discard all changes", ":q!"]
+      - q: "i"
+        a: "Activate Insert mode — now text can be entered"
+        rel:
+          - ["en-vim-insert", "i — switch to Insert mode (before cursor), a = after cursor", "vim i"]
+
+  - title: "vim navigation and searching"
+    explanation: |
+      In **Normal mode** you navigate without arrow keys (more efficient!):
+
+      | Key | Action |
+      |-----|--------|
+      | `h`, `j`, `k`, `l` | Left, Down, Up, Right |
+      | `w` | Next word forward |
+      | `b` | Previous word backward |
+      | `0` | Start of line |
+      | `$` | End of line |
+      | `gg` | Start of file |
+      | `G` | End of file |
+      | `50G` | Jump to line 50 |
+
+      **Search and replace in vim:**
+      ```
+      /searchterm       → search forward, n = next match
+      ?searchterm       → search backward
+      :%s/old/new/g     → replace all occurrences
+      :%s/old/new/gc    → replace with confirmation
+      ```
+    examples:
+      - q: ":%s/localhost/example.com/g"
+        a: "In vim: replace all occurrences of 'localhost' with 'example.com'"
+        rel:
+          - ["en-vim-substitute", ":%s/old/new/g — search and replace in entire file", "vim :%s"]
+          - ["en-vim-g-flag", "g = global — replace all occurrences in a line", "vim flag /g"]
+      - q: "/ERROR"
+        a: "In vim: search for ERROR — n for next match, N for previous"
+        rel:
+          - ["en-vim-search", "/term search forward in vim", "vim /"]
+      - q: "dd"
+        a: "In vim (Normal mode): delete current line — p to paste"
+        rel:
+          - ["en-vim-dd", "Delete — delete entire line in vim (stored in buffer)", "vim dd"]
+      - q: "yy"
+        a: "In vim: copy current line (yank) — p to paste at next position"
+        rel:
+          - ["en-vim-yy", "Yank — copy line in vim", "vim yy"]
+          - ["en-vim-p", "Put/Paste — insert copied/deleted content", "vim p"]
+
+  - title: "🖥️ Terminal Check"
+    explanation: |
+      Test your knowledge — type the commands yourself!
+    examples:
+      - q: "Which vim command saves and exits the editor?"
+        type: input
+        a: ":wq"
+      - q: "How do you switch to Insert mode in vim?"
+        type: select
+        options:
+          - "Press the 'i' key"
+          - "Press the 'Esc' key"
+          - "Type ':i'"
+          - "Press the 'v' key"
+        a: "Press the 'i' key"
+      - q: "What does ':q!' do in vim?"
+        type: select
+        options:
+          - "Exits vim without saving"
+          - "Saves and exits vim"
+          - "Searches for the character !"
+          - "Opens a new file"
+        a: "Exits vim without saving"
+      - q: "Which of these vim modes exist?"
+        type: multiple-choice
+        options:
+          - "Normal mode"
+          - "Insert mode"
+          - "Visual mode"
+          - "Debug mode"
+        a:
+          - "Normal mode"
+          - "Insert mode"
+          - "Visual mode"

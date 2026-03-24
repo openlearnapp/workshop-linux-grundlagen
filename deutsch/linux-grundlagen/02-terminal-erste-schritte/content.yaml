@@ -1,0 +1,153 @@
+version: 1
+number: 2
+title: "Das Terminal — erste Schritte"
+description: "pwd, ls und cd meistern — die drei Grundbefehle für die Navigation im Dateisystem"
+sections:
+  - title: "Das Terminal öffnen — wo bin ich?"
+    explanation: |
+      Das **Terminal** (auch: Shell, Konsole, Kommandozeile) ist deine direkte Verbindung
+      zum Betriebssystem. Kein Maus-Klicken, kein Menü-Suchen — nur du und der Computer.
+
+      Wenn du das Terminal öffnest, siehst du den **Prompt**:
+      ```
+      alice@ubuntu:~$
+      ```
+      Das bedeutet:
+      - `alice` = Benutzername
+      - `ubuntu` = Computername (Hostname)
+      - `~` = du bist im Home-Verzeichnis
+      - `$` = normaler Benutzer (bei `#` bist du root/Administrator)
+
+      **Dein wichtigster erster Befehl:** `pwd` — *Print Working Directory*.
+      Er sagt dir immer, wo du gerade bist.
+    examples:
+      - q: "pwd"
+        a: "Zeigt den aktuellen Pfad an, z.B. /home/alice — du weißt immer wo du bist"
+        rel:
+          - ["pwd", "Print Working Directory — aktuelles Verzeichnis anzeigen", "Befehl"]
+      - q: "whoami"
+        a: "Gibt deinen Benutzernamen aus — nützlich wenn du als mehrere Nutzer arbeitest"
+        rel:
+          - ["whoami", "Den aktuellen Benutzernamen ausgeben", "Befehl"]
+      - q: "date"
+        a: "Zeigt aktuelles Datum und Uhrzeit an"
+        rel:
+          - ["date-cmd", "Aktuelles Datum und Uhrzeit anzeigen", "Befehl date"]
+
+  - title: "ls — was ist hier?"
+    explanation: |
+      `ls` listet den Inhalt des aktuellen Verzeichnisses auf.
+      Mit Flags wird `ls` richtig mächtig:
+
+      | Befehl | Was er zeigt |
+      |--------|-------------|
+      | `ls` | Nur Dateinamen |
+      | `ls -l` | Details: Rechte, Größe, Datum |
+      | `ls -a` | Auch versteckte Dateien (beginnen mit `.`) |
+      | `ls -la` | Details + versteckte Dateien (Kombination!) |
+      | `ls -lh` | Dateigrößen in lesbarem Format (KB, MB, GB) |
+      | `ls -lt` | Nach Änderungsdatum sortiert (neueste zuerst) |
+
+      In der `-l`-Ausgabe bedeuten die Spalten:
+      ```
+      -rw-r--r-- 1 alice alice 4096 Mar 20 10:23 dokument.txt
+      ↑Rechte    ↑Links ↑Besitzer  ↑Größe ↑Datum  ↑Name
+      ```
+    examples:
+      - q: "ls -la"
+        a: "Alle Dateien inkl. versteckter Dateien mit Details (Rechte, Größe, Datum)"
+        rel:
+          - ["ls-l", "Long format — Detailansicht", "Flag -l"]
+          - ["ls-a", "All — auch versteckte Dateien (.dotfiles)", "Flag -a"]
+      - q: "ls -lh /var/log"
+        a: "Log-Dateien mit menschenlesbaren Größenangaben (KB, MB) anzeigen"
+        rel:
+          - ["ls-h", "Human-readable — lesbare Dateigrößen (KB/MB/GB)", "Flag -h"]
+          - ["var-log", "Systemlog-Verzeichnis mit Protokolldateien", "/var/log"]
+      - q: "ls -lt ~/.ssh"
+        a: "SSH-Konfigurationsdateien nach letzter Änderung sortiert anzeigen"
+        rel:
+          - ["ls-t", "Time — nach Änderungszeit sortieren, neueste zuerst", "Flag -t"]
+          - ["ssh-dir", "Verzeichnis für SSH-Schlüssel und Konfiguration", "~/.ssh"]
+      - q: "ls -la /etc/nginx/"
+        a: "Alle Nginx-Konfigurationsdateien mit Details anzeigen"
+        rel:
+          - ["nginx-dir", "Konfigurationsverzeichnis des Nginx-Webservers", "/etc/nginx/"]
+
+  - title: "cd — wohin möchtest du?"
+    explanation: |
+      `cd` (Change Directory) ist dein Navigationswerkzeug im Dateisystem.
+
+      **Wichtige Navigationsmuster:**
+
+      | Befehl | Wohin? |
+      |--------|--------|
+      | `cd /` | Zum Root-Verzeichnis |
+      | `cd ~` | Zum Home-Verzeichnis (auch: nur `cd`) |
+      | `cd ..` | Ein Verzeichnis nach oben |
+      | `cd ../..` | Zwei Ebenen nach oben |
+      | `cd -` | Zum zuletzt besuchten Verzeichnis (zurück!) |
+      | `cd /etc/nginx` | Absoluter Pfad (beginnt mit /) |
+      | `cd projekte/webseite` | Relativer Pfad (von hier aus) |
+
+      **Tab-Vervollständigung** — dein bestes Freund:
+      Tippe `cd /etc/ngi` und drücke `Tab` → Terminal ergänzt automatisch zu `/etc/nginx/`
+    examples:
+      - q: "cd /var/log"
+        a: "Wechselt direkt ins Log-Verzeichnis (absoluter Pfad — beginnt mit /)"
+        rel:
+          - ["cd-cmd", "Change Directory — Verzeichnis wechseln", "Befehl cd"]
+          - ["absolute-path", "Pfad der immer bei / beginnt, unabhängig vom Ort", "absoluter Pfad"]
+      - q: "cd .."
+        a: "Eine Ebene nach oben gehen — aus /home/alice wird /home"
+        rel:
+          - ["dotdot", "Zwei Punkte = übergeordnetes Verzeichnis", ".."]
+      - q: "cd ~"
+        a: "Zum eigenen Home-Verzeichnis — egal wo du gerade bist"
+        rel:
+          - ["tilde", "Abkürzung für das eigene Home-Verzeichnis", "~"]
+      - q: "cd -"
+        a: "Zum zuletzt besuchten Verzeichnis wechseln — praktisch zum Hin-und-Her-Wechseln"
+        rel:
+          - ["cd-minus", "Zum vorherigen Verzeichnis zurück", "cd -"]
+      - q: "cd /home/alice/projekte && pwd"
+        a: "Ins Projekte-Verzeichnis wechseln und sofort den Pfad bestätigen"
+        rel:
+          - ["double-ampersand", "Zwei Befehle verketten — zweiter läuft nur wenn erster erfolgreich", "&&"]
+
+  - title: "🖥️ Terminal-Check"
+    explanation: |
+      Teste jetzt dein Wissen — gib die Befehle direkt ein!
+    examples:
+      - q: "Welcher Befehl zeigt dein aktuelles Verzeichnis?"
+        type: input
+        a: "pwd"
+      - q: "Was macht der Befehl 'ls -la'?"
+        type: select
+        options:
+          - "Alle Dateien inkl. versteckter, mit Details anzeigen"
+          - "Alle Dateien löschen"
+          - "Letzte Aktion rückgängig machen"
+          - "Log-Dateien anzeigen"
+        a: "Alle Dateien inkl. versteckter, mit Details anzeigen"
+      - q: "Welcher Befehl wechselt zum zuletzt besuchten Verzeichnis?"
+        type: select
+        options:
+          - "cd -"
+          - "cd .."
+          - "cd ~"
+          - "cd /"
+        a: "cd -"
+      - q: "Welche dieser Flags gehören zum Befehl 'ls'?"
+        type: multiple-choice
+        options:
+          - "-l"
+          - "-a"
+          - "-x"
+          - "-h"
+          - "-t"
+        a:
+          - "-l"
+          - "-a"
+          - "-h"
+          - "-t"

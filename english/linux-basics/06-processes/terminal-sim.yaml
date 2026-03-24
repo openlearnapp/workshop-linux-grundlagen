@@ -1,0 +1,72 @@
+# Terminal Simulator Commands for Lesson 6: Processes
+prompt: "user@linux:~$"
+commands:
+  - cmd: "ps"
+    output: |
+        PID TTY          TIME CMD
+       1821 pts/0    00:00:00 bash
+       2045 pts/0    00:00:00 ps
+    hint: "Shows only your own processes in the current shell"
+  - cmd: "ps aux"
+    output: |
+      USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+      root           1  0.0  0.3 169584 13256 ?        Ss   09:00   0:02 /sbin/init
+      root         423  0.0  0.2  48520  8432 ?        Ss   09:00   0:00 /lib/systemd/systemd-journald
+      root         456  0.0  0.1  21960  5648 ?        Ss   09:00   0:00 /lib/systemd/systemd-udevd
+      root         892  0.0  0.1  14536  4812 ?        Ss   09:00   0:00 /usr/sbin/cron -f
+      www-data    1023  0.2  1.5 256780 62340 ?        S    09:01   0:45 /usr/sbin/apache2 -k start
+      root        1100  0.0  0.5  72304 20480 ?        Ss   09:00   0:01 /usr/sbin/sshd -D
+      user        1821  0.0  0.1   8564  5120 pts/0   Ss   14:00   0:00 -bash
+      user        2045  0.0  0.0   9084  3420 pts/0   R+   14:25   0:00 ps aux
+    hint: "All processes from all users with details"
+  - cmd: "ps aux | grep nginx"
+    output: |
+      root        1050  0.0  0.3  55276 12800 ?        Ss   09:00   0:00 nginx: master process
+      www-data    1051  0.0  0.4  55920 16384 ?        S    09:00   0:12 nginx: worker process
+      user        2048  0.0  0.0   6432   720 pts/0   S+   14:25   0:00 grep --color=auto nginx
+    hint: "Filter only Nginx processes from the list"
+  - cmd: "top"
+    output: |
+      top - 14:25:30 up  5:25,  1 user,  load average: 0.15, 0.10, 0.08
+      Tasks: 128 total,   1 running, 127 sleeping,   0 stopped,   0 zombie
+      %Cpu(s):  2.3 us,  1.0 sy,  0.0 ni, 96.5 id,  0.2 wa,  0.0 hi,  0.0 si
+      MiB Mem :   3936.4 total,   1524.8 free,   1245.2 used,   1166.4 buff/cache
+      MiB Swap:   2048.0 total,   2048.0 free,      0.0 used.   2423.6 avail Mem
+
+        PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+       1023 www-data  20   0  256780  62340  12456 S   2.3   1.5   0:45.12 apache2
+       1051 www-data  20   0   55920  16384   4096 S   0.7   0.4   0:12.34 nginx
+        423 root      20   0   48520   8432   7168 S   0.3   0.2   0:00.89 systemd-journal
+          1 root      20   0  169584  13256  10240 S   0.0   0.3   0:02.14 systemd
+      [q to quit]
+    hint: "Live overview of all processes — q to quit"
+  - cmd: "pgrep -l python"
+    output: |
+      1567 python3
+      1589 python3
+    hint: "Find Python processes with their PIDs"
+  - cmd: "kill 1567"
+    output: ""
+    hint: "SIGTERM to process 1567 — graceful shutdown"
+  - cmd: "kill -9 1589"
+    output: ""
+    hint: "SIGKILL — immediate termination, no cleanup possible"
+  - cmd: "kill -1 1050"
+    output: ""
+    hint: "SIGHUP to Nginx — reload configuration"
+  - cmd: "killall -9 firefox"
+    output: "firefox: no process found"
+    hint: "Kill all Firefox processes (none running right now)"
+    error: true
+  - cmd: "sleep 60 &"
+    output: "[1] 2100"
+    hint: "Start a process in the background — terminal stays free"
+  - cmd: "jobs -l"
+    output: "[1]+  2100 Running                 sleep 60 &"
+    hint: "Show background jobs with PID"
+  - cmd: "fg %1"
+    output: "sleep 60"
+    hint: "Bring job #1 to the foreground"
+  - cmd: "nohup python3 webserver.py > server.log 2>&1 &"
+    output: "[1] 2150\nnohup: ignoring input and redirecting stderr to stdout"
+    hint: "Start server that keeps running after terminal closes"

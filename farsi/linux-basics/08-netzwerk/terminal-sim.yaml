@@ -1,0 +1,98 @@
+# Terminal-Simulator Befehle für Lektion 8: Netzwerk
+prompt: "user@linux:~$"
+commands:
+  - cmd: "ping -c 4 google.com"
+    output: |
+      PING google.com (142.250.185.78) 56(84) bytes of data.
+      64 bytes from fra24s04-in-f14.1e100.net (142.250.185.78): icmp_seq=1 ttl=118 time=12.3 ms
+      64 bytes from fra24s04-in-f14.1e100.net (142.250.185.78): icmp_seq=2 ttl=118 time=11.8 ms
+      64 bytes from fra24s04-in-f14.1e100.net (142.250.185.78): icmp_seq=3 ttl=118 time=12.1 ms
+      64 bytes from fra24s04-in-f14.1e100.net (142.250.185.78): icmp_seq=4 ttl=118 time=11.9 ms
+
+      --- google.com ping statistics ---
+      4 packets transmitted, 4 received, 0% packet loss, time 3004ms
+      rtt min/avg/max/mdev = 11.800/12.025/12.300/0.185 ms
+    hint: "4 Pakete an google.com senden — testet Internetverbindung"
+  - cmd: "ping -c 3 192.168.1.1"
+    output: |
+      PING 192.168.1.1 (192.168.1.1) 56(84) bytes of data.
+      64 bytes from 192.168.1.1: icmp_seq=1 ttl=64 time=1.23 ms
+      64 bytes from 192.168.1.1: icmp_seq=2 ttl=64 time=0.98 ms
+      64 bytes from 192.168.1.1: icmp_seq=3 ttl=64 time=1.05 ms
+
+      --- 192.168.1.1 ping statistics ---
+      3 packets transmitted, 3 received, 0% packet loss, time 2003ms
+    hint: "Router/Gateway im lokalen Netzwerk anpingen"
+  - cmd: "ip addr show"
+    output: |
+      1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN
+          link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+          inet 127.0.0.1/8 scope host lo
+          inet6 ::1/128 scope host
+      2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP
+          link/ether 52:54:00:ab:cd:ef brd ff:ff:ff:ff:ff:ff
+          inet 192.168.1.100/24 brd 192.168.1.255 scope global dynamic eth0
+          inet6 fe80::5054:ff:feab:cdef/64 scope link
+    hint: "Alle Netzwerk-Schnittstellen mit IP-Adressen anzeigen"
+  - cmd: "ip route"
+    output: |
+      default via 192.168.1.1 dev eth0 proto dhcp metric 100
+      192.168.1.0/24 dev eth0 proto kernel scope link src 192.168.1.100 metric 100
+    hint: "Routing-Tabelle — zeigt den Standard-Gateway"
+  - cmd: "ss -tulpn"
+    output: |
+      Netid State  Recv-Q Send-Q Local Address:Port  Peer Address:Port Process
+      tcp   LISTEN 0      511    0.0.0.0:80          0.0.0.0:*         users:(("nginx",pid=1050,fd=6))
+      tcp   LISTEN 0      128    0.0.0.0:22          0.0.0.0:*         users:(("sshd",pid=1100,fd=3))
+      tcp   LISTEN 0      511    0.0.0.0:443         0.0.0.0:*         users:(("nginx",pid=1050,fd=7))
+      tcp   LISTEN 0      128    127.0.0.1:3306      0.0.0.0:*         users:(("mysqld",pid=1200,fd=22))
+    hint: "Offene Ports und zugehoerige Programme anzeigen"
+  - cmd: "curl -I https://example.com"
+    output: |
+      HTTP/2 200
+      content-type: text/html; charset=UTF-8
+      content-length: 1256
+      server: ECS (dcb/7F84)
+      date: Wed, 20 Mar 2024 14:30:00 GMT
+      cache-control: max-age=604800
+    hint: "Nur HTTP-Header anzeigen — Status-Code, Server, Content-Type"
+  - cmd: "curl -s https://ipinfo.io/ip"
+    output: "203.0.113.42"
+    hint: "Eigene oeffentliche IP-Adresse anzeigen"
+  - cmd: "wget -O nodejs.tar.gz https://nodejs.org/dist/v20.0.0/node-v20.0.0.tar.gz"
+    output: |
+      --2024-03-20 14:30:15--  https://nodejs.org/dist/v20.0.0/node-v20.0.0.tar.gz
+      Resolving nodejs.org... 104.20.22.46
+      Connecting to nodejs.org|104.20.22.46|:443... connected.
+      HTTP request sent, awaiting response... 200 OK
+      Length: 71368744 (68M) [application/gzip]
+      Saving to: 'nodejs.tar.gz'
+      nodejs.tar.gz       100%[==================>]  68.04M  12.3MB/s    in 5.5s
+      2024-03-20 14:30:21 (12.3 MB/s) - 'nodejs.tar.gz' saved [71368744/71368744]
+    hint: "Datei herunterladen und mit eigenem Namen speichern"
+  - cmd: "ssh alice@192.168.1.100"
+    output: |
+      The authenticity of host '192.168.1.100' can't be established.
+      ED25519 key fingerprint is SHA256:AbCdEf1234567890AbCdEf1234567890.
+      Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+      Warning: Permanently added '192.168.1.100' (ED25519) to the list of known hosts.
+      alice@192.168.1.100's password:
+    hint: "Per SSH mit einem Server verbinden"
+  - cmd: "ssh-keygen -t ed25519 -C \"user@laptop\""
+    output: |
+      Generating public/private ed25519 key pair.
+      Enter file in which to save the key (/home/user/.ssh/id_ed25519):
+      Enter passphrase (empty for no passphrase):
+      Enter same passphrase again:
+      Your identification has been saved in /home/user/.ssh/id_ed25519
+      Your public key has been saved in /home/user/.ssh/id_ed25519.pub
+      The key fingerprint is:
+      SHA256:xYz789AbCdEf012345 user@laptop
+    hint: "Modernes Ed25519 SSH-Schluesselpaar erstellen"
+  - cmd: "scp Documents/notes.txt alice@192.168.1.100:/home/alice/"
+    output: "notes.txt                                     100%   52     0.1KB/s   00:00"
+    hint: "Datei verschluesselt auf Remote-Server kopieren"
+  - cmd: "ping nichtexistierend.xyz"
+    output: "ping: nichtexistierend.xyz: Name or service not known"
+    hint: "DNS-Aufloesung fehlgeschlagen — Domain existiert nicht"
+    error: true

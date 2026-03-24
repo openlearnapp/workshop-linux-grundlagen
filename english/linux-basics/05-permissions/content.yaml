@@ -1,0 +1,145 @@
+version: 1
+number: 5
+title: "Permissions"
+description: "chmod, chown and sudo — understand and apply the Linux permission system"
+sections:
+  - title: "rwx — decoding the permission system"
+    explanation: |
+      **Why does this matter?** Security is at the heart of Linux. Wrong permissions
+      can cause scripts to fail, web servers not to start, or in the worst case, let
+      other users access your data.
+
+      Every file has three access levels:
+      ```
+      -rwxr-xr--
+      ↑↑↑↑↑↑↑↑↑↑
+      │└┬┘└┬┘└┬┘
+      │ │  │  └─ Other (everyone else)
+      │ │  └──── Group (group members)
+      │ └──────── Owner (file owner)
+      └────────── File type (- = file, d = directory)
+      ```
+
+      **Meaning of the letters:**
+      | Letter | Meaning | For files | For directories |
+      |--------|---------|-----------|-----------------|
+      | `r` | read | Read file | List contents (ls) |
+      | `w` | write | Write to file | Create/delete files inside |
+      | `x` | execute | Run file | Enter directory (cd) |
+      | `-` | no permission | — | — |
+    examples:
+      - q: "ls -la ~/.ssh/id_rsa"
+        a: "Shows permissions of the private SSH key — should be -rw------- (owner only!)"
+        rel:
+          - ["en-ssh-key-perms", "SSH private key needs 600 permissions — SSH refuses to use it otherwise", "security"]
+          - ["en-rw-owner-only", "-rw------- means: owner read/write, everyone else nothing", "permission pattern"]
+      - q: "ls -l /usr/bin/sudo"
+        a: "Shows the special SUID permissions of sudo — the 's' in the permission string is special"
+        rel:
+          - ["en-suid-bit", "Set User ID — program runs with owner's permissions", "SUID"]
+
+  - title: "chmod — changing permissions"
+    explanation: |
+      `chmod` (Change Mode) changes file permissions. There are two notations:
+
+      **Symbolic notation** (easier to remember):
+      ```bash
+      chmod u+x script.sh      # Owner: add execute
+      chmod g-w file.txt       # Group: remove write
+      chmod o=r config.txt     # Others: set read only
+      chmod a+x deploy.sh      # All: add execute
+      ```
+
+      **Numeric notation** (faster to type):
+      | Number | Permissions | Meaning |
+      |--------|-------------|---------|
+      | 7 | rwx | all permissions |
+      | 6 | rw- | read + write |
+      | 5 | r-x | read + execute |
+      | 4 | r-- | read only |
+      | 0 | --- | no permissions |
+
+      Example: `chmod 755` = `rwxr-xr-x` (owner all, group/others read+execute)
+    examples:
+      - q: "chmod +x deploy.sh"
+        a: "Gives all (owner, group, others) execute permission — makes the script runnable"
+        rel:
+          - ["en-chmod-cmd", "Change Mode — change file permissions", "chmod command"]
+          - ["en-chmod-x", "+x adds execute permission", "chmod +x"]
+      - q: "chmod 755 /usr/local/bin/myprogram"
+        a: "755 = rwxr-xr-x: owner can do everything, others can only read and execute"
+        rel:
+          - ["en-chmod-755", "rwxr-xr-x — standard for executable programs", "octal 755"]
+      - q: "chmod 600 ~/.ssh/id_rsa"
+        a: "600 = rw------- : only owner can read/write — mandatory for SSH keys"
+        rel:
+          - ["en-chmod-600", "rw------- owner read/write only, SSH key standard", "octal 600"]
+      - q: "chmod -R 755 ~/website/"
+        a: "Sets 755 permissions recursively on all files and subdirectories"
+        rel:
+          - ["en-chmod-R", "Recursive — apply permissions to all subdirectories", "flag -R"]
+
+  - title: "sudo and chown — superuser powers and ownership"
+    explanation: |
+      **sudo** (Super User Do) allows regular users to run individual commands as
+      administrator (root). This is safer than working as root permanently.
+
+      ⚠️ **Golden rule:** Only use `sudo` when necessary. As root there is no safety
+      net — one wrong `rm -rf` command can destroy the system.
+
+      **chown** (Change Owner) changes the owner of a file:
+      ```bash
+      chown alice file.txt             # change owner
+      chown alice:www-data file.txt    # change owner and group
+      chown -R www-data /var/www/      # recursive for web server files
+      ```
+    examples:
+      - q: "sudo apt update"
+        a: "Update package list — requires administrator rights, hence sudo"
+        rel:
+          - ["en-sudo-cmd", "Super User Do — run command as administrator", "sudo command"]
+      - q: "sudo chown -R www-data:www-data /var/www/html/"
+        a: "Assign all web server files to www-data user — Nginx/Apache need this"
+        rel:
+          - ["en-chown-cmd", "Change Owner — change file owner", "chown command"]
+          - ["en-chown-R", "Recursive — change ownership recursively", "chown -R"]
+          - ["en-www-data", "Default user for web servers (Apache, Nginx)", "www-data"]
+      - q: "sudo -l"
+        a: "Shows which sudo commands are allowed for you — useful on unfamiliar systems"
+        rel:
+          - ["en-sudo-l", "List — show allowed sudo commands for current user", "flag -l"]
+
+  - title: "🖥️ Terminal Check"
+    explanation: |
+      Test your knowledge — type the commands yourself!
+    examples:
+      - q: "Which command makes 'deploy.sh' executable?"
+        type: input
+        a: "chmod +x deploy.sh"
+      - q: "What does the permission '755' mean in octal notation?"
+        type: select
+        options:
+          - "rwxr-xr-x — owner all, group and others read+execute"
+          - "rw-rw-rw- — everyone can read and write"
+          - "rwx------ — only owner has all permissions"
+          - "r--r--r-- — everyone can only read"
+        a: "rwxr-xr-x — owner all, group and others read+execute"
+      - q: "What octal value should a private SSH key have?"
+        type: select
+        options:
+          - "600"
+          - "755"
+          - "777"
+          - "644"
+        a: "600"
+      - q: "Which of these statements about the Linux permission system are true?"
+        type: multiple-choice
+        options:
+          - "r stands for read"
+          - "x stands for execute"
+          - "w stands for write"
+          - "s stands for system"
+        a:
+          - "r stands for read"
+          - "x stands for execute"
+          - "w stands for write"

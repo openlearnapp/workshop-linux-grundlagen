@@ -1,0 +1,15 @@
+# Linux Basics: 12 lessons for absolute beginners
+# Progression: History → Terminal → Filesystem → File Content → Permissions → Processes → Packages → Networking → Scripting → Editors → System Info → Workflow
+lessons:
+  - 01-what-is-linux
+  - 02-terminal-first-steps
+  - 03-files-directories
+  - 04-file-content
+  - 05-permissions
+  - 06-processes
+  - 07-package-management
+  - 08-networking
+  - 09-shell-scripting
+  - 10-vim-text-editor
+  - 11-system-info
+  - 12-linux-workflow

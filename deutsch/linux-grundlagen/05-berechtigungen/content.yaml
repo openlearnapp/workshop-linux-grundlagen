@@ -1,0 +1,150 @@
+version: 1
+number: 5
+title: "Berechtigungen"
+description: "chmod, chown und sudo — das Linux-Rechtesystem verstehen und anwenden"
+sections:
+  - title: "rwx — das Rechtesystem entschlüsseln"
+    explanation: |
+      **Warum ist das wichtig?** Sicherheit ist der Kern von Linux. Falsche Berechtigungen
+      können dazu führen, dass Skripte nicht ausführen, Webserver nicht starten oder
+      im schlimmsten Fall fremde Nutzer Zugriff auf deine Daten bekommen.
+
+      Jede Datei hat drei Zugriffsebenen:
+      ```
+      -rwxr-xr--
+      ↑↑↑↑↑↑↑↑↑↑
+      │└┬┘└┬┘└┬┘
+      │ │  │  └─ Other (alle anderen)
+      │ │  └──── Group (Gruppenangehörige)
+      │ └──────── Owner (Besitzer)
+      └────────── Dateityp (- = Datei, d = Directory)
+      ```
+
+      **Bedeutung der Buchstaben:**
+      | Buchstabe | Bedeutung | Für Dateien | Für Verzeichnisse |
+      |-----------|-----------|-------------|-------------------|
+      | `r` | read | Datei lesen | Inhalt listen (ls) |
+      | `w` | write | Datei schreiben | Dateien darin erstellen/löschen |
+      | `x` | execute | Datei ausführen | Verzeichnis betreten (cd) |
+      | `-` | keine Rechte | — | — |
+    examples:
+      - q: "ls -la ~/.ssh/id_rsa"
+        a: "Zeigt Berechtigungen des privaten SSH-Schlüssels — sollte -rw------- sein (nur Besitzer!)"
+        rel:
+          - ["ssh-key-perms", "SSH private key braucht 600 Rechte — sonst verweigert SSH die Nutzung", "Sicherheit"]
+          - ["rw-owner-only", "-rw------- bedeutet: Besitzer lesen/schreiben, alle anderen nichts", "Rechtemuster"]
+      - q: "ls -l /usr/bin/sudo"
+        a: "Zeigt die speziellen SUID-Rechte von sudo — das s im Rechtstring ist besonders"
+        rel:
+          - ["suid-bit", "Set User ID — Programm läuft mit Rechten des Besitzers", "SUID"]
+          - ["sudo-bin", "sudo-Programm mit erhöhten Systemrechten", "/usr/bin/sudo"]
+
+  - title: "chmod — Berechtigungen ändern"
+    explanation: |
+      `chmod` (Change Mode) ändert Dateiberechtigungen. Es gibt zwei Notationen:
+
+      **Symbolische Notation** (leichter zu merken):
+      ```bash
+      chmod u+x skript.sh      # Besitzer: Ausführen hinzufügen
+      chmod g-w datei.txt      # Gruppe: Schreiben entfernen
+      chmod o=r config.txt     # Andere: nur lesen setzen
+      chmod a+x deploy.sh      # Alle: Ausführen hinzufügen
+      ```
+
+      **Numerische Notation** (schneller zu tippen):
+      | Zahl | Rechte | Bedeutung |
+      |------|--------|-----------|
+      | 7 | rwx | alle Rechte |
+      | 6 | rw- | lesen + schreiben |
+      | 5 | r-x | lesen + ausführen |
+      | 4 | r-- | nur lesen |
+      | 0 | --- | keine Rechte |
+
+      Beispiel: `chmod 755` = `rwxr-xr-x` (Besitzer alles, Gruppe/Andere lesen+ausführen)
+    examples:
+      - q: "chmod +x deploy.sh"
+        a: "Gibt allen (Besitzer, Gruppe, Andere) Ausführrechte — macht das Skript ausführbar"
+        rel:
+          - ["chmod-cmd", "Change Mode — Dateiberechtigungen ändern", "Befehl chmod"]
+          - ["chmod-x", "+x fügt Ausführrechte hinzu", "chmod +x"]
+      - q: "chmod 755 /usr/local/bin/meinprogramm"
+        a: "755 = rwxr-xr-x: Besitzer darf alles, alle anderen dürfen nur lesen und ausführen"
+        rel:
+          - ["chmod-755", "rwxr-xr-x — Standard für ausführbare Programme", "Oktalwert 755"]
+      - q: "chmod 600 ~/.ssh/id_rsa"
+        a: "600 = rw------- : Nur Besitzer darf lesen/schreiben — für SSH-Schlüssel obligatorisch"
+        rel:
+          - ["chmod-600", "rw------- nur Besitzer lesen/schreiben, SSH-Schlüssel-Standard", "Oktalwert 600"]
+      - q: "chmod -R 755 ~/webseite/"
+        a: "Setzt 755-Rechte rekursiv auf alle Dateien und Unterordner der Webseite"
+        rel:
+          - ["chmod-R", "Recursive — Berechtigungen auf alle Unterordner anwenden", "Flag -R"]
+
+  - title: "sudo und chown — Superrechte und Besitz"
+    explanation: |
+      **sudo** (Super User Do) erlaubt normalen Benutzern, einzelne Befehle als
+      Administrator (root) auszuführen. Das ist sicherer als dauerhaft als root zu arbeiten.
+
+      ⚠️ **Goldene Regel:** Nutze `sudo` nur wenn nötig. Als root-Benutzer gibt es keine
+      Sicherheitsnetz — ein falscher `rm -rf`-Befehl kann das System zerstören.
+
+      **chown** (Change Owner) ändert den Besitzer einer Datei:
+      ```bash
+      chown alice datei.txt           # Besitzer ändern
+      chown alice:www-data datei.txt  # Besitzer und Gruppe ändern
+      chown -R www-data /var/www/     # Rekursiv für Webserver-Dateien
+      ```
+    examples:
+      - q: "sudo apt update"
+        a: "Paketliste aktualisieren — erfordert Administratorrechte, daher sudo"
+        rel:
+          - ["sudo-cmd", "Super User Do — Befehl als Administrator ausführen", "Befehl sudo"]
+      - q: "sudo chown -R www-data:www-data /var/www/html/"
+        a: "Alle Webserver-Dateien dem www-data Benutzer zuweisen — Nginx/Apache brauchen das"
+        rel:
+          - ["chown-cmd", "Change Owner — Dateibesitzer ändern", "Befehl chown"]
+          - ["chown-R", "Recursive — Besitz rekursiv ändern", "chown -R"]
+          - ["www-data", "Standardbenutzer für Webserver (Apache, Nginx)", "www-data"]
+      - q: "sudo -l"
+        a: "Zeigt welche sudo-Befehle für dich erlaubt sind — nützlich auf fremden Systemen"
+        rel:
+          - ["sudo-l", "List — erlaubte sudo-Befehle für den aktuellen Nutzer anzeigen", "Flag -l"]
+      - q: "sudo su -"
+        a: "Zu root-Benutzer wechseln — mit Bindestrich wird auch die root-Umgebung geladen"
+        rel:
+          - ["sudo-su", "Zu root-Shell wechseln — mit Vorsicht verwenden", "sudo su -"]
+
+  - title: "🖥️ Terminal-Check"
+    explanation: |
+      Teste jetzt dein Wissen — gib die Befehle direkt ein!
+    examples:
+      - q: "Welcher Befehl macht eine Datei 'deploy.sh' ausführbar?"
+        type: input
+        a: "chmod +x deploy.sh"
+      - q: "Was bedeutet die Berechtigung '755' in der Oktal-Notation?"
+        type: select
+        options:
+          - "rwxr-xr-x — Besitzer alles, Gruppe und Andere lesen+ausführen"
+          - "rw-rw-rw- — alle dürfen lesen und schreiben"
+          - "rwx------ — nur Besitzer hat alle Rechte"
+          - "r--r--r-- — alle dürfen nur lesen"
+        a: "rwxr-xr-x — Besitzer alles, Gruppe und Andere lesen+ausführen"
+      - q: "Welchen Oktalwert sollte ein privater SSH-Schlüssel haben?"
+        type: select
+        options:
+          - "600"
+          - "755"
+          - "777"
+          - "644"
+        a: "600"
+      - q: "Welche dieser Aussagen über das Linux-Rechtesystem stimmen?"
+        type: multiple-choice
+        options:
+          - "r steht für read (lesen)"
+          - "x steht für execute (ausführen)"
+          - "w steht für write (schreiben)"
+          - "s steht für system (System)"
+        a:
+          - "r steht für read (lesen)"
+          - "x steht für execute (ausführen)"
+          - "w steht für write (schreiben)"

@@ -1,0 +1,149 @@
+version: 1
+number: 6
+title: "Processes"
+description: "ps, top, kill and background jobs — understand and control running programs"
+sections:
+  - title: "ps and top — what's running right now?"
+    explanation: |
+      **Why does this matter?** A server is slow, an app is unresponsive, memory is full —
+      in these situations you need to know which processes are running and how many
+      resources they're consuming.
+
+      Every running process gets a unique **PID** (Process ID).
+
+      | Command | What for? |
+      |---------|-----------|
+      | `ps` | Your own processes in the current shell |
+      | `ps aux` | All processes from all users with details |
+      | `top` | Interactive live overview (like Task Manager) |
+      | `htop` | Improved top with colors (must be installed) |
+      | `pgrep nginx` | Find PID of a process by name |
+
+      In `top`: `q` to quit, `k` + PID to kill a process, `M` to sort by memory,
+      `P` to sort by CPU.
+    examples:
+      - q: "ps aux"
+        a: "All running processes from all users with PID, CPU, RAM and command line"
+        rel:
+          - ["en-ps-cmd", "Process Status — show running processes", "ps command"]
+          - ["en-ps-aux", "a=all users, u=user-format, x=also without terminal", "flags aux"]
+      - q: "ps aux | grep nginx"
+        a: "Show only Nginx processes from the process list — combining with grep"
+        rel:
+          - ["en-ps-grep", "Filter process list by process name", "ps aux | grep"]
+      - q: "top"
+        a: "Interactive real-time overview: CPU, RAM, all processes — q to quit"
+        rel:
+          - ["en-top-cmd", "Interactive process monitor in real time", "top command"]
+      - q: "pgrep -l python"
+        a: "Show all Python processes with their PIDs"
+        rel:
+          - ["en-pgrep-cmd", "Search for processes by name and output PIDs", "pgrep command"]
+
+  - title: "kill — stopping processes"
+    explanation: |
+      Processes are controlled via **signals**. `kill` sends signals to processes.
+
+      | Signal | Number | Effect |
+      |--------|--------|--------|
+      | SIGTERM | 15 | Graceful shutdown (default) — process can clean up |
+      | SIGKILL | 9 | Immediate termination — no cleanup possible |
+      | SIGHUP | 1 | Reload configuration (e.g. Nginx) |
+
+      **Rule of thumb:** First try `kill PID` (SIGTERM). Only use `kill -9 PID` (SIGKILL)
+      if that doesn't work.
+
+      `killall` terminates all processes with a specific name:
+      ```bash
+      killall firefox
+      ```
+    examples:
+      - q: "kill 1234"
+        a: "Sends SIGTERM (graceful shutdown) to process with PID 1234"
+        rel:
+          - ["en-kill-cmd", "Send signal to process (default: SIGTERM = graceful shutdown)", "kill command"]
+      - q: "kill -9 1234"
+        a: "Sends SIGKILL — process is terminated immediately, no saving possible"
+        rel:
+          - ["en-kill-9", "SIGKILL — immediate termination, cannot be caught", "signal -9"]
+      - q: "kill -1 $(pgrep nginx)"
+        a: "Send SIGHUP to Nginx — reloads configuration without downtime"
+        rel:
+          - ["en-kill-1", "SIGHUP — reload configuration", "signal -1"]
+          - ["en-command-sub", "$() executes command and uses the output", "$(command)"]
+      - q: "killall -9 firefox"
+        a: "Immediately terminate all Firefox processes — useful when the browser freezes"
+        rel:
+          - ["en-killall-cmd", "Terminate all processes with a given name", "killall command"]
+
+  - title: "Background jobs — multitasking in the terminal"
+    explanation: |
+      Linux allows multiple jobs simultaneously in one terminal:
+
+      | Command/Key | Effect |
+      |------------|--------|
+      | `command &` | Start directly in background |
+      | `Ctrl+Z` | Pause running job |
+      | `bg` | Resume paused job in background |
+      | `fg` | Bring background job to foreground |
+      | `jobs` | List all background jobs |
+      | `nohup command &` | Job continues even after terminal closes |
+
+      **Practical example:**
+      ```bash
+      python3 server.py &   # start server in background
+      [1] 5892              # job number and PID
+      ```
+      Now you can keep working while the server runs.
+    examples:
+      - q: "sleep 60 &"
+        a: "Starts a 60-second sleep process in the background — terminal stays free"
+        rel:
+          - ["en-background-amp", "& at the end starts process in background", "& operator"]
+      - q: "jobs -l"
+        a: "Show all background jobs with job number and PID"
+        rel:
+          - ["en-jobs-cmd", "List all background jobs in current shell", "jobs command"]
+      - q: "fg %1"
+        a: "Bring job number 1 to the foreground"
+        rel:
+          - ["en-fg-cmd", "Foreground — bring background job to foreground", "fg command"]
+      - q: "nohup python3 webserver.py > server.log 2>&1 &"
+        a: "Start server that keeps running after terminal closes, output to log file"
+        rel:
+          - ["en-nohup-cmd", "No Hangup — process continues when terminal is closed", "nohup command"]
+
+  - title: "🖥️ Terminal Check"
+    explanation: |
+      Test your knowledge — type the commands yourself!
+    examples:
+      - q: "Which command shows all running processes from all users?"
+        type: input
+        a: "ps aux"
+      - q: "What does 'kill -9 1234' do?"
+        type: select
+        options:
+          - "Sends SIGKILL — process is immediately terminated"
+          - "Sends SIGTERM — process can clean up"
+          - "Pauses the process with PID 1234"
+          - "Restarts the process"
+        a: "Sends SIGKILL — process is immediately terminated"
+      - q: "How do you start a process directly in the background?"
+        type: select
+        options:
+          - "Run the command with & at the end"
+          - "Run the command with bg at the beginning"
+          - "Run the command with nohup at the end"
+          - "Press Ctrl+Z before the command"
+        a: "Run the command with & at the end"
+      - q: "Which of these statements about process signals are true?"
+        type: multiple-choice
+        options:
+          - "SIGTERM (15) is the graceful shutdown signal"
+          - "SIGKILL (9) cannot be caught or ignored"
+          - "SIGHUP (1) reloads the configuration"
+          - "SIGPAUSE (7) is the default signal"
+        a:
+          - "SIGTERM (15) is the graceful shutdown signal"
+          - "SIGKILL (9) cannot be caught or ignored"
+          - "SIGHUP (1) reloads the configuration"

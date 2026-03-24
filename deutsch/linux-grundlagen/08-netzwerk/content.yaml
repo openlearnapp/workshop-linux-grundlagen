@@ -1,0 +1,154 @@
+version: 1
+number: 8
+title: "Netzwerk"
+description: "ping, curl, wget, ssh und ip — Netzwerkverbindungen testen, Daten übertragen und remote arbeiten"
+sections:
+  - title: "Netzwerk prüfen — ping, ip und ss"
+    explanation: |
+      **Warum ist das wichtig?** Als Linux-Nutzer wirst du Server verwalten, APIs aufrufen
+      und Netzwerkprobleme debuggen. Diese Befehle sind die Grundlage.
+
+      | Befehl | Zweck |
+      |--------|-------|
+      | `ping` | Erreichbarkeit testen |
+      | `ip addr` | IP-Adressen der Netzwerkschnittstellen |
+      | `ip route` | Routing-Tabelle anzeigen |
+      | `ss -tulpn` | Offene Ports und Verbindungen |
+      | `netstat -tulpn` | Ähnlich wie ss (älteres Tool) |
+
+      **Netzwerkschnittstellen** sind die Verbindungen zum Netzwerk:
+      - `lo` = Loopback (nur lokal, 127.0.0.1)
+      - `eth0` oder `enp3s0` = kabelgebundenes Ethernet
+      - `wlan0` oder `wlp2s0` = WLAN
+    examples:
+      - q: "ping -c 4 google.com"
+        a: "Sendet 4 ICMP-Pakete an google.com — testet Internetverbindung und Latenz"
+        rel:
+          - ["ping-cmd", "Netzwerk-Erreichbarkeit und Latenz testen", "Befehl ping"]
+          - ["ping-c", "Count — Anzahl der gesendeten Pakete begrenzen", "Flag -c"]
+      - q: "ip addr show"
+        a: "Alle Netzwerkschnittstellen mit IP-Adressen anzeigen (ersetzt ifconfig)"
+        rel:
+          - ["ip-cmd", "Modernes Netzwerk-Verwaltungstool (ersetzt ifconfig)", "Befehl ip"]
+          - ["ip-addr", "IP-Adressen aller Netzwerkinterfaces anzeigen", "ip addr"]
+      - q: "ss -tulpn"
+        a: "Alle offenen TCP/UDP-Ports und die zugehörigen Programme anzeigen"
+        rel:
+          - ["ss-cmd", "Socket Statistics — Netzwerkverbindungen und offene Ports", "Befehl ss"]
+          - ["ss-tulpn", "t=TCP, u=UDP, l=listening, p=prozess, n=numerisch", "Flags -tulpn"]
+
+  - title: "curl und wget — Daten aus dem Netz holen"
+    explanation: |
+      `curl` und `wget` sind die Schweizer Taschenmesser für HTTP-Anfragen.
+
+      **curl** (Client URL) — sehr flexibel, ideal für APIs:
+      ```bash
+      curl https://api.github.com/users/torvalds
+      curl -X POST -H "Content-Type: application/json" \
+           -d '{"name":"test"}' https://api.example.com/data
+      ```
+
+      **wget** — besser für Downloads großer Dateien:
+      ```bash
+      wget https://releases.ubuntu.com/22.04/ubuntu-22.04-live-server.iso
+      wget -c großedatei.zip   # unterbrochenen Download fortsetzen
+      ```
+
+      **Unterschied:** curl gibt Antwort aus, wget speichert direkt in Datei.
+    examples:
+      - q: "curl -I https://example.com"
+        a: "Nur HTTP-Header anzeigen (Status-Code, Server, Content-Type) ohne Body"
+        rel:
+          - ["curl-cmd", "Client URL — HTTP-Anfragen stellen und Daten übertragen", "Befehl curl"]
+          - ["curl-I", "Head — nur HTTP-Response-Header anzeigen", "Flag -I"]
+      - q: "curl -s https://ipinfo.io/ip"
+        a: "Eigene öffentliche IP-Adresse anzeigen — -s unterdrückt Fortschrittsbalken"
+        rel:
+          - ["curl-s", "Silent — Fortschrittsanzeige und Fehlermeldungen unterdrücken", "Flag -s"]
+      - q: "wget -O nodejs.tar.gz https://nodejs.org/dist/v20.0.0/node-v20.0.0.tar.gz"
+        a: "Datei herunterladen und mit eigenem Namen speichern"
+        rel:
+          - ["wget-cmd", "Web Get — Dateien aus dem Internet herunterladen", "Befehl wget"]
+          - ["wget-O", "Output — Datei unter anderem Namen speichern", "Flag -O"]
+      - q: "curl -fsSL https://get.docker.com | sudo sh"
+        a: "Docker-Installationsskript herunterladen und direkt ausführen"
+        rel:
+          - ["curl-fssl", "f=fail silent, s=silent, S=errors, L=redirects folgen", "Flags -fsSL"]
+
+  - title: "SSH — sicher auf Remote-Server verbinden"
+    explanation: |
+      **SSH** (Secure Shell) ist das wichtigste Werkzeug für die Remote-Verwaltung von Servern.
+      Alles wird verschlüsselt übertragen.
+
+      **Verbindungsaufbau:**
+      ```bash
+      ssh benutzer@server.example.com
+      ssh -p 2222 alice@192.168.1.100    # Port angeben
+      ```
+
+      **SSH-Schlüssel** sind sicherer als Passwörter:
+      ```bash
+      ssh-keygen -t ed25519 -C "alice@laptop"  # Schlüsselpaar erstellen
+      ssh-copy-id alice@server.example.com      # Schlüssel auf Server übertragen
+      ssh alice@server.example.com              # Jetzt ohne Passwort!
+      ```
+
+      **Dateien übertragen mit scp:**
+      ```bash
+      scp datei.txt alice@server:/home/alice/
+      scp -r ordner/ alice@server:/var/www/
+      ```
+    examples:
+      - q: "ssh alice@192.168.1.100"
+        a: "Per SSH mit Server verbinden — Login mit Passwort oder SSH-Schlüssel"
+        rel:
+          - ["ssh-cmd", "Secure Shell — verschlüsselte Remote-Verbindung", "Befehl ssh"]
+      - q: "ssh-keygen -t ed25519 -C \"alice@meinlaptop\""
+        a: "Erstellt ein modernes Ed25519-Schlüsselpaar — sicherer als das ältere RSA"
+        rel:
+          - ["ssh-keygen", "SSH-Schlüsselpaar generieren", "Befehl ssh-keygen"]
+          - ["ed25519", "Moderner Algorithmus für SSH-Schlüssel, empfohlen seit 2022", "Schlüsseltyp Ed25519"]
+      - q: "ssh-copy-id -i ~/.ssh/id_ed25519.pub alice@server.example.com"
+        a: "Öffentlichen Schlüssel auf Server kopieren — danach kein Passwort mehr nötig"
+        rel:
+          - ["ssh-copy-id", "Öffentlichen SSH-Schlüssel auf Remote-Server installieren", "Befehl ssh-copy-id"]
+      - q: "scp -r ~/projekte/webseite/ alice@server:/var/www/html/"
+        a: "Gesamten Webseitenordner per scp auf den Server übertragen"
+        rel:
+          - ["scp-cmd", "Secure Copy — verschlüsselte Dateiübertragung via SSH", "Befehl scp"]
+          - ["scp-r", "Recursive — Verzeichnisse übertragen", "Flag -r"]
+
+  - title: "🖥️ Terminal-Check"
+    explanation: |
+      Teste jetzt dein Wissen — gib die Befehle direkt ein!
+    examples:
+      - q: "Welcher Befehl testet die Erreichbarkeit von google.com mit 4 Paketen?"
+        type: input
+        a: "ping -c 4 google.com"
+      - q: "Was macht 'curl -s https://ipinfo.io/ip'?"
+        type: select
+        options:
+          - "Zeigt die eigene öffentliche IP-Adresse an"
+          - "Testet die Geschwindigkeit der Internetverbindung"
+          - "Lädt die IP-Datenbank herunter"
+          - "Zeigt alle Netzwerkschnittstellen"
+        a: "Zeigt die eigene öffentliche IP-Adresse an"
+      - q: "Welcher Befehl zeigt alle offenen Ports und zugehörigen Programme?"
+        type: select
+        options:
+          - "ss -tulpn"
+          - "ip addr show"
+          - "ping -a localhost"
+          - "netstat --list"
+        a: "ss -tulpn"
+      - q: "Welche dieser Aussagen über SSH stimmen?"
+        type: multiple-choice
+        options:
+          - "SSH verschlüsselt die Verbindung"
+          - "SSH-Schlüssel sind sicherer als Passwörter"
+          - "ssh-keygen erstellt ein Schlüsselpaar"
+          - "SSH sendet Passwörter im Klartext"
+        a:
+          - "SSH verschlüsselt die Verbindung"
+          - "SSH-Schlüssel sind sicherer als Passwörter"
+          - "ssh-keygen erstellt ein Schlüsselpaar"

@@ -1,0 +1,149 @@
+version: 1
+number: 7
+title: "مدیریت بسته‌ها"
+description: "apt، snap و dpkg — نصب، به‌روزرسانی و مدیریت نرم‌افزار در Ubuntu/Debian"
+sections:
+  - title: "apt — فروشگاه برنامه خط فرمان"
+    explanation: |
+      **چرا این مهم است؟** در لینوکس نرم‌افزار را با دانلود فایل‌های .exe نصب نمی‌کنید،
+      بلکه از **مدیر بسته** استفاده می‌کنید. اینها برنامه‌ها را از منابع معتبر دریافت
+      می‌کنند، وابستگی‌ها را حل می‌کنند و همه چیز را به‌روز نگه می‌دارند.
+
+      مهم‌ترین مدیر بسته برای Ubuntu/Debian: **apt** (Advanced Package Tool).
+
+      **گردش کار استاندارد:**
+      ```bash
+      sudo apt update           # ۱. به‌روزرسانی لیست بسته‌ها
+      sudo apt upgrade          # ۲. ارتقاء تمام بسته‌ها
+      sudo apt install nginx    # ۳. نصب بسته
+      ```
+
+      **مهم:** `update` فقط *لیست* بسته‌های موجود را به‌روز می‌کند،
+      نه خود بسته‌ها. `upgrade` سپس برنامه‌های واقعی را به‌روز می‌کند.
+    examples:
+      - q: "sudo apt update"
+        a: "لیست‌های بسته فعلی را از تمام منابع دریافت می‌کند — همیشه اول اجرا کنید"
+        rel:
+          - ["apt-cmd", "Advanced Package Tool — مدیریت بسته برای Debian/Ubuntu", "دستور apt"]
+          - ["apt-update", "به‌روزرسانی لیست بسته‌ها از سرورها (نه خود بسته‌ها)", "apt update"]
+      - q: "sudo apt upgrade"
+        a: "تمام بسته‌های نصب‌شده را به جدیدترین نسخه به‌روز می‌کند"
+        rel:
+          - ["apt-upgrade", "ارتقاء تمام بسته‌های نصب‌شده به جدیدترین نسخه", "apt upgrade"]
+      - q: "sudo apt install git curl wget"
+        a: "سه بسته را یکجا نصب می‌کند — apt چند نام بسته قبول می‌کند"
+        rel:
+          - ["apt-install", "نصب بسته(ها)", "apt install"]
+      - q: "sudo apt update && sudo apt upgrade -y"
+        a: "به‌روزرسانی کامل در یک دستور — فلگ -y تمام سؤالات تأیید را خودکار با بله جواب می‌دهد"
+        rel:
+          - ["apt-y-flag", "Yes — تأیید خودکار تمام سؤالات", "فلگ -y"]
+
+  - title: "جستجو، حذف و تمیزکاری بسته‌ها"
+    explanation: |
+      `apt` همچنین می‌تواند بسته‌ها را جستجو کند و نرم‌افزار غیرضروری را حذف کند.
+
+      | دستور | عملکرد |
+      |--------|---------|
+      | `apt search nginx` | جستجوی بسته‌ها |
+      | `apt show nginx` | نمایش جزئیات یک بسته |
+      | `apt remove nginx` | حذف بسته (پیکربندی باقی می‌ماند) |
+      | `apt purge nginx` | حذف کامل بسته + پیکربندی |
+      | `apt autoremove` | حذف وابستگی‌های غیرضروری |
+      | `apt list --installed` | نمایش تمام بسته‌های نصب‌شده |
+
+      **بعد از تمیزکاری** توصیه می‌شود `sudo apt autoremove` اجرا کنید — بسته‌هایی
+      را حذف می‌کند که خودکار نصب شده‌اند اما دیگر نیازی به آنها نیست.
+    examples:
+      - q: "apt search \"text editor\""
+        a: "جستجوی بسته‌ها با 'text editor' در نام یا توضیحات"
+        rel:
+          - ["apt-search", "جستجو در پایگاه داده بسته‌ها", "apt search"]
+      - q: "apt show nodejs"
+        a: "جزئیات nodejs: نسخه، وابستگی‌ها، توضیحات، حجم"
+        rel:
+          - ["apt-show", "نمایش اطلاعات دقیق یک بسته", "apt show"]
+      - q: "sudo apt remove --purge apache2"
+        a: "Apache2 را کاملاً حذف می‌کند شامل تمام فایل‌های پیکربندی"
+        rel:
+          - ["apt-purge", "حذف کامل بسته و تمام فایل‌های پیکربندی", "apt purge / --purge"]
+      - q: "sudo apt autoremove && sudo apt clean"
+        a: "حذف بسته‌های یتیم و پاک کردن کش بسته‌ها — فضای ذخیره‌سازی آزاد می‌کند"
+        rel:
+          - ["apt-autoremove", "حذف بسته‌های خودکار نصب‌شده که دیگر لازم نیستند", "apt autoremove"]
+          - ["apt-clean", "حذف فایل‌های بسته دانلودشده از کش", "apt clean"]
+
+  - title: "dpkg و snap — روش‌های جایگزین نصب"
+    explanation: |
+      گاهی یک برنامه در مخزن apt نیست — در این صورت راه‌های دیگری وجود دارد:
+
+      **dpkg** فایل‌های `.deb` را مستقیماً نصب می‌کند (مثل نصب‌کننده .exe، اما برای لینوکس):
+      ```bash
+      sudo dpkg -i google-chrome.deb
+      sudo apt install -f    # نصب وابستگی‌های ناموجود
+      ```
+
+      **snap** یک سیستم بسته مدرن‌تر از Canonical (Ubuntu) است:
+      - بسته‌ها ایزوله (sandboxed) اجرا می‌شوند
+      - به‌روزرسانی خودکار
+      - کمی کندتر در شروع نسبت به بسته‌های عادی apt
+
+      **curl + اسکریپت نصب** — بسیاری از برنامه‌ها از این روش استفاده می‌کنند:
+      ```bash
+      curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+      sudo apt install nodejs
+      ```
+    examples:
+      - q: "sudo dpkg -i vscode.deb"
+        a: "یک فایل .deb دانلودشده محلی را مستقیماً نصب می‌کند"
+        rel:
+          - ["dpkg-cmd", "Debian Package — مدیریت مستقیم فایل‌های .deb", "دستور dpkg"]
+          - ["dpkg-i", "Install — نصب فایل .deb", "فلگ -i"]
+      - q: "dpkg -l | grep \"^ii\""
+        a: "لیست تمام بسته‌های نصب‌شده صحیح (ii = installed properly)"
+        rel:
+          - ["dpkg-l", "List — تمام بسته‌های شناخته‌شده و وضعیت آنها", "dpkg -l"]
+      - q: "snap install code --classic"
+        a: "نصب Visual Studio Code از طریق snap — فلگ --classic دسترسی کامل به سیستم می‌دهد"
+        rel:
+          - ["snap-cmd", "سیستم بسته Snap — برنامه‌های ایزوله با به‌روزرسانی خودکار", "دستور snap"]
+          - ["snap-classic", "Classic confinement — دسترسی کامل سیستم برای برنامه‌های IDE-مانند", "فلگ --classic"]
+      - q: "snap list"
+        a: "تمام بسته‌های snap نصب‌شده و نسخه‌های آنها"
+        rel:
+          - ["snap-list", "لیست تمام بسته‌های snap نصب‌شده", "snap list"]
+
+  - title: "🖥️ آزمون ترمینال"
+    explanation: |
+      حالا دانش خود را تست کنید — دستورات را مستقیماً وارد کنید!
+    examples:
+      - q: "کدام دستور لیست بسته‌ها را در Ubuntu/Debian به‌روز می‌کند؟"
+        type: input
+        a: "sudo apt update"
+      - q: "تفاوت بین 'apt update' و 'apt upgrade' چیست؟"
+        type: select
+        options:
+          - "update لیست بسته‌های جدید را دریافت می‌کند، upgrade خود بسته‌ها را به‌روز می‌کند"
+          - "update بسته‌ها را نصب می‌کند، upgrade قدیمی‌ها را حذف می‌کند"
+          - "update و upgrade یک کار را انجام می‌دهند"
+          - "upgrade لیست بسته‌ها را دریافت می‌کند، update بسته‌ها را به‌روز می‌کند"
+        a: "update لیست بسته‌های جدید را دریافت می‌کند، upgrade خود بسته‌ها را به‌روز می‌کند"
+      - q: "کدام دستور یک بسته را شامل فایل‌های پیکربندی حذف می‌کند؟"
+        type: select
+        options:
+          - "sudo apt purge nginx"
+          - "sudo apt remove nginx"
+          - "sudo apt delete nginx"
+          - "sudo apt uninstall nginx"
+        a: "sudo apt purge nginx"
+      - q: "کدام‌یک از این جملات درباره apt درست هستند؟"
+        type: multiple-choice
+        options:
+          - "apt می‌تواند چند بسته را یکجا نصب کند"
+          - "apt autoremove بسته‌های غیرضروری را حذف می‌کند"
+          - "apt search پایگاه داده بسته‌ها را جستجو می‌کند"
+          - "apt نیاز به مجوز مدیر ندارد"
+        a:
+          - "apt می‌تواند چند بسته را یکجا نصب کند"
+          - "apt autoremove بسته‌های غیرضروری را حذف می‌کند"
+          - "apt search پایگاه داده بسته‌ها را جستجو می‌کند"

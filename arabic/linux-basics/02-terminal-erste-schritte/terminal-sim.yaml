@@ -1,0 +1,80 @@
+# Terminal-Simulator Befehle für Lektion 2: Das Terminal — erste Schritte
+prompt: "user@linux:~$"
+commands:
+  - cmd: "pwd"
+    output: "/home/user"
+    hint: "Print Working Directory — zeigt wo du gerade bist"
+  - cmd: "whoami"
+    output: "user"
+    hint: "Gibt deinen Benutzernamen aus"
+  - cmd: "date"
+    output: "Mon Mar 20 14:23:45 UTC 2024"
+    hint: "Aktuelles Datum und Uhrzeit"
+  - cmd: "hostname"
+    output: "ubuntu"
+    hint: "Zeigt den Computernamen"
+  - cmd: "ls"
+    output: "Documents  Downloads"
+    hint: "Listet den Inhalt des aktuellen Verzeichnisses"
+  - cmd: "ls -l"
+    output: |
+      total 8
+      drwxr-xr-x 3 user user 4096 Mar 20 10:23 Documents
+      drwxr-xr-x 2 user user 4096 Mar 19 15:42 Downloads
+    hint: "Detailansicht mit Rechten, Groesse und Datum"
+  - cmd: "ls -a"
+    output: ".  ..  .bashrc  .bash_history  .secret  Documents  Downloads"
+    hint: "Auch versteckte Dateien anzeigen (beginnen mit .)"
+  - cmd: "ls -la"
+    output: |
+      total 32
+      drwxr-xr-x 4 user user 4096 Mar 20 10:23 .
+      drwxr-xr-x 3 root root 4096 Mar 15 09:00 ..
+      -rw-r--r-- 1 user user  220 Mar 15 09:00 .bashrc
+      -rw------- 1 user user  456 Mar 20 14:20 .bash_history
+      -rw-r--r-- 1 user user   42 Mar 18 11:30 .secret
+      drwxr-xr-x 3 user user 4096 Mar 20 10:23 Documents
+      drwxr-xr-x 2 user user 4096 Mar 19 15:42 Downloads
+    hint: "Alle Dateien mit Details — die wichtigste ls-Kombination"
+  - cmd: "ls -lh /var/log"
+    output: |
+      total 2.1M
+      -rw-r--r-- 1 root root  12K Mar 20 14:00 alternatives.log
+      -rw-r----- 1 root adm  145K Mar 20 14:23 auth.log
+      -rw-r--r-- 1 root root  58K Mar 15 09:00 bootstrap.log
+      -rw-rw---- 1 root utmp    0 Mar 15 09:00 btmp
+      -rw-r----- 1 root adm  1.2M Mar 20 14:23 syslog
+      -rw-rw-r-- 1 root utmp  34K Mar 20 12:00 wtmp
+    hint: "Log-Dateien mit menschenlesbaren Groessen (KB, MB)"
+  - cmd: "cd /var/log"
+    output: ""
+    hint: "Wechselt ins Log-Verzeichnis"
+    prompt_after: "user@linux:/var/log$"
+  - cmd: "cd .."
+    output: ""
+    hint: "Eine Ebene nach oben — von /var/log nach /var"
+    prompt_after: "user@linux:/var$"
+  - cmd: "cd ~"
+    output: ""
+    hint: "Zurueck ins Home-Verzeichnis — egal wo du bist"
+    prompt_after: "user@linux:~$"
+  - cmd: "cd -"
+    output: "/var"
+    hint: "Zum zuletzt besuchten Verzeichnis zurueckwechseln"
+    prompt_after: "user@linux:/var$"
+  - cmd: "history"
+    output: |
+        1  pwd
+        2  whoami
+        3  date
+        4  ls
+        5  ls -la
+        6  cd /var/log
+        7  cd ..
+        8  cd ~
+        9  cd -
+       10  history
+    hint: "Zeigt die letzten eingegebenen Befehle"
+  - cmd: "clear"
+    output: ""
+    hint: "Loescht den Bildschirminhalt (Shortcut: Ctrl+L)"

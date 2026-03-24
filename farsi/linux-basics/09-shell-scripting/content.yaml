@@ -1,0 +1,176 @@
+version: 1
+number: 9
+title: "مبانی Shell Scripting"
+description: "متغیرها، شرط‌های if و حلقه‌ها — نوشتن اسکریپت‌های خودتان و خودکارسازی کارها"
+sections:
+  - title: "اولین اسکریپت شما — Shebang و متغیرها"
+    explanation: |
+      **چرا این مهم است؟** Shell Scripting کلید خودکارسازی است.
+      هر چیزی که چندین بار در ترمینال تایپ می‌کنید، می‌تواند در یک اسکریپت قرار بگیرد —
+      و با یک دستور واحد اجرا شود.
+
+      **اولین اسکریپت:**
+      ```bash
+      #!/bin/bash
+      # این یک توضیح است
+
+      NAME="Alice"
+      DATUM=$(date +%Y-%m-%d)
+
+      echo "سلام، $NAME!"
+      echo "امروز: $DATUM"
+      ```
+
+      خط اول `#!/bin/bash` به نام **Shebang** شناخته می‌شود — به سیستم می‌گوید
+      اسکریپت با کدام مفسر اجرا شود.
+
+      **متغیرها:**
+      - بدون `$`: مقداردهی: `NAME="Alice"` (بدون فاصله دور `=`!)
+      - با `$`: استفاده: `echo $NAME`
+      - `$(دستور)`: خروجی دستور به عنوان متغیر
+    examples:
+      - q: "#!/bin/bash"
+        a: "Shebang — اولین خط هر اسکریپت Bash، مفسر را مشخص می‌کند"
+        rel:
+          - ["shebang", "اولین خط اسکریپت که مفسر را تعیین می‌کند", "#!/bin/bash"]
+      - q: "NAME=\"Alice\" && echo \"Hallo, $NAME\""
+        a: "مقداردهی متغیر و استفاده فوری — بدون فاصله دور علامت مساوی!"
+        rel:
+          - ["bash-variable", "متغیر در Bash: NAME=مقدار (بدون $)، $NAME (هنگام استفاده)", "متغیر"]
+      - q: "HEUTE=$(date +%d.%m.%Y)"
+        a: "ذخیره خروجی دستور در متغیر — $(date) تاریخ فعلی را برمی‌گرداند"
+        rel:
+          - ["command-sub", "جایگزینی دستور: $(دستور) خروجی را در متغیر ذخیره می‌کند", "$()"]
+          - ["date-format", "فرمت تاریخ: %d=روز، %m=ماه، %Y=سال", "date +فرمت"]
+      - q: "echo \"Pfad: $HOME, User: $USER\""
+        a: "استفاده از متغیرهای محیطی داخلی — HOME و USER همیشه در دسترس هستند"
+        rel:
+          - ["env-var-user", "متغیر محیطی با نام کاربر فعلی", "$USER"]
+          - ["env-var-home", "متغیر محیطی با مسیر پوشه خانگی", "$HOME"]
+
+  - title: "شرط‌های if — تصمیم‌گیری در اسکریپت"
+    explanation: |
+      اجرای شرطی اسکریپت‌ها را هوشمند می‌کند:
+
+      ```bash
+      #!/bin/bash
+      DATEI="/etc/nginx/nginx.conf"
+
+      if [ -f "$DATEI" ]; then
+          echo "Nginx نصب شده است"
+      elif [ -d "/etc/apache2" ]; then
+          echo "Apache نصب شده است"
+      else
+          echo "هیچ وب‌سروری پیدا نشد"
+      fi
+      ```
+
+      **عملگرهای تست مهم:**
+      | عملگر | معنی |
+      |----------|-----------|
+      | `-f datei` | فایل وجود دارد و یک فایل است |
+      | `-d pfad` | مسیر وجود دارد و یک پوشه است |
+      | `-z "$var"` | متغیر خالی است |
+      | `-n "$var"` | متغیر خالی نیست |
+      | `"$a" = "$b"` | رشته‌ها برابرند |
+      | `$a -eq $b` | اعداد برابرند |
+      | `$a -gt $b` | a بزرگ‌تر از b است (greater than) |
+    examples:
+      - q: "if [ -f \"~/.ssh/id_ed25519\" ]; then echo \"SSH-Key vorhanden\"; fi"
+        a: "بررسی وجود کلید SSH — فلگ -f وجود فایل را تست می‌کند"
+        rel:
+          - ["if-bash", "if [ شرط ]; then دستورات; fi — ساختار پایه", "if-then-fi"]
+          - ["test-f", "-f تست می‌کند آیا فایل وجود دارد (file)", "عملگر تست -f"]
+      - q: "[ -d /var/www ] && echo \"Webverzeichnis existiert\""
+        a: "فرم کوتاه: && دستور دوم را فقط اجرا می‌کند اگر شرط اول درست باشد"
+        rel:
+          - ["test-d", "-d تست می‌کند آیا پوشه وجود دارد (directory)", "عملگر تست -d"]
+      - q: "if [ \"$USER\" = \"root\" ]; then echo \"Du bist root!\"; fi"
+        a: "بررسی اینکه آیا اسکریپت با root اجرا شده — مهم برای اسکریپت‌های نصب"
+        rel:
+          - ["string-compare", "مقایسه رشته‌ها در Bash با =", "مقایسه رشته"]
+
+  - title: "حلقه‌ها — خودکارسازی تکرارها"
+    explanation: |
+      حلقه‌ها دستورات را چندین بار اجرا می‌کنند — ایده‌آل برای عملیات دسته‌ای:
+
+      **حلقه for:**
+      ```bash
+      for DATEI in *.log; do
+          echo "پردازش: $DATEI"
+          gzip "$DATEI"
+      done
+      ```
+
+      **حلقه while:**
+      ```bash
+      ZAEHLER=1
+      while [ $ZAEHLER -le 5 ]; do
+          echo "دور $ZAEHLER"
+          ZAEHLER=$((ZAEHLER + 1))
+      done
+      ```
+
+      **مثال عملی — اسکریپت پشتیبان‌گیری:**
+      ```bash
+      #!/bin/bash
+      DATUM=$(date +%Y%m%d)
+      for ORDNER in ~/dokumente ~/bilder ~/projekte; do
+          tar -czf "/backup/${DATUM}_$(basename $ORDNER).tar.gz" "$ORDNER"
+          echo "پشتیبان ساخته شد: $ORDNER"
+      done
+      ```
+    examples:
+      - q: "for i in 1 2 3 4 5; do echo \"Zahl: $i\"; done"
+        a: "حلقه for روی یک لیست — اعداد ۱ تا ۵ را چاپ می‌کند"
+        rel:
+          - ["for-loop", "حلقه for: for VAR in لیست; do ... done", "for-do-done"]
+      - q: "for USER in alice bob charlie; do useradd \"$USER\"; done"
+        a: "ساخت چند کاربر یکجا — کار معمول مدیر سیستم"
+        rel:
+          - ["for-list", "حلقه for روی لیستی از مقادیر", "for VAR in مقدار۱ مقدار۲"]
+      - q: "for f in /var/log/*.log; do echo \"$(wc -l < $f) Zeilen: $f\"; done"
+        a: "شمارش خطوط تمام فایل‌های لاگ و لیست کردن آنها"
+        rel:
+          - ["for-glob", "حلقه for با الگوی Glob روی فایل‌ها", "for f in *.ext"]
+          - ["wc-l", "Word Count -l — شمارش خطوط یک فایل", "wc -l"]
+      - q: "while true; do df -h / | grep '/'; sleep 60; done"
+        a: "نظارت بر فضای دیسک هر دقیقه — حلقه بی‌نهایت با sleep"
+        rel:
+          - ["while-loop", "حلقه while: while شرط; do ... done", "while-do-done"]
+          - ["while-true", "while true — حلقه بی‌نهایت، فقط با Ctrl+C متوقف می‌شود", "while true"]
+
+  - title: "🖥️ آزمون ترمینال"
+    explanation: |
+      حالا دانش خود را تست کنید — دستورات را مستقیماً وارد کنید!
+    examples:
+      - q: "اولین خط هر اسکریپت Bash (Shebang) چیست؟"
+        type: input
+        a: "#!/bin/bash"
+      - q: "هنگام مقداردهی متغیر Bash چه نکته‌ای باید رعایت شود؟"
+        type: select
+        options:
+          - "بدون فاصله دور علامت مساوی: NAME=\"Alice\""
+          - "همیشه $ قبل از نام متغیر: $NAME=\"Alice\""
+          - "متغیرها باید با حروف بزرگ باشند"
+          - "متغیرها باید با export تعریف شوند"
+        a: "بدون فاصله دور علامت مساوی: NAME=\"Alice\""
+      - q: "کدام نحو شرط if را در Bash به درستی می‌بندد؟"
+        type: select
+        options:
+          - "fi"
+          - "end"
+          - "endif"
+          - "done"
+        a: "fi"
+      - q: "کدام‌یک از این جملات درباره Shell Scripting درست هستند؟"
+        type: multiple-choice
+        options:
+          - "$() خروجی دستور را در متغیر ذخیره می‌کند"
+          - "حلقه‌های for با 'done' تمام می‌شوند"
+          - "-f بررسی می‌کند آیا فایل وجود دارد"
+          - "فاصله دور = در متغیرها الزامی است"
+        a:
+          - "$() خروجی دستور را در متغیر ذخیره می‌کند"
+          - "حلقه‌های for با 'done' تمام می‌شوند"
+          - "-f بررسی می‌کند آیا فایل وجود دارد"

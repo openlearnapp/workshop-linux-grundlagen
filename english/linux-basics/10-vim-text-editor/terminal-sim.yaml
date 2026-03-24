@@ -1,0 +1,72 @@
+# Terminal Simulator Commands for Lesson 10: Vim & Text Editors
+prompt: "user@linux:~$"
+commands:
+  - cmd: "nano Documents/notes.txt"
+    output: |
+      GNU nano 6.2          Documents/notes.txt
+
+      Linux ist toll!
+      Diese Datei wurde mit touch erstellt.
+
+
+
+      ^G Help    ^O Write Out  ^W Where Is  ^K Cut       ^U Paste
+      ^X Exit    ^R Read File  ^\ Replace   ^J Justify   ^T Spelling
+    hint: "Open file with nano — Ctrl+O to save, Ctrl+X to exit"
+  - cmd: "nano -l /etc/hosts"
+    output: |
+      GNU nano 6.2          /etc/hosts
+
+        1  127.0.0.1       localhost
+        2  127.0.1.1       ubuntu
+        3
+        4  # The following lines are desirable for IPv6 capable hosts
+        5  ::1     ip6-localhost ip6-loopback
+        6  fe00::0 ip6-localnet
+
+      ^G Help    ^O Write Out  ^W Where Is  ^K Cut       ^U Paste
+    hint: "Edit with line numbers — helpful for long files"
+  - cmd: "vim Documents/notes.txt"
+    output: |
+      Linux ist toll!
+      Diese Datei wurde mit touch erstellt.
+      ~
+      ~
+      ~
+      "Documents/notes.txt" 2L, 52B
+    hint: "Open file with vim — starts in Normal mode"
+  - cmd: "i"
+    output: "-- INSERT --"
+    hint: "Switch to Insert mode — now text can be entered"
+  - cmd: "Esc"
+    output: ""
+    hint: "Back to Normal mode — Esc exits Insert mode"
+  - cmd: ":wq"
+    output: "\"Documents/notes.txt\" 2L, 52B written"
+    hint: "Save and quit — the most important vim command"
+  - cmd: ":q!"
+    output: ""
+    hint: "Quit without saving — discard changes"
+  - cmd: ":w"
+    output: "\"Documents/notes.txt\" 2L, 52B written"
+    hint: "Save only, vim stays open"
+  - cmd: "/ERROR"
+    output: "Pattern not found: ERROR"
+    hint: "Search forward in vim — n for next match"
+  - cmd: ":%s/localhost/example.com/g"
+    output: "2 substitutions on 2 lines"
+    hint: "Replace all occurrences of localhost"
+  - cmd: "dd"
+    output: ""
+    hint: "Delete current line (stored in buffer)"
+  - cmd: "yy"
+    output: ""
+    hint: "Copy current line (yank)"
+  - cmd: "p"
+    output: ""
+    hint: "Paste copied/deleted content"
+  - cmd: "vim /etc/shadow"
+    output: |
+      E: "/etc/shadow" [Permission Denied]
+    hint: "System files need sudo — use sudo vim"
+    error: true

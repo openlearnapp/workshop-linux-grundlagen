@@ -1,0 +1,58 @@
+# Terminal Simulator Commands for Lesson 3: Files & Directories
+prompt: "user@linux:~$"
+commands:
+  - cmd: "touch README.md"
+    output: ""
+    hint: "Creates an empty file README.md"
+  - cmd: "touch index.html style.css app.js"
+    output: ""
+    hint: "Creates three files at once"
+  - cmd: "ls"
+    output: "Documents  Downloads  README.md  app.js  index.html  style.css"
+    hint: "Shows the newly created files"
+  - cmd: "mkdir projects"
+    output: ""
+    hint: "Creates a new directory"
+  - cmd: "mkdir -p projects/website/assets/img"
+    output: ""
+    hint: "Creates the entire directory tree at once"
+  - cmd: "ls -la projects/website/"
+    output: |
+      total 8
+      drwxr-xr-x 3 user user 4096 Mar 20 14:30 .
+      drwxr-xr-x 3 user user 4096 Mar 20 14:30 ..
+      drwxr-xr-x 3 user user 4096 Mar 20 14:30 assets
+    hint: "Shows the contents of the new directory tree"
+  - cmd: "cp ~/.bashrc ~/.bashrc.backup"
+    output: ""
+    hint: "Create a backup of the configuration file"
+  - cmd: "ls -la ~/.bashrc*"
+    output: |
+      -rw-r--r-- 1 user user 220 Mar 15 09:00 /home/user/.bashrc
+      -rw-r--r-- 1 user user 220 Mar 20 14:31 /home/user/.bashrc.backup
+    hint: "Compare both files — original and backup"
+  - cmd: "cp -r Documents/ Documents_backup/"
+    output: ""
+    hint: "Copy a directory recursively with the -r flag"
+  - cmd: "mv README.md projects/"
+    output: ""
+    hint: "Move a file to another directory"
+  - cmd: "mv index.html homepage.html"
+    output: ""
+    hint: "Rename a file — mv without a path change"
+  - cmd: "ls projects/"
+    output: "README.md  website"
+    hint: "Confirms: README.md was moved"
+  - cmd: "rm style.css"
+    output: ""
+    hint: "Delete a file — no recycle bin!"
+  - cmd: "rm -i app.js"
+    output: "rm: remove regular empty file 'app.js'? y"
+    hint: "Asks before deleting — safer approach"
+  - cmd: "rmdir projects/website/assets/img"
+    output: ""
+    hint: "Delete an empty directory"
+  - cmd: "rm -rf /"
+    output: "rm: it is dangerous to operate recursively on '/'\nrm: use --no-preserve-root to override this failsafe"
+    hint: "NEVER run this! It deletes the entire system"
+    error: true

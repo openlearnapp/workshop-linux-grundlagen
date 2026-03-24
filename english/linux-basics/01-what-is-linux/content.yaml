@@ -1,0 +1,136 @@
+version: 1
+number: 1
+title: "What is Linux?"
+description: "History, distributions and why Linux powers 96% of the world's servers"
+sections:
+  - title: "A student changed the world"
+    explanation: |
+      In **1991**, a 21-year-old computer science student at the University of Helsinki
+      sent an email that would change the world:
+
+      > *"I'm doing a (free) operating system (just a hobby, won't be big and professional
+      > like GNU)"* — Linus Torvalds, August 25, 1991
+
+      Today, over 30 years later, **Linux** runs on:
+      - **96%** of all web servers worldwide
+      - **100%** of the fastest supercomputers
+      - Billions of Android smartphones
+      - Smart TVs, routers, cars, and space stations
+
+      **Why does this matter?** Understanding Linux means understanding the infrastructure
+      of the internet. Every click, every website, every app runs somewhere on a Linux server.
+    examples:
+      - q: "uname -r"
+        a: "Shows the current Linux kernel version (e.g. 5.15.0-91-generic)"
+        rel:
+          - ["en-uname", "Unix Name — display system information", "command"]
+          - ["en-uname-r", "Kernel release version", "flag -r = release"]
+      - q: "uname -a"
+        a: "Show all system information at once: kernel, hostname, architecture"
+        rel:
+          - ["en-uname-a", "All system info (All)", "flag -a = all"]
+      - q: "cat /etc/os-release"
+        a: "Shows which Linux distribution and version is installed"
+        rel:
+          - ["en-os-release", "File containing distribution and version information", "/etc/os-release"]
+
+  - title: "Distributions — Linux for every purpose"
+    explanation: |
+      Linux is not a single operating system, but a **kernel** around which various
+      companies and communities have built complete systems. These are called
+      **distributions** (or distros).
+
+      | Distribution | Strength | Target Audience |
+      |-------------|---------|----------------|
+      | **Ubuntu** | Easy installation, great support | Beginners, desktop |
+      | **Debian** | Stability, long-term support | Servers, sysadmins |
+      | **Fedora** | Cutting-edge software | Developers |
+      | **Arch Linux** | Maximum control | Advanced users |
+      | **Kali Linux** | Pre-installed security tools | Penetration testers |
+      | **Raspberry Pi OS** | Optimized for mini computers | Makers, IoT |
+
+      **The key difference from Windows/macOS:** Linux is **open source** —
+      anyone can read, modify, and redistribute the source code.
+    examples:
+      - q: "lsb_release -a"
+        a: "Shows the exact distribution and version (e.g. Ubuntu 22.04 LTS)"
+        rel:
+          - ["en-lsb-release", "Linux Standard Base information", "lsb_release command"]
+          - ["en-lsb-a", "All available LSB information", "flag -a"]
+      - q: "hostnamectl"
+        a: "Shows hostname, OS, kernel and architecture in a clean format"
+        rel:
+          - ["en-hostnamectl", "Manage hostname and display system information", "command"]
+      - q: "arch"
+        a: "Prints the processor architecture (e.g. x86_64 for 64-bit system)"
+        rel:
+          - ["en-arch-cmd", "Display machine hardware architecture", "arch command"]
+
+  - title: "The Linux filesystem — everything is a file"
+    explanation: |
+      Linux follows one philosophy: **everything is a file** — including devices,
+      processes, and network connections are represented as files.
+
+      The filesystem always starts at `/` (root):
+
+      | Directory | Contents |
+      |-----------|----------|
+      | `/home` | Personal directories of users |
+      | `/etc` | System configuration files |
+      | `/bin`, `/usr/bin` | Executable programs (commands) |
+      | `/var/log` | Log files (system logs) |
+      | `/tmp` | Temporary files, deleted on reboot |
+      | `/dev` | Device files (disks, USB, etc.) |
+
+      The tilde `~` is a shortcut for your own home directory:
+      `/home/username` becomes `~`
+    examples:
+      - q: "ls /"
+        a: "Shows the root directory contents — the top level of the filesystem"
+        rel:
+          - ["en-ls-cmd", "List — show directory contents", "ls command"]
+          - ["en-root-dir", "The topmost directory of the Linux filesystem", "/ (root)"]
+      - q: "ls /etc | head -5"
+        a: "Lists the first 5 entries in the configuration directory /etc"
+        rel:
+          - ["en-etc-dir", "System configuration files directory", "/etc"]
+      - q: "echo $HOME"
+        a: "Prints the path to your home directory (e.g. /home/alice)"
+        rel:
+          - ["en-echo-cmd", "Print text or variable to the terminal", "echo command"]
+          - ["en-home-var", "Environment variable with path to home directory", "$HOME"]
+
+  - title: "🖥️ Terminal Check"
+    explanation: |
+      Test your knowledge — type the commands yourself!
+    examples:
+      - q: "Which command shows the current Linux kernel version?"
+        type: input
+        a: "uname -r"
+      - q: "What does 'lsb_release -a' show?"
+        type: select
+        options:
+          - "The exact Linux distribution and version"
+          - "Deletes all log files"
+          - "Updates the Linux kernel"
+          - "Restarts the system"
+        a: "The exact Linux distribution and version"
+      - q: "Which command shows which Linux distribution is installed?"
+        type: select
+        options:
+          - "cat /etc/os-release"
+          - "cat /etc/passwd"
+          - "ls /usr/bin"
+          - "echo $PATH"
+        a: "cat /etc/os-release"
+      - q: "Which of these statements about Linux are true?"
+        type: multiple-choice
+        options:
+          - "Linux is open source"
+          - "Linux runs on 96% of all web servers"
+          - "Linux has only one single distribution"
+          - "Android is based on Linux"
+        a:
+          - "Linux is open source"
+          - "Linux runs on 96% of all web servers"
+          - "Android is based on Linux"

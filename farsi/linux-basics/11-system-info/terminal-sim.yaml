@@ -1,0 +1,76 @@
+# Terminal-Simulator Befehle für Lektion 11: Systeminformationen
+prompt: "user@linux:~$"
+commands:
+  - cmd: "df -h"
+    output: |
+      Filesystem      Size  Used Avail Use% Mounted on
+      /dev/sda1        50G   18G   30G  38% /
+      tmpfs           2.0G     0  2.0G   0% /dev/shm
+      /dev/sda2       200G   45G  145G  24% /home
+      tmpfs           394M  1.2M  393M   1% /run
+    hint: "Festplattenauslastung aller Partitionen anzeigen"
+  - cmd: "df -h /"
+    output: |
+      Filesystem      Size  Used Avail Use% Mounted on
+      /dev/sda1        50G   18G   30G  38% /
+    hint: "Nur die Root-Partition pruefen"
+  - cmd: "du -sh Documents/*"
+    output: |
+      52      Documents/notes.txt
+      2.4M    Documents/report.pdf
+      156K    Documents/project
+    hint: "Groesse jedes Elements im Documents-Ordner"
+  - cmd: "du -h --max-depth=1 /var | sort -rh | head -5"
+    output: |
+      2.1G    /var
+      1.4G    /var/log
+      320M    /var/cache
+      245M    /var/lib
+      89M     /var/backups
+    hint: "Die 5 groessten Unterordner in /var finden"
+  - cmd: "free -h"
+    output: |
+                    total        used        free      shared  buff/cache   available
+      Mem:          3.8Gi       1.2Gi       1.5Gi       256Mi       1.1Gi       2.3Gi
+      Swap:         2.0Gi          0B       2.0Gi
+    hint: "RAM-Auslastung — available ist wichtiger als free"
+  - cmd: "uptime"
+    output: " 14:42:01 up 7 days,  3:25,  2 users,  load average: 0.52, 0.48, 0.45"
+    hint: "Systemlaufzeit und CPU Load Average"
+  - cmd: "uname -a"
+    output: "Linux ubuntu 5.15.0-91-generic #101-Ubuntu SMP Tue Nov 14 13:30:08 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux"
+    hint: "Alle Systeminformationen auf einmal"
+  - cmd: "history | tail -10"
+    output: |
+       45  df -h
+       46  df -h /
+       47  du -sh Documents/*
+       48  du -h --max-depth=1 /var | sort -rh | head -5
+       49  free -h
+       50  uptime
+       51  uname -a
+       52  history | tail -10
+    hint: "Die letzten 10 eingegebenen Befehle"
+  - cmd: "history | grep \"apt install\""
+    output: |
+       12  sudo apt install git curl wget
+       28  sudo apt install nginx
+       35  sudo apt install htop
+    hint: "Alle apt install-Befehle aus der History suchen"
+  - cmd: "!!"
+    output: |
+       12  sudo apt install git curl wget
+       28  sudo apt install nginx
+       35  sudo apt install htop
+    hint: "Letzten Befehl wiederholen — sehr nuetzlich fuer sudo !!"
+  - cmd: "cat /proc/cpuinfo | grep \"model name\" | head -1"
+    output: "model name\t: Intel(R) Core(TM) i7-10700K CPU @ 3.80GHz"
+    hint: "CPU-Modell aus den Kernel-Informationen auslesen"
+  - cmd: "vmstat 2 3"
+    output: |
+      procs -----------memory---------- ---swap-- -----io---- -system-- ------cpu-----
+       r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st
+       1  0      0 1572864 131072 1153024  0    0    12    25  156  312  2  1 97  0  0
+       0  0      0 1572800 131072 1153088  0    0     0    16  142  298  1  0 99  0  0
+       0  0      0 1572736 131072 1153088  0    0     0     8  138  285  1  1 98  0  0
+    hint: "System-Statistik alle 2 Sekunden, 3 Mal"

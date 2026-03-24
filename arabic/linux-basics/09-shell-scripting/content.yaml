@@ -1,0 +1,176 @@
+version: 1
+number: 9
+title: "أساسيات كتابة سكريبتات الصدفة"
+description: "المتغيرات وشروط if والحلقات — كتابة سكريبتات خاصة وأتمتة المهام"
+sections:
+  - title: "أول سكريبت لك — Shebang والمتغيرات"
+    explanation: |
+      **لماذا هذا مهم؟** كتابة سكريبتات الصدفة هي مفتاح الأتمتة.
+      كل ما تكتبه عدة مرات في الطرفية يمكن وضعه في سكريبت — ثم
+      تنفيذه بأمر واحد فقط.
+
+      **أول سكريبت:**
+      ```bash
+      #!/bin/bash
+      # هذا تعليق
+
+      NAME="Alice"
+      DATUM=$(date +%Y-%m-%d)
+
+      echo "مرحبًا، $NAME!"
+      echo "اليوم هو: $DATUM"
+      ```
+
+      السطر الأول `#!/bin/bash` يُسمى **Shebang** — يُخبر النظام بأي
+      مُفسّر يجب تنفيذ السكريبت.
+
+      **المتغيرات:**
+      - بدون `$`: تعيين: `NAME="Alice"` (لا مسافة حول `=`!)
+      - مع `$`: استخدام: `echo $NAME`
+      - `$(أمر)`: حفظ مخرجات أمر في متغير
+    examples:
+      - q: "#!/bin/bash"
+        a: "Shebang — السطر الأول في كل سكريبت Bash، يحدد المُفسّر"
+        rel:
+          - ["shebang", "السطر الأول في السكريبت الذي يحدد المُفسّر", "#!/bin/bash"]
+      - q: "NAME=\"Alice\" && echo \"Hallo, $NAME\""
+        a: "تعيين متغير واستخدامه فورًا — لا مسافة حول علامة المساواة!"
+        rel:
+          - ["bash-variable", "متغير في Bash: NAME=قيمة (بدون $)، $NAME (عند الاستخدام)", "متغير"]
+      - q: "HEUTE=$(date +%d.%m.%Y)"
+        a: "حفظ مخرجات أمر في متغير — $(date) يُرجع التاريخ الحالي"
+        rel:
+          - ["command-sub", "استبدال الأوامر: $(أمر) يحفظ المخرجات في متغير", "$()"]
+          - ["date-format", "صيغة التاريخ: %d=يوم، %m=شهر، %Y=سنة", "date +صيغة"]
+      - q: "echo \"Pfad: $HOME, User: $USER\""
+        a: "استخدام متغيرات البيئة المدمجة — HOME و USER متاحان دائمًا"
+        rel:
+          - ["env-var-user", "متغير بيئي يحتوي اسم المستخدم الحالي", "$USER"]
+          - ["env-var-home", "متغير بيئي يحتوي مسار المجلد الشخصي", "$HOME"]
+
+  - title: "شروط if — اتخاذ القرارات في السكريبت"
+    explanation: |
+      التنفيذ المشروط يجعل السكريبتات ذكية:
+
+      ```bash
+      #!/bin/bash
+      DATEI="/etc/nginx/nginx.conf"
+
+      if [ -f "$DATEI" ]; then
+          echo "Nginx مثبت"
+      elif [ -d "/etc/apache2" ]; then
+          echo "Apache مثبت"
+      else
+          echo "لم يُعثر على خادم ويب"
+      fi
+      ```
+
+      **عوامل الاختبار المهمة:**
+      | العامل | المعنى |
+      |--------|--------|
+      | `-f ملف` | الملف موجود وهو ملف |
+      | `-d مسار` | المسار موجود وهو مجلد |
+      | `-z "$var"` | المتغير فارغ |
+      | `-n "$var"` | المتغير ليس فارغًا |
+      | `"$a" = "$b"` | النصوص متساوية |
+      | `$a -eq $b` | الأرقام متساوية |
+      | `$a -gt $b` | a أكبر من b (greater than) |
+    examples:
+      - q: "if [ -f \"~/.ssh/id_ed25519\" ]; then echo \"SSH-Key vorhanden\"; fi"
+        a: "يتحقق من وجود مفتاح SSH — -f يختبر وجود ملف"
+        rel:
+          - ["if-bash", "if [ شرط ]; then أوامر; fi — البنية الأساسية", "if-then-fi"]
+          - ["test-f", "-f يختبر وجود ملف (file)", "عامل الاختبار -f"]
+      - q: "[ -d /var/www ] && echo \"Webverzeichnis existiert\""
+        a: "صيغة مختصرة: && ينفذ الأمر الثاني فقط إذا كان الشرط الأول صحيحًا"
+        rel:
+          - ["test-d", "-d يختبر وجود مجلد (directory)", "عامل الاختبار -d"]
+      - q: "if [ \"$USER\" = \"root\" ]; then echo \"Du bist root!\"; fi"
+        a: "يتحقق مما إذا كان السكريبت يعمل كـ root — مهم لسكريبتات التثبيت"
+        rel:
+          - ["string-compare", "مقارنة النصوص في Bash باستخدام =", "مقارنة نصية"]
+
+  - title: "الحلقات — أتمتة التكرار"
+    explanation: |
+      الحلقات تنفذ الأوامر عدة مرات — مثالية للعمليات الجماعية:
+
+      **حلقة for:**
+      ```bash
+      for DATEI in *.log; do
+          echo "معالجة: $DATEI"
+          gzip "$DATEI"
+      done
+      ```
+
+      **حلقة while:**
+      ```bash
+      ZAEHLER=1
+      while [ $ZAEHLER -le 5 ]; do
+          echo "الدورة $ZAEHLER"
+          ZAEHLER=$((ZAEHLER + 1))
+      done
+      ```
+
+      **مثال عملي — سكريبت نسخ احتياطي:**
+      ```bash
+      #!/bin/bash
+      DATUM=$(date +%Y%m%d)
+      for ORDNER in ~/dokumente ~/bilder ~/projekte; do
+          tar -czf "/backup/${DATUM}_$(basename $ORDNER).tar.gz" "$ORDNER"
+          echo "تم إنشاء نسخة احتياطية: $ORDNER"
+      done
+      ```
+    examples:
+      - q: "for i in 1 2 3 4 5; do echo \"Zahl: $i\"; done"
+        a: "حلقة for على قائمة — تطبع الأرقام من ١ إلى ٥"
+        rel:
+          - ["for-loop", "حلقة for: for VAR in LIST; do ... done", "for-do-done"]
+      - q: "for USER in alice bob charlie; do useradd \"$USER\"; done"
+        a: "إنشاء عدة مستخدمين دفعة واحدة — مهمة نموذجية لمسؤول النظام"
+        rel:
+          - ["for-list", "حلقة for على قائمة من القيم", "for VAR in قيمة1 قيمة2"]
+      - q: "for f in /var/log/*.log; do echo \"$(wc -l < $f) Zeilen: $f\"; done"
+        a: "عدّ أسطر جميع ملفات السجلات وعرض القائمة"
+        rel:
+          - ["for-glob", "حلقة for مع نمط Glob على الملفات", "for f in *.ext"]
+          - ["wc-l", "Word Count -l — عدّ أسطر ملف", "wc -l"]
+      - q: "while true; do df -h / | grep '/'; sleep 60; done"
+        a: "مراقبة استخدام القرص كل دقيقة — حلقة لا نهائية مع sleep"
+        rel:
+          - ["while-loop", "حلقة while: while شرط; do ... done", "while-do-done"]
+          - ["while-true", "while true — حلقة لا نهائية، تُنهى فقط بـ Ctrl+C", "while true"]
+
+  - title: "🖥️ اختبار الطرفية"
+    explanation: |
+      اختبر معرفتك الآن — أدخل الأوامر مباشرة!
+    examples:
+      - q: "ما هو السطر الأول في كل سكريبت Bash (Shebang)؟"
+        type: input
+        a: "#!/bin/bash"
+      - q: "ما الذي يجب مراعاته عند تعيين متغير Bash؟"
+        type: select
+        options:
+          - "لا مسافة حول علامة المساواة: NAME=\"Alice\""
+          - "دائمًا $ قبل اسم المتغير: $NAME=\"Alice\""
+          - "المتغيرات يجب أن تكون بأحرف كبيرة"
+          - "المتغيرات يجب التصريح عنها بـ export"
+        a: "لا مسافة حول علامة المساواة: NAME=\"Alice\""
+      - q: "ما الصيغة التي تُنهي شرط if في Bash بشكل صحيح؟"
+        type: select
+        options:
+          - "fi"
+          - "end"
+          - "endif"
+          - "done"
+        a: "fi"
+      - q: "أي من العبارات التالية عن كتابة سكريبتات الصدفة صحيحة؟"
+        type: multiple-choice
+        options:
+          - "$() يحفظ مخرجات أمر في متغير"
+          - "حلقات for تنتهي بـ 'done'"
+          - "-f يتحقق من وجود ملف"
+          - "المسافات حول = إلزامية في المتغيرات"
+        a:
+          - "$() يحفظ مخرجات أمر في متغير"
+          - "حلقات for تنتهي بـ 'done'"
+          - "-f يتحقق من وجود ملف"

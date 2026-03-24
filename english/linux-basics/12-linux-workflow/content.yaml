@@ -1,0 +1,165 @@
+version: 1
+number: 12
+title: "Professional Linux Workflow"
+description: "Pipes, redirects, aliases and xargs — using the command line like a pro"
+sections:
+  - title: "Pipes — chaining commands"
+    explanation: |
+      **Why does this matter?** The true power of Linux lies not in individual commands,
+      but in combining them. The pipe character `|` passes the output of one command
+      directly as input to the next.
+
+      ```
+      command1 | command2 | command3
+      ```
+
+      **Example:** Who uses the most disk space?
+      ```bash
+      du -sh /home/* | sort -rh | head -5
+      ```
+      1. `du -sh /home/*` → size of each home directory
+      2. `sort -rh` → sort by size
+      3. `head -5` → only the top 5
+
+      **The Unix philosophy:** One tool, one task — combined through pipes.
+    examples:
+      - q: "ps aux | grep python | grep -v grep"
+        a: "Show all Python processes — second grep removes the grep line itself"
+        rel:
+          - ["en-pipe-operator", "| passes output of one command as input to the next", "pipe |"]
+          - ["en-grep-v-grep", "grep -v grep removes the grep line from the process list", "grep -v grep"]
+      - q: "cat /var/log/nginx/access.log | awk '{print $1}' | sort | uniq -c | sort -rn | head -10"
+        a: "Extract top 10 IP addresses by access count from Nginx log"
+        rel:
+          - ["en-awk-ip", "awk '{print $1}' outputs the first field (IP) of each line", "awk print"]
+          - ["en-uniq-c", "uniq -c counts consecutive identical lines", "uniq -c"]
+      - q: "find /var/log -name \"*.log\" -mtime +30 | xargs ls -lh"
+        a: "Find log files older than 30 days and show their sizes"
+        rel:
+          - ["en-find-cmd", "Find files based on various criteria", "find command"]
+          - ["en-find-mtime", "-mtime +30 = last modified more than 30 days ago", "find -mtime"]
+          - ["en-xargs-cmd", "Pass output as arguments to the next command", "xargs command"]
+
+  - title: "Redirects — redirecting input and output"
+    explanation: |
+      Redirects route output to files or use files as input:
+
+      | Symbol | Effect |
+      |--------|--------|
+      | `>` | Write output to file (overwrites!) |
+      | `>>` | Append output to file |
+      | `<` | Use file as input |
+      | `2>` | Write error messages to file |
+      | `2>&1` | Errors to same file as output |
+      | `/dev/null` | Discard output (the black hole) |
+
+      **Typical logging script:**
+      ```bash
+      #!/bin/bash
+      DATE=$(date +%Y%m%d_%H%M%S)
+      ./backup.sh >> /var/log/backup.log 2>&1
+      echo "[$DATE] Backup completed" >> /var/log/backup.log
+      ```
+    examples:
+      - q: "ls -la > directory.txt"
+        a: "Save directory listing to file — overwrites existing file"
+        rel:
+          - ["en-redirect-out", "> redirects stdout to file (overwriting)", "redirect >"]
+      - q: "echo \"[$(date)] Server started\" >> /var/log/myapp.log"
+        a: "Append line to log file without overwriting it"
+        rel:
+          - ["en-redirect-append", ">> appends output to file (no overwriting)", "redirect >>"]
+      - q: "find / -name \"*.conf\" 2>/dev/null"
+        a: "Search for config files — discard permission denied error messages"
+        rel:
+          - ["en-dev-null", "/dev/null discards all output — the black hole", "/dev/null"]
+          - ["en-redirect-stderr", "2> redirects stderr (standard error)", "redirect 2>"]
+      - q: "wc -l < /etc/passwd"
+        a: "Count lines in /etc/passwd using file as input"
+        rel:
+          - ["en-redirect-input", "< uses file contents as input to command", "redirect <"]
+
+  - title: "Aliases and .bashrc — personalizing your workflow"
+    explanation: |
+      **Aliases** are shortcuts for frequently used commands.
+      They are stored in `~/.bashrc` (or `~/.zshrc` for Zsh).
+
+      ```bash
+      # Add to ~/.bashrc:
+      alias ll='ls -la'
+      alias update='sudo apt update && sudo apt upgrade -y'
+      alias myip='curl -s https://ipinfo.io/ip'
+      alias grep='grep --color=auto'
+      alias ..='cd ..'
+      alias ...='cd ../..'
+      alias gs='git status'
+      alias gc='git commit -m'
+      ```
+
+      After editing `.bashrc`:
+      ```bash
+      source ~/.bashrc   # apply changes immediately
+      ```
+
+      **Environment variables** in `.bashrc`:
+      ```bash
+      export EDITOR=vim
+      export PATH="$PATH:/home/alice/.local/bin"
+      ```
+    examples:
+      - q: "alias ll='ls -la --color=auto'"
+        a: "Creates the alias 'll' for detailed, colorized directory listing"
+        rel:
+          - ["en-alias-cmd", "Create shortcuts for frequent or long commands", "alias command"]
+      - q: "alias update='sudo apt update && sudo apt upgrade -y'"
+        a: "Make system update runnable as a single word 'update'"
+        rel:
+          - ["en-alias-complex", "Alias for complex command chain", "alias example"]
+      - q: "source ~/.bashrc"
+        a: "Reload bash config — new aliases available immediately without restarting terminal"
+        rel:
+          - ["en-source-cmd", "Load configuration file into current shell", "source command"]
+          - ["en-bashrc-reload", "Reload ~/.bashrc after changes", "source ~/.bashrc"]
+      - q: "alias | grep git"
+        a: "Show all git-related aliases — alias without argument shows all"
+        rel:
+          - ["en-alias-list", "alias without argument lists all defined aliases", "alias without arguments"]
+      - q: "unalias ll"
+        a: "Remove the 'll' alias — only effective for the current session"
+        rel:
+          - ["en-unalias-cmd", "Remove a defined alias", "unalias command"]
+
+  - title: "🖥️ Terminal Check"
+    explanation: |
+      Test your knowledge — type the commands yourself!
+    examples:
+      - q: "Which character connects two commands via pipe?"
+        type: input
+        a: "|"
+      - q: "What does '>>' do compared to '>'?"
+        type: select
+        options:
+          - ">> appends output to the file, > overwrites it"
+          - ">> overwrites the file, > appends"
+          - ">> redirects errors, > redirects output"
+          - ">> and > do the same thing"
+        a: ">> appends output to the file, > overwrites it"
+      - q: "How do you apply changes to ~/.bashrc immediately?"
+        type: select
+        options:
+          - "source ~/.bashrc"
+          - "reload ~/.bashrc"
+          - "bash --refresh"
+          - "apply ~/.bashrc"
+        a: "source ~/.bashrc"
+      - q: "Which of these statements about aliases and pipes are true?"
+        type: multiple-choice
+        options:
+          - "alias creates shortcuts for frequent commands"
+          - "| passes output as input to the next command"
+          - "/dev/null discards all output"
+          - "source permanently saves commands in the terminal"
+        a:
+          - "alias creates shortcuts for frequent commands"
+          - "| passes output as input to the next command"
+          - "/dev/null discards all output"

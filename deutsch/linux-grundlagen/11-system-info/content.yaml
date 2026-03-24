@@ -1,0 +1,150 @@
+version: 1
+number: 11
+title: "Systeminformationen"
+description: "df, du, free, uname und history — den Systemzustand im Blick behalten"
+sections:
+  - title: "Speicherplatz — df und du"
+    explanation: |
+      **Warum ist das wichtig?** Ein voller Festplattenspeicher ist einer der häufigsten
+      Gründe warum Server abstürzen oder Services ausfallen. `df` und `du` helfen dir,
+      Speicherprobleme frühzeitig zu erkennen und die Übeltäter zu finden.
+
+      | Befehl | Zweck |
+      |--------|-------|
+      | `df -h` | Festplattenauslastung aller Partitionen |
+      | `du -sh ordner/` | Größe eines Ordners |
+      | `du -sh * | sort -rh` | Größe aller Dateien/Ordner sortiert |
+      | `du -h --max-depth=1` | Nur eine Ebene tief anzeigen |
+
+      **Alarm-Schwellenwert:** Wenn `df -h` bei `/` über 80% zeigt, ist Handlungsbedarf.
+      Typische Speicherfresser: `/var/log`, `/var/cache`, alte Docker-Images.
+    examples:
+      - q: "df -h"
+        a: "Zeigt alle Partitionen mit belegtem/freiem Platz in GB/MB — h = human-readable"
+        rel:
+          - ["df-cmd", "Disk Free — Festplattenauslastung anzeigen", "Befehl df"]
+          - ["df-h", "Human-readable — Größen in KB/MB/GB statt Bytes", "Flag -h"]
+      - q: "df -h /"
+        a: "Nur die Auslastung der Root-Partition anzeigen — die wichtigste Partition"
+        rel:
+          - ["df-root", "Auslastung der Root-Partition / prüfen", "df -h /"]
+      - q: "du -sh ~/Downloads/*"
+        a: "Größe jedes Elements im Downloads-Ordner anzeigen"
+        rel:
+          - ["du-cmd", "Disk Usage — Speicherverbrauch von Dateien/Ordnern", "Befehl du"]
+          - ["du-sh", "s=summary (Gesamtgröße), h=human-readable", "Flags -sh"]
+      - q: "du -h --max-depth=1 /var | sort -rh | head -10"
+        a: "Die 10 größten Unterordner in /var nach Größe sortiert — Speicherfresser finden"
+        rel:
+          - ["du-max-depth", "Nur bis zu einer bestimmten Verzeichnistiefe anzeigen", "--max-depth=1"]
+          - ["sort-rh", "r=reverse (absteigend), h=human-readable Größen sortieren", "sort -rh"]
+
+  - title: "Arbeitsspeicher und CPU — free und uptime"
+    explanation: |
+      `free` zeigt den RAM-Verbrauch:
+      ```
+      $ free -h
+                    total   used   free  shared  cache  available
+      Mem:           15Gi   4.2Gi  8.1Gi  512Mi  3.1Gi    10.4Gi
+      Swap:          2.0Gi  0B     2.0Gi
+      ```
+
+      **Wichtige Spalten:**
+      - `total`: Gesamter RAM
+      - `used`: Belegter RAM
+      - **`available`**: Wirklich verfügbarer RAM (wichtiger als `free`!)
+      - `Swap`: Auslagerungsspeicher auf der Festplatte — wenn Swap voll ist, wird's langsam
+
+      `uptime` zeigt wie lange das System läuft und die **Load Average**:
+      ```
+      15:42:01 up 7 days, 3:25,  2 users,  load average: 0.52, 0.48, 0.45
+      ```
+      Load Average 1/5/15 Minuten — bei einem Kern ist 1.0 = 100% ausgelastet.
+    examples:
+      - q: "free -h"
+        a: "RAM-Auslastung in MB/GB — available-Spalte zeigt wirklich verfügbaren Speicher"
+        rel:
+          - ["free-cmd", "RAM-Auslastung und Swap-Nutzung anzeigen", "Befehl free"]
+          - ["free-h", "Human-readable — Speicher in MB/GB statt Bytes", "free -h"]
+      - q: "uptime"
+        a: "Systemlaufzeit, aktive Nutzer und CPU Load Average der letzten 1/5/15 Minuten"
+        rel:
+          - ["uptime-cmd", "Systemlaufzeit und Auslastung der letzten Minuten", "Befehl uptime"]
+          - ["load-average", "Durchschnittliche CPU-Auslastung: 1=100% bei einem Kern", "Load Average"]
+      - q: "vmstat 2 5"
+        a: "System-Statistik alle 2 Sekunden, 5 Mal — CPU, RAM, I/O, Prozesse"
+        rel:
+          - ["vmstat-cmd", "Virtual Memory Statistics — detaillierte System-Performance-Daten", "Befehl vmstat"]
+
+  - title: "history und der Befehlsverlauf"
+    explanation: |
+      `history` zeigt alle zuletzt eingegebenen Befehle — mit Nummern.
+      Das Terminal speichert standardmäßig 1000–2000 Befehle.
+
+      **Produktivitäts-Tricks:**
+      | Kürzel | Wirkung |
+      |--------|---------|
+      | `history` | Alle Befehle anzeigen |
+      | `history 20` | Letzte 20 Befehle |
+      | `!!` | Letzten Befehl wiederholen |
+      | `!50` | Befehl Nummer 50 ausführen |
+      | `!apt` | Letzten Befehl der mit 'apt' anfing |
+      | `Ctrl+R` | Rückwärts in history suchen (sehr praktisch!) |
+      | `history | grep ssh` | history nach ssh-Befehlen durchsuchen |
+
+      `Ctrl+R` ist einer der wertvollsten Shortcuts: tippe Suchbegriff und bash sucht
+      automatisch den letzten passenden Befehl.
+    examples:
+      - q: "history | tail -20"
+        a: "Die letzten 20 eingegebenen Befehle anzeigen"
+        rel:
+          - ["history-cmd", "Verlauf der eingegebenen Befehle anzeigen", "Befehl history"]
+      - q: "history | grep \"apt install\""
+        a: "Alle apt install-Befehle aus der history suchen — was habe ich wann installiert?"
+        rel:
+          - ["history-grep", "history mit grep kombinieren — spezifische Befehle aus Verlauf suchen", "history | grep"]
+      - q: "!!"
+        a: "Letzten Befehl sofort wiederholen — besonders nützlich für: sudo !!"
+        rel:
+          - ["bang-bang", "!! führt den zuletzt eingegebenen Befehl erneut aus", "!!"]
+          - ["sudo-bang-bang", "sudo !! — letzten Befehl mit Administratorrechten wiederholen", "sudo !!"]
+      - q: "cat /proc/cpuinfo | grep \"model name\" | head -1"
+        a: "CPU-Modell und -Typ aus den Kernel-Prozessinformationen auslesen"
+        rel:
+          - ["proc-cpuinfo", "Kernel-Datei mit detaillierten CPU-Informationen", "/proc/cpuinfo"]
+          - ["proc-filesystem", "/proc ist kein echtes Dateisystem — enthält Kernel-Infos als Dateien", "/proc"]
+
+  - title: "🖥️ Terminal-Check"
+    explanation: |
+      Teste jetzt dein Wissen — gib die Befehle direkt ein!
+    examples:
+      - q: "Welcher Befehl zeigt die Festplattenauslastung aller Partitionen?"
+        type: input
+        a: "df -h"
+      - q: "Was zeigt die 'available'-Spalte bei 'free -h'?"
+        type: select
+        options:
+          - "Den wirklich verfügbaren Arbeitsspeicher"
+          - "Den freien Festplattenspeicher"
+          - "Den belegten Swap-Speicher"
+          - "Die CPU-Auslastung in Prozent"
+        a: "Den wirklich verfügbaren Arbeitsspeicher"
+      - q: "Welcher Befehl sucht in der Befehlshistorie nach 'apt install'?"
+        type: select
+        options:
+          - "history | grep \"apt install\""
+          - "history search \"apt install\""
+          - "grep history \"apt install\""
+          - "find history -name \"apt install\""
+        a: "history | grep \"apt install\""
+      - q: "Welche dieser Befehle geben Systeminformationen aus?"
+        type: multiple-choice
+        options:
+          - "df -h"
+          - "free -h"
+          - "uptime"
+          - "chmod 755"
+        a:
+          - "df -h"
+          - "free -h"
+          - "uptime"

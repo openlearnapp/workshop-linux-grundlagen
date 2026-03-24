@@ -1,0 +1,8 @@
+workshops:
+  - folder: linux-basics
+    code: ar-SA
+    title: "أساسيات لينكس"
+    description: "١٢ درسًا لتعلم أهم أوامر ومفاهيم لينكس من الصفر"
+    color: "210 35% 94%"
+    primaryColor: "210 70% 42%"
+    image: "linux-basics/thumbnail.svg"

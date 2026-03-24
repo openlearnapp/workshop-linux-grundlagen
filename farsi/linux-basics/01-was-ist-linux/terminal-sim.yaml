@@ -1,0 +1,70 @@
+# Terminal-Simulator Befehle für Lektion 1: Was ist Linux?
+prompt: "user@linux:~$"
+commands:
+  - cmd: "uname -r"
+    output: "5.15.0-91-generic"
+    hint: "Zeigt die Kernel-Version"
+  - cmd: "uname -a"
+    output: "Linux ubuntu 5.15.0-91-generic #101-Ubuntu SMP Tue Nov 14 13:30:08 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux"
+    hint: "Alle Systeminformationen auf einmal"
+  - cmd: "cat /etc/os-release"
+    output: |
+      NAME="Ubuntu"
+      VERSION="22.04.3 LTS (Jammy Jellyfish)"
+      ID=ubuntu
+      ID_LIKE=debian
+      PRETTY_NAME="Ubuntu 22.04.3 LTS"
+      VERSION_ID="22.04"
+      HOME_URL="https://www.ubuntu.com/"
+      SUPPORT_URL="https://help.ubuntu.com/"
+    hint: "Zeigt die installierte Distribution und Version"
+  - cmd: "lsb_release -a"
+    output: |
+      No LSB modules are available.
+      Distributor ID:	Ubuntu
+      Description:	Ubuntu 22.04.3 LTS
+      Release:	22.04
+      Codename:	jammy
+    hint: "Linux Standard Base Informationen anzeigen"
+  - cmd: "hostnamectl"
+    output: |
+       Static hostname: ubuntu
+             Icon name: computer-vm
+               Chassis: vm
+            Machine ID: a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4
+               Boot ID: 1a2b3c4d5e6f1a2b3c4d5e6f1a2b3c4d
+        Virtualization: kvm
+      Operating System: Ubuntu 22.04.3 LTS
+                Kernel: Linux 5.15.0-91-generic
+          Architecture: x86-64
+    hint: "Hostname und Systeminformationen uebersichtlich anzeigen"
+  - cmd: "arch"
+    output: "x86_64"
+    hint: "Prozessorarchitektur anzeigen (64-Bit)"
+  - cmd: "ls /"
+    output: "bin   dev  home  lib    lib64   lost+found  mnt  proc  run   snap  sys  usr\nboot  etc  init  lib32  libx32  media       opt  root  sbin  srv   tmp  var"
+    hint: "Inhalt des Root-Verzeichnisses anzeigen"
+  - cmd: "ls /etc | head -5"
+    output: |
+      adduser.conf
+      alternatives
+      apt
+      bash.bashrc
+      bash_completion.d
+    hint: "Die ersten 5 Eintraege im Konfigurationsordner"
+  - cmd: "echo $HOME"
+    output: "/home/user"
+    hint: "Pfad zum eigenen Home-Verzeichnis ausgeben"
+  - cmd: "whoami"
+    output: "user"
+    hint: "Zeigt den aktuellen Benutzernamen"
+  - cmd: "uname"
+    output: "Linux"
+    hint: "Ohne Flags zeigt uname nur den Kernel-Namen"
+  - cmd: "cat /etc/hostname"
+    output: "ubuntu"
+    hint: "Hostname des Systems aus der Konfigurationsdatei lesen"
+  - cmd: "rm /etc/os-release"
+    output: "rm: cannot remove '/etc/os-release': Permission denied"
+    hint: "Systemdateien sind geschuetzt — nur root darf sie aendern"
+    error: true

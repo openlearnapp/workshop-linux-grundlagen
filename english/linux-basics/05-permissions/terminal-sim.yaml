@@ -1,0 +1,57 @@
+# Terminal Simulator Commands for Lesson 5: Permissions
+prompt: "user@linux:~$"
+commands:
+  - cmd: "ls -la Documents/notes.txt"
+    output: "-rw-r--r-- 1 user user 52 Mar 20 10:23 Documents/notes.txt"
+    hint: "Show file permissions: rw-r--r-- = 644"
+  - cmd: "ls -la ~/.ssh/id_rsa"
+    output: "-rw------- 1 user user 2602 Mar 15 09:30 /home/user/.ssh/id_rsa"
+    hint: "SSH key should be 600 — only owner can read/write"
+  - cmd: "ls -l /usr/bin/sudo"
+    output: "-rwsr-xr-x 1 root root 166056 Mar 10 08:00 /usr/bin/sudo"
+    hint: "The 's' shows the SUID bit — sudo runs with root privileges"
+  - cmd: "ls -la Downloads/setup.sh"
+    output: "-rw-r--r-- 1 user user 1024 Mar 19 15:42 Downloads/setup.sh"
+    hint: "Script is not executable yet — no x permission"
+  - cmd: "chmod +x Downloads/setup.sh"
+    output: ""
+    hint: "Add execute permission for everyone"
+  - cmd: "ls -la Downloads/setup.sh"
+    output: "-rwxr-xr-x 1 user user 1024 Mar 19 15:42 Downloads/setup.sh"
+    hint: "Now the x permission is set — script can be executed"
+  - cmd: "chmod 755 Downloads/setup.sh"
+    output: ""
+    hint: "755 = rwxr-xr-x: standard for executable files"
+  - cmd: "chmod 644 Documents/notes.txt"
+    output: ""
+    hint: "644 = rw-r--r--: owner read/write, everyone else read only"
+  - cmd: "chmod 600 ~/.ssh/id_rsa"
+    output: ""
+    hint: "600 = rw-------: mandatory for SSH keys"
+  - cmd: "chmod -R 755 Documents/"
+    output: ""
+    hint: "Recursively set permissions on all subdirectories and files"
+  - cmd: "sudo apt update"
+    output: |
+      Hit:1 http://archive.ubuntu.com/ubuntu jammy InRelease
+      Hit:2 http://archive.ubuntu.com/ubuntu jammy-updates InRelease
+      Hit:3 http://security.ubuntu.com/ubuntu jammy-security InRelease
+      Reading package lists... Done
+      Building dependency tree... Done
+      All packages are up to date.
+    hint: "Update package list — requires sudo"
+  - cmd: "sudo chown -R www-data:www-data /var/www/html/"
+    output: ""
+    hint: "Assign web server files to the www-data user"
+  - cmd: "sudo -l"
+    output: |
+      Matching Defaults entries for user on ubuntu:
+          env_reset, mail_badpass
+
+      User user may run the following commands on ubuntu:
+          (ALL : ALL) ALL
+    hint: "Shows which sudo commands are allowed"
+  - cmd: "chmod 777 /etc/passwd"
+    output: "chmod: changing permissions of '/etc/passwd': Operation not permitted"
+    hint: "System files can only be changed with sudo"
+    error: true

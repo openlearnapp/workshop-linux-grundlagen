@@ -1,0 +1,60 @@
+# Terminal-Simulator Befehle für Lektion 9: Shell Scripting Basics
+prompt: "user@linux:~$"
+commands:
+  - cmd: "echo '#!/bin/bash' > mein-skript.sh"
+    output: ""
+    hint: "Shebang-Zeile als erste Zeile des Skripts schreiben"
+  - cmd: "cat mein-skript.sh"
+    output: "#!/bin/bash"
+    hint: "Skript-Inhalt anzeigen"
+  - cmd: "NAME=\"Alice\" && echo \"Hallo, $NAME\""
+    output: "Hallo, Alice"
+    hint: "Variable setzen und verwenden — kein Leerzeichen um ="
+  - cmd: "HEUTE=$(date +%d.%m.%Y)"
+    output: ""
+    hint: "Befehlsausgabe in Variable speichern"
+  - cmd: "echo $HEUTE"
+    output: "20.03.2024"
+    hint: "Gespeichertes Datum ausgeben"
+  - cmd: "echo \"Pfad: $HOME, User: $USER\""
+    output: "Pfad: /home/user, User: user"
+    hint: "Eingebaute Umgebungsvariablen nutzen"
+  - cmd: "if [ -f \"/etc/nginx/nginx.conf\" ]; then echo \"Nginx installiert\"; else echo \"Kein Nginx\"; fi"
+    output: "Nginx installiert"
+    hint: "if-Bedingung: pruefen ob Datei existiert"
+  - cmd: "[ -d /var/www ] && echo \"Webverzeichnis existiert\""
+    output: "Webverzeichnis existiert"
+    hint: "Kurzform fuer if-Bedingung mit &&"
+  - cmd: "if [ \"$USER\" = \"root\" ]; then echo \"Du bist root!\"; else echo \"Normaler Benutzer: $USER\"; fi"
+    output: "Normaler Benutzer: user"
+    hint: "String-Vergleich — pruefen ob root"
+  - cmd: "for i in 1 2 3 4 5; do echo \"Zahl: $i\"; done"
+    output: |
+      Zahl: 1
+      Zahl: 2
+      Zahl: 3
+      Zahl: 4
+      Zahl: 5
+    hint: "For-Schleife ueber eine Liste von Werten"
+  - cmd: "for f in Documents/*.txt; do echo \"Datei: $f\"; done"
+    output: "Datei: Documents/notes.txt"
+    hint: "For-Schleife mit Glob-Muster ueber Dateien"
+  - cmd: "chmod +x mein-skript.sh"
+    output: ""
+    hint: "Skript ausfuehrbar machen"
+  - cmd: "./mein-skript.sh"
+    output: ""
+    hint: "Skript ausfuehren — ./ ist wichtig!"
+  - cmd: "NAME = \"Alice\""
+    output: "bash: NAME: command not found"
+    hint: "FEHLER: Leerzeichen um = sind nicht erlaubt bei Variablen!"
+    error: true
+  - cmd: "cat Downloads/setup.sh"
+    output: |
+      #!/bin/bash
+      # Setup-Skript fuer Entwicklungsumgebung
+      echo "Installiere Pakete..."
+      sudo apt update
+      sudo apt install -y git curl wget
+      echo "Fertig!"
+    hint: "Beispiel eines einfachen Installations-Skripts"

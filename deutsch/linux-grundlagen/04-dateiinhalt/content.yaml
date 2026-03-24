@@ -1,0 +1,140 @@
+version: 1
+number: 4
+title: "Dateiinhalt"
+description: "cat, less, head, tail und grep — Dateien lesen, durchsuchen und filtern"
+sections:
+  - title: "cat, less und more — Dateien lesen"
+    explanation: |
+      **Warum ist das wichtig?** Als Linux-Nutzer liest du ständig Dateien:
+      Konfigurationen, Log-Files, Skripte, Datenbankdumps. Die richtigen Werkzeuge
+      entscheiden, ob du 10 Sekunden oder 10 Minuten brauchst.
+
+      | Befehl | Für was? |
+      |--------|----------|
+      | `cat` | Kurze Dateien komplett anzeigen |
+      | `less` | Lange Dateien interaktiv durchblättern |
+      | `more` | Ähnlich wie less, aber einfacher |
+      | `head` | Nur die ersten N Zeilen |
+      | `tail` | Nur die letzten N Zeilen |
+
+      In `less` navigierst du mit:
+      - `j`/`k` oder Pfeiltasten: Zeile hoch/runter
+      - `Space`/`b`: Seite vor/zurück
+      - `/suchbegriff`: Suchen
+      - `q`: Beenden
+    examples:
+      - q: "cat /etc/hostname"
+        a: "Zeigt den Hostnamen des Systems — eine kurze Datei, ideal für cat"
+        rel:
+          - ["cat-content", "Dateiinhalt vollständig ausgeben", "Befehl cat"]
+          - ["etc-hostname", "Datei mit dem Rechnernamen des Systems", "/etc/hostname"]
+      - q: "cat /etc/passwd"
+        a: "Zeigt alle Benutzerkonten des Systems (Name, ID, Home-Verzeichnis, Shell)"
+        rel:
+          - ["etc-passwd", "Benutzerdatenbank des Systems", "/etc/passwd"]
+      - q: "less /var/log/syslog"
+        a: "Systemlog interaktiv durchblättern — mit / suchen, q beenden"
+        rel:
+          - ["less-cmd", "Lange Dateien interaktiv und scrollbar lesen", "Befehl less"]
+          - ["syslog", "Zentrales Systemprotokoll mit allen wichtigen Ereignissen", "/var/log/syslog"]
+
+  - title: "head und tail — Anfang und Ende"
+    explanation: |
+      `head` und `tail` zeigen jeweils die ersten oder letzten Zeilen einer Datei.
+      Standard: 10 Zeilen. Mit `-n` kannst du die Anzahl anpassen.
+
+      **Das mächtigste tail-Feature:** `tail -f` verfolgt eine Datei in Echtzeit:
+      ```bash
+      tail -f /var/log/nginx/access.log
+      ```
+      Ideal für Server-Logs, während Anfragen eingehen — du siehst jeden Zugriff sofort.
+      Mit `Ctrl+C` beendest du die Live-Verfolgung.
+    examples:
+      - q: "head -20 /etc/ssh/sshd_config"
+        a: "Zeigt die ersten 20 Zeilen der SSH-Serverkonfiguration"
+        rel:
+          - ["head-cmd", "Anfang einer Datei anzeigen (Standard: 10 Zeilen)", "Befehl head"]
+          - ["head-n", "Anzahl der anzuzeigenden Zeilen festlegen", "Flag -n"]
+          - ["sshd-config", "Konfigurationsdatei des SSH-Servers", "/etc/ssh/sshd_config"]
+      - q: "tail -50 /var/log/auth.log"
+        a: "Die letzten 50 Zeilen des Auth-Logs — zeigt Login-Versuche und Authentifizierungen"
+        rel:
+          - ["tail-cmd", "Ende einer Datei anzeigen (Standard: 10 Zeilen)", "Befehl tail"]
+          - ["auth-log", "Protokoll für Authentifizierungen und sudo-Nutzung", "/var/log/auth.log"]
+      - q: "tail -f /var/log/nginx/access.log"
+        a: "Nginx-Zugriffe in Echtzeit verfolgen — perfekt für Live-Debugging"
+        rel:
+          - ["tail-f", "Follow — Datei in Echtzeit verfolgen, neue Zeilen sofort anzeigen", "Flag -f"]
+
+  - title: "grep — Nadel im Heuhaufen finden"
+    explanation: |
+      `grep` (Global Regular Expression Print) durchsucht Dateien nach Mustern.
+      Es ist eines der meistgenutzten Linux-Werkzeuge überhaupt.
+
+      | Befehl | Wirkung |
+      |--------|---------|
+      | `grep "fehler" datei.txt` | Alle Zeilen mit "fehler" |
+      | `grep -i "Fehler" datei.txt` | Groß-/Kleinschreibung ignorieren |
+      | `grep -n "ERROR" log.txt` | Mit Zeilennummern |
+      | `grep -r "TODO" ~/projekte/` | Rekursiv in allen Unterordnern |
+      | `grep -v "DEBUG" app.log` | Alle Zeilen OHNE "DEBUG" |
+      | `grep -c "ERROR" app.log` | Nur Anzahl der Treffer zählen |
+
+      **Kombination mit anderen Befehlen** macht grep besonders mächtig:
+      ```bash
+      cat /var/log/auth.log | grep "Failed"
+      ```
+    examples:
+      - q: "grep -i \"error\" /var/log/syslog"
+        a: "Alle Fehlermeldungen im Systemlog suchen, Groß-/Kleinschreibung egal"
+        rel:
+          - ["grep-cmd", "Zeilen in Dateien nach Muster durchsuchen", "Befehl grep"]
+          - ["grep-i", "Case-insensitive — Groß-/Kleinschreibung ignorieren", "Flag -i"]
+      - q: "grep -n \"TODO\" ~/projekte/app.py"
+        a: "Alle TODO-Kommentare im Python-Skript mit Zeilennummern finden"
+        rel:
+          - ["grep-n", "Number — Zeilennummern der Treffer anzeigen", "Flag -n"]
+      - q: "grep -r \"database_url\" ~/projekte/"
+        a: "In allen Dateien unter ~/projekte/ nach database_url suchen — findet auch vergessene Configs"
+        rel:
+          - ["grep-r", "Recursive — in Verzeichnissen und Unterordnern suchen", "Flag -r"]
+      - q: "grep -v \"^#\" /etc/ssh/sshd_config"
+        a: "SSH-Config anzeigen, aber alle Kommentarzeilen (beginnen mit #) ausblenden"
+        rel:
+          - ["grep-v", "Invert match — Zeilen OHNE das Muster anzeigen", "Flag -v"]
+          - ["regex-caret", "^ in Regex = Zeilenanfang", "Regex ^"]
+
+  - title: "🖥️ Terminal-Check"
+    explanation: |
+      Teste jetzt dein Wissen — gib die Befehle direkt ein!
+    examples:
+      - q: "Welcher Befehl liest eine Datei interaktiv und ermöglicht Scrollen?"
+        type: input
+        a: "less"
+      - q: "Was macht 'tail -f /var/log/nginx/access.log'?"
+        type: select
+        options:
+          - "Verfolgt die Datei in Echtzeit und zeigt neue Zeilen sofort"
+          - "Zeigt die letzten 10 Zeilen und beendet sich"
+          - "Löscht die letzten Zeilen der Datei"
+          - "Sucht nach dem Begriff 'nginx'"
+        a: "Verfolgt die Datei in Echtzeit und zeigt neue Zeilen sofort"
+      - q: "Welcher Befehl sucht case-insensitiv nach 'error' in einer Datei?"
+        type: select
+        options:
+          - "grep -i \"error\" datei.txt"
+          - "grep -n \"error\" datei.txt"
+          - "grep -r \"error\" datei.txt"
+          - "grep -v \"error\" datei.txt"
+        a: "grep -i \"error\" datei.txt"
+      - q: "Welche dieser grep-Flags stimmen in ihrer Bedeutung?"
+        type: multiple-choice
+        options:
+          - "-i ignoriert Groß-/Kleinschreibung"
+          - "-n zeigt Zeilennummern"
+          - "-r durchsucht Verzeichnisse rekursiv"
+          - "-v zeigt nur Treffer ohne Kontext"
+        a:
+          - "-i ignoriert Groß-/Kleinschreibung"
+          - "-n zeigt Zeilennummern"
+          - "-r durchsucht Verzeichnisse rekursiv"

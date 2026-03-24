@@ -1,0 +1,117 @@
+# Terminal-Simulator Befehle für Lektion 7: Paketverwaltung
+prompt: "user@linux:~$"
+commands:
+  - cmd: "sudo apt update"
+    output: |
+      Hit:1 http://archive.ubuntu.com/ubuntu jammy InRelease
+      Hit:2 http://archive.ubuntu.com/ubuntu jammy-updates InRelease
+      Hit:3 http://archive.ubuntu.com/ubuntu jammy-backports InRelease
+      Hit:4 http://security.ubuntu.com/ubuntu jammy-security InRelease
+      Reading package lists... Done
+      Building dependency tree... Done
+      Reading state information... Done
+      15 packages can be upgraded. Run 'apt list --upgradable' to see them.
+    hint: "Paketlisten aktualisieren — immer zuerst ausfuehren"
+  - cmd: "sudo apt upgrade -y"
+    output: |
+      Reading package lists... Done
+      Building dependency tree... Done
+      Calculating upgrade... Done
+      The following packages will be upgraded:
+        base-files curl libcurl4 linux-generic linux-headers-generic
+      5 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+      Need to get 12.3 MB of archives.
+      Fetching... Done
+      Setting up base-files (12ubuntu4.5) ...
+      Processing triggers for man-db (2.10.2-1) ...
+    hint: "Alle Pakete aktualisieren — -y bestaetigt automatisch"
+  - cmd: "sudo apt install git curl wget"
+    output: |
+      Reading package lists... Done
+      Building dependency tree... Done
+      curl is already the newest version (7.81.0-1ubuntu1.15).
+      wget is already the newest version (1.21.2-2ubuntu1.1).
+      The following NEW packages will be installed:
+        git git-man liberror-perl
+      0 upgraded, 3 newly installed, 0 to remove and 0 not upgraded.
+      Need to get 4,523 kB of archives.
+      Setting up git (1:2.34.1-1ubuntu1.10) ...
+    hint: "Mehrere Pakete auf einmal installieren"
+  - cmd: "apt search \"text editor\""
+    output: |
+      Sorting... Done
+      Full Text Search... Done
+      gedit/jammy 41.0-3 amd64
+        official text editor of the GNOME desktop environment
+      nano/jammy,now 6.2-1 amd64 [installed]
+        small, friendly text editor inspired by Pstreet
+      vim/jammy 2:8.2.3995-1ubuntu2.13 amd64
+        Vi IMproved - enhanced vi editor
+    hint: "In der Paketdatenbank nach Texteditoren suchen"
+  - cmd: "apt show nodejs"
+    output: |
+      Package: nodejs
+      Version: 12.22.9~dfsg-1ubuntu3.3
+      Priority: extra
+      Section: universe/web
+      Origin: Ubuntu
+      Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+      Installed-Size: 122 kB
+      Depends: libc6, libnode72
+      Description: evented I/O for V8 javascript - runtime executable
+    hint: "Details zu einem Paket anzeigen"
+  - cmd: "sudo apt remove --purge apache2"
+    output: |
+      Reading package lists... Done
+      The following packages will be REMOVED:
+        apache2* apache2-bin* apache2-data* apache2-utils*
+      0 upgraded, 0 newly installed, 4 to remove and 0 not upgraded.
+      Removing apache2 (2.4.52-1ubuntu4.9) ...
+      Purging configuration files for apache2 (2.4.52-1ubuntu4.9) ...
+    hint: "Paket komplett mit Konfiguration entfernen"
+  - cmd: "sudo apt autoremove"
+    output: |
+      Reading package lists... Done
+      The following packages will be REMOVED:
+        libapache2-mod-php8.1 php8.1-common php8.1-opcache
+      0 upgraded, 0 newly installed, 3 to remove and 0 not upgraded.
+      Do you want to continue? [Y/n] Y
+      Removing libapache2-mod-php8.1 ...
+    hint: "Nicht mehr benoetigte Abhaengigkeiten aufraeumen"
+  - cmd: "dpkg -l | head -10"
+    output: |
+      Desired=Unknown/Install/Remove/Purge/Hold
+      | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
+      |/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
+      ||/ Name                     Version                      Architecture Description
+      +++-========================-============================-============-==================================
+      ii  adduser                  3.118ubuntu5                 all          add and remove users and groups
+      ii  apt                      2.4.11                       amd64        commandline package manager
+      ii  base-files               12ubuntu4.5                  amd64        Debian base system miscellaneous files
+      ii  bash                     5.1-6ubuntu1.1               amd64        GNU Bourne Again SHell
+      ii  coreutils                8.32-4.1ubuntu1.1            amd64        GNU core utilities
+    hint: "Alle installierten Pakete auflisten"
+  - cmd: "snap list"
+    output: |
+      Name               Version          Rev    Tracking       Publisher   Notes
+      bare               1.0              5      latest/stable  canonical   base
+      core22             20231123         1033   latest/stable  canonical   base
+      firefox            121.0-2          3507   latest/stable  mozilla     -
+      snap-store         41.3-71-g709398e 959    latest/stable  canonical   -
+      snapd              2.61.1           20671  latest/stable  canonical   snapd
+    hint: "Alle installierten Snap-Pakete anzeigen"
+  - cmd: "sudo snap install code --classic"
+    output: "code 1.85.1 from Visual Studio Code (vscode) installed"
+    hint: "VS Code ueber Snap installieren"
+  - cmd: "sudo dpkg -i vscode.deb"
+    output: |
+      Selecting previously unselected package code.
+      (Reading database ... 125432 files and directories currently installed.)
+      Preparing to unpack vscode.deb ...
+      Unpacking code (1.85.1-1702462158) ...
+      Setting up code (1.85.1-1702462158) ...
+    hint: "Lokal heruntergeladene .deb-Datei installieren"
+  - cmd: "apt install nginx"
+    output: "E: Could not open lock file /var/lib/dpkg/lock-frontend - open (13: Permission denied)\nE: Unable to acquire the dpkg frontend lock, are you root?"
+    hint: "Ohne sudo fehlen die Administratorrechte!"
+    error: true

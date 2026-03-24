@@ -1,0 +1,88 @@
+# Terminal-Simulator Befehle für Lektion 12: Professioneller Linux-Workflow
+prompt: "user@linux:~$"
+commands:
+  - cmd: "ps aux | grep python | grep -v grep"
+    output: |
+      user        1567  0.5  2.1 125400 85200 ?        S    09:15   1:23 python3 /home/user/app/server.py
+      user        1589  0.1  0.8  54320 32100 ?        S    09:20   0:15 python3 /home/user/scripts/monitor.py
+    hint: "Python-Prozesse filtern — zweites grep entfernt die grep-Zeile selbst"
+  - cmd: "cat /var/log/syslog | awk '{print $5}' | sort | uniq -c | sort -rn | head -5"
+    output: |
+        234 systemd[1]:
+        156 CRON[1234]:
+         89 NetworkManager[892]:
+         45 kernel:
+         23 sshd[1100]:
+    hint: "Top 5 Dienste nach Anzahl der Log-Eintraege"
+  - cmd: "du -sh /home/* | sort -rh | head -5"
+    output: |
+      2.4G    /home/user
+    hint: "Groesste Home-Verzeichnisse finden"
+  - cmd: "find /var/log -name \"*.log\" -mtime +30 | xargs ls -lh"
+    output: |
+      -rw-r--r-- 1 root root 2.3M Jan 15 03:00 /var/log/dpkg.log.1
+      -rw-r--r-- 1 root root 890K Jan 10 06:00 /var/log/alternatives.log.1
+    hint: "Log-Dateien aelter als 30 Tage finden und Groesse anzeigen"
+  - cmd: "ls -la > verzeichnis.txt"
+    output: ""
+    hint: "Verzeichnisinhalt in Datei speichern (ueberschreibt!)"
+  - cmd: "cat verzeichnis.txt"
+    output: |
+      total 32
+      drwxr-xr-x 4 user user 4096 Mar 20 14:30 .
+      drwxr-xr-x 3 root root 4096 Mar 15 09:00 ..
+      -rw-r--r-- 1 user user  220 Mar 15 09:00 .bashrc
+      drwxr-xr-x 3 user user 4096 Mar 20 10:23 Documents
+      drwxr-xr-x 2 user user 4096 Mar 19 15:42 Downloads
+      -rw-r--r-- 1 user user    0 Mar 20 14:30 verzeichnis.txt
+    hint: "Die umgeleitete Ausgabe pruefen"
+  - cmd: "echo \"[$(date)] Server gestartet\" >> /var/log/myapp.log"
+    output: ""
+    hint: "Zeile an Log-Datei ANHAENGEN ohne zu ueberschreiben"
+  - cmd: "find / -name \"*.conf\" 2>/dev/null | head -5"
+    output: |
+      /etc/adduser.conf
+      /etc/debconf.conf
+      /etc/host.conf
+      /etc/ld.so.conf
+      /etc/logrotate.conf
+    hint: "Konfigurationsdateien suchen — Fehlermeldungen verwerfen"
+  - cmd: "wc -l < /etc/passwd"
+    output: "8"
+    hint: "Datei als Eingabe verwenden mit <"
+  - cmd: "alias ll='ls -la --color=auto'"
+    output: ""
+    hint: "Alias fuer detaillierte Verzeichnisliste erstellen"
+  - cmd: "alias update='sudo apt update && sudo apt upgrade -y'"
+    output: ""
+    hint: "System-Update als kurzes Wort ausfuehrbar machen"
+  - cmd: "cat ~/.bashrc"
+    output: |
+      # ~/.bashrc: executed by bash(1) for non-login shells.
+
+      # If not running interactively, don't do anything
+      case $- in
+          *i*) ;;
+            *) return;;
+      esac
+
+      # some more ls aliases
+      alias ll='ls -alF'
+      alias la='ls -A'
+      alias l='ls -CF'
+
+      # enable color support of ls
+      if [ -x /usr/bin/dircolors ]; then
+          eval "$(dircolors -b)"
+          alias ls='ls --color=auto'
+          alias grep='grep --color=auto'
+      fi
+    hint: "Bash-Konfigurationsdatei mit vorhandenen Aliases anzeigen"
+  - cmd: "source ~/.bashrc"
+    output: ""
+    hint: "Aenderungen in .bashrc sofort uebernehmen"
+  - cmd: "alias | grep git"
+    output: |
+      alias gs='git status'
+      alias gc='git commit -m'
+    hint: "Alle git-bezogenen Aliases anzeigen"

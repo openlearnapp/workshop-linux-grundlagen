@@ -1,0 +1,150 @@
+version: 1
+number: 3
+title: "الملفات والمجلدات"
+description: "touch و mkdir و cp و mv و rm — إنشاء الملفات والمجلدات ونقلها وحذفها"
+sections:
+  - title: "الإنشاء — touch و mkdir"
+    explanation: |
+      **لماذا هذا مهم؟** كل شيء في لينكس يبدأ بالملفات والمجلدات.
+      إعداد المشاريع، كتابة السكريبتات، إنشاء الإعدادات — ستحتاج هذه
+      الأوامر يوميًا.
+
+      `touch` ينشئ ملفًا فارغًا (أو يُحدّث الطابع الزمني لملف موجود):
+      ```
+      touch notizen.txt
+      touch index.html style.css script.js   # عدة ملفات دفعة واحدة!
+      ```
+
+      `mkdir` ينشئ مجلدًا:
+      ```
+      mkdir projekte
+      mkdir -p projekte/webseite/assets      # مسارات كاملة دفعة واحدة!
+      ```
+
+      العلم `-p` في `mkdir` مفيد جدًا: ينشئ جميع المجلدات الوسيطة المفقودة
+      ولا يعطي خطأ إذا كان المجلد موجودًا بالفعل.
+    examples:
+      - q: "touch README.md"
+        a: "ينشئ ملفًا فارغًا باسم README.md في المجلد الحالي"
+        rel:
+          - ["touch-cmd", "إنشاء ملف فارغ أو تحديث الطابع الزمني", "أمر touch"]
+      - q: "touch index.html style.css app.js"
+        a: "ينشئ ثلاثة ملفات دفعة واحدة — touch يقبل عدة معاملات"
+        rel:
+          - ["touch-multiple", "إنشاء عدة ملفات في آن واحد باستخدام touch", "touch ملف1 ملف2"]
+      - q: "mkdir -p ~/projekte/meine-webseite/assets/img"
+        a: "ينشئ شجرة المجلدات بالكامل دفعة واحدة، بلا أخطاء إذا كانت المجلدات موجودة"
+        rel:
+          - ["mkdir-cmd", "Make Directory — إنشاء مجلد", "أمر mkdir"]
+          - ["mkdir-p", "Parents — إنشاء جميع المجلدات الوسيطة تلقائيًا", "العلم -p"]
+
+  - title: "النسخ والنقل — cp و mv"
+    explanation: |
+      `cp` ينسخ الملفات أو المجلدات، و `mv` ينقل (أو يُعيد التسمية).
+
+      | الأمر | الأثر |
+      |-------|-------|
+      | `cp datei.txt backup.txt` | نسخة باسم جديد |
+      | `cp datei.txt /tmp/` | نسخ إلى مجلد آخر |
+      | `cp -r ordner/ ordner_backup/` | نسخ مجلد بشكل متكرر |
+      | `mv alt.txt neu.txt` | إعادة تسمية |
+      | `mv datei.txt /home/alice/` | نقل |
+      | `mv *.log /var/archive/` | نقل عدة ملفات |
+
+      **الفرق المهم:** `cp` يُبقي الأصل، `mv` يُزيله.
+      لنسخ المجلدات يحتاج `cp` إلى العلم `-r` (متكرر).
+    examples:
+      - q: "cp ~/.bashrc ~/.bashrc.backup"
+        a: "إنشاء نسخة احتياطية من إعدادات bash — ينصح بها دائمًا قبل التعديل!"
+        rel:
+          - ["cp-cmd", "Copy — نسخ الملفات والمجلدات", "أمر cp"]
+          - ["bashrc", "ملف إعداد Bash للاختصارات والمتغيرات وغيرها", "~/.bashrc"]
+      - q: "cp -r /etc/nginx/ ~/nginx-backup/"
+        a: "نسخ إعدادات Nginx بالكامل كنسخة احتياطية إلى المجلد الشخصي"
+        rel:
+          - ["cp-r", "Recursive — نسخ المجلدات بما فيها محتوياتها", "العلم -r"]
+      - q: "mv entwurf.txt final.txt"
+        a: "إعادة تسمية ملف — mv بدون مسار يُعيد التسمية فقط"
+        rel:
+          - ["mv-cmd", "Move — نقل الملفات أو إعادة تسميتها", "أمر mv"]
+      - q: "mv ~/Downloads/*.pdf ~/Dokumente/PDFs/"
+        a: "نقل جميع ملفات PDF من التنزيلات إلى مجلد PDFs"
+        rel:
+          - ["glob-star", "المحرف البديل * يطابق أي حروف", "Wildcard *"]
+          - ["mv-multiple", "نقل عدة ملفات باستخدام المحرفات البديلة", "mv *.pdf وجهة/"]
+
+  - title: "الحذف — rm و rmdir"
+    explanation: |
+      ⚠️ **تحذير: لينكس لا يملك سلة محذوفات!**
+      ما يُحذف بـ `rm` يختفي **فورًا وبلا رجعة**.
+
+      | الأمر | الأثر |
+      |-------|-------|
+      | `rm datei.txt` | حذف ملف |
+      | `rm -i datei.txt` | السؤال قبل الحذف (`-i` = تفاعلي) |
+      | `rm *.tmp` | حذف جميع ملفات .tmp |
+      | `rmdir leerer-ordner/` | حذف مجلد فارغ |
+      | `rm -r ordner/` | حذف مجلد بمحتوياته |
+
+      ⚠️ **أخطر أمر في لينكس:**
+      ```
+      rm -rf /    # يحذف كل شيء على النظام — لا تُنفذه أبدًا!
+      rm -rf /*   # بنفس الخطورة
+      ```
+      العلم `-f` (force) يمنع جميع الاستفسارات. مع `-r` (متكرر)
+      ومسار واسع: كارثة كاملة.
+
+      **البديل الآمن:** تحقق أولاً بـ `ls` مما تريد حذفه.
+    examples:
+      - q: "rm -i wichtige-datei.txt"
+        a: "يحذف الملف لكن يسأل أولاً — يُنصح به للملفات المهمة"
+        rel:
+          - ["rm-cmd", "Remove — حذف الملفات (بلا سلة محذوفات!)", "أمر rm"]
+          - ["rm-i", "Interactive — السؤال قبل الحذف", "العلم -i"]
+      - q: "rm -r ~/projekte/altes-projekt/"
+        a: "يحذف مجلد altes-projekt ومحتوياته بالكامل"
+        rel:
+          - ["rm-r", "Recursive — حذف المجلدات ومحتوياتها", "العلم -r"]
+      - q: "rmdir leerer-ordner/"
+        a: "يحذف المجلدات الفارغة فقط — أكثر أمانًا من rm -r، يعطي خطأ إذا لم يكن فارغًا"
+        rel:
+          - ["rmdir-cmd", "Remove Directory — حذف المجلدات الفارغة فقط", "أمر rmdir"]
+      - q: "ls *.log && rm *.log"
+        a: "أولاً عرض جميع ملفات .log ثم حذفها — طريقة آمنة"
+        rel:
+          - ["safe-delete", "أولاً ls ثم rm — حذف آمن مع معاينة", "ممارسة جيدة"]
+
+  - title: "🖥️ اختبار الطرفية"
+    explanation: |
+      اختبر معرفتك الآن — أدخل الأوامر مباشرة!
+    examples:
+      - q: "أي أمر ينشئ ملفًا فارغًا باسم 'notizen.txt'؟"
+        type: input
+        a: "touch notizen.txt"
+      - q: "ماذا يفعل العلم '-p' في 'mkdir -p projekte/web/assets'؟"
+        type: select
+        options:
+          - "ينشئ جميع المجلدات الوسيطة المفقودة تلقائيًا"
+          - "يسأل قبل الإنشاء"
+          - "يعرض المجلد المُنشأ"
+          - "يحمي المجلد من الحذف"
+        a: "ينشئ جميع المجلدات الوسيطة المفقودة تلقائيًا"
+      - q: "أي أمر يُعيد تسمية ملف من 'entwurf.txt' إلى 'final.txt'؟"
+        type: select
+        options:
+          - "mv entwurf.txt final.txt"
+          - "cp entwurf.txt final.txt"
+          - "rename entwurf.txt final.txt"
+          - "touch final.txt entwurf.txt"
+        a: "mv entwurf.txt final.txt"
+      - q: "أي من العبارات التالية عن 'rm' صحيحة؟"
+        type: multiple-choice
+        options:
+          - "rm يحذف الملفات بلا سلة محذوفات"
+          - "rm -r يحذف المجلدات بشكل متكرر"
+          - "rm -i يسأل قبل الحذف"
+          - "rm يمكنه التراجع عن الحذف"
+        a:
+          - "rm يحذف الملفات بلا سلة محذوفات"
+          - "rm -r يحذف المجلدات بشكل متكرر"
+          - "rm -i يسأل قبل الحذف"

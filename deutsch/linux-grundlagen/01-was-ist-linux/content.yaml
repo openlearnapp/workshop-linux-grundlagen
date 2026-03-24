@@ -1,0 +1,139 @@
+version: 1
+number: 1
+title: "Was ist Linux?"
+description: "Geschichte, Distributionen und warum Linux 96% aller Server weltweit antreibt"
+sections:
+  - title: "Ein Student verändert die Welt"
+    explanation: |
+      Im Jahr **1991** schrieb ein 21-jähriger Informatikstudent an der Universität Helsinki
+      eine E-Mail, die die Welt verändern sollte:
+
+      > *"Ich entwickle ein freies Betriebssystem (nur ein Hobby, wird nicht groß und professionell sein
+      > wie GNU)"* — Linus Torvalds, 25. August 1991
+
+      Heute, über 30 Jahre später, läuft **Linux** auf:
+      - **96%** aller Webserver weltweit
+      - **100%** der schnellsten Supercomputer
+      - Milliarden von Android-Smartphones
+      - Smart-TVs, Routern, Autos, Raumstationen
+
+      **Warum ist das wichtig?** Wer Linux versteht, versteht die Infrastruktur des Internets.
+      Jeder Klick, jede Website, jede App läuft irgendwo auf einem Linux-Server.
+    examples:
+      - q: "uname -r"
+        a: "Zeigt die aktuelle Linux-Kernel-Version an (z.B. 5.15.0-91-generic)"
+        rel:
+          - ["uname", "Unix Name — Systeminformationen anzeigen", "Befehl"]
+          - ["uname-r", "Kernel-Release-Version ausgeben", "Flag -r = release"]
+      - q: "uname -a"
+        a: "Alle Systeminformationen auf einmal: Kernel, Hostname, Architektur"
+        rel:
+          - ["uname-a", "Alle Systeminfos (All)", "Flag -a = all"]
+      - q: "cat /etc/os-release"
+        a: "Zeigt welche Linux-Distribution und Version installiert ist"
+        rel:
+          - ["os-release", "Datei mit Distribution und Versionsinformationen", "/etc/os-release"]
+          - ["cat-cmd", "Dateiinhalt im Terminal ausgeben", "Befehl cat"]
+
+  - title: "Distributionen — Linux für jeden Zweck"
+    explanation: |
+      Linux ist kein einzelnes Betriebssystem, sondern ein **Kern (Kernel)**, um den herum
+      verschiedene Unternehmen und Communities vollständige Systeme gebaut haben.
+      Diese heißen **Distributionen** (kurz: Distros).
+
+      | Distribution | Stärke | Zielgruppe |
+      |-------------|--------|------------|
+      | **Ubuntu** | Einfache Installation, viel Support | Einsteiger, Desktop |
+      | **Debian** | Stabilität, langer Support | Server, Systemadmins |
+      | **Fedora** | Modernste Software | Entwickler |
+      | **Arch Linux** | Maximale Kontrolle | Fortgeschrittene |
+      | **Kali Linux** | Sicherheitstools vorinstalliert | Penetrationstester |
+      | **Raspberry Pi OS** | Optimiert für Mini-Computer | Maker, IoT |
+
+      **Der entscheidende Unterschied zu Windows/macOS:** Linux ist **Open Source** —
+      jeder kann den Quellcode lesen, verändern und weitergeben.
+    examples:
+      - q: "lsb_release -a"
+        a: "Zeigt die genaue Distribution und Version (z.B. Ubuntu 22.04 LTS)"
+        rel:
+          - ["lsb-release", "Linux Standard Base Informationen anzeigen", "Befehl lsb_release"]
+          - ["lsb-a-flag", "Alle verfügbaren LSB-Infos ausgeben", "Flag -a"]
+      - q: "hostnamectl"
+        a: "Zeigt Hostname, Betriebssystem, Kernel und Architektur in übersichtlicher Form"
+        rel:
+          - ["hostnamectl", "Hostname und Systeminformationen verwalten", "Befehl"]
+      - q: "arch"
+        a: "Gibt die Prozessorarchitektur aus (z.B. x86_64 für 64-Bit-System)"
+        rel:
+          - ["arch-cmd", "Prozessorarchitektur anzeigen", "Befehl arch"]
+          - ["x86-64", "64-Bit Intel/AMD Architektur, heute Standard", "Architektur"]
+
+  - title: "Das Linux-Dateisystem — alles ist eine Datei"
+    explanation: |
+      Linux folgt einer Philosophie: **alles ist eine Datei** — auch Geräte, Prozesse und
+      Netzwerkverbindungen sind als Dateien repräsentiert.
+
+      Das Dateisystem startet immer bei `/` (Root — der Wurzel):
+
+      | Ordner | Inhalt |
+      |--------|--------|
+      | `/home` | Persönliche Ordner der Benutzer |
+      | `/etc` | Konfigurationsdateien des Systems |
+      | `/bin`, `/usr/bin` | Ausführbare Programme (Befehle) |
+      | `/var/log` | Log-Dateien (Systemprotokolle) |
+      | `/tmp` | Temporäre Dateien, werden beim Neustart gelöscht |
+      | `/dev` | Gerätedateien (Festplatten, USB, etc.) |
+
+      Das Tilde-Zeichen `~` ist eine Abkürzung für das eigene Home-Verzeichnis:
+      `/home/benutzer` wird zu `~`
+    examples:
+      - q: "ls /"
+        a: "Zeigt den Inhalt des Root-Verzeichnisses — die oberste Ebene des Dateisystems"
+        rel:
+          - ["ls-cmd", "List — Verzeichnisinhalt anzeigen", "Befehl ls"]
+          - ["root-dir", "Das oberste Verzeichnis des Linux-Dateisystems", "/ (Root)"]
+      - q: "ls /etc | head -5"
+        a: "Listet die ersten 5 Einträge im Konfigurationsordner /etc"
+        rel:
+          - ["etc-dir", "Konfigurationsdateien des Systems", "Verzeichnis /etc"]
+          - ["pipe-head", "Ausgabe durch pipe an head weitergeben", "| head -5"]
+      - q: "echo $HOME"
+        a: "Gibt den Pfad zum eigenen Home-Verzeichnis aus (z.B. /home/alice)"
+        rel:
+          - ["echo-cmd", "Text oder Variable im Terminal ausgeben", "Befehl echo"]
+          - ["home-var", "Umgebungsvariable mit Pfad zum Home-Verzeichnis", "$HOME"]
+
+  - title: "🖥️ Terminal-Check"
+    explanation: |
+      Teste jetzt dein Wissen — gib die Befehle direkt ein!
+    examples:
+      - q: "Welcher Befehl zeigt die aktuelle Linux-Kernel-Version an?"
+        type: input
+        a: "uname -r"
+      - q: "Was macht der Befehl 'lsb_release -a'?"
+        type: select
+        options:
+          - "Zeigt die genaue Distribution und Version"
+          - "Löscht alle Log-Dateien"
+          - "Aktualisiert den Linux-Kernel"
+          - "Startet das System neu"
+        a: "Zeigt die genaue Distribution und Version"
+      - q: "Welcher Befehl zeigt, welche Linux-Distribution installiert ist?"
+        type: select
+        options:
+          - "cat /etc/os-release"
+          - "cat /etc/passwd"
+          - "ls /usr/bin"
+          - "echo $PATH"
+        a: "cat /etc/os-release"
+      - q: "Welche dieser Aussagen über Linux stimmen?"
+        type: multiple-choice
+        options:
+          - "Linux ist Open Source"
+          - "Linux läuft auf 96% aller Webserver"
+          - "Linux hat nur eine einzige Distribution"
+          - "Android basiert auf Linux"
+        a:
+          - "Linux ist Open Source"
+          - "Linux läuft auf 96% aller Webserver"
+          - "Android basiert auf Linux"

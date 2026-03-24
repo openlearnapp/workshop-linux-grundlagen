@@ -1,0 +1,72 @@
+# Terminal-Simulator Befehle für Lektion 10: Vim & Texteditoren
+prompt: "user@linux:~$"
+commands:
+  - cmd: "nano Documents/notes.txt"
+    output: |
+      GNU nano 6.2          Documents/notes.txt
+
+      Linux ist toll!
+      Diese Datei wurde mit touch erstellt.
+
+
+
+      ^G Help    ^O Write Out  ^W Where Is  ^K Cut       ^U Paste
+      ^X Exit    ^R Read File  ^\ Replace   ^J Justify   ^T Spelling
+    hint: "Datei mit nano oeffnen — Ctrl+O speichern, Ctrl+X beenden"
+  - cmd: "nano -l /etc/hosts"
+    output: |
+      GNU nano 6.2          /etc/hosts
+
+        1  127.0.0.1       localhost
+        2  127.0.1.1       ubuntu
+        3
+        4  # The following lines are desirable for IPv6 capable hosts
+        5  ::1     ip6-localhost ip6-loopback
+        6  fe00::0 ip6-localnet
+
+      ^G Help    ^O Write Out  ^W Where Is  ^K Cut       ^U Paste
+    hint: "Mit Zeilennummern bearbeiten — hilfreich bei langen Dateien"
+  - cmd: "vim Documents/notes.txt"
+    output: |
+      Linux ist toll!
+      Diese Datei wurde mit touch erstellt.
+      ~
+      ~
+      ~
+      "Documents/notes.txt" 2L, 52B
+    hint: "Datei mit vim oeffnen — startet im Normal-Modus"
+  - cmd: "i"
+    output: "-- INSERT --"
+    hint: "Wechsel in Insert-Modus — jetzt kann Text eingegeben werden"
+  - cmd: "Esc"
+    output: ""
+    hint: "Zurueck in Normal-Modus — Esc beendet den Insert-Modus"
+  - cmd: ":wq"
+    output: "\"Documents/notes.txt\" 2L, 52B written"
+    hint: "Speichern und beenden — der wichtigste vim-Befehl"
+  - cmd: ":q!"
+    output: ""
+    hint: "Beenden ohne Speichern — Aenderungen verwerfen"
+  - cmd: ":w"
+    output: "\"Documents/notes.txt\" 2L, 52B written"
+    hint: "Nur speichern, vim bleibt offen"
+  - cmd: "/ERROR"
+    output: "Pattern not found: ERROR"
+    hint: "In vim vorwaerts suchen — n fuer naechsten Treffer"
+  - cmd: ":%s/localhost/example.com/g"
+    output: "2 substitutions on 2 lines"
+    hint: "Alle Vorkommen von localhost ersetzen"
+  - cmd: "dd"
+    output: ""
+    hint: "Aktuelle Zeile loeschen (in Buffer gespeichert)"
+  - cmd: "yy"
+    output: ""
+    hint: "Aktuelle Zeile kopieren (yank)"
+  - cmd: "p"
+    output: ""
+    hint: "Kopierten/geloeschten Inhalt einfuegen (paste)"
+  - cmd: "vim /etc/shadow"
+    output: |
+      E: "/etc/shadow" [Permission Denied]
+    hint: "Systemdateien brauchen sudo — verwende sudo vim"
+    error: true
