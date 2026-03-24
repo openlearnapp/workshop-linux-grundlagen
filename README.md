@@ -1,6 +1,6 @@
 # Workshop: Linux Grundlagen
 
-> **[Landing Page](https://openlearnapp.github.io/workshop-linux-grundlagen/)** · **[Start Workshop](https://open-learn.app/#/add?source=https://openlearnapp.github.io/workshop-linux-grundlagen/)**
+> **[Landing Page](https://open-learn.app/workshop-linux-grundlagen/)** · **[Start Workshop](https://open-learn.app/#/add?source=https://open-learn.app/workshop-linux-grundlagen/)**
 
 12 Lektionen für absolute Anfänger — vom ersten Terminal-Befehl zum produktiven Linux-Workflow. Available in German and English interfaces.
 
