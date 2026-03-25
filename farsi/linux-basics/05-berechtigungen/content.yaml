@@ -1,7 +1,8 @@
-version: 1
+version: 2
 number: 5
 title: "مجوزها"
 description: "chmod، chown و sudo — درک و استفاده از سیستم مجوزهای لینوکس"
+image: "images/lesson-header.svg"
 sections:
   - title: "rwx — رمزگشایی سیستم مجوزها"
     explanation: |
@@ -33,11 +34,13 @@ sections:
         rel:
           - ["ssh-key-perms", "کلید خصوصی SSH باید مجوز 600 داشته باشد — در غیر این صورت SSH رد می‌کند", "امنیت"]
           - ["rw-owner-only", "-rw------- یعنی: فقط مالک خواندن/نوشتن، بقیه هیچ", "الگوی مجوز"]
+        labels: ["امنیت"]
       - q: "ls -l /usr/bin/sudo"
         a: "مجوزهای خاص SUID برنامه sudo را نشان می‌دهد — حرف s در رشته مجوزها خاص است"
         rel:
           - ["suid-bit", "Set User ID — برنامه با مجوزهای مالک اجرا می‌شود", "SUID"]
           - ["sudo-bin", "برنامه sudo با مجوزهای بالای سیستم", "/usr/bin/sudo"]
+        labels: ["امنیت"]
 
   - title: "chmod — تغییر مجوزها"
     explanation: |
@@ -67,18 +70,22 @@ sections:
         rel:
           - ["chmod-cmd", "Change Mode — تغییر مجوزهای فایل", "دستور chmod"]
           - ["chmod-x", "+x مجوز اجرا اضافه می‌کند", "chmod +x"]
+        labels: ["امنیت"]
       - q: "chmod 755 /usr/local/bin/meinprogramm"
         a: "755 = rwxr-xr-x: مالک همه مجوزها، بقیه فقط خواندن و اجرا"
         rel:
           - ["chmod-755", "rwxr-xr-x — استاندارد برای برنامه‌های اجرایی", "مقدار هشتگانی 755"]
+        labels: ["امنیت"]
       - q: "chmod 600 ~/.ssh/id_rsa"
         a: "600 = rw------- : فقط مالک خواندن/نوشتن — برای کلیدهای SSH الزامی"
         rel:
           - ["chmod-600", "rw------- فقط مالک خواندن/نوشتن، استاندارد کلید SSH", "مقدار هشتگانی 600"]
+        labels: ["امنیت"]
       - q: "chmod -R 755 ~/webseite/"
         a: "مجوز 755 را به صورت بازگشتی روی تمام فایل‌ها و زیرپوشه‌های وبسایت اعمال می‌کند"
         rel:
           - ["chmod-R", "Recursive — اعمال مجوزها روی تمام زیرپوشه‌ها", "فلگ -R"]
+        labels: ["امنیت"]
 
   - title: "sudo و chown — مجوزهای ویژه و مالکیت"
     explanation: |
@@ -99,20 +106,24 @@ sections:
         a: "به‌روزرسانی لیست بسته‌ها — نیاز به مجوز مدیر دارد، بنابراین sudo"
         rel:
           - ["sudo-cmd", "Super User Do — اجرای دستور به عنوان مدیر", "دستور sudo"]
+        labels: ["امنیت"]
       - q: "sudo chown -R www-data:www-data /var/www/html/"
         a: "تمام فایل‌های وب‌سرور را به کاربر www-data اختصاص می‌دهد — Nginx/Apache به این نیاز دارند"
         rel:
           - ["chown-cmd", "Change Owner — تغییر مالک فایل", "دستور chown"]
           - ["chown-R", "Recursive — تغییر مالکیت به صورت بازگشتی", "chown -R"]
           - ["www-data", "کاربر پیش‌فرض برای وب‌سرورها (Apache، Nginx)", "www-data"]
+        labels: ["امنیت"]
       - q: "sudo -l"
         a: "نشان می‌دهد کدام دستورات sudo برای شما مجاز هستند — مفید روی سیستم‌های ناآشنا"
         rel:
           - ["sudo-l", "List — نمایش دستورات sudo مجاز برای کاربر فعلی", "فلگ -l"]
+        labels: ["امنیت"]
       - q: "sudo su -"
         a: "تغییر به کاربر root — با خط تیره محیط root هم بارگذاری می‌شود"
         rel:
           - ["sudo-su", "تغییر به Shell root — با احتیاط استفاده کنید", "sudo su -"]
+        labels: ["امنیت"]
 
   - title: "🖥️ آزمون ترمینال"
     explanation: |
@@ -121,6 +132,7 @@ sections:
       - q: "کدام دستور فایل 'deploy.sh' را قابل اجرا می‌کند؟"
         type: input
         a: "chmod +x deploy.sh"
+        labels: ["امنیت"]
       - q: "مجوز '755' در نوشتار هشتگانی چه معنایی دارد؟"
         type: select
         options:
@@ -129,6 +141,7 @@ sections:
           - text: "rw-rw-rw- — همه خواندن و نوشتن"
           - text: "rwx------ — فقط مالک همه مجوزها را دارد"
           - text: "r--r--r-- — همه فقط خواندن"
+        labels: ["امنیت"]
       - q: "کلید خصوصی SSH باید چه مقدار هشتگانی داشته باشد؟"
         type: select
         options:
@@ -137,6 +150,7 @@ sections:
           - text: "755"
           - text: "777"
           - text: "644"
+        labels: ["امنیت"]
       - q: "کدام‌یک از این جملات درباره سیستم مجوزهای لینوکس درست هستند؟"
         type: multiple-choice
         options:
@@ -147,3 +161,4 @@ sections:
           - text: "w مخفف write (نوشتن) است"
             correct: true
           - text: "s مخفف system (سیستم) است"
+        labels: ["امنیت"]

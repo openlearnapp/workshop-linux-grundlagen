@@ -1,7 +1,8 @@
-version: 1
+version: 2
 number: 4
 title: "File Content"
 description: "cat, less, head, tail and grep — read, browse and filter file contents"
+image: "images/lesson-header.svg"
 sections:
   - title: "cat, less and more — reading files"
     explanation: |
@@ -28,15 +29,18 @@ sections:
         rel:
           - ["en-cat-content", "Output full file contents", "cat command"]
           - ["en-etc-hostname", "File containing the system's computer name", "/etc/hostname"]
+        labels: ["Filesystem", "Config"]
       - q: "cat /etc/passwd"
         a: "Shows all user accounts on the system (name, ID, home directory, shell)"
         rel:
           - ["en-etc-passwd", "System user database", "/etc/passwd"]
+        labels: ["Filesystem", "Security"]
       - q: "less /var/log/syslog"
         a: "Browse system log interactively — search with /, quit with q"
         rel:
           - ["en-less-cmd", "Read long files interactively with scrolling", "less command"]
           - ["en-syslog", "Central system log with all important events", "/var/log/syslog"]
+        labels: ["Filesystem"]
 
   - title: "head and tail — beginning and end"
     explanation: |
@@ -55,15 +59,18 @@ sections:
         rel:
           - ["en-head-cmd", "Show beginning of a file (default: 10 lines)", "head command"]
           - ["en-head-n", "Set number of lines to display", "flag -n"]
+        labels: ["Filesystem", "Config"]
       - q: "tail -50 /var/log/auth.log"
         a: "Last 50 lines of the auth log — shows login attempts and authentications"
         rel:
           - ["en-tail-cmd", "Show end of a file (default: 10 lines)", "tail command"]
           - ["en-auth-log", "Log for authentications and sudo usage", "/var/log/auth.log"]
+        labels: ["Filesystem", "Security"]
       - q: "tail -f /var/log/nginx/access.log"
         a: "Follow Nginx accesses in real time — perfect for live debugging"
         rel:
           - ["en-tail-f", "Follow — watch file in real time, show new lines immediately", "flag -f"]
+        labels: ["Filesystem", "Network"]
 
   - title: "grep — finding a needle in a haystack"
     explanation: |
@@ -89,19 +96,23 @@ sections:
         rel:
           - ["en-grep-cmd", "Search files for lines matching a pattern", "grep command"]
           - ["en-grep-i", "Case-insensitive — ignore upper/lowercase", "flag -i"]
+        labels: ["Filesystem"]
       - q: "grep -n \"TODO\" ~/projects/app.py"
         a: "Find all TODO comments in the Python script with line numbers"
         rel:
           - ["en-grep-n", "Number — show line numbers of matches", "flag -n"]
+        labels: ["Filesystem"]
       - q: "grep -r \"database_url\" ~/projects/"
         a: "Search all files under ~/projects/ for database_url — finds forgotten configs too"
         rel:
           - ["en-grep-r", "Recursive — search in directories and subdirectories", "flag -r"]
+        labels: ["Filesystem"]
       - q: "grep -v \"^#\" /etc/ssh/sshd_config"
         a: "Show SSH config but hide all comment lines (starting with #)"
         rel:
           - ["en-grep-v", "Invert match — show lines WITHOUT the pattern", "flag -v"]
           - ["en-regex-caret", "^ in regex = start of line", "Regex ^"]
+        labels: ["Filesystem", "Config"]
 
   - title: "🖥️ Terminal Check"
     explanation: |
@@ -110,6 +121,7 @@ sections:
       - q: "Which command reads a file interactively with scrolling?"
         type: input
         a: "less"
+        labels: ["Filesystem"]
       - q: "What does 'tail -f /var/log/nginx/access.log' do?"
         type: select
         options:
@@ -118,6 +130,7 @@ sections:
           - text: "Shows the last 10 lines and exits"
           - text: "Deletes the last lines of the file"
           - text: "Searches for the term 'nginx'"
+        labels: ["Filesystem"]
       - q: "Which command searches case-insensitively for 'error' in a file?"
         type: select
         options:
@@ -126,6 +139,7 @@ sections:
           - text: "grep -n \"error\" file.txt"
           - text: "grep -r \"error\" file.txt"
           - text: "grep -v \"error\" file.txt"
+        labels: ["Filesystem"]
       - q: "Which of these grep flags are described correctly?"
         type: multiple-choice
         options:
@@ -136,3 +150,4 @@ sections:
           - text: "-r searches directories recursively"
             correct: true
           - text: "-v shows only matches without context"
+        labels: ["Filesystem"]

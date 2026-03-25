@@ -1,7 +1,8 @@
-version: 1
+version: 2
 number: 4
 title: "محتوى الملفات"
 description: "cat و less و head و tail و grep — قراءة الملفات والبحث فيها وتصفيتها"
+image: "images/lesson-header.svg"
 sections:
   - title: "cat و less و more — قراءة الملفات"
     explanation: |
@@ -28,15 +29,18 @@ sections:
         rel:
           - ["cat-content", "عرض محتوى الملف بالكامل", "أمر cat"]
           - ["etc-hostname", "ملف يحتوي على اسم الجهاز", "/etc/hostname"]
+        labels: ["نظام الملفات", "الإعدادات"]
       - q: "cat /etc/passwd"
         a: "يعرض جميع حسابات المستخدمين في النظام (الاسم، المعرف، المجلد الشخصي، الصدفة)"
         rel:
           - ["etc-passwd", "قاعدة بيانات مستخدمي النظام", "/etc/passwd"]
+        labels: ["نظام الملفات", "الأمان"]
       - q: "less /var/log/syslog"
         a: "تصفح سجل النظام بشكل تفاعلي — استخدم / للبحث و q للخروج"
         rel:
           - ["less-cmd", "قراءة الملفات الطويلة بشكل تفاعلي مع إمكانية التمرير", "أمر less"]
           - ["syslog", "سجل النظام المركزي بجميع الأحداث المهمة", "/var/log/syslog"]
+        labels: ["نظام الملفات"]
 
   - title: "head و tail — البداية والنهاية"
     explanation: |
@@ -56,15 +60,18 @@ sections:
           - ["head-cmd", "عرض بداية الملف (الافتراضي: ١٠ أسطر)", "أمر head"]
           - ["head-n", "تحديد عدد الأسطر المعروضة", "العلم -n"]
           - ["sshd-config", "ملف إعداد خادم SSH", "/etc/ssh/sshd_config"]
+        labels: ["نظام الملفات", "الإعدادات"]
       - q: "tail -50 /var/log/auth.log"
         a: "آخر ٥٠ سطرًا من سجل المصادقة — يعرض محاولات تسجيل الدخول والمصادقات"
         rel:
           - ["tail-cmd", "عرض نهاية الملف (الافتراضي: ١٠ أسطر)", "أمر tail"]
           - ["auth-log", "سجل المصادقات واستخدام sudo", "/var/log/auth.log"]
+        labels: ["نظام الملفات", "الأمان"]
       - q: "tail -f /var/log/nginx/access.log"
         a: "تتبع وصول Nginx في الوقت الحقيقي — مثالي لتصحيح الأخطاء المباشر"
         rel:
           - ["tail-f", "Follow — تتبع الملف مباشرة، عرض الأسطر الجديدة فورًا", "العلم -f"]
+        labels: ["نظام الملفات", "الشبكة"]
 
   - title: "grep — إيجاد الإبرة في كومة القش"
     explanation: |
@@ -90,19 +97,23 @@ sections:
         rel:
           - ["grep-cmd", "البحث في أسطر الملفات عن نمط معين", "أمر grep"]
           - ["grep-i", "Case-insensitive — تجاهل حالة الأحرف الكبيرة والصغيرة", "العلم -i"]
+        labels: ["نظام الملفات"]
       - q: "grep -n \"TODO\" ~/projekte/app.py"
         a: "إيجاد جميع تعليقات TODO في سكريبت Python مع أرقام الأسطر"
         rel:
           - ["grep-n", "Number — عرض أرقام أسطر النتائج", "العلم -n"]
+        labels: ["نظام الملفات"]
       - q: "grep -r \"database_url\" ~/projekte/"
         a: "البحث في جميع الملفات تحت ~/projekte/ عن database_url — يجد حتى الإعدادات المنسية"
         rel:
           - ["grep-r", "Recursive — البحث في المجلدات والمجلدات الفرعية", "العلم -r"]
+        labels: ["نظام الملفات"]
       - q: "grep -v \"^#\" /etc/ssh/sshd_config"
         a: "عرض إعدادات SSH مع إخفاء جميع أسطر التعليقات (التي تبدأ بـ #)"
         rel:
           - ["grep-v", "Invert match — عرض الأسطر التي لا تحتوي النمط", "العلم -v"]
           - ["regex-caret", "^ في التعبيرات النمطية = بداية السطر", "Regex ^"]
+        labels: ["نظام الملفات", "الإعدادات"]
 
   - title: "🖥️ اختبار الطرفية"
     explanation: |
@@ -111,6 +122,7 @@ sections:
       - q: "أي أمر يقرأ ملفًا بشكل تفاعلي مع إمكانية التمرير؟"
         type: input
         a: "less"
+        labels: ["نظام الملفات"]
       - q: "ماذا يفعل 'tail -f /var/log/nginx/access.log'؟"
         type: select
         options:
@@ -119,6 +131,7 @@ sections:
           - text: "يعرض آخر ١٠ أسطر وينتهي"
           - text: "يحذف الأسطر الأخيرة من الملف"
           - text: "يبحث عن كلمة 'nginx'"
+        labels: ["نظام الملفات"]
       - q: "أي أمر يبحث بدون تمييز حالة الأحرف عن 'error' في ملف؟"
         type: select
         options:
@@ -127,6 +140,7 @@ sections:
           - text: "grep -n \"error\" datei.txt"
           - text: "grep -r \"error\" datei.txt"
           - text: "grep -v \"error\" datei.txt"
+        labels: ["نظام الملفات"]
       - q: "أي من أعلام grep التالية صحيحة في معناها؟"
         type: multiple-choice
         options:
@@ -137,3 +151,4 @@ sections:
           - text: "-r يبحث في المجلدات بشكل متكرر"
             correct: true
           - text: "-v يعرض النتائج فقط بدون سياق"
+        labels: ["نظام الملفات"]

@@ -1,7 +1,9 @@
-version: 1
+version: 2
 number: 11
 title: "Systeminformationen"
 description: "df, du, free, uname und history — den Systemzustand im Blick behalten"
+image: "images/lesson-header.svg"
+image_caption: "Dashboard mit CPU-, RAM- und Disk-Auslastungsanzeigen"
 sections:
   - title: "Speicherplatz — df und du"
     explanation: |
@@ -24,20 +26,24 @@ sections:
         rel:
           - ["df-cmd", "Disk Free — Festplattenauslastung anzeigen", "Befehl df"]
           - ["df-h", "Human-readable — Größen in KB/MB/GB statt Bytes", "Flag -h"]
+        labels: ["Dateisystem"]
       - q: "df -h /"
         a: "Nur die Auslastung der Root-Partition anzeigen — die wichtigste Partition"
         rel:
           - ["df-root", "Auslastung der Root-Partition / prüfen", "df -h /"]
+        labels: ["Dateisystem"]
       - q: "du -sh ~/Downloads/*"
         a: "Größe jedes Elements im Downloads-Ordner anzeigen"
         rel:
           - ["du-cmd", "Disk Usage — Speicherverbrauch von Dateien/Ordnern", "Befehl du"]
           - ["du-sh", "s=summary (Gesamtgröße), h=human-readable", "Flags -sh"]
+        labels: ["Dateisystem"]
       - q: "du -h --max-depth=1 /var | sort -rh | head -10"
         a: "Die 10 größten Unterordner in /var nach Größe sortiert — Speicherfresser finden"
         rel:
           - ["du-max-depth", "Nur bis zu einer bestimmten Verzeichnistiefe anzeigen", "--max-depth=1"]
           - ["sort-rh", "r=reverse (absteigend), h=human-readable Größen sortieren", "sort -rh"]
+        labels: ["Dateisystem"]
 
   - title: "Arbeitsspeicher und CPU — free und uptime"
     explanation: |
@@ -66,15 +72,18 @@ sections:
         rel:
           - ["free-cmd", "RAM-Auslastung und Swap-Nutzung anzeigen", "Befehl free"]
           - ["free-h", "Human-readable — Speicher in MB/GB statt Bytes", "free -h"]
+        labels: ["Basics"]
       - q: "uptime"
         a: "Systemlaufzeit, aktive Nutzer und CPU Load Average der letzten 1/5/15 Minuten"
         rel:
           - ["uptime-cmd", "Systemlaufzeit und Auslastung der letzten Minuten", "Befehl uptime"]
           - ["load-average", "Durchschnittliche CPU-Auslastung: 1=100% bei einem Kern", "Load Average"]
+        labels: ["Basics"]
       - q: "vmstat 2 5"
         a: "System-Statistik alle 2 Sekunden, 5 Mal — CPU, RAM, I/O, Prozesse"
         rel:
           - ["vmstat-cmd", "Virtual Memory Statistics — detaillierte System-Performance-Daten", "Befehl vmstat"]
+        labels: ["Basics"]
 
   - title: "history und der Befehlsverlauf"
     explanation: |
@@ -99,20 +108,24 @@ sections:
         a: "Die letzten 20 eingegebenen Befehle anzeigen"
         rel:
           - ["history-cmd", "Verlauf der eingegebenen Befehle anzeigen", "Befehl history"]
+        labels: ["Basics"]
       - q: "history | grep \"apt install\""
         a: "Alle apt install-Befehle aus der history suchen — was habe ich wann installiert?"
         rel:
           - ["history-grep", "history mit grep kombinieren — spezifische Befehle aus Verlauf suchen", "history | grep"]
+        labels: ["Basics"]
       - q: "!!"
         a: "Letzten Befehl sofort wiederholen — besonders nützlich für: sudo !!"
         rel:
           - ["bang-bang", "!! führt den zuletzt eingegebenen Befehl erneut aus", "!!"]
           - ["sudo-bang-bang", "sudo !! — letzten Befehl mit Administratorrechten wiederholen", "sudo !!"]
+        labels: ["Basics"]
       - q: "cat /proc/cpuinfo | grep \"model name\" | head -1"
         a: "CPU-Modell und -Typ aus den Kernel-Prozessinformationen auslesen"
         rel:
           - ["proc-cpuinfo", "Kernel-Datei mit detaillierten CPU-Informationen", "/proc/cpuinfo"]
           - ["proc-filesystem", "/proc ist kein echtes Dateisystem — enthält Kernel-Infos als Dateien", "/proc"]
+        labels: ["Basics"]
 
   - title: "🖥️ Terminal-Check"
     explanation: |
@@ -121,6 +134,7 @@ sections:
       - q: "Welcher Befehl zeigt die Festplattenauslastung aller Partitionen?"
         type: input
         a: "df -h"
+        labels: ["Dateisystem"]
       - q: "Was zeigt die 'available'-Spalte bei 'free -h'?"
         type: select
         options:
@@ -129,6 +143,7 @@ sections:
           - text: "Den freien Festplattenspeicher"
           - text: "Den belegten Swap-Speicher"
           - text: "Die CPU-Auslastung in Prozent"
+        labels: ["Basics"]
       - q: "Welcher Befehl sucht in der Befehlshistorie nach 'apt install'?"
         type: select
         options:
@@ -137,6 +152,7 @@ sections:
           - text: "history search \"apt install\""
           - text: "grep history \"apt install\""
           - text: "find history -name \"apt install\""
+        labels: ["Basics"]
       - q: "Welche dieser Befehle geben Systeminformationen aus?"
         type: multiple-choice
         options:
@@ -147,3 +163,4 @@ sections:
           - text: "uptime"
             correct: true
           - text: "chmod 755"
+        labels: ["Basics"]

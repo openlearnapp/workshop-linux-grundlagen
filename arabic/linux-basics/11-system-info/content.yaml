@@ -1,7 +1,8 @@
-version: 1
+version: 2
 number: 11
 title: "معلومات النظام"
 description: "df و du و free و uname و history — مراقبة حالة النظام"
+image: "images/lesson-header.svg"
 sections:
   - title: "مساحة التخزين — df و du"
     explanation: |
@@ -24,20 +25,24 @@ sections:
         rel:
           - ["df-cmd", "Disk Free — عرض استخدام القرص", "أمر df"]
           - ["df-h", "Human-readable — الأحجام بـ KB/MB/GB بدلاً من البايتات", "العلم -h"]
+        labels: ["نظام الملفات"]
       - q: "df -h /"
         a: "عرض استخدام قسم الجذر فقط — أهم قسم"
         rel:
           - ["df-root", "التحقق من استخدام قسم الجذر /", "df -h /"]
+        labels: ["نظام الملفات"]
       - q: "du -sh ~/Downloads/*"
         a: "عرض حجم كل عنصر في مجلد التنزيلات"
         rel:
           - ["du-cmd", "Disk Usage — استخدام التخزين للملفات/المجلدات", "أمر du"]
           - ["du-sh", "s=ملخص (الحجم الكلي)، h=مقروءة بشريًا", "الأعلام -sh"]
+        labels: ["نظام الملفات"]
       - q: "du -h --max-depth=1 /var | sort -rh | head -10"
         a: "أكبر ١٠ مجلدات فرعية في /var مرتبة حسب الحجم — لإيجاد مستهلكي التخزين"
         rel:
           - ["du-max-depth", "عرض حتى عمق مجلد معين فقط", "--max-depth=1"]
           - ["sort-rh", "r=عكسي (تنازلي)، h=ترتيب أحجام مقروءة بشريًا", "sort -rh"]
+        labels: ["نظام الملفات"]
 
   - title: "الذاكرة والمعالج — free و uptime"
     explanation: |
@@ -66,15 +71,18 @@ sections:
         rel:
           - ["free-cmd", "عرض استخدام الذاكرة العشوائية و Swap", "أمر free"]
           - ["free-h", "Human-readable — الذاكرة بـ MB/GB بدلاً من البايتات", "free -h"]
+        labels: ["أساسيات"]
       - q: "uptime"
         a: "مدة تشغيل النظام، المستخدمون النشطون و CPU Load Average لآخر ١/٥/١٥ دقيقة"
         rel:
           - ["uptime-cmd", "مدة تشغيل النظام وحمل الدقائق الأخيرة", "أمر uptime"]
           - ["load-average", "متوسط حمل المعالج: 1=١٠٠٪ عند نواة واحدة", "Load Average"]
+        labels: ["أساسيات"]
       - q: "vmstat 2 5"
         a: "إحصائيات النظام كل ٢ ثانية، ٥ مرات — المعالج، الذاكرة، I/O، العمليات"
         rel:
           - ["vmstat-cmd", "Virtual Memory Statistics — بيانات أداء النظام المفصلة", "أمر vmstat"]
+        labels: ["أساسيات"]
 
   - title: "history وسجل الأوامر"
     explanation: |
@@ -99,20 +107,24 @@ sections:
         a: "عرض آخر ٢٠ أمرًا تم إدخاله"
         rel:
           - ["history-cmd", "عرض سجل الأوامر المُدخلة", "أمر history"]
+        labels: ["أساسيات"]
       - q: "history | grep \"apt install\""
         a: "البحث عن جميع أوامر apt install من السجل — ماذا ثبّتتُ ومتى؟"
         rel:
           - ["history-grep", "دمج history مع grep — البحث عن أوامر محددة من السجل", "history | grep"]
+        labels: ["أساسيات"]
       - q: "!!"
         a: "تكرار آخر أمر فورًا — مفيد بشكل خاص مع: sudo !!"
         rel:
           - ["bang-bang", "!! يُعيد تنفيذ آخر أمر تم إدخاله", "!!"]
           - ["sudo-bang-bang", "sudo !! — تكرار آخر أمر بصلاحيات المسؤول", "sudo !!"]
+        labels: ["أساسيات"]
       - q: "cat /proc/cpuinfo | grep \"model name\" | head -1"
         a: "قراءة طراز ونوع المعالج من معلومات عمليات النواة"
         rel:
           - ["proc-cpuinfo", "ملف النواة بمعلومات المعالج المفصلة", "/proc/cpuinfo"]
           - ["proc-filesystem", "/proc ليس نظام ملفات حقيقي — يحتوي معلومات النواة كملفات", "/proc"]
+        labels: ["أساسيات"]
 
   - title: "🖥️ اختبار الطرفية"
     explanation: |
@@ -121,6 +133,7 @@ sections:
       - q: "أي أمر يعرض استخدام القرص لجميع الأقسام؟"
         type: input
         a: "df -h"
+        labels: ["نظام الملفات"]
       - q: "ماذا يُظهر عمود 'available' في 'free -h'؟"
         type: select
         options:
@@ -129,6 +142,7 @@ sections:
           - text: "مساحة القرص الحرة"
           - text: "ذاكرة Swap المستخدمة"
           - text: "حمل المعالج بالنسبة المئوية"
+        labels: ["أساسيات"]
       - q: "أي أمر يبحث في سجل الأوامر عن 'apt install'؟"
         type: select
         options:
@@ -137,6 +151,7 @@ sections:
           - text: "history search \"apt install\""
           - text: "grep history \"apt install\""
           - text: "find history -name \"apt install\""
+        labels: ["أساسيات"]
       - q: "أي من هذه الأوامر تعرض معلومات النظام؟"
         type: multiple-choice
         options:
@@ -147,3 +162,4 @@ sections:
           - text: "uptime"
             correct: true
           - text: "chmod 755"
+        labels: ["أساسيات"]

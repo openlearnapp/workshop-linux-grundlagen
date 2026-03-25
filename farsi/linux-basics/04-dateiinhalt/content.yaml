@@ -1,7 +1,8 @@
-version: 1
+version: 2
 number: 4
 title: "محتوای فایل"
 description: "cat، less، head، tail و grep — خواندن، مرور و فیلتر کردن فایل‌ها"
+image: "images/lesson-header.svg"
 sections:
   - title: "cat، less و more — خواندن فایل‌ها"
     explanation: |
@@ -28,15 +29,18 @@ sections:
         rel:
           - ["cat-content", "نمایش کامل محتوای فایل", "دستور cat"]
           - ["etc-hostname", "فایل حاوی نام کامپیوتر", "/etc/hostname"]
+        labels: ["فایل‌سیستم", "پیکربندی"]
       - q: "cat /etc/passwd"
         a: "تمام حساب‌های کاربری سیستم را نشان می‌دهد (نام، شناسه، پوشه خانگی، Shell)"
         rel:
           - ["etc-passwd", "پایگاه داده کاربران سیستم", "/etc/passwd"]
+        labels: ["فایل‌سیستم", "امنیت"]
       - q: "less /var/log/syslog"
         a: "مرور تعاملی لاگ سیستم — با / جستجو کنید، با q خارج شوید"
         rel:
           - ["less-cmd", "خواندن تعاملی و قابل اسکرول فایل‌های بلند", "دستور less"]
           - ["syslog", "گزارش مرکزی سیستم با تمام رویدادهای مهم", "/var/log/syslog"]
+        labels: ["فایل‌سیستم"]
 
   - title: "head و tail — ابتدا و انتها"
     explanation: |
@@ -56,15 +60,18 @@ sections:
           - ["head-cmd", "نمایش ابتدای فایل (پیش‌فرض: ۱۰ خط)", "دستور head"]
           - ["head-n", "تعیین تعداد خطوط نمایش‌داده‌شده", "فلگ -n"]
           - ["sshd-config", "فایل پیکربندی سرور SSH", "/etc/ssh/sshd_config"]
+        labels: ["فایل‌سیستم", "پیکربندی"]
       - q: "tail -50 /var/log/auth.log"
         a: "۵۰ خط آخر لاگ احراز هویت — تلاش‌های ورود و احراز هویت را نشان می‌دهد"
         rel:
           - ["tail-cmd", "نمایش انتهای فایل (پیش‌فرض: ۱۰ خط)", "دستور tail"]
           - ["auth-log", "گزارش احراز هویت و استفاده از sudo", "/var/log/auth.log"]
+        labels: ["فایل‌سیستم", "امنیت"]
       - q: "tail -f /var/log/nginx/access.log"
         a: "دنبال‌کردن زنده دسترسی‌های Nginx — عالی برای دیباگ زنده"
         rel:
           - ["tail-f", "Follow — دنبال‌کردن فایل به صورت زنده، خطوط جدید فوراً نمایش داده می‌شوند", "فلگ -f"]
+        labels: ["فایل‌سیستم", "شبکه"]
 
   - title: "grep — پیدا کردن سوزن در انبار کاه"
     explanation: |
@@ -90,19 +97,23 @@ sections:
         rel:
           - ["grep-cmd", "جستجوی خطوط فایل بر اساس الگو", "دستور grep"]
           - ["grep-i", "Case-insensitive — بدون توجه به بزرگی/کوچکی حروف", "فلگ -i"]
+        labels: ["فایل‌سیستم"]
       - q: "grep -n \"TODO\" ~/projekte/app.py"
         a: "پیدا کردن تمام نظرات TODO در اسکریپت پایتون با شماره خط"
         rel:
           - ["grep-n", "Number — نمایش شماره خط نتایج", "فلگ -n"]
+        labels: ["فایل‌سیستم"]
       - q: "grep -r \"database_url\" ~/projekte/"
         a: "جستجو در تمام فایل‌های زیر ~/projekte/ برای database_url — پیکربندی‌های فراموش‌شده را هم پیدا می‌کند"
         rel:
           - ["grep-r", "Recursive — جستجو در پوشه‌ها و زیرپوشه‌ها", "فلگ -r"]
+        labels: ["فایل‌سیستم"]
       - q: "grep -v \"^#\" /etc/ssh/sshd_config"
         a: "پیکربندی SSH بدون خطوط توضیح (که با # شروع می‌شوند)"
         rel:
           - ["grep-v", "Invert match — نمایش خطوط بدون الگو", "فلگ -v"]
           - ["regex-caret", "^ در Regex = ابتدای خط", "Regex ^"]
+        labels: ["فایل‌سیستم", "پیکربندی"]
 
   - title: "🖥️ آزمون ترمینال"
     explanation: |
@@ -111,6 +122,7 @@ sections:
       - q: "کدام دستور یک فایل را به صورت تعاملی می‌خواند و امکان اسکرول دارد؟"
         type: input
         a: "less"
+        labels: ["فایل‌سیستم"]
       - q: "دستور 'tail -f /var/log/nginx/access.log' چه کار می‌کند؟"
         type: select
         options:
@@ -119,6 +131,7 @@ sections:
           - text: "۱۰ خط آخر را نشان می‌دهد و خارج می‌شود"
           - text: "خطوط آخر فایل را حذف می‌کند"
           - text: "عبارت 'nginx' را جستجو می‌کند"
+        labels: ["فایل‌سیستم"]
       - q: "کدام دستور بدون توجه به بزرگی/کوچکی حروف 'error' را در یک فایل جستجو می‌کند؟"
         type: select
         options:
@@ -127,6 +140,7 @@ sections:
           - text: "grep -n \"error\" datei.txt"
           - text: "grep -r \"error\" datei.txt"
           - text: "grep -v \"error\" datei.txt"
+        labels: ["فایل‌سیستم"]
       - q: "کدام‌یک از فلگ‌های grep از نظر معنی درست هستند؟"
         type: multiple-choice
         options:
@@ -137,3 +151,4 @@ sections:
           - text: "-r پوشه‌ها را به صورت بازگشتی جستجو می‌کند"
             correct: true
           - text: "-v فقط نتایج بدون زمینه را نشان می‌دهد"
+        labels: ["فایل‌سیستم"]

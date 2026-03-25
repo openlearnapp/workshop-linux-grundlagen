@@ -1,7 +1,8 @@
-version: 1
+version: 2
 number: 10
 title: "Vim و ویرایشگرهای متن"
 description: "nano برای مبتدیان، vim برای حرفه‌ای‌ها — ویرایش فایل‌ها مستقیماً در ترمینال"
+image: "images/lesson-header.svg"
 sections:
   - title: "nano — شروع کاربرپسند"
     explanation: |
@@ -28,14 +29,17 @@ sections:
         rel:
           - ["nano-cmd", "ویرایشگر متن کاربرپسند ترمینال با راهنمای کلیدها", "دستور nano"]
           - ["nano-save", "Ctrl+O سپس Enter — ذخیره فایل در nano", "nano Ctrl+O"]
+        labels: ["ویرایشگر", "پیکربندی"]
       - q: "nano -l /etc/hosts"
         a: "ویرایش فایل hosts با شماره خط — مفید برای فایل‌های بلند"
         rel:
           - ["nano-l", "Line numbers — نمایش شماره خط در nano", "فلگ nano -l"]
+        labels: ["ویرایشگر"]
       - q: "nano +50 app.conf"
         a: "nano مستقیماً در خط ۵۰ باز می‌شود — صرفه‌جویی در اسکرول در پیکربندی‌های بلند"
         rel:
           - ["nano-jump-line", "+N فایل را مستقیماً در خط N باز می‌کند", "nano +شماره‌خط"]
+        labels: ["ویرایشگر"]
 
   - title: "vim — ویرایشگر حرفه‌ای"
     explanation: |
@@ -64,19 +68,23 @@ sections:
         a: "باز کردن پیکربندی Nginx با vim — همیشه در دسترس، حتی روی سرورهای مینیمال"
         rel:
           - ["vim-cmd", "Vi Improved — ویرایشگر ترمینال قدرتمند با حالت‌ها", "دستور vim"]
+        labels: ["ویرایشگر", "پیکربندی"]
       - q: ":wq"
         a: "در vim: ذخیره (write) و خروج (quit) — در حالت Command وارد کنید"
         rel:
           - ["vim-wq", "Write Quit — ذخیره و خروج در vim", ":wq"]
           - ["vim-command-mode", "دونقطه : حالت Command را در vim فعال می‌کند", "vim :"]
+        labels: ["ویرایشگر"]
       - q: ":q!"
         a: "خروج از vim بدون ذخیره — ! عمل را اجباری می‌کند"
         rel:
           - ["vim-q-bang", "خروج اجباری بدون ذخیره — تمام تغییرات دور ریخته می‌شوند", ":q!"]
+        labels: ["ویرایشگر"]
       - q: "i"
         a: "فعال‌سازی حالت Insert — حالا می‌توان متن وارد کرد"
         rel:
           - ["vim-insert", "i — رفتن به حالت Insert (قبل مکان‌نما)، a = بعد مکان‌نما", "vim i"]
+        labels: ["ویرایشگر"]
 
   - title: "حرکت و جستجو در vim"
     explanation: |
@@ -106,19 +114,23 @@ sections:
         rel:
           - ["vim-substitute", ":%s/قدیم/جدید/g — جستجو و جایگزینی در کل فایل", "vim :%s"]
           - ["vim-g-flag", "g = global — جایگزینی تمام موارد در یک خط", "فلگ vim /g"]
+        labels: ["ویرایشگر"]
       - q: "/ERROR"
         a: "در vim: جستجوی ERROR — n برای نتیجه بعدی، N برای قبلی"
         rel:
           - ["vim-search", "/عبارت جستجوی رو به جلو در vim", "vim /"]
+        labels: ["ویرایشگر"]
       - q: "dd"
         a: "در vim (حالت Normal): حذف خط فعلی — p برای چسباندن"
         rel:
           - ["vim-dd", "Delete — حذف کل خط در vim (و ذخیره در بافر)", "vim dd"]
+        labels: ["ویرایشگر"]
       - q: "yy"
         a: "در vim: کپی خط فعلی (yank) — p برای چسباندن در مکان بعدی"
         rel:
           - ["vim-yy", "Yank — کپی خط در vim", "vim yy"]
           - ["vim-p", "Put/Paste — چسباندن محتوای کپی/حذف‌شده", "vim p"]
+        labels: ["ویرایشگر"]
 
   - title: "🖥️ آزمون ترمینال"
     explanation: |
@@ -127,6 +139,7 @@ sections:
       - q: "کدام دستور vim فایل را ذخیره کرده و از ویرایشگر خارج می‌شود؟"
         type: input
         a: ":wq"
+        labels: ["ویرایشگر"]
       - q: "چگونه در vim به حالت Insert می‌رویم؟"
         type: select
         options:
@@ -135,6 +148,7 @@ sections:
           - text: "فشردن کلید 'Esc'"
           - text: "وارد کردن ':i'"
           - text: "فشردن کلید 'v'"
+        labels: ["ویرایشگر"]
       - q: "دستور ':q!' در vim چه کار می‌کند؟"
         type: select
         options:
@@ -143,6 +157,7 @@ sections:
           - text: "ذخیره و خروج از vim"
           - text: "جستجوی کاراکتر !"
           - text: "باز کردن فایل جدید"
+        labels: ["ویرایشگر"]
       - q: "کدام‌یک از حالت‌های vim وجود دارند؟"
         type: multiple-choice
         options:
@@ -153,3 +168,4 @@ sections:
           - text: "حالت Visual"
             correct: true
           - text: "حالت Debug"
+        labels: ["ویرایشگر"]

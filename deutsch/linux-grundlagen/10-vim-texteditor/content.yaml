@@ -1,7 +1,9 @@
-version: 1
+version: 2
 number: 10
 title: "Vim & Texteditoren"
 description: "nano für Einsteiger, vim für Profis — Dateien direkt im Terminal bearbeiten"
+image: "images/lesson-header.svg"
+image_caption: "Vim-Interface mit Modus-Anzeigen (Normal, Insert, Visual, Command)"
 sections:
   - title: "nano — der benutzerfreundliche Einstieg"
     explanation: |
@@ -28,14 +30,17 @@ sections:
         rel:
           - ["nano-cmd", "Benutzerfreundlicher Terminal-Texteditor mit Tastaturhinweisen", "Befehl nano"]
           - ["nano-save", "Ctrl+O dann Enter — Datei in nano speichern", "nano Ctrl+O"]
+        labels: ["Editor", "Konfiguration"]
       - q: "nano -l /etc/hosts"
         a: "Hosts-Datei mit Zeilennummern bearbeiten — hilfreich bei langen Dateien"
         rel:
           - ["nano-l", "Line numbers — Zeilennummern in nano anzeigen", "nano Flag -l"]
+        labels: ["Editor"]
       - q: "nano +50 app.conf"
         a: "Nano öffnet direkt bei Zeile 50 — spart Scrollen in langen Konfigurationen"
         rel:
           - ["nano-jump-line", "+N öffnet Datei direkt bei Zeile N", "nano +Zeilennummer"]
+        labels: ["Editor"]
 
   - title: "vim — der Profi-Editor"
     explanation: |
@@ -64,19 +69,23 @@ sections:
         a: "Nginx-Konfiguration mit vim öffnen — immer verfügbar, auch auf minimalen Servern"
         rel:
           - ["vim-cmd", "Vi Improved — mächtiger modaler Terminal-Texteditor", "Befehl vim"]
+        labels: ["Editor", "Konfiguration"]
       - q: ":wq"
         a: "In vim: Datei speichern (write) und beenden (quit) — im Command-Modus eingeben"
         rel:
           - ["vim-wq", "Write Quit — in vim speichern und beenden", ":wq"]
           - ["vim-command-mode", "Doppelpunkt : aktiviert den Command-Modus in vim", "vim :"]
+        labels: ["Editor"]
       - q: ":q!"
         a: "vim beenden ohne zu speichern — ! erzwingt die Aktion"
         rel:
           - ["vim-q-bang", "Quit ohne Speichern erzwingen — alle Änderungen verwerfen", ":q!"]
+        labels: ["Editor"]
       - q: "i"
         a: "Insert-Modus aktivieren — jetzt kann Text eingegeben werden"
         rel:
           - ["vim-insert", "i — in Insert-Modus wechseln (vor Cursor), a = nach Cursor", "vim i"]
+        labels: ["Editor"]
 
   - title: "vim Navigation und Suchen"
     explanation: |
@@ -106,19 +115,23 @@ sections:
         rel:
           - ["vim-substitute", ":%s/alt/neu/g — Suchen und Ersetzen in der ganzen Datei", "vim :%s"]
           - ["vim-g-flag", "g = global — alle Vorkommen in einer Zeile ersetzen", "Vim Flag /g"]
+        labels: ["Editor"]
       - q: "/ERROR"
         a: "In vim: nach ERROR suchen — n für nächsten Treffer, N für vorherigen"
         rel:
           - ["vim-search", "/Begriff vorwärts suchen in vim", "vim /"]
+        labels: ["Editor"]
       - q: "dd"
         a: "In vim (Normal-Modus): aktuelle Zeile löschen — p zum Einfügen"
         rel:
           - ["vim-dd", "Delete — ganze Zeile in vim löschen (und in Buffer speichern)", "vim dd"]
+        labels: ["Editor"]
       - q: "yy"
         a: "In vim: aktuelle Zeile kopieren (yank) — p zum Einfügen an nächste Stelle"
         rel:
           - ["vim-yy", "Yank — Zeile kopieren in vim", "vim yy"]
           - ["vim-p", "Put/Paste — kopierten/gelöschten Inhalt einfügen", "vim p"]
+        labels: ["Editor"]
 
   - title: "🖥️ Terminal-Check"
     explanation: |
@@ -127,6 +140,7 @@ sections:
       - q: "Welcher vim-Befehl speichert und beendet den Editor?"
         type: input
         a: ":wq"
+        labels: ["Editor"]
       - q: "Wie wechselt man in vim in den Insert-Modus?"
         type: select
         options:
@@ -135,6 +149,7 @@ sections:
           - text: "Taste 'Esc' drücken"
           - text: "':i' eingeben"
           - text: "Taste 'v' drücken"
+        labels: ["Editor"]
       - q: "Was macht ':q!' in vim?"
         type: select
         options:
@@ -143,6 +158,7 @@ sections:
           - text: "Speichert und beendet vim"
           - text: "Sucht nach dem Zeichen !"
           - text: "Öffnet eine neue Datei"
+        labels: ["Editor"]
       - q: "Welche dieser vim-Modi existieren?"
         type: multiple-choice
         options:
@@ -153,3 +169,4 @@ sections:
           - text: "Visual-Modus"
             correct: true
           - text: "Debug-Modus"
+        labels: ["Editor"]

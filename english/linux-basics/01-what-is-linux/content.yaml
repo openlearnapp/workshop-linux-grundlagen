@@ -1,7 +1,8 @@
-version: 1
+version: 2
 number: 1
 title: "What is Linux?"
 description: "History, distributions and why Linux powers 96% of the world's servers"
+image: "images/lesson-header.svg"
 sections:
   - title: "A student changed the world"
     explanation: |
@@ -25,14 +26,17 @@ sections:
         rel:
           - ["en-uname", "Unix Name — display system information", "command"]
           - ["en-uname-r", "Kernel release version", "flag -r = release"]
+        labels: ["Basics"]
       - q: "uname -a"
         a: "Show all system information at once: kernel, hostname, architecture"
         rel:
           - ["en-uname-a", "All system info (All)", "flag -a = all"]
+        labels: ["Basics"]
       - q: "cat /etc/os-release"
         a: "Shows which Linux distribution and version is installed"
         rel:
           - ["en-os-release", "File containing distribution and version information", "/etc/os-release"]
+        labels: ["Basics", "Filesystem"]
 
   - title: "Distributions — Linux for every purpose"
     explanation: |
@@ -57,14 +61,17 @@ sections:
         rel:
           - ["en-lsb-release", "Linux Standard Base information", "lsb_release command"]
           - ["en-lsb-a", "All available LSB information", "flag -a"]
+        labels: ["Basics"]
       - q: "hostnamectl"
         a: "Shows hostname, OS, kernel and architecture in a clean format"
         rel:
           - ["en-hostnamectl", "Manage hostname and display system information", "command"]
+        labels: ["Basics"]
       - q: "arch"
         a: "Prints the processor architecture (e.g. x86_64 for 64-bit system)"
         rel:
           - ["en-arch-cmd", "Display machine hardware architecture", "arch command"]
+        labels: ["Basics"]
 
   - title: "The Linux filesystem — everything is a file"
     explanation: |
@@ -90,15 +97,18 @@ sections:
         rel:
           - ["en-ls-cmd", "List — show directory contents", "ls command"]
           - ["en-root-dir", "The topmost directory of the Linux filesystem", "/ (root)"]
+        labels: ["Filesystem"]
       - q: "ls /etc | head -5"
         a: "Lists the first 5 entries in the configuration directory /etc"
         rel:
           - ["en-etc-dir", "System configuration files directory", "/etc"]
+        labels: ["Filesystem", "Config"]
       - q: "echo $HOME"
         a: "Prints the path to your home directory (e.g. /home/alice)"
         rel:
           - ["en-echo-cmd", "Print text or variable to the terminal", "echo command"]
           - ["en-home-var", "Environment variable with path to home directory", "$HOME"]
+        labels: ["Filesystem", "Basics"]
 
   - title: "🖥️ Terminal Check"
     explanation: |
@@ -107,6 +117,7 @@ sections:
       - q: "Which command shows the current Linux kernel version?"
         type: input
         a: "uname -r"
+        labels: ["Basics"]
       - q: "What does 'lsb_release -a' show?"
         type: select
         options:
@@ -115,6 +126,7 @@ sections:
           - text: "Deletes all log files"
           - text: "Updates the Linux kernel"
           - text: "Restarts the system"
+        labels: ["Basics"]
       - q: "Which command shows which Linux distribution is installed?"
         type: select
         options:
@@ -123,6 +135,7 @@ sections:
           - text: "cat /etc/passwd"
           - text: "ls /usr/bin"
           - text: "echo $PATH"
+        labels: ["Basics"]
       - q: "Which of these statements about Linux are true?"
         type: multiple-choice
         options:
@@ -133,3 +146,4 @@ sections:
           - text: "Linux has only one single distribution"
           - text: "Android is based on Linux"
             correct: true
+        labels: ["Basics"]

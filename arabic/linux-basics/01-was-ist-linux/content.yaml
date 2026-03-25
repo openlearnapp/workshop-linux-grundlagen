@@ -1,7 +1,8 @@
-version: 1
+version: 2
 number: 1
 title: "ما هو لينكس؟"
 description: "التاريخ، التوزيعات، ولماذا يُشغّل لينكس ٩٦٪ من خوادم العالم"
+image: "images/lesson-header.svg"
 sections:
   - title: "طالب غيّر العالم"
     explanation: |
@@ -25,15 +26,18 @@ sections:
         rel:
           - ["uname", "Unix Name — عرض معلومات النظام", "أمر"]
           - ["uname-r", "عرض إصدار النواة (release)", "العلم -r = release"]
+        labels: ["أساسيات"]
       - q: "uname -a"
         a: "يعرض جميع معلومات النظام دفعة واحدة: النواة، اسم الجهاز، البنية المعمارية"
         rel:
           - ["uname-a", "جميع معلومات النظام (All)", "العلم -a = all"]
+        labels: ["أساسيات"]
       - q: "cat /etc/os-release"
         a: "يعرض توزيعة لينكس المثبتة وإصدارها"
         rel:
           - ["os-release", "ملف يحتوي على معلومات التوزيعة والإصدار", "/etc/os-release"]
           - ["cat-cmd", "عرض محتوى ملف في الطرفية", "أمر cat"]
+        labels: ["أساسيات", "نظام الملفات"]
 
   - title: "التوزيعات — لينكس لكل غرض"
     explanation: |
@@ -58,15 +62,18 @@ sections:
         rel:
           - ["lsb-release", "عرض معلومات Linux Standard Base", "أمر lsb_release"]
           - ["lsb-a-flag", "عرض جميع معلومات LSB المتاحة", "العلم -a"]
+        labels: ["أساسيات"]
       - q: "hostnamectl"
         a: "يعرض اسم الجهاز، نظام التشغيل، النواة والبنية المعمارية بشكل منظم"
         rel:
           - ["hostnamectl", "إدارة وعرض اسم الجهاز ومعلومات النظام", "أمر"]
+        labels: ["أساسيات"]
       - q: "arch"
         a: "يعرض بنية المعالج (مثلاً x86_64 لنظام ٦٤ بت)"
         rel:
           - ["arch-cmd", "عرض بنية المعالج", "أمر arch"]
           - ["x86-64", "بنية Intel/AMD ٦٤ بت، المعيار الحالي", "بنية معمارية"]
+        labels: ["أساسيات"]
 
   - title: "نظام ملفات لينكس — كل شيء ملف"
     explanation: |
@@ -92,16 +99,19 @@ sections:
         rel:
           - ["ls-cmd", "List — عرض محتويات المجلد", "أمر ls"]
           - ["root-dir", "المجلد الأعلى في نظام ملفات لينكس", "/ (Root)"]
+        labels: ["نظام الملفات"]
       - q: "ls /etc | head -5"
         a: "يعرض أول ٥ عناصر في مجلد الإعدادات /etc"
         rel:
           - ["etc-dir", "ملفات إعداد النظام", "المجلد /etc"]
           - ["pipe-head", "تمرير المخرجات عبر pipe إلى head", "| head -5"]
+        labels: ["نظام الملفات", "الإعدادات"]
       - q: "echo $HOME"
         a: "يعرض مسار المجلد الشخصي (مثلاً /home/alice)"
         rel:
           - ["echo-cmd", "عرض نص أو متغير في الطرفية", "أمر echo"]
           - ["home-var", "متغير بيئي يحتوي مسار المجلد الشخصي", "$HOME"]
+        labels: ["نظام الملفات", "أساسيات"]
 
   - title: "🖥️ اختبار الطرفية"
     explanation: |
@@ -110,6 +120,7 @@ sections:
       - q: "أي أمر يعرض إصدار نواة لينكس الحالي؟"
         type: input
         a: "uname -r"
+        labels: ["أساسيات"]
       - q: "ماذا يفعل الأمر 'lsb_release -a'؟"
         type: select
         options:
@@ -118,6 +129,7 @@ sections:
           - text: "يحذف جميع ملفات السجلات"
           - text: "يحدّث نواة لينكس"
           - text: "يعيد تشغيل النظام"
+        labels: ["أساسيات"]
       - q: "أي أمر يعرض توزيعة لينكس المثبتة؟"
         type: select
         options:
@@ -126,6 +138,7 @@ sections:
           - text: "cat /etc/passwd"
           - text: "ls /usr/bin"
           - text: "echo $PATH"
+        labels: ["أساسيات"]
       - q: "أي من العبارات التالية عن لينكس صحيحة؟"
         type: multiple-choice
         options:
@@ -136,3 +149,4 @@ sections:
           - text: "لينكس لديه توزيعة واحدة فقط"
           - text: "Android مبني على لينكس"
             correct: true
+        labels: ["أساسيات"]

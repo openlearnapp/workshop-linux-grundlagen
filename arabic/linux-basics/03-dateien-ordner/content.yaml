@@ -1,7 +1,8 @@
-version: 1
+version: 2
 number: 3
 title: "الملفات والمجلدات"
 description: "touch و mkdir و cp و mv و rm — إنشاء الملفات والمجلدات ونقلها وحذفها"
+image: "images/lesson-header.svg"
 sections:
   - title: "الإنشاء — touch و mkdir"
     explanation: |
@@ -28,15 +29,18 @@ sections:
         a: "ينشئ ملفًا فارغًا باسم README.md في المجلد الحالي"
         rel:
           - ["touch-cmd", "إنشاء ملف فارغ أو تحديث الطابع الزمني", "أمر touch"]
+        labels: ["نظام الملفات"]
       - q: "touch index.html style.css app.js"
         a: "ينشئ ثلاثة ملفات دفعة واحدة — touch يقبل عدة معاملات"
         rel:
           - ["touch-multiple", "إنشاء عدة ملفات في آن واحد باستخدام touch", "touch ملف1 ملف2"]
+        labels: ["نظام الملفات"]
       - q: "mkdir -p ~/projekte/meine-webseite/assets/img"
         a: "ينشئ شجرة المجلدات بالكامل دفعة واحدة، بلا أخطاء إذا كانت المجلدات موجودة"
         rel:
           - ["mkdir-cmd", "Make Directory — إنشاء مجلد", "أمر mkdir"]
           - ["mkdir-p", "Parents — إنشاء جميع المجلدات الوسيطة تلقائيًا", "العلم -p"]
+        labels: ["نظام الملفات"]
 
   - title: "النسخ والنقل — cp و mv"
     explanation: |
@@ -59,19 +63,23 @@ sections:
         rel:
           - ["cp-cmd", "Copy — نسخ الملفات والمجلدات", "أمر cp"]
           - ["bashrc", "ملف إعداد Bash للاختصارات والمتغيرات وغيرها", "~/.bashrc"]
+        labels: ["نظام الملفات"]
       - q: "cp -r /etc/nginx/ ~/nginx-backup/"
         a: "نسخ إعدادات Nginx بالكامل كنسخة احتياطية إلى المجلد الشخصي"
         rel:
           - ["cp-r", "Recursive — نسخ المجلدات بما فيها محتوياتها", "العلم -r"]
+        labels: ["نظام الملفات", "الإعدادات"]
       - q: "mv entwurf.txt final.txt"
         a: "إعادة تسمية ملف — mv بدون مسار يُعيد التسمية فقط"
         rel:
           - ["mv-cmd", "Move — نقل الملفات أو إعادة تسميتها", "أمر mv"]
+        labels: ["نظام الملفات"]
       - q: "mv ~/Downloads/*.pdf ~/Dokumente/PDFs/"
         a: "نقل جميع ملفات PDF من التنزيلات إلى مجلد PDFs"
         rel:
           - ["glob-star", "المحرف البديل * يطابق أي حروف", "Wildcard *"]
           - ["mv-multiple", "نقل عدة ملفات باستخدام المحرفات البديلة", "mv *.pdf وجهة/"]
+        labels: ["نظام الملفات"]
 
   - title: "الحذف — rm و rmdir"
     explanation: |
@@ -101,18 +109,22 @@ sections:
         rel:
           - ["rm-cmd", "Remove — حذف الملفات (بلا سلة محذوفات!)", "أمر rm"]
           - ["rm-i", "Interactive — السؤال قبل الحذف", "العلم -i"]
+        labels: ["نظام الملفات"]
       - q: "rm -r ~/projekte/altes-projekt/"
         a: "يحذف مجلد altes-projekt ومحتوياته بالكامل"
         rel:
           - ["rm-r", "Recursive — حذف المجلدات ومحتوياتها", "العلم -r"]
+        labels: ["نظام الملفات"]
       - q: "rmdir leerer-ordner/"
         a: "يحذف المجلدات الفارغة فقط — أكثر أمانًا من rm -r، يعطي خطأ إذا لم يكن فارغًا"
         rel:
           - ["rmdir-cmd", "Remove Directory — حذف المجلدات الفارغة فقط", "أمر rmdir"]
+        labels: ["نظام الملفات"]
       - q: "ls *.log && rm *.log"
         a: "أولاً عرض جميع ملفات .log ثم حذفها — طريقة آمنة"
         rel:
           - ["safe-delete", "أولاً ls ثم rm — حذف آمن مع معاينة", "ممارسة جيدة"]
+        labels: ["نظام الملفات"]
 
   - title: "🖥️ اختبار الطرفية"
     explanation: |
@@ -121,6 +133,7 @@ sections:
       - q: "أي أمر ينشئ ملفًا فارغًا باسم 'notizen.txt'؟"
         type: input
         a: "touch notizen.txt"
+        labels: ["نظام الملفات"]
       - q: "ماذا يفعل العلم '-p' في 'mkdir -p projekte/web/assets'؟"
         type: select
         options:
@@ -129,6 +142,7 @@ sections:
           - text: "يسأل قبل الإنشاء"
           - text: "يعرض المجلد المُنشأ"
           - text: "يحمي المجلد من الحذف"
+        labels: ["نظام الملفات"]
       - q: "أي أمر يُعيد تسمية ملف من 'entwurf.txt' إلى 'final.txt'؟"
         type: select
         options:
@@ -137,6 +151,7 @@ sections:
           - text: "cp entwurf.txt final.txt"
           - text: "rename entwurf.txt final.txt"
           - text: "touch final.txt entwurf.txt"
+        labels: ["نظام الملفات"]
       - q: "أي من العبارات التالية عن 'rm' صحيحة؟"
         type: multiple-choice
         options:
@@ -147,3 +162,4 @@ sections:
           - text: "rm -i يسأل قبل الحذف"
             correct: true
           - text: "rm يمكنه التراجع عن الحذف"
+        labels: ["نظام الملفات"]

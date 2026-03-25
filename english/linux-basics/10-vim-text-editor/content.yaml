@@ -1,7 +1,8 @@
-version: 1
+version: 2
 number: 10
 title: "Vim & Text Editors"
 description: "nano for beginners, vim for power users — edit files directly in the terminal"
+image: "images/lesson-header.svg"
 sections:
   - title: "nano — the beginner-friendly editor"
     explanation: |
@@ -28,14 +29,17 @@ sections:
         rel:
           - ["en-nano-cmd", "Beginner-friendly terminal text editor with keyboard hints", "nano command"]
           - ["en-nano-save", "Ctrl+O then Enter — save file in nano", "nano Ctrl+O"]
+        labels: ["Editor", "Config"]
       - q: "nano -l /etc/hosts"
         a: "Edit hosts file with line numbers — helpful for long files"
         rel:
           - ["en-nano-l", "Line numbers — show line numbers in nano", "nano flag -l"]
+        labels: ["Editor"]
       - q: "nano +50 app.conf"
         a: "Nano opens directly at line 50 — saves scrolling in long configs"
         rel:
           - ["en-nano-jump", "+N opens file directly at line N", "nano +line-number"]
+        labels: ["Editor"]
 
   - title: "vim — the power editor"
     explanation: |
@@ -64,19 +68,23 @@ sections:
         a: "Open Nginx config with vim — always available, even on minimal servers"
         rel:
           - ["en-vim-cmd", "Vi Improved — powerful modal terminal text editor", "vim command"]
+        labels: ["Editor", "Config"]
       - q: ":wq"
         a: "In vim: save file (write) and quit — enter in Command mode"
         rel:
           - ["en-vim-wq", "Write Quit — save and exit in vim", ":wq"]
           - ["en-vim-command-mode", "Colon : activates Command mode in vim", "vim :"]
+        labels: ["Editor"]
       - q: ":q!"
         a: "Exit vim without saving — ! forces the action"
         rel:
           - ["en-vim-q-bang", "Quit without saving — discard all changes", ":q!"]
+        labels: ["Editor"]
       - q: "i"
         a: "Activate Insert mode — now text can be entered"
         rel:
           - ["en-vim-insert", "i — switch to Insert mode (before cursor), a = after cursor", "vim i"]
+        labels: ["Editor"]
 
   - title: "vim navigation and searching"
     explanation: |
@@ -106,19 +114,23 @@ sections:
         rel:
           - ["en-vim-substitute", ":%s/old/new/g — search and replace in entire file", "vim :%s"]
           - ["en-vim-g-flag", "g = global — replace all occurrences in a line", "vim flag /g"]
+        labels: ["Editor"]
       - q: "/ERROR"
         a: "In vim: search for ERROR — n for next match, N for previous"
         rel:
           - ["en-vim-search", "/term search forward in vim", "vim /"]
+        labels: ["Editor"]
       - q: "dd"
         a: "In vim (Normal mode): delete current line — p to paste"
         rel:
           - ["en-vim-dd", "Delete — delete entire line in vim (stored in buffer)", "vim dd"]
+        labels: ["Editor"]
       - q: "yy"
         a: "In vim: copy current line (yank) — p to paste at next position"
         rel:
           - ["en-vim-yy", "Yank — copy line in vim", "vim yy"]
           - ["en-vim-p", "Put/Paste — insert copied/deleted content", "vim p"]
+        labels: ["Editor"]
 
   - title: "🖥️ Terminal Check"
     explanation: |
@@ -127,6 +139,7 @@ sections:
       - q: "Which vim command saves and exits the editor?"
         type: input
         a: ":wq"
+        labels: ["Editor"]
       - q: "How do you switch to Insert mode in vim?"
         type: select
         options:
@@ -135,6 +148,7 @@ sections:
           - text: "Press the 'Esc' key"
           - text: "Type ':i'"
           - text: "Press the 'v' key"
+        labels: ["Editor"]
       - q: "What does ':q!' do in vim?"
         type: select
         options:
@@ -143,6 +157,7 @@ sections:
           - text: "Saves and exits vim"
           - text: "Searches for the character !"
           - text: "Opens a new file"
+        labels: ["Editor"]
       - q: "Which of these vim modes exist?"
         type: multiple-choice
         options:
@@ -153,3 +168,4 @@ sections:
           - text: "Visual mode"
             correct: true
           - text: "Debug mode"
+        labels: ["Editor"]

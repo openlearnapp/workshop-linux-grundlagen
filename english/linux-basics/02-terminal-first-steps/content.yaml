@@ -1,7 +1,8 @@
-version: 1
+version: 2
 number: 2
 title: "The Terminal — first steps"
 description: "Master pwd, ls and cd — the three fundamental commands for navigating the filesystem"
+image: "images/lesson-header.svg"
 sections:
   - title: "Opening the terminal — where am I?"
     explanation: |
@@ -25,14 +26,17 @@ sections:
         a: "Shows the current path, e.g. /home/alice — you always know where you are"
         rel:
           - ["en-pwd", "Print Working Directory — show current directory", "command"]
+        labels: ["Basics"]
       - q: "whoami"
         a: "Prints your username — useful when working as multiple users"
         rel:
           - ["en-whoami", "Print the current username", "command"]
+        labels: ["Basics"]
       - q: "date"
         a: "Shows current date and time"
         rel:
           - ["en-date-cmd", "Display current date and time", "date command"]
+        labels: ["Basics"]
 
   - title: "ls — what's here?"
     explanation: |
@@ -59,19 +63,23 @@ sections:
         rel:
           - ["en-ls-l", "Long format — detailed view", "flag -l"]
           - ["en-ls-a", "All — also show hidden files (.dotfiles)", "flag -a"]
+        labels: ["Basics", "Filesystem"]
       - q: "ls -lh /var/log"
         a: "Show log files with human-readable size values (KB, MB)"
         rel:
           - ["en-ls-h", "Human-readable — file sizes in KB/MB/GB", "flag -h"]
+        labels: ["Filesystem"]
       - q: "ls -lt ~/.ssh"
         a: "Show SSH config files sorted by most recently modified"
         rel:
           - ["en-ls-t", "Time — sort by modification time, newest first", "flag -t"]
           - ["en-ssh-dir", "Directory for SSH keys and configuration", "~/.ssh"]
+        labels: ["Filesystem", "Security"]
       - q: "ls -la /etc/nginx/"
         a: "Show all Nginx configuration files with full details"
         rel:
           - ["en-nginx-dir", "Configuration directory of the Nginx web server", "/etc/nginx/"]
+        labels: ["Filesystem", "Config"]
 
   - title: "cd — where do you want to go?"
     explanation: |
@@ -97,22 +105,27 @@ sections:
         rel:
           - ["en-cd-cmd", "Change Directory — switch directories", "cd command"]
           - ["en-absolute-path", "Path that always starts with /, independent of location", "absolute path"]
+        labels: ["Filesystem"]
       - q: "cd .."
         a: "Go one level up — /home/alice becomes /home"
         rel:
           - ["en-dotdot", "Two dots = parent directory", ".."]
+        labels: ["Filesystem"]
       - q: "cd ~"
         a: "Go to your home directory — no matter where you are"
         rel:
           - ["en-tilde", "Shortcut for your own home directory", "~"]
+        labels: ["Filesystem"]
       - q: "cd -"
         a: "Switch to the last visited directory — great for toggling between two places"
         rel:
           - ["en-cd-minus", "Return to previous directory", "cd -"]
+        labels: ["Filesystem"]
       - q: "cd /home/alice/projects && pwd"
         a: "Change to projects directory and immediately confirm the path"
         rel:
           - ["en-double-amp", "Chain two commands — second runs only if first succeeds", "&&"]
+        labels: ["Filesystem"]
 
   - title: "🖥️ Terminal Check"
     explanation: |
@@ -121,6 +134,7 @@ sections:
       - q: "Which command shows your current directory?"
         type: input
         a: "pwd"
+        labels: ["Basics"]
       - q: "What does 'ls -la' show?"
         type: select
         options:
@@ -129,6 +143,7 @@ sections:
           - text: "Deletes all files"
           - text: "Undoes the last action"
           - text: "Shows log files"
+        labels: ["Basics", "Filesystem"]
       - q: "Which command switches to the last visited directory?"
         type: select
         options:
@@ -137,6 +152,7 @@ sections:
           - text: "cd .."
           - text: "cd ~"
           - text: "cd /"
+        labels: ["Filesystem"]
       - q: "Which of these flags belong to the 'ls' command?"
         type: multiple-choice
         options:
@@ -149,3 +165,4 @@ sections:
             correct: true
           - text: "-t"
             correct: true
+        labels: ["Basics"]

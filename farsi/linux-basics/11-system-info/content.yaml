@@ -1,7 +1,8 @@
-version: 1
+version: 2
 number: 11
 title: "اطلاعات سیستم"
 description: "df، du، free، uname و history — نظارت بر وضعیت سیستم"
+image: "images/lesson-header.svg"
 sections:
   - title: "فضای ذخیره‌سازی — df و du"
     explanation: |
@@ -24,20 +25,24 @@ sections:
         rel:
           - ["df-cmd", "Disk Free — نمایش استفاده دیسک", "دستور df"]
           - ["df-h", "Human-readable — حجم‌ها به KB/MB/GB به جای بایت", "فلگ -h"]
+        labels: ["فایل‌سیستم"]
       - q: "df -h /"
         a: "فقط استفاده پارتیشن Root — مهم‌ترین پارتیشن"
         rel:
           - ["df-root", "بررسی استفاده پارتیشن Root /", "df -h /"]
+        labels: ["فایل‌سیستم"]
       - q: "du -sh ~/Downloads/*"
         a: "حجم هر آیتم در پوشه Downloads"
         rel:
           - ["du-cmd", "Disk Usage — مصرف فضای فایل‌ها/پوشه‌ها", "دستور du"]
           - ["du-sh", "s=summary (حجم کل)، h=human-readable", "فلگ‌های -sh"]
+        labels: ["فایل‌سیستم"]
       - q: "du -h --max-depth=1 /var | sort -rh | head -10"
         a: "۱۰ زیرپوشه بزرگ‌تر /var مرتب بر اساس حجم — پیدا کردن فضاخورها"
         rel:
           - ["du-max-depth", "نمایش فقط تا عمق مشخصی از پوشه", "--max-depth=1"]
           - ["sort-rh", "r=معکوس (نزولی)، h=مرتب‌سازی حجم‌های خوانا", "sort -rh"]
+        labels: ["فایل‌سیستم"]
 
   - title: "حافظه و CPU — free و uptime"
     explanation: |
@@ -66,15 +71,18 @@ sections:
         rel:
           - ["free-cmd", "نمایش مصرف RAM و استفاده Swap", "دستور free"]
           - ["free-h", "Human-readable — حافظه به MB/GB به جای بایت", "free -h"]
+        labels: ["مبانی"]
       - q: "uptime"
         a: "مدت روشن بودن سیستم، کاربران فعال و CPU Load Average ۱/۵/۱۵ دقیقه اخیر"
         rel:
           - ["uptime-cmd", "مدت روشن بودن و بارگذاری سیستم در دقایق اخیر", "دستور uptime"]
           - ["load-average", "میانگین بارگذاری CPU: 1=۱۰۰٪ در یک هسته", "Load Average"]
+        labels: ["مبانی"]
       - q: "vmstat 2 5"
         a: "آمار سیستم هر ۲ ثانیه، ۵ بار — CPU، RAM، I/O، پروسس‌ها"
         rel:
           - ["vmstat-cmd", "Virtual Memory Statistics — داده‌های دقیق عملکرد سیستم", "دستور vmstat"]
+        labels: ["مبانی"]
 
   - title: "history و تاریخچه دستورات"
     explanation: |
@@ -99,20 +107,24 @@ sections:
         a: "۲۰ دستور آخر وارد‌شده"
         rel:
           - ["history-cmd", "نمایش تاریخچه دستورات واردشده", "دستور history"]
+        labels: ["مبانی"]
       - q: "history | grep \"apt install\""
         a: "جستجوی تمام دستورات apt install در history — چه وقت چه چیزی نصب کرده‌ام؟"
         rel:
           - ["history-grep", "ترکیب history با grep — جستجوی دستورات خاص از تاریخچه", "history | grep"]
+        labels: ["مبانی"]
       - q: "!!"
         a: "تکرار فوری آخرین دستور — خصوصاً مفید برای: sudo !!"
         rel:
           - ["bang-bang", "!! آخرین دستور واردشده را دوباره اجرا می‌کند", "!!"]
           - ["sudo-bang-bang", "sudo !! — تکرار آخرین دستور با مجوز مدیر", "sudo !!"]
+        labels: ["مبانی"]
       - q: "cat /proc/cpuinfo | grep \"model name\" | head -1"
         a: "خواندن مدل و نوع CPU از اطلاعات پروسس Kernel"
         rel:
           - ["proc-cpuinfo", "فایل Kernel با اطلاعات دقیق CPU", "/proc/cpuinfo"]
           - ["proc-filesystem", "/proc یک سیستم فایل واقعی نیست — شامل اطلاعات Kernel به صورت فایل", "/proc"]
+        labels: ["مبانی"]
 
   - title: "🖥️ آزمون ترمینال"
     explanation: |
@@ -121,6 +133,7 @@ sections:
       - q: "کدام دستور استفاده دیسک تمام پارتیشن‌ها را نشان می‌دهد؟"
         type: input
         a: "df -h"
+        labels: ["فایل‌سیستم"]
       - q: "ستون 'available' در 'free -h' چه چیزی را نشان می‌دهد؟"
         type: select
         options:
@@ -129,6 +142,7 @@ sections:
           - text: "فضای آزاد دیسک"
           - text: "حافظه Swap استفاده‌شده"
           - text: "میزان استفاده CPU به درصد"
+        labels: ["مبانی"]
       - q: "کدام دستور در تاریخچه دستورات 'apt install' را جستجو می‌کند؟"
         type: select
         options:
@@ -137,6 +151,7 @@ sections:
           - text: "history search \"apt install\""
           - text: "grep history \"apt install\""
           - text: "find history -name \"apt install\""
+        labels: ["مبانی"]
       - q: "کدام‌یک از این دستورات اطلاعات سیستم را نشان می‌دهند؟"
         type: multiple-choice
         options:
@@ -147,3 +162,4 @@ sections:
           - text: "uptime"
             correct: true
           - text: "chmod 755"
+        labels: ["مبانی"]

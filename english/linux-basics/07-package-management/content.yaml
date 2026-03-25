@@ -1,7 +1,8 @@
-version: 1
+version: 2
 number: 7
 title: "Package Management"
 description: "apt, snap and dpkg — install, update and manage software under Ubuntu/Debian"
+image: "images/lesson-header.svg"
 sections:
   - title: "apt — the command line app store"
     explanation: |
@@ -26,18 +27,22 @@ sections:
         rel:
           - ["en-apt-cmd", "Advanced Package Tool — package management for Debian/Ubuntu", "apt command"]
           - ["en-apt-update", "Update package lists from servers (not the packages themselves)", "apt update"]
+        labels: ["Config"]
       - q: "sudo apt upgrade"
         a: "Updates all installed packages to the latest version"
         rel:
           - ["en-apt-upgrade", "Update all installed packages to latest version", "apt upgrade"]
+        labels: ["Config"]
       - q: "sudo apt install git curl wget"
         a: "Install three packages at once — apt accepts multiple package names"
         rel:
           - ["en-apt-install", "Install package(s)", "apt install"]
+        labels: ["Config"]
       - q: "sudo apt update && sudo apt upgrade -y"
         a: "Complete update in one command — -y answers all prompts automatically with yes"
         rel:
           - ["en-apt-y", "Yes — automatically confirm all prompts", "flag -y"]
+        labels: ["Config"]
 
   - title: "Searching, removing and cleaning up packages"
     explanation: |
@@ -59,19 +64,23 @@ sections:
         a: "Search for packages with 'text editor' in name or description"
         rel:
           - ["en-apt-search", "Search in package database", "apt search"]
+        labels: ["Config"]
       - q: "apt show nodejs"
         a: "Shows details about nodejs: version, dependencies, description, size"
         rel:
           - ["en-apt-show", "Show detailed information about a package", "apt show"]
+        labels: ["Config"]
       - q: "sudo apt remove --purge apache2"
         a: "Remove Apache2 completely including all configuration files"
         rel:
           - ["en-apt-purge", "Remove package and all configuration files completely", "apt purge / --purge"]
+        labels: ["Config"]
       - q: "sudo apt autoremove && sudo apt clean"
         a: "Remove orphaned packages and clear package cache — frees disk space"
         rel:
           - ["en-apt-autoremove", "Remove automatically installed, no longer needed packages", "apt autoremove"]
           - ["en-apt-clean", "Delete downloaded package files from cache", "apt clean"]
+        labels: ["Config"]
 
   - title: "dpkg and snap — alternative installation methods"
     explanation: |
@@ -99,15 +108,18 @@ sections:
         rel:
           - ["en-dpkg-cmd", "Debian Package — directly manage .deb files", "dpkg command"]
           - ["en-dpkg-i", "Install — install a .deb file", "flag -i"]
+        labels: ["Config"]
       - q: "dpkg -l | grep \"^ii\""
         a: "List all properly installed packages (ii = installed properly)"
         rel:
           - ["en-dpkg-l", "List — all known packages and their status", "dpkg -l"]
+        labels: ["Config"]
       - q: "snap install code --classic"
         a: "Install Visual Studio Code via snap — --classic allows full system access"
         rel:
           - ["en-snap-cmd", "Snap package system — isolated, auto-updating apps", "snap command"]
           - ["en-snap-classic", "Classic confinement — full system access for IDE-type programs", "flag --classic"]
+        labels: ["Config"]
 
   - title: "🖥️ Terminal Check"
     explanation: |
@@ -116,6 +128,7 @@ sections:
       - q: "Which command updates the package lists under Ubuntu/Debian?"
         type: input
         a: "sudo apt update"
+        labels: ["Config"]
       - q: "What is the difference between 'apt update' and 'apt upgrade'?"
         type: select
         options:
@@ -124,6 +137,7 @@ sections:
           - text: "update installs packages, upgrade removes old ones"
           - text: "update and upgrade do the same thing"
           - text: "upgrade fetches new package lists, update updates the packages"
+        labels: ["Config"]
       - q: "Which command removes a package including its configuration files?"
         type: select
         options:
@@ -132,6 +146,7 @@ sections:
           - text: "sudo apt remove nginx"
           - text: "sudo apt delete nginx"
           - text: "sudo apt uninstall nginx"
+        labels: ["Config"]
       - q: "Which of these statements about apt are true?"
         type: multiple-choice
         options:
@@ -142,3 +157,4 @@ sections:
           - text: "apt search searches the package database"
             correct: true
           - text: "apt requires no administrator rights"
+        labels: ["Config"]

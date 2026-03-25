@@ -1,7 +1,9 @@
-version: 1
+version: 2
 number: 1
 title: "Was ist Linux?"
 description: "Geschichte, Distributionen und warum Linux 96% aller Server weltweit antreibt"
+image: "images/lesson-header.svg"
+image_caption: "Tux Penguin mit Server-Racks"
 sections:
   - title: "Ein Student verändert die Welt"
     explanation: |
@@ -25,15 +27,18 @@ sections:
         rel:
           - ["uname", "Unix Name — Systeminformationen anzeigen", "Befehl"]
           - ["uname-r", "Kernel-Release-Version ausgeben", "Flag -r = release"]
+        labels: ["Basics"]
       - q: "uname -a"
         a: "Alle Systeminformationen auf einmal: Kernel, Hostname, Architektur"
         rel:
           - ["uname-a", "Alle Systeminfos (All)", "Flag -a = all"]
+        labels: ["Basics"]
       - q: "cat /etc/os-release"
         a: "Zeigt welche Linux-Distribution und Version installiert ist"
         rel:
           - ["os-release", "Datei mit Distribution und Versionsinformationen", "/etc/os-release"]
           - ["cat-cmd", "Dateiinhalt im Terminal ausgeben", "Befehl cat"]
+        labels: ["Basics", "Dateisystem"]
 
   - title: "Distributionen — Linux für jeden Zweck"
     explanation: |
@@ -58,15 +63,18 @@ sections:
         rel:
           - ["lsb-release", "Linux Standard Base Informationen anzeigen", "Befehl lsb_release"]
           - ["lsb-a-flag", "Alle verfügbaren LSB-Infos ausgeben", "Flag -a"]
+        labels: ["Basics"]
       - q: "hostnamectl"
         a: "Zeigt Hostname, Betriebssystem, Kernel und Architektur in übersichtlicher Form"
         rel:
           - ["hostnamectl", "Hostname und Systeminformationen verwalten", "Befehl"]
+        labels: ["Basics"]
       - q: "arch"
         a: "Gibt die Prozessorarchitektur aus (z.B. x86_64 für 64-Bit-System)"
         rel:
           - ["arch-cmd", "Prozessorarchitektur anzeigen", "Befehl arch"]
           - ["x86-64", "64-Bit Intel/AMD Architektur, heute Standard", "Architektur"]
+        labels: ["Basics"]
 
   - title: "Das Linux-Dateisystem — alles ist eine Datei"
     explanation: |
@@ -92,16 +100,19 @@ sections:
         rel:
           - ["ls-cmd", "List — Verzeichnisinhalt anzeigen", "Befehl ls"]
           - ["root-dir", "Das oberste Verzeichnis des Linux-Dateisystems", "/ (Root)"]
+        labels: ["Dateisystem"]
       - q: "ls /etc | head -5"
         a: "Listet die ersten 5 Einträge im Konfigurationsordner /etc"
         rel:
           - ["etc-dir", "Konfigurationsdateien des Systems", "Verzeichnis /etc"]
           - ["pipe-head", "Ausgabe durch pipe an head weitergeben", "| head -5"]
+        labels: ["Dateisystem", "Konfiguration"]
       - q: "echo $HOME"
         a: "Gibt den Pfad zum eigenen Home-Verzeichnis aus (z.B. /home/alice)"
         rel:
           - ["echo-cmd", "Text oder Variable im Terminal ausgeben", "Befehl echo"]
           - ["home-var", "Umgebungsvariable mit Pfad zum Home-Verzeichnis", "$HOME"]
+        labels: ["Dateisystem", "Basics"]
 
   - title: "🖥️ Terminal-Check"
     explanation: |
@@ -110,6 +121,7 @@ sections:
       - q: "Welcher Befehl zeigt die aktuelle Linux-Kernel-Version an?"
         type: input
         a: "uname -r"
+        labels: ["Basics"]
       - q: "Was macht der Befehl 'lsb_release -a'?"
         type: select
         options:
@@ -118,6 +130,7 @@ sections:
           - text: "Löscht alle Log-Dateien"
           - text: "Aktualisiert den Linux-Kernel"
           - text: "Startet das System neu"
+        labels: ["Basics"]
       - q: "Welcher Befehl zeigt, welche Linux-Distribution installiert ist?"
         type: select
         options:
@@ -126,6 +139,7 @@ sections:
           - text: "cat /etc/passwd"
           - text: "ls /usr/bin"
           - text: "echo $PATH"
+        labels: ["Basics"]
       - q: "Welche dieser Aussagen über Linux stimmen?"
         type: multiple-choice
         options:
@@ -136,3 +150,4 @@ sections:
           - text: "Linux hat nur eine einzige Distribution"
           - text: "Android basiert auf Linux"
             correct: true
+        labels: ["Basics"]

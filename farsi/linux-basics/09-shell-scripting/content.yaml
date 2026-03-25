@@ -1,7 +1,8 @@
-version: 1
+version: 2
 number: 9
 title: "مبانی Shell Scripting"
 description: "متغیرها، شرط‌های if و حلقه‌ها — نوشتن اسکریپت‌های خودتان و خودکارسازی کارها"
+image: "images/lesson-header.svg"
 sections:
   - title: "اولین اسکریپت شما — Shebang و متغیرها"
     explanation: |
@@ -33,20 +34,24 @@ sections:
         a: "Shebang — اولین خط هر اسکریپت Bash، مفسر را مشخص می‌کند"
         rel:
           - ["shebang", "اولین خط اسکریپت که مفسر را تعیین می‌کند", "#!/bin/bash"]
+        labels: ["اسکریپت"]
       - q: "NAME=\"Alice\" && echo \"Hallo, $NAME\""
         a: "مقداردهی متغیر و استفاده فوری — بدون فاصله دور علامت مساوی!"
         rel:
           - ["bash-variable", "متغیر در Bash: NAME=مقدار (بدون $)، $NAME (هنگام استفاده)", "متغیر"]
+        labels: ["اسکریپت"]
       - q: "HEUTE=$(date +%d.%m.%Y)"
         a: "ذخیره خروجی دستور در متغیر — $(date) تاریخ فعلی را برمی‌گرداند"
         rel:
           - ["command-sub", "جایگزینی دستور: $(دستور) خروجی را در متغیر ذخیره می‌کند", "$()"]
           - ["date-format", "فرمت تاریخ: %d=روز، %m=ماه، %Y=سال", "date +فرمت"]
+        labels: ["اسکریپت"]
       - q: "echo \"Pfad: $HOME, User: $USER\""
         a: "استفاده از متغیرهای محیطی داخلی — HOME و USER همیشه در دسترس هستند"
         rel:
           - ["env-var-user", "متغیر محیطی با نام کاربر فعلی", "$USER"]
           - ["env-var-home", "متغیر محیطی با مسیر پوشه خانگی", "$HOME"]
+        labels: ["اسکریپت"]
 
   - title: "شرط‌های if — تصمیم‌گیری در اسکریپت"
     explanation: |
@@ -81,14 +86,17 @@ sections:
         rel:
           - ["if-bash", "if [ شرط ]; then دستورات; fi — ساختار پایه", "if-then-fi"]
           - ["test-f", "-f تست می‌کند آیا فایل وجود دارد (file)", "عملگر تست -f"]
+        labels: ["اسکریپت", "امنیت"]
       - q: "[ -d /var/www ] && echo \"Webverzeichnis existiert\""
         a: "فرم کوتاه: && دستور دوم را فقط اجرا می‌کند اگر شرط اول درست باشد"
         rel:
           - ["test-d", "-d تست می‌کند آیا پوشه وجود دارد (directory)", "عملگر تست -d"]
+        labels: ["اسکریپت"]
       - q: "if [ \"$USER\" = \"root\" ]; then echo \"Du bist root!\"; fi"
         a: "بررسی اینکه آیا اسکریپت با root اجرا شده — مهم برای اسکریپت‌های نصب"
         rel:
           - ["string-compare", "مقایسه رشته‌ها در Bash با =", "مقایسه رشته"]
+        labels: ["اسکریپت", "امنیت"]
 
   - title: "حلقه‌ها — خودکارسازی تکرارها"
     explanation: |
@@ -125,20 +133,24 @@ sections:
         a: "حلقه for روی یک لیست — اعداد ۱ تا ۵ را چاپ می‌کند"
         rel:
           - ["for-loop", "حلقه for: for VAR in لیست; do ... done", "for-do-done"]
+        labels: ["اسکریپت"]
       - q: "for USER in alice bob charlie; do useradd \"$USER\"; done"
         a: "ساخت چند کاربر یکجا — کار معمول مدیر سیستم"
         rel:
           - ["for-list", "حلقه for روی لیستی از مقادیر", "for VAR in مقدار۱ مقدار۲"]
+        labels: ["اسکریپت", "امنیت"]
       - q: "for f in /var/log/*.log; do echo \"$(wc -l < $f) Zeilen: $f\"; done"
         a: "شمارش خطوط تمام فایل‌های لاگ و لیست کردن آنها"
         rel:
           - ["for-glob", "حلقه for با الگوی Glob روی فایل‌ها", "for f in *.ext"]
           - ["wc-l", "Word Count -l — شمارش خطوط یک فایل", "wc -l"]
+        labels: ["اسکریپت", "فایل‌سیستم"]
       - q: "while true; do df -h / | grep '/'; sleep 60; done"
         a: "نظارت بر فضای دیسک هر دقیقه — حلقه بی‌نهایت با sleep"
         rel:
           - ["while-loop", "حلقه while: while شرط; do ... done", "while-do-done"]
           - ["while-true", "while true — حلقه بی‌نهایت، فقط با Ctrl+C متوقف می‌شود", "while true"]
+        labels: ["اسکریپت"]
 
   - title: "🖥️ آزمون ترمینال"
     explanation: |
@@ -147,6 +159,7 @@ sections:
       - q: "اولین خط هر اسکریپت Bash (Shebang) چیست؟"
         type: input
         a: "#!/bin/bash"
+        labels: ["اسکریپت"]
       - q: "هنگام مقداردهی متغیر Bash چه نکته‌ای باید رعایت شود؟"
         type: select
         options:
@@ -155,6 +168,7 @@ sections:
           - text: "همیشه $ قبل از نام متغیر: $NAME=\"Alice\""
           - text: "متغیرها باید با حروف بزرگ باشند"
           - text: "متغیرها باید با export تعریف شوند"
+        labels: ["اسکریپت"]
       - q: "کدام نحو شرط if را در Bash به درستی می‌بندد؟"
         type: select
         options:
@@ -163,6 +177,7 @@ sections:
           - text: "end"
           - text: "endif"
           - text: "done"
+        labels: ["اسکریپت"]
       - q: "کدام‌یک از این جملات درباره Shell Scripting درست هستند؟"
         type: multiple-choice
         options:
@@ -173,3 +188,4 @@ sections:
           - text: "-f بررسی می‌کند آیا فایل وجود دارد"
             correct: true
           - text: "فاصله دور = در متغیرها الزامی است"
+        labels: ["اسکریپت"]
