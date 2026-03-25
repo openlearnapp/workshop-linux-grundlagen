@@ -1,7 +1,9 @@
-version: 1
+version: 2
 number: 3
 title: "Dateien & Ordner"
 description: "touch, mkdir, cp, mv und rm — Dateien und Verzeichnisse erstellen, verschieben und löschen"
+image: "images/lesson-header.svg"
+image_caption: "Verzeichnisbaum mit Dateien und Ordnern"
 sections:
   - title: "Erstellen — touch und mkdir"
     explanation: |
@@ -28,15 +30,18 @@ sections:
         a: "Erstellt eine leere Datei README.md im aktuellen Verzeichnis"
         rel:
           - ["touch-cmd", "Leere Datei erstellen oder Timestamp aktualisieren", "Befehl touch"]
+        labels: ["Dateisystem"]
       - q: "touch index.html style.css app.js"
         a: "Erstellt drei Dateien auf einmal — touch akzeptiert mehrere Argumente"
         rel:
           - ["touch-multiple", "Mehrere Dateien gleichzeitig mit touch erstellen", "touch Datei1 Datei2"]
+        labels: ["Dateisystem"]
       - q: "mkdir -p ~/projekte/meine-webseite/assets/img"
         a: "Erstellt den gesamten Verzeichnisbaum auf einmal, keine Fehler bei vorhandenen Ordnern"
         rel:
           - ["mkdir-cmd", "Make Directory — Verzeichnis erstellen", "Befehl mkdir"]
           - ["mkdir-p", "Parents — alle Zwischenverzeichnisse automatisch erstellen", "Flag -p"]
+        labels: ["Dateisystem"]
 
   - title: "Kopieren und Verschieben — cp und mv"
     explanation: |
@@ -59,19 +64,23 @@ sections:
         rel:
           - ["cp-cmd", "Copy — Dateien und Verzeichnisse kopieren", "Befehl cp"]
           - ["bashrc", "Bash-Konfigurationsdatei für Aliase, Variablen etc.", "~/.bashrc"]
+        labels: ["Dateisystem"]
       - q: "cp -r /etc/nginx/ ~/nginx-backup/"
         a: "Gesamte Nginx-Konfiguration als Backup ins Home-Verzeichnis kopieren"
         rel:
           - ["cp-r", "Recursive — Verzeichnisse inkl. Inhalt kopieren", "Flag -r"]
+        labels: ["Dateisystem", "Konfiguration"]
       - q: "mv entwurf.txt final.txt"
         a: "Datei umbenennen — mv ohne Pfad benennt einfach um"
         rel:
           - ["mv-cmd", "Move — Dateien verschieben oder umbenennen", "Befehl mv"]
+        labels: ["Dateisystem"]
       - q: "mv ~/Downloads/*.pdf ~/Dokumente/PDFs/"
         a: "Alle PDF-Dateien aus Downloads in den PDFs-Ordner verschieben"
         rel:
           - ["glob-star", "Platzhalter * passt auf beliebige Zeichen", "Wildcard *"]
           - ["mv-multiple", "Mehrere Dateien mit Platzhaltern verschieben", "mv *.pdf Ziel/"]
+        labels: ["Dateisystem"]
 
   - title: "Löschen — rm und rmdir"
     explanation: |
@@ -101,18 +110,22 @@ sections:
         rel:
           - ["rm-cmd", "Remove — Dateien löschen (kein Papierkorb!)", "Befehl rm"]
           - ["rm-i", "Interactive — vor dem Löschen nachfragen", "Flag -i"]
+        labels: ["Dateisystem"]
       - q: "rm -r ~/projekte/altes-projekt/"
         a: "Löscht den Ordner altes-projekt und seinen gesamten Inhalt"
         rel:
           - ["rm-r", "Recursive — Verzeichnisse und Inhalt löschen", "Flag -r"]
+        labels: ["Dateisystem"]
       - q: "rmdir leerer-ordner/"
         a: "Löscht nur leere Verzeichnisse — sicherer als rm -r, gibt Fehler bei nicht-leerem Ordner"
         rel:
           - ["rmdir-cmd", "Remove Directory — nur leere Verzeichnisse löschen", "Befehl rmdir"]
+        labels: ["Dateisystem"]
       - q: "ls *.log && rm *.log"
         a: "Erst alle .log-Dateien anzeigen, dann erst löschen — sicheres Vorgehen"
         rel:
           - ["safe-delete", "Erst ls, dann rm — sicheres Löschen mit Vorschau", "Best Practice"]
+        labels: ["Dateisystem"]
 
   - title: "🖥️ Terminal-Check"
     explanation: |
@@ -121,6 +134,7 @@ sections:
       - q: "Welcher Befehl erstellt eine leere Datei namens 'notizen.txt'?"
         type: input
         a: "touch notizen.txt"
+        labels: ["Dateisystem"]
       - q: "Was macht das Flag '-p' bei 'mkdir -p projekte/web/assets'?"
         type: select
         options:
@@ -129,6 +143,7 @@ sections:
           - text: "Fragt vor dem Erstellen nach"
           - text: "Zeigt den erstellten Ordner an"
           - text: "Schützt den Ordner vor dem Löschen"
+        labels: ["Dateisystem"]
       - q: "Welcher Befehl benennt eine Datei von 'entwurf.txt' zu 'final.txt' um?"
         type: select
         options:
@@ -137,6 +152,7 @@ sections:
           - text: "cp entwurf.txt final.txt"
           - text: "rename entwurf.txt final.txt"
           - text: "touch final.txt entwurf.txt"
+        labels: ["Dateisystem"]
       - q: "Welche dieser Aussagen über 'rm' stimmen?"
         type: multiple-choice
         options:
@@ -147,3 +163,4 @@ sections:
           - text: "rm -i fragt vor dem Löschen nach"
             correct: true
           - text: "rm kann Löschen rückgängig machen"
+        labels: ["Dateisystem"]

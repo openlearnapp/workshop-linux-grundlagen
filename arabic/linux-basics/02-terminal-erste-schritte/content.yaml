@@ -1,7 +1,8 @@
-version: 1
+version: 2
 number: 2
 title: "الطرفية — الخطوات الأولى"
 description: "إتقان pwd و ls و cd — الأوامر الثلاثة الأساسية للتنقل في نظام الملفات"
+image: "images/lesson-header.svg"
 sections:
   - title: "فتح الطرفية — أين أنا؟"
     explanation: |
@@ -25,14 +26,17 @@ sections:
         a: "يعرض المسار الحالي، مثلاً /home/alice — تعرف دائمًا أين أنت"
         rel:
           - ["pwd", "Print Working Directory — عرض المجلد الحالي", "أمر"]
+        labels: ["أساسيات"]
       - q: "whoami"
         a: "يعرض اسم المستخدم الحالي — مفيد عند العمل بعدة حسابات"
         rel:
           - ["whoami", "عرض اسم المستخدم الحالي", "أمر"]
+        labels: ["أساسيات"]
       - q: "date"
         a: "يعرض التاريخ والوقت الحاليين"
         rel:
           - ["date-cmd", "عرض التاريخ والوقت الحاليين", "أمر date"]
+        labels: ["أساسيات"]
 
   - title: "ls — ماذا يوجد هنا؟"
     explanation: |
@@ -59,20 +63,24 @@ sections:
         rel:
           - ["ls-l", "Long format — عرض مفصل", "العلم -l"]
           - ["ls-a", "All — الملفات المخفية أيضًا (.dotfiles)", "العلم -a"]
+        labels: ["أساسيات", "نظام الملفات"]
       - q: "ls -lh /var/log"
         a: "عرض ملفات السجلات بأحجام مقروءة (KB, MB)"
         rel:
           - ["ls-h", "Human-readable — أحجام مقروءة (KB/MB/GB)", "العلم -h"]
           - ["var-log", "مجلد سجلات النظام", "/var/log"]
+        labels: ["نظام الملفات"]
       - q: "ls -lt ~/.ssh"
         a: "عرض ملفات إعداد SSH مرتبة حسب آخر تعديل"
         rel:
           - ["ls-t", "Time — الترتيب حسب وقت التعديل، الأحدث أولاً", "العلم -t"]
           - ["ssh-dir", "مجلد مفاتيح وإعدادات SSH", "~/.ssh"]
+        labels: ["نظام الملفات", "الأمان"]
       - q: "ls -la /etc/nginx/"
         a: "عرض جميع ملفات إعداد Nginx بالتفاصيل"
         rel:
           - ["nginx-dir", "مجلد إعدادات خادم Nginx", "/etc/nginx/"]
+        labels: ["نظام الملفات", "الإعدادات"]
 
   - title: "cd — إلى أين تريد الذهاب؟"
     explanation: |
@@ -98,22 +106,27 @@ sections:
         rel:
           - ["cd-cmd", "Change Directory — تغيير المجلد", "أمر cd"]
           - ["absolute-path", "مسار يبدأ دائمًا بـ /، مستقل عن الموقع", "مسار مطلق"]
+        labels: ["نظام الملفات"]
       - q: "cd .."
         a: "الانتقال مستوى واحد للأعلى — من /home/alice يصبح /home"
         rel:
           - ["dotdot", "النقطتان = المجلد الأب", ".."]
+        labels: ["نظام الملفات"]
       - q: "cd ~"
         a: "الانتقال إلى المجلد الشخصي — بغض النظر عن موقعك الحالي"
         rel:
           - ["tilde", "اختصار للمجلد الشخصي", "~"]
+        labels: ["نظام الملفات"]
       - q: "cd -"
         a: "الانتقال إلى آخر مجلد تمت زيارته — عملي للتبديل بين مجلدين"
         rel:
           - ["cd-minus", "الرجوع إلى المجلد السابق", "cd -"]
+        labels: ["نظام الملفات"]
       - q: "cd /home/alice/projekte && pwd"
         a: "الانتقال إلى مجلد المشاريع وتأكيد المسار فورًا"
         rel:
           - ["double-ampersand", "ربط أمرين — الثاني يُنفذ فقط إذا نجح الأول", "&&"]
+        labels: ["نظام الملفات"]
 
   - title: "🖥️ اختبار الطرفية"
     explanation: |
@@ -122,6 +135,7 @@ sections:
       - q: "أي أمر يعرض المجلد الحالي؟"
         type: input
         a: "pwd"
+        labels: ["أساسيات"]
       - q: "ماذا يفعل الأمر 'ls -la'؟"
         type: select
         options:
@@ -130,6 +144,7 @@ sections:
           - text: "حذف جميع الملفات"
           - text: "التراجع عن آخر عملية"
           - text: "عرض ملفات السجلات"
+        labels: ["أساسيات", "نظام الملفات"]
       - q: "أي أمر ينتقل إلى آخر مجلد تمت زيارته؟"
         type: select
         options:
@@ -138,6 +153,7 @@ sections:
           - text: "cd .."
           - text: "cd ~"
           - text: "cd /"
+        labels: ["نظام الملفات"]
       - q: "أي من هذه الأعلام تنتمي إلى الأمر 'ls'؟"
         type: multiple-choice
         options:
@@ -150,3 +166,4 @@ sections:
             correct: true
           - text: "-t"
             correct: true
+        labels: ["أساسيات"]

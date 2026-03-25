@@ -1,7 +1,8 @@
-version: 1
+version: 2
 number: 8
 title: "الشبكات"
 description: "ping و curl و wget و ssh و ip — اختبار الاتصالات ونقل البيانات والعمل عن بُعد"
+image: "images/lesson-header.svg"
 sections:
   - title: "فحص الشبكة — ping و ip و ss"
     explanation: |
@@ -26,16 +27,19 @@ sections:
         rel:
           - ["ping-cmd", "اختبار إمكانية الوصول عبر الشبكة وزمن الاستجابة", "أمر ping"]
           - ["ping-c", "Count — تحديد عدد الحزم المرسلة", "العلم -c"]
+        labels: ["الشبكة"]
       - q: "ip addr show"
         a: "عرض جميع واجهات الشبكة مع عناوين IP (يحل محل ifconfig)"
         rel:
           - ["ip-cmd", "أداة إدارة شبكات حديثة (تحل محل ifconfig)", "أمر ip"]
           - ["ip-addr", "عرض عناوين IP لجميع واجهات الشبكة", "ip addr"]
+        labels: ["الشبكة"]
       - q: "ss -tulpn"
         a: "عرض جميع منافذ TCP/UDP المفتوحة والبرامج المرتبطة بها"
         rel:
           - ["ss-cmd", "Socket Statistics — اتصالات الشبكة والمنافذ المفتوحة", "أمر ss"]
           - ["ss-tulpn", "t=TCP، u=UDP، l=listening، p=عملية، n=رقمي", "الأعلام -tulpn"]
+        labels: ["الشبكة"]
 
   - title: "curl و wget — جلب البيانات من الشبكة"
     explanation: |
@@ -61,19 +65,23 @@ sections:
         rel:
           - ["curl-cmd", "Client URL — إجراء طلبات HTTP ونقل البيانات", "أمر curl"]
           - ["curl-I", "Head — عرض ترويسات استجابة HTTP فقط", "العلم -I"]
+        labels: ["الشبكة"]
       - q: "curl -s https://ipinfo.io/ip"
         a: "عرض عنوان IP العام الخاص بك — -s يُخفي شريط التقدم"
         rel:
           - ["curl-s", "Silent — إخفاء مؤشر التقدم ورسائل الخطأ", "العلم -s"]
+        labels: ["الشبكة"]
       - q: "wget -O nodejs.tar.gz https://nodejs.org/dist/v20.0.0/node-v20.0.0.tar.gz"
         a: "تنزيل ملف وحفظه باسم مخصص"
         rel:
           - ["wget-cmd", "Web Get — تنزيل الملفات من الإنترنت", "أمر wget"]
           - ["wget-O", "Output — حفظ الملف باسم آخر", "العلم -O"]
+        labels: ["الشبكة"]
       - q: "curl -fsSL https://get.docker.com | sudo sh"
         a: "تنزيل سكريبت تثبيت Docker وتنفيذه مباشرة"
         rel:
           - ["curl-fssl", "f=فشل صامت، s=صامت، S=أخطاء، L=تتبع إعادة التوجيه", "الأعلام -fsSL"]
+        labels: ["الشبكة", "الإعدادات"]
 
   - title: "SSH — الاتصال الآمن بالخوادم البعيدة"
     explanation: |
@@ -103,20 +111,24 @@ sections:
         a: "الاتصال بالخادم عبر SSH — تسجيل الدخول بكلمة مرور أو مفتاح SSH"
         rel:
           - ["ssh-cmd", "Secure Shell — اتصال مشفر عن بُعد", "أمر ssh"]
+        labels: ["الشبكة", "الأمان"]
       - q: "ssh-keygen -t ed25519 -C \"alice@meinlaptop\""
         a: "إنشاء زوج مفاتيح Ed25519 حديث — أكثر أمانًا من RSA القديم"
         rel:
           - ["ssh-keygen", "إنشاء زوج مفاتيح SSH", "أمر ssh-keygen"]
           - ["ed25519", "خوارزمية حديثة لمفاتيح SSH، مُوصى بها منذ 2022", "نوع المفتاح Ed25519"]
+        labels: ["الشبكة", "الأمان"]
       - q: "ssh-copy-id -i ~/.ssh/id_ed25519.pub alice@server.example.com"
         a: "نسخ المفتاح العام إلى الخادم — بعدها لن تحتاج كلمة مرور"
         rel:
           - ["ssh-copy-id", "تثبيت مفتاح SSH العام على الخادم البعيد", "أمر ssh-copy-id"]
+        labels: ["الشبكة", "الأمان"]
       - q: "scp -r ~/projekte/webseite/ alice@server:/var/www/html/"
         a: "نقل مجلد الموقع بالكامل عبر scp إلى الخادم"
         rel:
           - ["scp-cmd", "Secure Copy — نقل ملفات مشفر عبر SSH", "أمر scp"]
           - ["scp-r", "Recursive — نقل المجلدات", "العلم -r"]
+        labels: ["الشبكة"]
 
   - title: "🖥️ اختبار الطرفية"
     explanation: |
@@ -125,6 +137,7 @@ sections:
       - q: "أي أمر يختبر إمكانية الوصول إلى google.com بأربع حزم؟"
         type: input
         a: "ping -c 4 google.com"
+        labels: ["الشبكة"]
       - q: "ماذا يفعل 'curl -s https://ipinfo.io/ip'؟"
         type: select
         options:
@@ -133,6 +146,7 @@ sections:
           - text: "يختبر سرعة اتصال الإنترنت"
           - text: "يُنزّل قاعدة بيانات IP"
           - text: "يعرض جميع واجهات الشبكة"
+        labels: ["الشبكة"]
       - q: "أي أمر يعرض جميع المنافذ المفتوحة والبرامج المرتبطة بها؟"
         type: select
         options:
@@ -141,6 +155,7 @@ sections:
           - text: "ip addr show"
           - text: "ping -a localhost"
           - text: "netstat --list"
+        labels: ["الشبكة"]
       - q: "أي من العبارات التالية عن SSH صحيحة؟"
         type: multiple-choice
         options:
@@ -151,3 +166,4 @@ sections:
           - text: "ssh-keygen ينشئ زوج مفاتيح"
             correct: true
           - text: "SSH يرسل كلمات المرور بنص واضح"
+        labels: ["الشبكة", "الأمان"]

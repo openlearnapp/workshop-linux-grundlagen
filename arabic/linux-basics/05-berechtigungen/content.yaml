@@ -1,7 +1,8 @@
-version: 1
+version: 2
 number: 5
 title: "الصلاحيات"
 description: "chmod و chown و sudo — فهم نظام صلاحيات لينكس وتطبيقه"
+image: "images/lesson-header.svg"
 sections:
   - title: "rwx — فك شفرة نظام الصلاحيات"
     explanation: |
@@ -33,11 +34,13 @@ sections:
         rel:
           - ["ssh-key-perms", "مفتاح SSH الخاص يحتاج صلاحيات 600 — وإلا يرفض SSH استخدامه", "أمان"]
           - ["rw-owner-only", "-rw------- تعني: المالك يقرأ/يكتب، وجميع الآخرين لا شيء", "نمط صلاحيات"]
+        labels: ["الأمان"]
       - q: "ls -l /usr/bin/sudo"
         a: "يعرض صلاحيات SUID الخاصة لـ sudo — حرف s في سلسلة الصلاحيات مميز"
         rel:
           - ["suid-bit", "Set User ID — البرنامج يعمل بصلاحيات مالكه", "SUID"]
           - ["sudo-bin", "برنامج sudo بصلاحيات نظام مرتفعة", "/usr/bin/sudo"]
+        labels: ["الأمان"]
 
   - title: "chmod — تغيير الصلاحيات"
     explanation: |
@@ -67,18 +70,22 @@ sections:
         rel:
           - ["chmod-cmd", "Change Mode — تغيير صلاحيات الملف", "أمر chmod"]
           - ["chmod-x", "+x يضيف صلاحيات التنفيذ", "chmod +x"]
+        labels: ["الأمان"]
       - q: "chmod 755 /usr/local/bin/meinprogramm"
         a: "755 = rwxr-xr-x: المالك يملك كل الصلاحيات، البقية يقرأون وينفذون فقط"
         rel:
           - ["chmod-755", "rwxr-xr-x — المعيار للبرامج التنفيذية", "القيمة الثمانية 755"]
+        labels: ["الأمان"]
       - q: "chmod 600 ~/.ssh/id_rsa"
         a: "600 = rw------- : المالك فقط يقرأ/يكتب — إلزامي لمفاتيح SSH"
         rel:
           - ["chmod-600", "rw------- المالك يقرأ/يكتب فقط، معيار مفاتيح SSH", "القيمة الثمانية 600"]
+        labels: ["الأمان"]
       - q: "chmod -R 755 ~/webseite/"
         a: "يُطبّق صلاحيات 755 بشكل متكرر على جميع الملفات والمجلدات الفرعية"
         rel:
           - ["chmod-R", "Recursive — تطبيق الصلاحيات على جميع المجلدات الفرعية", "العلم -R"]
+        labels: ["الأمان"]
 
   - title: "sudo و chown — صلاحيات المسؤول وتغيير الملكية"
     explanation: |
@@ -99,20 +106,24 @@ sections:
         a: "تحديث قائمة الحزم — يتطلب صلاحيات المسؤول لذلك نستخدم sudo"
         rel:
           - ["sudo-cmd", "Super User Do — تنفيذ أمر كمسؤول", "أمر sudo"]
+        labels: ["الأمان"]
       - q: "sudo chown -R www-data:www-data /var/www/html/"
         a: "تعيين جميع ملفات خادم الويب للمستخدم www-data — Nginx/Apache يحتاج ذلك"
         rel:
           - ["chown-cmd", "Change Owner — تغيير مالك الملف", "أمر chown"]
           - ["chown-R", "Recursive — تغيير الملكية بشكل متكرر", "chown -R"]
           - ["www-data", "المستخدم الافتراضي لخادم الويب (Apache, Nginx)", "www-data"]
+        labels: ["الأمان"]
       - q: "sudo -l"
         a: "يعرض أوامر sudo المسموح بها لك — مفيد على أنظمة غريبة"
         rel:
           - ["sudo-l", "List — عرض أوامر sudo المسموح بها للمستخدم الحالي", "العلم -l"]
+        labels: ["الأمان"]
       - q: "sudo su -"
         a: "التبديل إلى مستخدم root — مع الشرطة يتم تحميل بيئة root أيضًا"
         rel:
           - ["sudo-su", "التبديل إلى صدفة root — استخدم بحذر", "sudo su -"]
+        labels: ["الأمان"]
 
   - title: "🖥️ اختبار الطرفية"
     explanation: |
@@ -121,6 +132,7 @@ sections:
       - q: "أي أمر يجعل الملف 'deploy.sh' قابلاً للتنفيذ؟"
         type: input
         a: "chmod +x deploy.sh"
+        labels: ["الأمان"]
       - q: "ماذا تعني الصلاحية '755' في الترميز الثماني؟"
         type: select
         options:
@@ -129,6 +141,7 @@ sections:
           - text: "rw-rw-rw- — الجميع يقرأ ويكتب"
           - text: "rwx------ — المالك فقط لديه كل الصلاحيات"
           - text: "r--r--r-- — الجميع يقرأ فقط"
+        labels: ["الأمان"]
       - q: "ما القيمة الثمانية التي يجب أن يملكها مفتاح SSH الخاص؟"
         type: select
         options:
@@ -137,6 +150,7 @@ sections:
           - text: "755"
           - text: "777"
           - text: "644"
+        labels: ["الأمان"]
       - q: "أي من العبارات التالية عن نظام صلاحيات لينكس صحيحة؟"
         type: multiple-choice
         options:
@@ -147,3 +161,4 @@ sections:
           - text: "w تعني write (كتابة)"
             correct: true
           - text: "s تعني system (نظام)"
+        labels: ["الأمان"]

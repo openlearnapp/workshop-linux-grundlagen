@@ -1,7 +1,8 @@
-version: 1
+version: 2
 number: 12
 title: "سير عمل لينكس الاحترافي"
 description: "Pipes و Redirects و Aliases و xargs — استخدام سطر الأوامر كالمحترفين"
+image: "images/lesson-header.svg"
 sections:
   - title: "Pipes — ربط الأوامر"
     explanation: |
@@ -28,17 +29,20 @@ sections:
         rel:
           - ["pipe-operator", "| يُمرر مخرجات أمر كمدخلات للأمر التالي", "Pipe |"]
           - ["grep-v-grep", "grep -v grep يُزيل سطر grep من قائمة العمليات", "grep -v grep"]
+        labels: ["البرمجة", "العمليات"]
       - q: "cat /var/log/nginx/access.log | awk '{print $1}' | sort | uniq -c | sort -rn | head -10"
         a: "استخراج أكثر ١٠ عناوين IP وصولاً من سجل Nginx"
         rel:
           - ["awk-ip", "awk '{print $1}' يطبع الحقل الأول (IP) من كل سطر", "awk print"]
           - ["uniq-c", "uniq -c يعدّ الأسطر المتتالية المتماثلة", "uniq -c"]
+        labels: ["البرمجة", "الشبكة"]
       - q: "find /var/log -name \"*.log\" -mtime +30 | xargs ls -lh"
         a: "إيجاد ملفات السجلات الأقدم من ٣٠ يومًا وعرض أحجامها"
         rel:
           - ["find-cmd", "البحث عن ملفات بمعايير مختلفة", "أمر find"]
           - ["find-mtime", "-mtime +30 = آخر تعديل منذ أكثر من ٣٠ يومًا", "find -mtime"]
           - ["xargs-cmd", "تمرير المخرجات كمعاملات للأمر التالي", "أمر xargs"]
+        labels: ["البرمجة", "نظام الملفات"]
 
   - title: "Redirects — إعادة توجيه المدخلات والمخرجات"
     explanation: |
@@ -65,19 +69,23 @@ sections:
         a: "حفظ محتوى المجلد في ملف — يستبدل الملف الموجود"
         rel:
           - ["redirect-out", "> يوجّه المخرجات العادية إلى ملف (مع الاستبدال)", "Redirect >"]
+        labels: ["البرمجة", "نظام الملفات"]
       - q: "echo \"[$(date)] Server gestartet\" >> /var/log/myapp.log"
         a: "إلحاق سطر بملف السجل بدون استبداله"
         rel:
           - ["redirect-append", ">> يُلحق المخرجات بالملف (بدون استبدال)", "Redirect >>"]
+        labels: ["البرمجة"]
       - q: "find / -name \"*.conf\" 2>/dev/null"
         a: "البحث عن ملفات الإعداد — تجاهل رسائل الخطأ (رفض الوصول)"
         rel:
           - ["dev-null", "/dev/null يتجاهل جميع المخرجات — الثقب الأسود", "/dev/null"]
           - ["redirect-stderr", "2> يوجّه الخطأ المعياري (stderr)", "Redirect 2>"]
+        labels: ["البرمجة", "نظام الملفات"]
       - q: "wc -l < /etc/passwd"
         a: "عدّ أسطر /etc/passwd — استخدام الملف كمدخلات"
         rel:
           - ["redirect-input", "< يستخدم محتوى الملف كمدخلات للأمر", "Redirect <"]
+        labels: ["البرمجة"]
 
   - title: "Aliases و .bashrc — تخصيص سير العمل"
     explanation: |
@@ -111,23 +119,28 @@ sections:
         a: "إنشاء الاختصار 'll' لعرض مفصل وملوّن للمجلد"
         rel:
           - ["alias-cmd", "إنشاء أسماء مختصرة للأوامر المتكررة أو الطويلة", "أمر alias"]
+        labels: ["الإعدادات"]
       - q: "alias update='sudo apt update && sudo apt upgrade -y'"
         a: "جعل تحديث النظام قابلاً للتنفيذ بكلمة واحدة 'update'"
         rel:
           - ["alias-complex", "اختصار لسلسلة أوامر معقدة — كلمة واحدة بدلاً من سلسلة طويلة", "مثال Alias"]
+        labels: ["الإعدادات"]
       - q: "source ~/.bashrc"
         a: "إعادة تحميل إعدادات Bash — الاختصارات الجديدة متاحة فورًا بدون إعادة فتح الطرفية"
         rel:
           - ["source-cmd", "تحميل ملف إعداد في الصدفة الحالية", "source / ."]
           - ["bashrc-reload", "إعادة تحميل ~/.bashrc بعد التعديلات", "source ~/.bashrc"]
+        labels: ["الإعدادات"]
       - q: "alias | grep git"
         a: "عرض جميع الاختصارات المتعلقة بـ git — alias بدون معاملات يعرض الكل"
         rel:
           - ["alias-list", "alias بدون معاملات يعرض جميع الاختصارات المُعرّفة", "alias بدون معاملات"]
+        labels: ["الإعدادات"]
       - q: "unalias ll"
         a: "إزالة الاختصار 'll' — يسري فقط في الجلسة الحالية"
         rel:
           - ["unalias-cmd", "إزالة اختصار مُعرّف", "أمر unalias"]
+        labels: ["الإعدادات"]
 
   - title: "🖥️ اختبار الطرفية"
     explanation: |
@@ -136,6 +149,7 @@ sections:
       - q: "أي رمز يربط أمرين عبر Pipe؟"
         type: input
         a: "|"
+        labels: ["البرمجة"]
       - q: "ما الفرق بين '>>' و '>'؟"
         type: select
         options:
@@ -144,6 +158,7 @@ sections:
           - text: ">> يستبدل الملف، > يُلحق"
           - text: ">> يوجّه الأخطاء، > يوجّه المخرجات"
           - text: ">> و > يفعلان نفس الشيء"
+        labels: ["البرمجة"]
       - q: "كيف تجعل تغييرًا في ~/.bashrc ساري المفعول فورًا؟"
         type: select
         options:
@@ -152,6 +167,7 @@ sections:
           - text: "reload ~/.bashrc"
           - text: "bash --refresh"
           - text: "apply ~/.bashrc"
+        labels: ["الإعدادات"]
       - q: "أي من العبارات التالية عن الاختصارات و Pipes صحيحة؟"
         type: multiple-choice
         options:
@@ -162,3 +178,4 @@ sections:
           - text: "/dev/null يتجاهل جميع المخرجات"
             correct: true
           - text: "source يحفظ الأوامر بشكل دائم في الطرفية"
+        labels: ["البرمجة", "الإعدادات"]

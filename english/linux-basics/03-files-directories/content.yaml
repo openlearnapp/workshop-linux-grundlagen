@@ -1,7 +1,8 @@
-version: 1
+version: 2
 number: 3
 title: "Files & Directories"
 description: "touch, mkdir, cp, mv and rm — create, move and delete files and directories"
+image: "images/lesson-header.svg"
 sections:
   - title: "Creating — touch and mkdir"
     explanation: |
@@ -27,15 +28,18 @@ sections:
         a: "Creates an empty README.md file in the current directory"
         rel:
           - ["en-touch-cmd", "Create empty file or update timestamp", "touch command"]
+        labels: ["Filesystem"]
       - q: "touch index.html style.css app.js"
         a: "Creates three files at once — touch accepts multiple arguments"
         rel:
           - ["en-touch-multiple", "Create multiple files simultaneously with touch", "touch file1 file2"]
+        labels: ["Filesystem"]
       - q: "mkdir -p ~/projects/my-website/assets/img"
         a: "Creates the entire directory tree at once, no errors for existing directories"
         rel:
           - ["en-mkdir-cmd", "Make Directory — create a directory", "mkdir command"]
           - ["en-mkdir-p", "Parents — automatically create all intermediate directories", "flag -p"]
+        labels: ["Filesystem"]
 
   - title: "Copying and moving — cp and mv"
     explanation: |
@@ -58,18 +62,22 @@ sections:
         rel:
           - ["en-cp-cmd", "Copy — copy files and directories", "cp command"]
           - ["en-bashrc", "Bash configuration file for aliases, variables etc.", "~/.bashrc"]
+        labels: ["Filesystem"]
       - q: "cp -r /etc/nginx/ ~/nginx-backup/"
         a: "Copy entire Nginx configuration as backup to home directory"
         rel:
           - ["en-cp-r", "Recursive — copy directories including contents", "flag -r"]
+        labels: ["Filesystem", "Config"]
       - q: "mv draft.txt final.txt"
         a: "Rename a file — mv without a path simply renames"
         rel:
           - ["en-mv-cmd", "Move — move or rename files", "mv command"]
+        labels: ["Filesystem"]
       - q: "mv ~/Downloads/*.pdf ~/Documents/PDFs/"
         a: "Move all PDF files from Downloads to the PDFs folder"
         rel:
           - ["en-glob-star", "Wildcard * matches any characters", "Wildcard *"]
+        labels: ["Filesystem"]
 
   - title: "Deleting — rm and rmdir"
     explanation: |
@@ -99,18 +107,22 @@ sections:
         rel:
           - ["en-rm-cmd", "Remove — delete files (no recycle bin!)", "rm command"]
           - ["en-rm-i", "Interactive — ask before deleting", "flag -i"]
+        labels: ["Filesystem"]
       - q: "rm -r ~/projects/old-project/"
         a: "Deletes the old-project folder and all its contents"
         rel:
           - ["en-rm-r", "Recursive — delete directories and their contents", "flag -r"]
+        labels: ["Filesystem"]
       - q: "rmdir empty-folder/"
         a: "Only deletes empty directories — safer than rm -r, errors on non-empty folder"
         rel:
           - ["en-rmdir-cmd", "Remove Directory — only delete empty directories", "rmdir command"]
+        labels: ["Filesystem"]
       - q: "ls *.log && rm *.log"
         a: "First show all .log files, then delete — the safe approach"
         rel:
           - ["en-safe-delete", "First ls, then rm — safe deletion with preview", "Best Practice"]
+        labels: ["Filesystem"]
 
   - title: "🖥️ Terminal Check"
     explanation: |
@@ -119,6 +131,7 @@ sections:
       - q: "Which command creates an empty file called 'notes.txt'?"
         type: input
         a: "touch notes.txt"
+        labels: ["Filesystem"]
       - q: "What does the '-p' flag do in 'mkdir -p projects/web/assets'?"
         type: select
         options:
@@ -127,6 +140,7 @@ sections:
           - text: "Asks for confirmation before creating"
           - text: "Displays the created folder"
           - text: "Protects the folder from deletion"
+        labels: ["Filesystem"]
       - q: "Which command renames a file from 'draft.txt' to 'final.txt'?"
         type: select
         options:
@@ -135,6 +149,7 @@ sections:
           - text: "cp draft.txt final.txt"
           - text: "rename draft.txt final.txt"
           - text: "touch final.txt draft.txt"
+        labels: ["Filesystem"]
       - q: "Which of these statements about 'rm' are true?"
         type: multiple-choice
         options:
@@ -145,3 +160,4 @@ sections:
           - text: "rm -i asks for confirmation before deleting"
             correct: true
           - text: "rm can undo deletions"
+        labels: ["Filesystem"]

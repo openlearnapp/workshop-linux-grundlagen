@@ -1,7 +1,8 @@
-version: 1
+version: 2
 number: 7
 title: "إدارة الحزم"
 description: "apt و snap و dpkg — تثبيت البرمجيات وتحديثها وإدارتها على Ubuntu/Debian"
+image: "images/lesson-header.svg"
 sections:
   - title: "apt — متجر التطبيقات في سطر الأوامر"
     explanation: |
@@ -26,18 +27,22 @@ sections:
         rel:
           - ["apt-cmd", "Advanced Package Tool — إدارة الحزم لـ Debian/Ubuntu", "أمر apt"]
           - ["apt-update", "تحديث قوائم الحزم من الخوادم (ليس الحزم نفسها)", "apt update"]
+        labels: ["الإعدادات"]
       - q: "sudo apt upgrade"
         a: "يُحدّث جميع الحزم المثبتة إلى أحدث إصدار"
         rel:
           - ["apt-upgrade", "ترقية جميع الحزم المثبتة إلى أحدث إصدار", "apt upgrade"]
+        labels: ["الإعدادات"]
       - q: "sudo apt install git curl wget"
         a: "تثبيت ثلاث حزم دفعة واحدة — apt يقبل عدة أسماء حزم"
         rel:
           - ["apt-install", "تثبيت حزمة أو عدة حزم", "apt install"]
+        labels: ["الإعدادات"]
       - q: "sudo apt update && sudo apt upgrade -y"
         a: "تحديث كامل في أمر واحد — -y يُجيب تلقائيًا بنعم على جميع الاستفسارات"
         rel:
           - ["apt-y-flag", "Yes — تأكيد جميع الاستفسارات تلقائيًا", "العلم -y"]
+        labels: ["الإعدادات"]
 
   - title: "البحث عن الحزم وإزالتها وتنظيفها"
     explanation: |
@@ -59,19 +64,23 @@ sections:
         a: "يبحث عن حزم تحتوي 'text editor' في الاسم أو الوصف"
         rel:
           - ["apt-search", "البحث في قاعدة بيانات الحزم", "apt search"]
+        labels: ["الإعدادات"]
       - q: "apt show nodejs"
         a: "يعرض تفاصيل nodejs: الإصدار، التبعيات، الوصف، الحجم"
         rel:
           - ["apt-show", "عرض معلومات مفصلة عن حزمة", "apt show"]
+        labels: ["الإعدادات"]
       - q: "sudo apt remove --purge apache2"
         a: "يُزيل Apache2 بالكامل بما في ذلك جميع ملفات الإعداد"
         rel:
           - ["apt-purge", "إزالة الحزمة وجميع ملفات الإعداد بالكامل", "apt purge / --purge"]
+        labels: ["الإعدادات"]
       - q: "sudo apt autoremove && sudo apt clean"
         a: "إزالة الحزم اليتيمة وتنظيف ذاكرة التخزين المؤقت — يحرر مساحة التخزين"
         rel:
           - ["apt-autoremove", "إزالة الحزم المثبتة تلقائيًا التي لم تعد مطلوبة", "apt autoremove"]
           - ["apt-clean", "حذف ملفات الحزم المحمّلة من ذاكرة التخزين المؤقت", "apt clean"]
+        labels: ["الإعدادات"]
 
   - title: "dpkg و snap — طرق تثبيت بديلة"
     explanation: |
@@ -99,19 +108,23 @@ sections:
         rel:
           - ["dpkg-cmd", "Debian Package — إدارة ملفات .deb مباشرة", "أمر dpkg"]
           - ["dpkg-i", "Install — تثبيت ملف .deb", "العلم -i"]
+        labels: ["الإعدادات"]
       - q: "dpkg -l | grep \"^ii\""
         a: "عرض جميع الحزم المثبتة بشكل صحيح (ii = installed properly)"
         rel:
           - ["dpkg-l", "List — جميع الحزم المعروفة وحالتها", "dpkg -l"]
+        labels: ["الإعدادات"]
       - q: "snap install code --classic"
         a: "تثبيت Visual Studio Code عبر snap — --classic يسمح بوصول كامل للنظام"
         rel:
           - ["snap-cmd", "نظام حزم Snap — تطبيقات معزولة مع تحديث تلقائي", "أمر snap"]
           - ["snap-classic", "Classic confinement — وصول كامل للنظام لبرامج مثل IDE", "العلم --classic"]
+        labels: ["الإعدادات"]
       - q: "snap list"
         a: "عرض جميع حزم snap المثبتة وإصداراتها"
         rel:
           - ["snap-list", "عرض جميع حزم snap المثبتة", "snap list"]
+        labels: ["الإعدادات"]
 
   - title: "🖥️ اختبار الطرفية"
     explanation: |
@@ -120,6 +133,7 @@ sections:
       - q: "أي أمر يُحدّث قوائم الحزم في Ubuntu/Debian؟"
         type: input
         a: "sudo apt update"
+        labels: ["الإعدادات"]
       - q: "ما الفرق بين 'apt update' و 'apt upgrade'؟"
         type: select
         options:
@@ -128,6 +142,7 @@ sections:
           - text: "update يثبت الحزم، upgrade يزيل القديمة"
           - text: "update و upgrade يفعلان نفس الشيء"
           - text: "upgrade يجلب قوائم حزم جديدة، update يُحدّث الحزم"
+        labels: ["الإعدادات"]
       - q: "أي أمر يزيل حزمة بما في ذلك ملفات إعدادها؟"
         type: select
         options:
@@ -136,6 +151,7 @@ sections:
           - text: "sudo apt remove nginx"
           - text: "sudo apt delete nginx"
           - text: "sudo apt uninstall nginx"
+        labels: ["الإعدادات"]
       - q: "أي من العبارات التالية عن apt صحيحة؟"
         type: multiple-choice
         options:
@@ -146,3 +162,4 @@ sections:
           - text: "apt search يبحث في قاعدة بيانات الحزم"
             correct: true
           - text: "apt لا يحتاج صلاحيات المسؤول"
+        labels: ["الإعدادات"]

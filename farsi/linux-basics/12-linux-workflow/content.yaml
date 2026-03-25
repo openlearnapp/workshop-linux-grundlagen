@@ -1,7 +1,8 @@
-version: 1
+version: 2
 number: 12
 title: "گردش کار حرفه‌ای لینوکس"
 description: "Pipe‌ها، Redirect‌ها، Alias‌ها و xargs — استفاده حرفه‌ای از خط فرمان"
+image: "images/lesson-header.svg"
 sections:
   - title: "Pipe‌ها — اتصال زنجیره‌ای دستورات"
     explanation: |
@@ -28,17 +29,20 @@ sections:
         rel:
           - ["pipe-operator", "| خروجی یک دستور را به عنوان ورودی به بعدی هدایت می‌کند", "Pipe |"]
           - ["grep-v-grep", "grep -v grep خط grep را از لیست پروسس‌ها حذف می‌کند", "grep -v grep"]
+        labels: ["اسکریپت", "فرآیندها"]
       - q: "cat /var/log/nginx/access.log | awk '{print $1}' | sort | uniq -c | sort -rn | head -10"
         a: "۱۰ آدرس IP برتر بر اساس تعداد دسترسی از لاگ Nginx"
         rel:
           - ["awk-ip", "awk '{print $1}' فیلد اول (IP) هر خط را چاپ می‌کند", "awk print"]
           - ["uniq-c", "uniq -c خطوط یکسان متوالی را می‌شمارد", "uniq -c"]
+        labels: ["اسکریپت", "شبکه"]
       - q: "find /var/log -name \"*.log\" -mtime +30 | xargs ls -lh"
         a: "پیدا کردن فایل‌های لاگ قدیمی‌تر از ۳۰ روز و نمایش حجم آنها"
         rel:
           - ["find-cmd", "جستجوی فایل‌ها بر اساس معیارهای مختلف", "دستور find"]
           - ["find-mtime", "-mtime +30 = آخرین تغییر بیش از ۳۰ روز پیش", "find -mtime"]
           - ["xargs-cmd", "ارسال خروجی به عنوان آرگومان به دستور بعدی", "دستور xargs"]
+        labels: ["اسکریپت", "فایل‌سیستم"]
 
   - title: "Redirect‌ها — هدایت ورودی و خروجی"
     explanation: |
@@ -65,19 +69,23 @@ sections:
         a: "ذخیره محتوای پوشه در فایل — فایل موجود بازنویسی می‌شود"
         rel:
           - ["redirect-out", "> خروجی استاندارد را به فایل هدایت می‌کند (بازنویسی)", "Redirect >"]
+        labels: ["اسکریپت", "فایل‌سیستم"]
       - q: "echo \"[$(date)] Server gestartet\" >> /var/log/myapp.log"
         a: "افزودن خط به فایل لاگ بدون بازنویسی"
         rel:
           - ["redirect-append", ">> خروجی را به فایل اضافه می‌کند (بدون بازنویسی)", "Redirect >>"]
+        labels: ["اسکریپت"]
       - q: "find / -name \"*.conf\" 2>/dev/null"
         a: "جستجوی فایل‌های پیکربندی — دور ریختن پیام‌های خطا (دسترسی رد شد)"
         rel:
           - ["dev-null", "/dev/null تمام خروجی‌ها را دور می‌ریزد — سیاه‌چاله", "/dev/null"]
           - ["redirect-stderr", "2> خطای استاندارد (stderr) را هدایت می‌کند", "Redirect 2>"]
+        labels: ["اسکریپت", "فایل‌سیستم"]
       - q: "wc -l < /etc/passwd"
         a: "شمارش تعداد خطوط /etc/passwd — استفاده از فایل به عنوان ورودی"
         rel:
           - ["redirect-input", "< محتوای فایل را به عنوان ورودی دستور استفاده می‌کند", "Redirect <"]
+        labels: ["اسکریپت"]
 
   - title: "Alias‌ها و .bashrc — شخصی‌سازی گردش کار"
     explanation: |
@@ -111,23 +119,28 @@ sections:
         a: "ساخت Alias 'll' برای لیست پوشه با جزئیات و رنگ"
         rel:
           - ["alias-cmd", "ساخت میانبر برای دستورات پرکاربرد یا طولانی", "دستور alias"]
+        labels: ["پیکربندی"]
       - q: "alias update='sudo apt update && sudo apt upgrade -y'"
         a: "به‌روزرسانی سیستم فقط با تایپ کلمه 'update'"
         rel:
           - ["alias-complex", "Alias برای زنجیره دستورات پیچیده — یک کلمه به جای دستور طولانی", "مثال Alias"]
+        labels: ["پیکربندی"]
       - q: "source ~/.bashrc"
         a: "بارگذاری مجدد پیکربندی Bash — Alias‌های جدید فوراً بدون راه‌اندازی مجدد ترمینال فعال می‌شوند"
         rel:
           - ["source-cmd", "بارگذاری فایل پیکربندی در Shell فعلی", "source / ."]
           - ["bashrc-reload", "بارگذاری مجدد ~/.bashrc بعد از تغییرات", "source ~/.bashrc"]
+        labels: ["پیکربندی"]
       - q: "alias | grep git"
         a: "نمایش تمام Alias‌های مرتبط با git — alias بدون آرگومان همه را نشان می‌دهد"
         rel:
           - ["alias-list", "alias بدون آرگومان تمام Alias‌های تعریف‌شده را لیست می‌کند", "alias بدون آرگومان"]
+        labels: ["پیکربندی"]
       - q: "unalias ll"
         a: "حذف Alias 'll' — فقط برای جلسه فعلی معتبر است"
         rel:
           - ["unalias-cmd", "حذف Alias تعریف‌شده", "دستور unalias"]
+        labels: ["پیکربندی"]
 
   - title: "🖥️ آزمون ترمینال"
     explanation: |
@@ -136,6 +149,7 @@ sections:
       - q: "کدام نماد دو دستور را با Pipe متصل می‌کند؟"
         type: input
         a: "|"
+        labels: ["اسکریپت"]
       - q: "تفاوت '>>' با '>' چیست؟"
         type: select
         options:
@@ -144,6 +158,7 @@ sections:
           - text: ">> فایل را بازنویسی می‌کند، > اضافه می‌کند"
           - text: ">> خطاها را هدایت می‌کند، > خروجی را هدایت می‌کند"
           - text: ">> و > یک کار را انجام می‌دهند"
+        labels: ["اسکریپت"]
       - q: "چگونه تغییرات در ~/.bashrc فوراً اعمال می‌شوند؟"
         type: select
         options:
@@ -152,6 +167,7 @@ sections:
           - text: "reload ~/.bashrc"
           - text: "bash --refresh"
           - text: "apply ~/.bashrc"
+        labels: ["پیکربندی"]
       - q: "کدام‌یک از این جملات درباره Alias‌ها و Pipe‌ها درست هستند؟"
         type: multiple-choice
         options:
@@ -162,3 +178,4 @@ sections:
           - text: "/dev/null تمام خروجی‌ها را دور می‌ریزد"
             correct: true
           - text: "source دستورات را برای همیشه در ترمینال ذخیره می‌کند"
+        labels: ["اسکریپت", "پیکربندی"]

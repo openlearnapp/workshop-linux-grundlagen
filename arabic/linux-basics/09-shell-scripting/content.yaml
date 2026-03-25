@@ -1,7 +1,8 @@
-version: 1
+version: 2
 number: 9
 title: "أساسيات كتابة سكريبتات الصدفة"
 description: "المتغيرات وشروط if والحلقات — كتابة سكريبتات خاصة وأتمتة المهام"
+image: "images/lesson-header.svg"
 sections:
   - title: "أول سكريبت لك — Shebang والمتغيرات"
     explanation: |
@@ -33,20 +34,24 @@ sections:
         a: "Shebang — السطر الأول في كل سكريبت Bash، يحدد المُفسّر"
         rel:
           - ["shebang", "السطر الأول في السكريبت الذي يحدد المُفسّر", "#!/bin/bash"]
+        labels: ["البرمجة"]
       - q: "NAME=\"Alice\" && echo \"Hallo, $NAME\""
         a: "تعيين متغير واستخدامه فورًا — لا مسافة حول علامة المساواة!"
         rel:
           - ["bash-variable", "متغير في Bash: NAME=قيمة (بدون $)، $NAME (عند الاستخدام)", "متغير"]
+        labels: ["البرمجة"]
       - q: "HEUTE=$(date +%d.%m.%Y)"
         a: "حفظ مخرجات أمر في متغير — $(date) يُرجع التاريخ الحالي"
         rel:
           - ["command-sub", "استبدال الأوامر: $(أمر) يحفظ المخرجات في متغير", "$()"]
           - ["date-format", "صيغة التاريخ: %d=يوم، %m=شهر، %Y=سنة", "date +صيغة"]
+        labels: ["البرمجة"]
       - q: "echo \"Pfad: $HOME, User: $USER\""
         a: "استخدام متغيرات البيئة المدمجة — HOME و USER متاحان دائمًا"
         rel:
           - ["env-var-user", "متغير بيئي يحتوي اسم المستخدم الحالي", "$USER"]
           - ["env-var-home", "متغير بيئي يحتوي مسار المجلد الشخصي", "$HOME"]
+        labels: ["البرمجة"]
 
   - title: "شروط if — اتخاذ القرارات في السكريبت"
     explanation: |
@@ -81,14 +86,17 @@ sections:
         rel:
           - ["if-bash", "if [ شرط ]; then أوامر; fi — البنية الأساسية", "if-then-fi"]
           - ["test-f", "-f يختبر وجود ملف (file)", "عامل الاختبار -f"]
+        labels: ["البرمجة", "الأمان"]
       - q: "[ -d /var/www ] && echo \"Webverzeichnis existiert\""
         a: "صيغة مختصرة: && ينفذ الأمر الثاني فقط إذا كان الشرط الأول صحيحًا"
         rel:
           - ["test-d", "-d يختبر وجود مجلد (directory)", "عامل الاختبار -d"]
+        labels: ["البرمجة"]
       - q: "if [ \"$USER\" = \"root\" ]; then echo \"Du bist root!\"; fi"
         a: "يتحقق مما إذا كان السكريبت يعمل كـ root — مهم لسكريبتات التثبيت"
         rel:
           - ["string-compare", "مقارنة النصوص في Bash باستخدام =", "مقارنة نصية"]
+        labels: ["البرمجة", "الأمان"]
 
   - title: "الحلقات — أتمتة التكرار"
     explanation: |
@@ -125,20 +133,24 @@ sections:
         a: "حلقة for على قائمة — تطبع الأرقام من ١ إلى ٥"
         rel:
           - ["for-loop", "حلقة for: for VAR in LIST; do ... done", "for-do-done"]
+        labels: ["البرمجة"]
       - q: "for USER in alice bob charlie; do useradd \"$USER\"; done"
         a: "إنشاء عدة مستخدمين دفعة واحدة — مهمة نموذجية لمسؤول النظام"
         rel:
           - ["for-list", "حلقة for على قائمة من القيم", "for VAR in قيمة1 قيمة2"]
+        labels: ["البرمجة", "الأمان"]
       - q: "for f in /var/log/*.log; do echo \"$(wc -l < $f) Zeilen: $f\"; done"
         a: "عدّ أسطر جميع ملفات السجلات وعرض القائمة"
         rel:
           - ["for-glob", "حلقة for مع نمط Glob على الملفات", "for f in *.ext"]
           - ["wc-l", "Word Count -l — عدّ أسطر ملف", "wc -l"]
+        labels: ["البرمجة", "نظام الملفات"]
       - q: "while true; do df -h / | grep '/'; sleep 60; done"
         a: "مراقبة استخدام القرص كل دقيقة — حلقة لا نهائية مع sleep"
         rel:
           - ["while-loop", "حلقة while: while شرط; do ... done", "while-do-done"]
           - ["while-true", "while true — حلقة لا نهائية، تُنهى فقط بـ Ctrl+C", "while true"]
+        labels: ["البرمجة"]
 
   - title: "🖥️ اختبار الطرفية"
     explanation: |
@@ -147,6 +159,7 @@ sections:
       - q: "ما هو السطر الأول في كل سكريبت Bash (Shebang)؟"
         type: input
         a: "#!/bin/bash"
+        labels: ["البرمجة"]
       - q: "ما الذي يجب مراعاته عند تعيين متغير Bash؟"
         type: select
         options:
@@ -155,6 +168,7 @@ sections:
           - text: "دائمًا $ قبل اسم المتغير: $NAME=\"Alice\""
           - text: "المتغيرات يجب أن تكون بأحرف كبيرة"
           - text: "المتغيرات يجب التصريح عنها بـ export"
+        labels: ["البرمجة"]
       - q: "ما الصيغة التي تُنهي شرط if في Bash بشكل صحيح؟"
         type: select
         options:
@@ -163,6 +177,7 @@ sections:
           - text: "end"
           - text: "endif"
           - text: "done"
+        labels: ["البرمجة"]
       - q: "أي من العبارات التالية عن كتابة سكريبتات الصدفة صحيحة؟"
         type: multiple-choice
         options:
@@ -173,3 +188,4 @@ sections:
           - text: "-f يتحقق من وجود ملف"
             correct: true
           - text: "المسافات حول = إلزامية في المتغيرات"
+        labels: ["البرمجة"]

@@ -1,7 +1,8 @@
-version: 1
+version: 2
 number: 8
 title: "Networking"
 description: "ping, curl, wget, ssh and ip — test connections, transfer data and work remotely"
+image: "images/lesson-header.svg"
 sections:
   - title: "Checking the network — ping, ip and ss"
     explanation: |
@@ -26,16 +27,19 @@ sections:
         rel:
           - ["en-ping-cmd", "Test network reachability and latency", "ping command"]
           - ["en-ping-c", "Count — limit the number of packets sent", "flag -c"]
+        labels: ["Network"]
       - q: "ip addr show"
         a: "Show all network interfaces with IP addresses (replaces ifconfig)"
         rel:
           - ["en-ip-cmd", "Modern network management tool (replaces ifconfig)", "ip command"]
           - ["en-ip-addr", "Show IP addresses of all network interfaces", "ip addr"]
+        labels: ["Network"]
       - q: "ss -tulpn"
         a: "Show all open TCP/UDP ports and the associated programs"
         rel:
           - ["en-ss-cmd", "Socket Statistics — network connections and open ports", "ss command"]
           - ["en-ss-tulpn", "t=TCP, u=UDP, l=listening, p=process, n=numeric", "flags -tulpn"]
+        labels: ["Network"]
 
   - title: "curl and wget — fetching data from the web"
     explanation: |
@@ -61,15 +65,18 @@ sections:
         rel:
           - ["en-curl-cmd", "Client URL — make HTTP requests and transfer data", "curl command"]
           - ["en-curl-I", "Head — show only HTTP response headers", "flag -I"]
+        labels: ["Network"]
       - q: "curl -s https://ipinfo.io/ip"
         a: "Show your own public IP address — -s suppresses the progress bar"
         rel:
           - ["en-curl-s", "Silent — suppress progress display and error messages", "flag -s"]
+        labels: ["Network"]
       - q: "wget -O nodejs.tar.gz https://nodejs.org/dist/v20.0.0/node-v20.0.0.tar.gz"
         a: "Download file and save it with a custom name"
         rel:
           - ["en-wget-cmd", "Web Get — download files from the internet", "wget command"]
           - ["en-wget-O", "Output — save file under different name", "flag -O"]
+        labels: ["Network"]
 
   - title: "SSH — securely connecting to remote servers"
     explanation: |
@@ -99,19 +106,23 @@ sections:
         a: "Connect to server via SSH — login with password or SSH key"
         rel:
           - ["en-ssh-cmd", "Secure Shell — encrypted remote connection", "ssh command"]
+        labels: ["Network", "Security"]
       - q: "ssh-keygen -t ed25519 -C \"alice@mylaptop\""
         a: "Creates a modern Ed25519 key pair — more secure than the older RSA"
         rel:
           - ["en-ssh-keygen", "Generate SSH key pair", "ssh-keygen command"]
           - ["en-ed25519", "Modern algorithm for SSH keys, recommended since 2022", "Ed25519 key type"]
+        labels: ["Network", "Security"]
       - q: "ssh-copy-id -i ~/.ssh/id_ed25519.pub alice@server.example.com"
         a: "Copy public key to server — no password required afterward"
         rel:
           - ["en-ssh-copy-id", "Install public SSH key on remote server", "ssh-copy-id command"]
+        labels: ["Network", "Security"]
       - q: "scp -r ~/projects/website/ alice@server:/var/www/html/"
         a: "Transfer the entire website folder to the server via scp"
         rel:
           - ["en-scp-cmd", "Secure Copy — encrypted file transfer via SSH", "scp command"]
+        labels: ["Network"]
 
   - title: "🖥️ Terminal Check"
     explanation: |
@@ -120,6 +131,7 @@ sections:
       - q: "Which command tests reachability of google.com with 4 packets?"
         type: input
         a: "ping -c 4 google.com"
+        labels: ["Network"]
       - q: "What does 'curl -s https://ipinfo.io/ip' do?"
         type: select
         options:
@@ -128,6 +140,7 @@ sections:
           - text: "Tests the internet connection speed"
           - text: "Downloads the IP database"
           - text: "Shows all network interfaces"
+        labels: ["Network"]
       - q: "Which command shows all open ports and associated programs?"
         type: select
         options:
@@ -136,6 +149,7 @@ sections:
           - text: "ip addr show"
           - text: "ping -a localhost"
           - text: "netstat --list"
+        labels: ["Network"]
       - q: "Which of these statements about SSH are true?"
         type: multiple-choice
         options:
@@ -146,3 +160,4 @@ sections:
           - text: "ssh-keygen creates a key pair"
             correct: true
           - text: "SSH sends passwords in plain text"
+        labels: ["Network", "Security"]

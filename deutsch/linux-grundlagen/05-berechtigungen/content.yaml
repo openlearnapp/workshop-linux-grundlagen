@@ -1,7 +1,9 @@
-version: 1
+version: 2
 number: 5
 title: "Berechtigungen"
 description: "chmod, chown und sudo — das Linux-Rechtesystem verstehen und anwenden"
+image: "images/lesson-header.svg"
+image_caption: "Schloss-Symbol mit rwx-Berechtigungsraster"
 sections:
   - title: "rwx — das Rechtesystem entschlüsseln"
     explanation: |
@@ -33,11 +35,13 @@ sections:
         rel:
           - ["ssh-key-perms", "SSH private key braucht 600 Rechte — sonst verweigert SSH die Nutzung", "Sicherheit"]
           - ["rw-owner-only", "-rw------- bedeutet: Besitzer lesen/schreiben, alle anderen nichts", "Rechtemuster"]
+        labels: ["Sicherheit"]
       - q: "ls -l /usr/bin/sudo"
         a: "Zeigt die speziellen SUID-Rechte von sudo — das s im Rechtstring ist besonders"
         rel:
           - ["suid-bit", "Set User ID — Programm läuft mit Rechten des Besitzers", "SUID"]
           - ["sudo-bin", "sudo-Programm mit erhöhten Systemrechten", "/usr/bin/sudo"]
+        labels: ["Sicherheit"]
 
   - title: "chmod — Berechtigungen ändern"
     explanation: |
@@ -67,18 +71,22 @@ sections:
         rel:
           - ["chmod-cmd", "Change Mode — Dateiberechtigungen ändern", "Befehl chmod"]
           - ["chmod-x", "+x fügt Ausführrechte hinzu", "chmod +x"]
+        labels: ["Sicherheit"]
       - q: "chmod 755 /usr/local/bin/meinprogramm"
         a: "755 = rwxr-xr-x: Besitzer darf alles, alle anderen dürfen nur lesen und ausführen"
         rel:
           - ["chmod-755", "rwxr-xr-x — Standard für ausführbare Programme", "Oktalwert 755"]
+        labels: ["Sicherheit"]
       - q: "chmod 600 ~/.ssh/id_rsa"
         a: "600 = rw------- : Nur Besitzer darf lesen/schreiben — für SSH-Schlüssel obligatorisch"
         rel:
           - ["chmod-600", "rw------- nur Besitzer lesen/schreiben, SSH-Schlüssel-Standard", "Oktalwert 600"]
+        labels: ["Sicherheit"]
       - q: "chmod -R 755 ~/webseite/"
         a: "Setzt 755-Rechte rekursiv auf alle Dateien und Unterordner der Webseite"
         rel:
           - ["chmod-R", "Recursive — Berechtigungen auf alle Unterordner anwenden", "Flag -R"]
+        labels: ["Sicherheit"]
 
   - title: "sudo und chown — Superrechte und Besitz"
     explanation: |
@@ -99,20 +107,24 @@ sections:
         a: "Paketliste aktualisieren — erfordert Administratorrechte, daher sudo"
         rel:
           - ["sudo-cmd", "Super User Do — Befehl als Administrator ausführen", "Befehl sudo"]
+        labels: ["Sicherheit"]
       - q: "sudo chown -R www-data:www-data /var/www/html/"
         a: "Alle Webserver-Dateien dem www-data Benutzer zuweisen — Nginx/Apache brauchen das"
         rel:
           - ["chown-cmd", "Change Owner — Dateibesitzer ändern", "Befehl chown"]
           - ["chown-R", "Recursive — Besitz rekursiv ändern", "chown -R"]
           - ["www-data", "Standardbenutzer für Webserver (Apache, Nginx)", "www-data"]
+        labels: ["Sicherheit"]
       - q: "sudo -l"
         a: "Zeigt welche sudo-Befehle für dich erlaubt sind — nützlich auf fremden Systemen"
         rel:
           - ["sudo-l", "List — erlaubte sudo-Befehle für den aktuellen Nutzer anzeigen", "Flag -l"]
+        labels: ["Sicherheit"]
       - q: "sudo su -"
         a: "Zu root-Benutzer wechseln — mit Bindestrich wird auch die root-Umgebung geladen"
         rel:
           - ["sudo-su", "Zu root-Shell wechseln — mit Vorsicht verwenden", "sudo su -"]
+        labels: ["Sicherheit"]
 
   - title: "🖥️ Terminal-Check"
     explanation: |
@@ -121,6 +133,7 @@ sections:
       - q: "Welcher Befehl macht eine Datei 'deploy.sh' ausführbar?"
         type: input
         a: "chmod +x deploy.sh"
+        labels: ["Sicherheit"]
       - q: "Was bedeutet die Berechtigung '755' in der Oktal-Notation?"
         type: select
         options:
@@ -129,6 +142,7 @@ sections:
           - text: "rw-rw-rw- — alle dürfen lesen und schreiben"
           - text: "rwx------ — nur Besitzer hat alle Rechte"
           - text: "r--r--r-- — alle dürfen nur lesen"
+        labels: ["Sicherheit"]
       - q: "Welchen Oktalwert sollte ein privater SSH-Schlüssel haben?"
         type: select
         options:
@@ -137,6 +151,7 @@ sections:
           - text: "755"
           - text: "777"
           - text: "644"
+        labels: ["Sicherheit"]
       - q: "Welche dieser Aussagen über das Linux-Rechtesystem stimmen?"
         type: multiple-choice
         options:
@@ -147,3 +162,4 @@ sections:
           - text: "w steht für write (schreiben)"
             correct: true
           - text: "s steht für system (System)"
+        labels: ["Sicherheit"]

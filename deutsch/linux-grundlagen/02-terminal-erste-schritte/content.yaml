@@ -1,7 +1,9 @@
-version: 1
+version: 2
 number: 2
 title: "Das Terminal — erste Schritte"
 description: "pwd, ls und cd meistern — die drei Grundbefehle für die Navigation im Dateisystem"
+image: "images/lesson-header.svg"
+image_caption: "Terminal-Fenster mit Prompt und Befehlen"
 sections:
   - title: "Das Terminal öffnen — wo bin ich?"
     explanation: |
@@ -25,14 +27,17 @@ sections:
         a: "Zeigt den aktuellen Pfad an, z.B. /home/alice — du weißt immer wo du bist"
         rel:
           - ["pwd", "Print Working Directory — aktuelles Verzeichnis anzeigen", "Befehl"]
+        labels: ["Basics"]
       - q: "whoami"
         a: "Gibt deinen Benutzernamen aus — nützlich wenn du als mehrere Nutzer arbeitest"
         rel:
           - ["whoami", "Den aktuellen Benutzernamen ausgeben", "Befehl"]
+        labels: ["Basics"]
       - q: "date"
         a: "Zeigt aktuelles Datum und Uhrzeit an"
         rel:
           - ["date-cmd", "Aktuelles Datum und Uhrzeit anzeigen", "Befehl date"]
+        labels: ["Basics"]
 
   - title: "ls — was ist hier?"
     explanation: |
@@ -59,20 +64,24 @@ sections:
         rel:
           - ["ls-l", "Long format — Detailansicht", "Flag -l"]
           - ["ls-a", "All — auch versteckte Dateien (.dotfiles)", "Flag -a"]
+        labels: ["Basics", "Dateisystem"]
       - q: "ls -lh /var/log"
         a: "Log-Dateien mit menschenlesbaren Größenangaben (KB, MB) anzeigen"
         rel:
           - ["ls-h", "Human-readable — lesbare Dateigrößen (KB/MB/GB)", "Flag -h"]
           - ["var-log", "Systemlog-Verzeichnis mit Protokolldateien", "/var/log"]
+        labels: ["Dateisystem"]
       - q: "ls -lt ~/.ssh"
         a: "SSH-Konfigurationsdateien nach letzter Änderung sortiert anzeigen"
         rel:
           - ["ls-t", "Time — nach Änderungszeit sortieren, neueste zuerst", "Flag -t"]
           - ["ssh-dir", "Verzeichnis für SSH-Schlüssel und Konfiguration", "~/.ssh"]
+        labels: ["Dateisystem", "Sicherheit"]
       - q: "ls -la /etc/nginx/"
         a: "Alle Nginx-Konfigurationsdateien mit Details anzeigen"
         rel:
           - ["nginx-dir", "Konfigurationsverzeichnis des Nginx-Webservers", "/etc/nginx/"]
+        labels: ["Dateisystem", "Konfiguration"]
 
   - title: "cd — wohin möchtest du?"
     explanation: |
@@ -98,22 +107,27 @@ sections:
         rel:
           - ["cd-cmd", "Change Directory — Verzeichnis wechseln", "Befehl cd"]
           - ["absolute-path", "Pfad der immer bei / beginnt, unabhängig vom Ort", "absoluter Pfad"]
+        labels: ["Dateisystem"]
       - q: "cd .."
         a: "Eine Ebene nach oben gehen — aus /home/alice wird /home"
         rel:
           - ["dotdot", "Zwei Punkte = übergeordnetes Verzeichnis", ".."]
+        labels: ["Dateisystem"]
       - q: "cd ~"
         a: "Zum eigenen Home-Verzeichnis — egal wo du gerade bist"
         rel:
           - ["tilde", "Abkürzung für das eigene Home-Verzeichnis", "~"]
+        labels: ["Dateisystem"]
       - q: "cd -"
         a: "Zum zuletzt besuchten Verzeichnis wechseln — praktisch zum Hin-und-Her-Wechseln"
         rel:
           - ["cd-minus", "Zum vorherigen Verzeichnis zurück", "cd -"]
+        labels: ["Dateisystem"]
       - q: "cd /home/alice/projekte && pwd"
         a: "Ins Projekte-Verzeichnis wechseln und sofort den Pfad bestätigen"
         rel:
           - ["double-ampersand", "Zwei Befehle verketten — zweiter läuft nur wenn erster erfolgreich", "&&"]
+        labels: ["Dateisystem"]
 
   - title: "🖥️ Terminal-Check"
     explanation: |
@@ -122,6 +136,7 @@ sections:
       - q: "Welcher Befehl zeigt dein aktuelles Verzeichnis?"
         type: input
         a: "pwd"
+        labels: ["Basics"]
       - q: "Was macht der Befehl 'ls -la'?"
         type: select
         options:
@@ -130,6 +145,7 @@ sections:
           - text: "Alle Dateien löschen"
           - text: "Letzte Aktion rückgängig machen"
           - text: "Log-Dateien anzeigen"
+        labels: ["Basics", "Dateisystem"]
       - q: "Welcher Befehl wechselt zum zuletzt besuchten Verzeichnis?"
         type: select
         options:
@@ -138,6 +154,7 @@ sections:
           - text: "cd .."
           - text: "cd ~"
           - text: "cd /"
+        labels: ["Dateisystem"]
       - q: "Welche dieser Flags gehören zum Befehl 'ls'?"
         type: multiple-choice
         options:
@@ -150,3 +167,4 @@ sections:
             correct: true
           - text: "-t"
             correct: true
+        labels: ["Basics"]

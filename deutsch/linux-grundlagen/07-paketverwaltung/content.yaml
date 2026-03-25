@@ -1,7 +1,9 @@
-version: 1
+version: 2
 number: 7
 title: "Paketverwaltung"
 description: "apt, snap und dpkg — Software installieren, aktualisieren und verwalten unter Ubuntu/Debian"
+image: "images/lesson-header.svg"
+image_caption: "Paket-Boxen mit apt, dnf und snap Labels"
 sections:
   - title: "apt — der App Store der Kommandozeile"
     explanation: |
@@ -26,18 +28,22 @@ sections:
         rel:
           - ["apt-cmd", "Advanced Package Tool — Paketverwaltung für Debian/Ubuntu", "Befehl apt"]
           - ["apt-update", "Paketlisten von Servern aktualisieren (nicht die Pakete selbst)", "apt update"]
+        labels: ["Konfiguration"]
       - q: "sudo apt upgrade"
         a: "Aktualisiert alle installierten Pakete auf die neueste Version"
         rel:
           - ["apt-upgrade", "Alle installierten Pakete auf neueste Version aktualisieren", "apt upgrade"]
+        labels: ["Konfiguration"]
       - q: "sudo apt install git curl wget"
         a: "Installiert drei Pakete auf einmal — apt akzeptiert mehrere Paketnamen"
         rel:
           - ["apt-install", "Paket(e) installieren", "apt install"]
+        labels: ["Konfiguration"]
       - q: "sudo apt update && sudo apt upgrade -y"
         a: "Komplett-Update in einem Befehl — -y beantwortet alle Rückfragen automatisch mit Ja"
         rel:
           - ["apt-y-flag", "Yes — alle Rückfragen automatisch bestätigen", "Flag -y"]
+        labels: ["Konfiguration"]
 
   - title: "Pakete suchen, entfernen und aufräumen"
     explanation: |
@@ -59,19 +65,23 @@ sections:
         a: "Sucht nach Paketen mit 'text editor' im Namen oder der Beschreibung"
         rel:
           - ["apt-search", "In Paketdatenbank suchen", "apt search"]
+        labels: ["Konfiguration"]
       - q: "apt show nodejs"
         a: "Zeigt Details zu nodejs: Version, Abhängigkeiten, Beschreibung, Größe"
         rel:
           - ["apt-show", "Detaillierte Informationen zu einem Paket anzeigen", "apt show"]
+        labels: ["Konfiguration"]
       - q: "sudo apt remove --purge apache2"
         a: "Entfernt Apache2 komplett inkl. aller Konfigurationsdateien"
         rel:
           - ["apt-purge", "Paket und alle Konfigurationsdateien komplett entfernen", "apt purge / --purge"]
+        labels: ["Konfiguration"]
       - q: "sudo apt autoremove && sudo apt clean"
         a: "Verwaiste Pakete entfernen und Paket-Cache leeren — gibt Speicherplatz frei"
         rel:
           - ["apt-autoremove", "Automatisch installierte, nicht mehr benötigte Pakete entfernen", "apt autoremove"]
           - ["apt-clean", "Heruntergeladene Paketdateien aus Cache löschen", "apt clean"]
+        labels: ["Konfiguration"]
 
   - title: "dpkg und snap — alternative Installationswege"
     explanation: |
@@ -99,19 +109,23 @@ sections:
         rel:
           - ["dpkg-cmd", "Debian Package — .deb-Dateien direkt verwalten", "Befehl dpkg"]
           - ["dpkg-i", "Install — .deb-Datei installieren", "Flag -i"]
+        labels: ["Konfiguration"]
       - q: "dpkg -l | grep \"^ii\""
         a: "Listet alle korrekt installierten Pakete (ii = installed properly)"
         rel:
           - ["dpkg-l", "List — alle bekannten Pakete und ihren Status", "dpkg -l"]
+        labels: ["Konfiguration"]
       - q: "snap install code --classic"
         a: "Visual Studio Code über snap installieren — --classic erlaubt vollen Systemzugriff"
         rel:
           - ["snap-cmd", "Snap-Paketsystem — isolierte, auto-updatende Apps", "Befehl snap"]
           - ["snap-classic", "Classic confinement — volles Systemzugriff für IDE-artige Programme", "Flag --classic"]
+        labels: ["Konfiguration"]
       - q: "snap list"
         a: "Alle installierten snap-Pakete und ihre Versionen anzeigen"
         rel:
           - ["snap-list", "Alle installierten snap-Pakete auflisten", "snap list"]
+        labels: ["Konfiguration"]
 
   - title: "🖥️ Terminal-Check"
     explanation: |
@@ -120,6 +134,7 @@ sections:
       - q: "Welcher Befehl aktualisiert die Paketlisten unter Ubuntu/Debian?"
         type: input
         a: "sudo apt update"
+        labels: ["Konfiguration"]
       - q: "Was ist der Unterschied zwischen 'apt update' und 'apt upgrade'?"
         type: select
         options:
@@ -128,6 +143,7 @@ sections:
           - text: "update installiert Pakete, upgrade entfernt alte"
           - text: "update und upgrade machen dasselbe"
           - text: "upgrade holt neue Paketlisten, update aktualisiert die Pakete"
+        labels: ["Konfiguration"]
       - q: "Welcher Befehl entfernt ein Paket inkl. seiner Konfigurationsdateien?"
         type: select
         options:
@@ -136,6 +152,7 @@ sections:
           - text: "sudo apt remove nginx"
           - text: "sudo apt delete nginx"
           - text: "sudo apt uninstall nginx"
+        labels: ["Konfiguration"]
       - q: "Welche dieser Aussagen über apt stimmen?"
         type: multiple-choice
         options:
@@ -146,3 +163,4 @@ sections:
           - text: "apt search durchsucht die Paketdatenbank"
             correct: true
           - text: "apt benötigt keine Administratorrechte"
+        labels: ["Konfiguration"]

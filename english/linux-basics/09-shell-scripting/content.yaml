@@ -1,7 +1,8 @@
-version: 1
+version: 2
 number: 9
 title: "Shell Scripting Basics"
 description: "Variables, if-conditions and loops — write your own scripts and automate tasks"
+image: "images/lesson-header.svg"
 sections:
   - title: "Your first script — shebang and variables"
     explanation: |
@@ -33,19 +34,23 @@ sections:
         a: "Shebang — first line of every bash script, specifies the interpreter"
         rel:
           - ["en-shebang", "First line of a script that specifies the interpreter", "#!/bin/bash"]
+        labels: ["Scripting"]
       - q: "NAME=\"Alice\" && echo \"Hello, $NAME\""
         a: "Set variable and use it immediately — no spaces around the equals sign!"
         rel:
           - ["en-bash-variable", "Variable in Bash: NAME=value (without $), $NAME (when using)", "variable"]
+        labels: ["Scripting"]
       - q: "TODAY=$(date +%d.%m.%Y)"
         a: "Store command output in variable — $(date) returns the current date"
         rel:
           - ["en-command-sub2", "Command substitution: $(command) stores output in variable", "$()"]
+        labels: ["Scripting"]
       - q: "echo \"Path: $HOME, User: $USER\""
         a: "Use built-in environment variables — HOME and USER are always available"
         rel:
           - ["en-env-user", "Environment variable with current username", "$USER"]
           - ["en-env-home2", "Environment variable with path to home directory", "$HOME"]
+        labels: ["Scripting"]
 
   - title: "if-conditions — decisions in scripts"
     explanation: |
@@ -80,14 +85,17 @@ sections:
         rel:
           - ["en-if-bash", "if [ condition ]; then commands; fi — basic structure", "if-then-fi"]
           - ["en-test-f", "-f tests whether file exists", "test operator -f"]
+        labels: ["Scripting", "Security"]
       - q: "[ -d /var/www ] && echo \"Web directory exists\""
         a: "Shorthand: && runs second command only if first condition is true"
         rel:
           - ["en-test-d", "-d tests whether directory exists", "test operator -d"]
+        labels: ["Scripting"]
       - q: "if [ \"$USER\" = \"root\" ]; then echo \"You are root!\"; fi"
         a: "Check if script is running as root — important for installation scripts"
         rel:
           - ["en-string-compare", "Compare strings in Bash with =", "string comparison"]
+        labels: ["Scripting", "Security"]
 
   - title: "Loops — automating repetition"
     explanation: |
@@ -124,20 +132,24 @@ sections:
         a: "For loop over a list — prints numbers 1 through 5"
         rel:
           - ["en-for-loop", "For loop: for VAR in LIST; do ... done", "for-do-done"]
+        labels: ["Scripting"]
       - q: "for USER in alice bob charlie; do useradd \"$USER\"; done"
         a: "Create multiple users at once — typical sysadmin task"
         rel:
           - ["en-for-list", "For loop over a list of values", "for VAR in val1 val2"]
+        labels: ["Scripting", "Security"]
       - q: "for f in /var/log/*.log; do echo \"$(wc -l < $f) lines: $f\"; done"
         a: "Count lines in all log files and list them"
         rel:
           - ["en-for-glob", "For loop with glob pattern over files", "for f in *.ext"]
           - ["en-wc-l", "Word Count -l — count lines in a file", "wc -l"]
+        labels: ["Scripting", "Filesystem"]
       - q: "while true; do df -h / | grep '/'; sleep 60; done"
         a: "Monitor disk usage every minute — infinite loop with sleep"
         rel:
           - ["en-while-loop", "While loop: while condition; do ... done", "while-do-done"]
           - ["en-while-true", "while true — infinite loop, only stop with Ctrl+C", "while true"]
+        labels: ["Scripting"]
 
   - title: "🖥️ Terminal Check"
     explanation: |
@@ -146,6 +158,7 @@ sections:
       - q: "What is the first line of every Bash script called (shebang)?"
         type: input
         a: "#!/bin/bash"
+        labels: ["Scripting"]
       - q: "What must you watch out for when assigning a Bash variable?"
         type: select
         options:
@@ -154,6 +167,7 @@ sections:
           - text: "Always put $ before the variable name: $NAME=\"Alice\""
           - text: "Variables must be uppercase"
           - text: "Variables must be declared with export"
+        labels: ["Scripting"]
       - q: "Which keyword correctly closes an if-condition in Bash?"
         type: select
         options:
@@ -162,6 +176,7 @@ sections:
           - text: "end"
           - text: "endif"
           - text: "done"
+        labels: ["Scripting"]
       - q: "Which of these statements about shell scripting are true?"
         type: multiple-choice
         options:
@@ -172,3 +187,4 @@ sections:
           - text: "-f checks whether a file exists"
             correct: true
           - text: "Spaces around = are required for variables"
+        labels: ["Scripting"]

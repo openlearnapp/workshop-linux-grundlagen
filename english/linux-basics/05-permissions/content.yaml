@@ -1,7 +1,8 @@
-version: 1
+version: 2
 number: 5
 title: "Permissions"
 description: "chmod, chown and sudo — understand and apply the Linux permission system"
+image: "images/lesson-header.svg"
 sections:
   - title: "rwx — decoding the permission system"
     explanation: |
@@ -33,10 +34,12 @@ sections:
         rel:
           - ["en-ssh-key-perms", "SSH private key needs 600 permissions — SSH refuses to use it otherwise", "security"]
           - ["en-rw-owner-only", "-rw------- means: owner read/write, everyone else nothing", "permission pattern"]
+        labels: ["Security"]
       - q: "ls -l /usr/bin/sudo"
         a: "Shows the special SUID permissions of sudo — the 's' in the permission string is special"
         rel:
           - ["en-suid-bit", "Set User ID — program runs with owner's permissions", "SUID"]
+        labels: ["Security"]
 
   - title: "chmod — changing permissions"
     explanation: |
@@ -66,18 +69,22 @@ sections:
         rel:
           - ["en-chmod-cmd", "Change Mode — change file permissions", "chmod command"]
           - ["en-chmod-x", "+x adds execute permission", "chmod +x"]
+        labels: ["Security"]
       - q: "chmod 755 /usr/local/bin/myprogram"
         a: "755 = rwxr-xr-x: owner can do everything, others can only read and execute"
         rel:
           - ["en-chmod-755", "rwxr-xr-x — standard for executable programs", "octal 755"]
+        labels: ["Security"]
       - q: "chmod 600 ~/.ssh/id_rsa"
         a: "600 = rw------- : only owner can read/write — mandatory for SSH keys"
         rel:
           - ["en-chmod-600", "rw------- owner read/write only, SSH key standard", "octal 600"]
+        labels: ["Security"]
       - q: "chmod -R 755 ~/website/"
         a: "Sets 755 permissions recursively on all files and subdirectories"
         rel:
           - ["en-chmod-R", "Recursive — apply permissions to all subdirectories", "flag -R"]
+        labels: ["Security"]
 
   - title: "sudo and chown — superuser powers and ownership"
     explanation: |
@@ -98,16 +105,19 @@ sections:
         a: "Update package list — requires administrator rights, hence sudo"
         rel:
           - ["en-sudo-cmd", "Super User Do — run command as administrator", "sudo command"]
+        labels: ["Security"]
       - q: "sudo chown -R www-data:www-data /var/www/html/"
         a: "Assign all web server files to www-data user — Nginx/Apache need this"
         rel:
           - ["en-chown-cmd", "Change Owner — change file owner", "chown command"]
           - ["en-chown-R", "Recursive — change ownership recursively", "chown -R"]
           - ["en-www-data", "Default user for web servers (Apache, Nginx)", "www-data"]
+        labels: ["Security"]
       - q: "sudo -l"
         a: "Shows which sudo commands are allowed for you — useful on unfamiliar systems"
         rel:
           - ["en-sudo-l", "List — show allowed sudo commands for current user", "flag -l"]
+        labels: ["Security"]
 
   - title: "🖥️ Terminal Check"
     explanation: |
@@ -116,6 +126,7 @@ sections:
       - q: "Which command makes 'deploy.sh' executable?"
         type: input
         a: "chmod +x deploy.sh"
+        labels: ["Security"]
       - q: "What does the permission '755' mean in octal notation?"
         type: select
         options:
@@ -124,6 +135,7 @@ sections:
           - text: "rw-rw-rw- — everyone can read and write"
           - text: "rwx------ — only owner has all permissions"
           - text: "r--r--r-- — everyone can only read"
+        labels: ["Security"]
       - q: "What octal value should a private SSH key have?"
         type: select
         options:
@@ -132,6 +144,7 @@ sections:
           - text: "755"
           - text: "777"
           - text: "644"
+        labels: ["Security"]
       - q: "Which of these statements about the Linux permission system are true?"
         type: multiple-choice
         options:
@@ -142,3 +155,4 @@ sections:
           - text: "w stands for write"
             correct: true
           - text: "s stands for system"
+        labels: ["Security"]

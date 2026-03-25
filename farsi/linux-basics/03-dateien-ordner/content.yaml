@@ -1,7 +1,8 @@
-version: 1
+version: 2
 number: 3
 title: "فایل‌ها و پوشه‌ها"
 description: "touch، mkdir، cp، mv و rm — ساخت، جابجایی و حذف فایل‌ها و پوشه‌ها"
+image: "images/lesson-header.svg"
 sections:
   - title: "ساختن — touch و mkdir"
     explanation: |
@@ -28,15 +29,18 @@ sections:
         a: "یک فایل خالی README.md در پوشه فعلی می‌سازد"
         rel:
           - ["touch-cmd", "ساخت فایل خالی یا به‌روزرسانی Timestamp", "دستور touch"]
+        labels: ["فایل‌سیستم"]
       - q: "touch index.html style.css app.js"
         a: "سه فایل را یکجا می‌سازد — touch چند آرگومان قبول می‌کند"
         rel:
           - ["touch-multiple", "ساخت چند فایل همزمان با touch", "touch فایل۱ فایل۲"]
+        labels: ["فایل‌سیستم"]
       - q: "mkdir -p ~/projekte/meine-webseite/assets/img"
         a: "کل درخت پوشه‌ها را یکجا می‌سازد، بدون خطا برای پوشه‌های موجود"
         rel:
           - ["mkdir-cmd", "Make Directory — ساخت پوشه", "دستور mkdir"]
           - ["mkdir-p", "Parents — ساخت خودکار تمام پوشه‌های میانی", "فلگ -p"]
+        labels: ["فایل‌سیستم"]
 
   - title: "کپی و جابجایی — cp و mv"
     explanation: |
@@ -59,19 +63,23 @@ sections:
         rel:
           - ["cp-cmd", "Copy — کپی فایل‌ها و پوشه‌ها", "دستور cp"]
           - ["bashrc", "فایل پیکربندی Bash برای Alias‌ها، متغیرها و غیره", "~/.bashrc"]
+        labels: ["فایل‌سیستم"]
       - q: "cp -r /etc/nginx/ ~/nginx-backup/"
         a: "کل پیکربندی Nginx را به عنوان پشتیبان در پوشه خانگی کپی می‌کند"
         rel:
           - ["cp-r", "Recursive — کپی پوشه‌ها با محتوا", "فلگ -r"]
+        labels: ["فایل‌سیستم", "پیکربندی"]
       - q: "mv entwurf.txt final.txt"
         a: "تغییر نام فایل — mv بدون مسیر فقط نام را عوض می‌کند"
         rel:
           - ["mv-cmd", "Move — جابجایی یا تغییر نام فایل‌ها", "دستور mv"]
+        labels: ["فایل‌سیستم"]
       - q: "mv ~/Downloads/*.pdf ~/Dokumente/PDFs/"
         a: "تمام فایل‌های PDF از Downloads به پوشه PDFs منتقل می‌شوند"
         rel:
           - ["glob-star", "علامت * با هر کاراکتری مطابقت دارد", "Wildcard *"]
           - ["mv-multiple", "جابجایی چند فایل با Wildcard", "mv *.pdf مقصد/"]
+        labels: ["فایل‌سیستم"]
 
   - title: "حذف — rm و rmdir"
     explanation: |
@@ -101,18 +109,22 @@ sections:
         rel:
           - ["rm-cmd", "Remove — حذف فایل‌ها (سطل زباله ندارد!)", "دستور rm"]
           - ["rm-i", "Interactive — قبل از حذف سؤال می‌کند", "فلگ -i"]
+        labels: ["فایل‌سیستم"]
       - q: "rm -r ~/projekte/altes-projekt/"
         a: "پوشه altes-projekt و تمام محتوایش را حذف می‌کند"
         rel:
           - ["rm-r", "Recursive — حذف پوشه‌ها و محتوا", "فلگ -r"]
+        labels: ["فایل‌سیستم"]
       - q: "rmdir leerer-ordner/"
         a: "فقط پوشه‌های خالی را حذف می‌کند — امن‌تر از rm -r، برای پوشه غیرخالی خطا می‌دهد"
         rel:
           - ["rmdir-cmd", "Remove Directory — فقط حذف پوشه‌های خالی", "دستور rmdir"]
+        labels: ["فایل‌سیستم"]
       - q: "ls *.log && rm *.log"
         a: "اول تمام فایل‌های .log را نشان می‌دهد، بعد حذف می‌کند — روش امن"
         rel:
           - ["safe-delete", "اول ls، بعد rm — حذف امن با پیش‌نمایش", "بهترین روش"]
+        labels: ["فایل‌سیستم"]
 
   - title: "🖥️ آزمون ترمینال"
     explanation: |
@@ -121,6 +133,7 @@ sections:
       - q: "کدام دستور یک فایل خالی به نام 'notizen.txt' می‌سازد؟"
         type: input
         a: "touch notizen.txt"
+        labels: ["فایل‌سیستم"]
       - q: "فلگ '-p' در 'mkdir -p projekte/web/assets' چه کار می‌کند؟"
         type: select
         options:
@@ -129,6 +142,7 @@ sections:
           - text: "قبل از ساختن سؤال می‌کند"
           - text: "پوشه ساخته‌شده را نمایش می‌دهد"
           - text: "پوشه را از حذف محافظت می‌کند"
+        labels: ["فایل‌سیستم"]
       - q: "کدام دستور نام فایل را از 'entwurf.txt' به 'final.txt' تغییر می‌دهد؟"
         type: select
         options:
@@ -137,6 +151,7 @@ sections:
           - text: "cp entwurf.txt final.txt"
           - text: "rename entwurf.txt final.txt"
           - text: "touch final.txt entwurf.txt"
+        labels: ["فایل‌سیستم"]
       - q: "کدام‌یک از این جملات درباره 'rm' درست هستند؟"
         type: multiple-choice
         options:
@@ -147,3 +162,4 @@ sections:
           - text: "rm -i قبل از حذف سؤال می‌کند"
             correct: true
           - text: "rm می‌تواند حذف را برگرداند"
+        labels: ["فایل‌سیستم"]

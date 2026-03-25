@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#1a2540"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="360" fill="url(#bg)"/>
+
+  <!-- Vim window -->
+  <rect x="60" y="20" width="520" height="320" rx="8" fill="#161b22" stroke="#30363d" stroke-width="2"/>
+
+  <!-- Line numbers + tilde area -->
+  <rect x="60" y="20" width="40" height="320" rx="8" fill="#0d1117" opacity="0.5"/>
+  <rect x="88" y="20" width="12" height="320" fill="#0d1117" opacity="0.5"/>
+
+  <!-- Line numbers -->
+  <text x="90" y="42" font-family="monospace" font-size="12" fill="#484f58" text-anchor="end">1</text>
+  <text x="90" y="60" font-family="monospace" font-size="12" fill="#484f58" text-anchor="end">2</text>
+  <text x="90" y="78" font-family="monospace" font-size="12" fill="#484f58" text-anchor="end">3</text>
+  <text x="90" y="96" font-family="monospace" font-size="12" fill="#484f58" text-anchor="end">4</text>
+  <text x="90" y="114" font-family="monospace" font-size="12" fill="#484f58" text-anchor="end">5</text>
+  <text x="90" y="132" font-family="monospace" font-size="12" fill="#484f58" text-anchor="end">6</text>
+  <text x="90" y="150" font-family="monospace" font-size="12" fill="#484f58" text-anchor="end">7</text>
+  <text x="90" y="168" font-family="monospace" font-size="12" fill="#484f58" text-anchor="end">8</text>
+  <text x="90" y="186" font-family="monospace" font-size="12" fill="#484f58" text-anchor="end">9</text>
+
+  <!-- Tildes for empty lines -->
+  <text x="75" y="204" font-family="monospace" font-size="12" fill="#58a6ff">~</text>
+  <text x="75" y="222" font-family="monospace" font-size="12" fill="#58a6ff">~</text>
+  <text x="75" y="240" font-family="monospace" font-size="12" fill="#58a6ff">~</text>
+  <text x="75" y="258" font-family="monospace" font-size="12" fill="#58a6ff">~</text>
+  <text x="75" y="276" font-family="monospace" font-size="12" fill="#58a6ff">~</text>
+  <text x="75" y="294" font-family="monospace" font-size="12" fill="#58a6ff">~</text>
+
+  <!-- Code content -->
+  <text x="105" y="42" font-family="monospace" font-size="12" fill="#8b949e">#!/bin/bash</text>
+  <!-- empty line 2 -->
+  <text x="105" y="78" font-family="monospace" font-size="12" fill="#ff7b72">function</text>
+  <text x="175" y="78" font-family="monospace" font-size="12" fill="#d2a8ff"> greet</text>
+  <text x="220" y="78" font-family="monospace" font-size="12" fill="#e6edf3">() {</text>
+  <text x="105" y="96" font-family="monospace" font-size="12" fill="#e6edf3">  </text>
+  <text x="120" y="96" font-family="monospace" font-size="12" fill="#79c0ff">echo</text>
+  <text x="158" y="96" font-family="monospace" font-size="12" fill="#a5d6ff"> "Hello, $1"</text>
+  <text x="105" y="114" font-family="monospace" font-size="12" fill="#e6edf3">}</text>
+  <!-- empty line 6 -->
+  <!-- Cursor on line 7 -->
+  <rect x="105" y="139" width="8" height="15" fill="#3fb950"/>
+  <text x="105" y="150" font-family="monospace" font-size="12" fill="#e6edf3">greet </text>
+  <text x="155" y="150" font-family="monospace" font-size="12" fill="#a5d6ff">"Linux"</text>
+  <!-- empty 8 -->
+  <text x="105" y="186" font-family="monospace" font-size="12" fill="#79c0ff">exit</text>
+  <text x="138" y="186" font-family="monospace" font-size="12" fill="#f0883e"> 0</text>
+
+  <!-- Status line -->
+  <rect x="60" y="308" width="520" height="18" fill="#21262d"/>
+  <!-- Mode indicator - NORMAL mode -->
+  <rect x="60" y="308" width="80" height="18" fill="#3fb950"/>
+  <text x="100" y="321" font-family="monospace" font-size="11" fill="#0d1117" text-anchor="middle" font-weight="bold">NORMAL</text>
+  <text x="155" y="321" font-family="monospace" font-size="11" fill="#8b949e">script.sh</text>
+  <text x="500" y="321" font-family="monospace" font-size="11" fill="#8b949e" text-anchor="end">7,1</text>
+  <text x="560" y="321" font-family="monospace" font-size="11" fill="#8b949e" text-anchor="end">78%</text>
+
+  <!-- Command line area -->
+  <rect x="60" y="326" width="520" height="14" fill="#161b22"/>
+
+  <!-- Mode labels floating -->
+  <rect x="80" y="342" width="0" height="0"/>
+
+  <!-- Mode indicators at top right -->
+  <g transform="translate(430, 30)">
+    <rect x="0" y="0" width="65" height="20" rx="4" fill="#3fb950" opacity="0.2"/>
+    <text x="33" y="14" font-family="monospace" font-size="9" fill="#3fb950" text-anchor="middle">NORMAL</text>
+  </g>
+  <g transform="translate(430, 55)">
+    <rect x="0" y="0" width="65" height="20" rx="4" fill="#58a6ff" opacity="0.2"/>
+    <text x="33" y="14" font-family="monospace" font-size="9" fill="#58a6ff" text-anchor="middle">INSERT</text>
+  </g>
+  <g transform="translate(430, 80)">
+    <rect x="0" y="0" width="65" height="20" rx="4" fill="#bc8cff" opacity="0.2"/>
+    <text x="33" y="14" font-family="monospace" font-size="9" fill="#bc8cff" text-anchor="middle">VISUAL</text>
+  </g>
+  <g transform="translate(430, 105)">
+    <rect x="0" y="0" width="65" height="20" rx="4" fill="#f0883e" opacity="0.2"/>
+    <text x="33" y="14" font-family="monospace" font-size="9" fill="#f0883e" text-anchor="middle">COMMAND</text>
+  </g>
+
+  <!-- Key hints -->
+  <g transform="translate(508, 30)">
+    <rect x="0" y="0" width="20" height="20" rx="3" fill="#30363d"/>
+    <text x="10" y="14" font-family="monospace" font-size="10" fill="#e6edf3" text-anchor="middle">i</text>
+  </g>
+  <g transform="translate(508, 55)">
+    <rect x="0" y="0" width="40" height="20" rx="3" fill="#30363d"/>
+    <text x="20" y="14" font-family="monospace" font-size="9" fill="#e6edf3" text-anchor="middle">Esc</text>
+  </g>
+  <g transform="translate(508, 80)">
+    <rect x="0" y="0" width="20" height="20" rx="3" fill="#30363d"/>
+    <text x="10" y="14" font-family="monospace" font-size="10" fill="#e6edf3" text-anchor="middle">v</text>
+  </g>
+  <g transform="translate(508, 105)">
+    <rect x="0" y="0" width="20" height="20" rx="3" fill="#30363d"/>
+    <text x="10" y="14" font-family="monospace" font-size="10" fill="#e6edf3" text-anchor="middle">:</text>
+  </g>
+</svg>

@@ -1,7 +1,8 @@
-version: 1
+version: 2
 number: 1
 title: "لینوکس چیست؟"
 description: "تاریخچه، توزیع‌ها و دلیل اینکه لینوکس ۹۶٪ سرورهای جهان را اجرا می‌کند"
+image: "images/lesson-header.svg"
 sections:
   - title: "یک دانشجو که دنیا را تغییر داد"
     explanation: |
@@ -25,15 +26,18 @@ sections:
         rel:
           - ["uname", "Unix Name — نمایش اطلاعات سیستم", "دستور"]
           - ["uname-r", "نمایش نسخه انتشار Kernel", "فلگ -r = release"]
+        labels: ["مبانی"]
       - q: "uname -a"
         a: "تمام اطلاعات سیستم را یکجا نشان می‌دهد: Kernel، نام میزبان، معماری"
         rel:
           - ["uname-a", "نمایش تمام اطلاعات سیستم (All)", "فلگ -a = all"]
+        labels: ["مبانی"]
       - q: "cat /etc/os-release"
         a: "نشان می‌دهد کدام توزیع لینوکس و چه نسخه‌ای نصب شده است"
         rel:
           - ["os-release", "فایل حاوی اطلاعات توزیع و نسخه", "/etc/os-release"]
           - ["cat-cmd", "نمایش محتوای فایل در ترمینال", "دستور cat"]
+        labels: ["مبانی", "فایل‌سیستم"]
 
   - title: "توزیع‌ها — لینوکس برای هر کاری"
     explanation: |
@@ -58,15 +62,18 @@ sections:
         rel:
           - ["lsb-release", "نمایش اطلاعات Linux Standard Base", "دستور lsb_release"]
           - ["lsb-a-flag", "نمایش تمام اطلاعات LSB موجود", "فلگ -a"]
+        labels: ["مبانی"]
       - q: "hostnamectl"
         a: "نام میزبان، سیستم‌عامل، Kernel و معماری را به شکل مرتب نشان می‌دهد"
         rel:
           - ["hostnamectl", "مدیریت نام میزبان و اطلاعات سیستم", "دستور"]
+        labels: ["مبانی"]
       - q: "arch"
         a: "معماری پردازنده را نمایش می‌دهد (مثلاً x86_64 برای سیستم ۶۴ بیتی)"
         rel:
           - ["arch-cmd", "نمایش معماری پردازنده", "دستور arch"]
           - ["x86-64", "معماری ۶۴ بیتی Intel/AMD، امروزه استاندارد", "معماری"]
+        labels: ["مبانی"]
 
   - title: "سیستم فایل لینوکس — همه چیز یک فایل است"
     explanation: |
@@ -92,16 +99,19 @@ sections:
         rel:
           - ["ls-cmd", "List — نمایش محتوای پوشه", "دستور ls"]
           - ["root-dir", "بالاترین پوشه سیستم فایل لینوکس", "/ (Root)"]
+        labels: ["فایل‌سیستم"]
       - q: "ls /etc | head -5"
         a: "۵ مورد اول پوشه پیکربندی /etc را لیست می‌کند"
         rel:
           - ["etc-dir", "فایل‌های پیکربندی سیستم", "پوشه /etc"]
           - ["pipe-head", "ارسال خروجی از طریق pipe به head", "| head -5"]
+        labels: ["فایل‌سیستم", "پیکربندی"]
       - q: "echo $HOME"
         a: "مسیر پوشه خانگی شما را نمایش می‌دهد (مثلاً /home/alice)"
         rel:
           - ["echo-cmd", "نمایش متن یا متغیر در ترمینال", "دستور echo"]
           - ["home-var", "متغیر محیطی حاوی مسیر پوشه خانگی", "$HOME"]
+        labels: ["فایل‌سیستم", "مبانی"]
 
   - title: "🖥️ آزمون ترمینال"
     explanation: |
@@ -110,6 +120,7 @@ sections:
       - q: "کدام دستور نسخه فعلی Kernel لینوکس را نشان می‌دهد؟"
         type: input
         a: "uname -r"
+        labels: ["مبانی"]
       - q: "دستور 'lsb_release -a' چه کاری انجام می‌دهد؟"
         type: select
         options:
@@ -118,6 +129,7 @@ sections:
           - text: "تمام فایل‌های لاگ را پاک می‌کند"
           - text: "Kernel لینوکس را به‌روزرسانی می‌کند"
           - text: "سیستم را راه‌اندازی مجدد می‌کند"
+        labels: ["مبانی"]
       - q: "کدام دستور نشان می‌دهد که چه توزیع لینوکسی نصب شده است؟"
         type: select
         options:
@@ -126,6 +138,7 @@ sections:
           - text: "cat /etc/passwd"
           - text: "ls /usr/bin"
           - text: "echo $PATH"
+        labels: ["مبانی"]
       - q: "کدام‌یک از این جملات درباره لینوکس درست هستند؟"
         type: multiple-choice
         options:
@@ -136,3 +149,4 @@ sections:
           - text: "لینوکس فقط یک توزیع دارد"
           - text: "اندروید بر پایه لینوکس ساخته شده است"
             correct: true
+        labels: ["مبانی"]

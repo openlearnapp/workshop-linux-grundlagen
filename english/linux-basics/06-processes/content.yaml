@@ -1,7 +1,8 @@
-version: 1
+version: 2
 number: 6
 title: "Processes"
 description: "ps, top, kill and background jobs — understand and control running programs"
+image: "images/lesson-header.svg"
 sections:
   - title: "ps and top — what's running right now?"
     explanation: |
@@ -27,18 +28,22 @@ sections:
         rel:
           - ["en-ps-cmd", "Process Status — show running processes", "ps command"]
           - ["en-ps-aux", "a=all users, u=user-format, x=also without terminal", "flags aux"]
+        labels: ["Processes"]
       - q: "ps aux | grep nginx"
         a: "Show only Nginx processes from the process list — combining with grep"
         rel:
           - ["en-ps-grep", "Filter process list by process name", "ps aux | grep"]
+        labels: ["Processes"]
       - q: "top"
         a: "Interactive real-time overview: CPU, RAM, all processes — q to quit"
         rel:
           - ["en-top-cmd", "Interactive process monitor in real time", "top command"]
+        labels: ["Processes"]
       - q: "pgrep -l python"
         a: "Show all Python processes with their PIDs"
         rel:
           - ["en-pgrep-cmd", "Search for processes by name and output PIDs", "pgrep command"]
+        labels: ["Processes"]
 
   - title: "kill — stopping processes"
     explanation: |
@@ -62,19 +67,23 @@ sections:
         a: "Sends SIGTERM (graceful shutdown) to process with PID 1234"
         rel:
           - ["en-kill-cmd", "Send signal to process (default: SIGTERM = graceful shutdown)", "kill command"]
+        labels: ["Processes"]
       - q: "kill -9 1234"
         a: "Sends SIGKILL — process is terminated immediately, no saving possible"
         rel:
           - ["en-kill-9", "SIGKILL — immediate termination, cannot be caught", "signal -9"]
+        labels: ["Processes"]
       - q: "kill -1 $(pgrep nginx)"
         a: "Send SIGHUP to Nginx — reloads configuration without downtime"
         rel:
           - ["en-kill-1", "SIGHUP — reload configuration", "signal -1"]
           - ["en-command-sub", "$() executes command and uses the output", "$(command)"]
+        labels: ["Processes", "Config"]
       - q: "killall -9 firefox"
         a: "Immediately terminate all Firefox processes — useful when the browser freezes"
         rel:
           - ["en-killall-cmd", "Terminate all processes with a given name", "killall command"]
+        labels: ["Processes"]
 
   - title: "Background jobs — multitasking in the terminal"
     explanation: |
@@ -100,18 +109,22 @@ sections:
         a: "Starts a 60-second sleep process in the background — terminal stays free"
         rel:
           - ["en-background-amp", "& at the end starts process in background", "& operator"]
+        labels: ["Processes"]
       - q: "jobs -l"
         a: "Show all background jobs with job number and PID"
         rel:
           - ["en-jobs-cmd", "List all background jobs in current shell", "jobs command"]
+        labels: ["Processes"]
       - q: "fg %1"
         a: "Bring job number 1 to the foreground"
         rel:
           - ["en-fg-cmd", "Foreground — bring background job to foreground", "fg command"]
+        labels: ["Processes"]
       - q: "nohup python3 webserver.py > server.log 2>&1 &"
         a: "Start server that keeps running after terminal closes, output to log file"
         rel:
           - ["en-nohup-cmd", "No Hangup — process continues when terminal is closed", "nohup command"]
+        labels: ["Processes", "Scripting"]
 
   - title: "🖥️ Terminal Check"
     explanation: |
@@ -120,6 +133,7 @@ sections:
       - q: "Which command shows all running processes from all users?"
         type: input
         a: "ps aux"
+        labels: ["Processes"]
       - q: "What does 'kill -9 1234' do?"
         type: select
         options:
@@ -128,6 +142,7 @@ sections:
           - text: "Sends SIGTERM — process can clean up"
           - text: "Pauses the process with PID 1234"
           - text: "Restarts the process"
+        labels: ["Processes"]
       - q: "How do you start a process directly in the background?"
         type: select
         options:
@@ -136,6 +151,7 @@ sections:
           - text: "Run the command with bg at the beginning"
           - text: "Run the command with nohup at the end"
           - text: "Press Ctrl+Z before the command"
+        labels: ["Processes"]
       - q: "Which of these statements about process signals are true?"
         type: multiple-choice
         options:
@@ -146,3 +162,4 @@ sections:
           - text: "SIGHUP (1) reloads the configuration"
             correct: true
           - text: "SIGPAUSE (7) is the default signal"
+        labels: ["Processes"]

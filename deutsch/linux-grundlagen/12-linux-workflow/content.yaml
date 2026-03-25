@@ -1,7 +1,9 @@
-version: 1
+version: 2
 number: 12
 title: "Professioneller Linux-Workflow"
 description: "Pipes, Redirects, Aliases und xargs — die Kommandozeile wie ein Profi nutzen"
+image: "images/lesson-header.svg"
+image_caption: "Workflow-Diagramm mit Terminal, Git und SSH"
 sections:
   - title: "Pipes — Befehle verketten"
     explanation: |
@@ -28,17 +30,20 @@ sections:
         rel:
           - ["pipe-operator", "| leitet Ausgabe eines Befehls als Eingabe an den nächsten", "Pipe |"]
           - ["grep-v-grep", "grep -v grep entfernt die grep-Zeile aus der Prozessliste", "grep -v grep"]
+        labels: ["Scripting", "Prozesse"]
       - q: "cat /var/log/nginx/access.log | awk '{print $1}' | sort | uniq -c | sort -rn | head -10"
         a: "Top 10 IP-Adressen nach Zugriffsanzahl aus Nginx-Log extrahieren"
         rel:
           - ["awk-ip", "awk '{print $1}' gibt das erste Feld (IP) jeder Zeile aus", "awk print"]
           - ["uniq-c", "uniq -c zählt aufeinanderfolgende gleiche Zeilen", "uniq -c"]
+        labels: ["Scripting", "Netzwerk"]
       - q: "find /var/log -name \"*.log\" -mtime +30 | xargs ls -lh"
         a: "Log-Dateien älter als 30 Tage finden und deren Größe anzeigen"
         rel:
           - ["find-cmd", "Dateien nach verschiedenen Kriterien suchen", "Befehl find"]
           - ["find-mtime", "-mtime +30 = zuletzt modifiziert vor mehr als 30 Tagen", "find -mtime"]
           - ["xargs-cmd", "Ausgabe als Argumente an nächsten Befehl übergeben", "Befehl xargs"]
+        labels: ["Scripting", "Dateisystem"]
 
   - title: "Redirects — Ein- und Ausgabe umleiten"
     explanation: |
@@ -65,19 +70,23 @@ sections:
         a: "Verzeichnisinhalt in Datei speichern — überschreibt vorhandene Datei"
         rel:
           - ["redirect-out", "> leitet Standardausgabe in Datei (überschreibend)", "Redirect >"]
+        labels: ["Scripting", "Dateisystem"]
       - q: "echo \"[$(date)] Server gestartet\" >> /var/log/myapp.log"
         a: "Zeile an Log-Datei anhängen ohne sie zu überschreiben"
         rel:
           - ["redirect-append", ">> hängt Ausgabe an Datei an (kein Überschreiben)", "Redirect >>"]
+        labels: ["Scripting"]
       - q: "find / -name \"*.conf\" 2>/dev/null"
         a: "Nach Konfigurationsdateien suchen — Fehlermeldungen (Zugriff verweigert) verwerfen"
         rel:
           - ["dev-null", "/dev/null verwirft alle Ausgaben — das schwarze Loch", "/dev/null"]
           - ["redirect-stderr", "2> leitet Standardfehler (stderr) um", "Redirect 2>"]
+        labels: ["Scripting", "Dateisystem"]
       - q: "wc -l < /etc/passwd"
         a: "Anzahl der Zeilen in /etc/passwd zählen — Datei als Eingabe verwenden"
         rel:
           - ["redirect-input", "< verwendet Dateiinhalt als Eingabe für Befehl", "Redirect <"]
+        labels: ["Scripting"]
 
   - title: "Aliases und .bashrc — den Workflow personalisieren"
     explanation: |
@@ -111,23 +120,28 @@ sections:
         a: "Erstellt den Alias 'll' für detaillierte, farbige Verzeichnisliste"
         rel:
           - ["alias-cmd", "Kurzbefehle für häufige oder lange Befehle erstellen", "Befehl alias"]
+        labels: ["Konfiguration"]
       - q: "alias update='sudo apt update && sudo apt upgrade -y'"
         a: "System-Update als einziges Wort 'update' ausführbar machen"
         rel:
           - ["alias-complex", "Alias für komplexe Befehlskette — Tipp nach Wort anstatt langer Befehlsfolge", "Alias Beispiel"]
+        labels: ["Konfiguration"]
       - q: "source ~/.bashrc"
         a: "Bash-Konfiguration neu laden — neue Aliases sofort verfügbar ohne Terminal neu starten"
         rel:
           - ["source-cmd", "Konfigurationsdatei in aktuelle Shell laden", "source / ."]
           - ["bashrc-reload", "~/.bashrc neu laden nach Änderungen", "source ~/.bashrc"]
+        labels: ["Konfiguration"]
       - q: "alias | grep git"
         a: "Alle git-bezogenen Aliases anzeigen — alias ohne Argument zeigt alle"
         rel:
           - ["alias-list", "alias ohne Argument listet alle definierten Aliases", "alias ohne Argumente"]
+        labels: ["Konfiguration"]
       - q: "unalias ll"
         a: "Alias 'll' wieder entfernen — gilt nur für die aktuelle Session"
         rel:
           - ["unalias-cmd", "Definierten Alias wieder entfernen", "Befehl unalias"]
+        labels: ["Konfiguration"]
 
   - title: "🖥️ Terminal-Check"
     explanation: |
@@ -136,6 +150,7 @@ sections:
       - q: "Welches Zeichen verbindet zwei Befehle per Pipe?"
         type: input
         a: "|"
+        labels: ["Scripting"]
       - q: "Was macht '>>' im Gegensatz zu '>'?"
         type: select
         options:
@@ -144,6 +159,7 @@ sections:
           - text: ">> überschreibt die Datei, > hängt an"
           - text: ">> leitet Fehler um, > leitet Ausgabe um"
           - text: ">> und > machen dasselbe"
+        labels: ["Scripting"]
       - q: "Wie wird eine Änderung in ~/.bashrc sofort wirksam?"
         type: select
         options:
@@ -152,6 +168,7 @@ sections:
           - text: "reload ~/.bashrc"
           - text: "bash --refresh"
           - text: "apply ~/.bashrc"
+        labels: ["Konfiguration"]
       - q: "Welche dieser Aussagen über Aliases und Pipes stimmen?"
         type: multiple-choice
         options:
@@ -162,3 +179,4 @@ sections:
           - text: "/dev/null verwirft alle Ausgaben"
             correct: true
           - text: "source speichert Befehle dauerhaft im Terminal"
+        labels: ["Scripting", "Konfiguration"]

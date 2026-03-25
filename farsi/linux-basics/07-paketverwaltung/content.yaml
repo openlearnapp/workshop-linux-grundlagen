@@ -1,7 +1,8 @@
-version: 1
+version: 2
 number: 7
 title: "مدیریت بسته‌ها"
 description: "apt، snap و dpkg — نصب، به‌روزرسانی و مدیریت نرم‌افزار در Ubuntu/Debian"
+image: "images/lesson-header.svg"
 sections:
   - title: "apt — فروشگاه برنامه خط فرمان"
     explanation: |
@@ -26,18 +27,22 @@ sections:
         rel:
           - ["apt-cmd", "Advanced Package Tool — مدیریت بسته برای Debian/Ubuntu", "دستور apt"]
           - ["apt-update", "به‌روزرسانی لیست بسته‌ها از سرورها (نه خود بسته‌ها)", "apt update"]
+        labels: ["پیکربندی"]
       - q: "sudo apt upgrade"
         a: "تمام بسته‌های نصب‌شده را به جدیدترین نسخه به‌روز می‌کند"
         rel:
           - ["apt-upgrade", "ارتقاء تمام بسته‌های نصب‌شده به جدیدترین نسخه", "apt upgrade"]
+        labels: ["پیکربندی"]
       - q: "sudo apt install git curl wget"
         a: "سه بسته را یکجا نصب می‌کند — apt چند نام بسته قبول می‌کند"
         rel:
           - ["apt-install", "نصب بسته(ها)", "apt install"]
+        labels: ["پیکربندی"]
       - q: "sudo apt update && sudo apt upgrade -y"
         a: "به‌روزرسانی کامل در یک دستور — فلگ -y تمام سؤالات تأیید را خودکار با بله جواب می‌دهد"
         rel:
           - ["apt-y-flag", "Yes — تأیید خودکار تمام سؤالات", "فلگ -y"]
+        labels: ["پیکربندی"]
 
   - title: "جستجو، حذف و تمیزکاری بسته‌ها"
     explanation: |
@@ -59,19 +64,23 @@ sections:
         a: "جستجوی بسته‌ها با 'text editor' در نام یا توضیحات"
         rel:
           - ["apt-search", "جستجو در پایگاه داده بسته‌ها", "apt search"]
+        labels: ["پیکربندی"]
       - q: "apt show nodejs"
         a: "جزئیات nodejs: نسخه، وابستگی‌ها، توضیحات، حجم"
         rel:
           - ["apt-show", "نمایش اطلاعات دقیق یک بسته", "apt show"]
+        labels: ["پیکربندی"]
       - q: "sudo apt remove --purge apache2"
         a: "Apache2 را کاملاً حذف می‌کند شامل تمام فایل‌های پیکربندی"
         rel:
           - ["apt-purge", "حذف کامل بسته و تمام فایل‌های پیکربندی", "apt purge / --purge"]
+        labels: ["پیکربندی"]
       - q: "sudo apt autoremove && sudo apt clean"
         a: "حذف بسته‌های یتیم و پاک کردن کش بسته‌ها — فضای ذخیره‌سازی آزاد می‌کند"
         rel:
           - ["apt-autoremove", "حذف بسته‌های خودکار نصب‌شده که دیگر لازم نیستند", "apt autoremove"]
           - ["apt-clean", "حذف فایل‌های بسته دانلودشده از کش", "apt clean"]
+        labels: ["پیکربندی"]
 
   - title: "dpkg و snap — روش‌های جایگزین نصب"
     explanation: |
@@ -99,19 +108,23 @@ sections:
         rel:
           - ["dpkg-cmd", "Debian Package — مدیریت مستقیم فایل‌های .deb", "دستور dpkg"]
           - ["dpkg-i", "Install — نصب فایل .deb", "فلگ -i"]
+        labels: ["پیکربندی"]
       - q: "dpkg -l | grep \"^ii\""
         a: "لیست تمام بسته‌های نصب‌شده صحیح (ii = installed properly)"
         rel:
           - ["dpkg-l", "List — تمام بسته‌های شناخته‌شده و وضعیت آنها", "dpkg -l"]
+        labels: ["پیکربندی"]
       - q: "snap install code --classic"
         a: "نصب Visual Studio Code از طریق snap — فلگ --classic دسترسی کامل به سیستم می‌دهد"
         rel:
           - ["snap-cmd", "سیستم بسته Snap — برنامه‌های ایزوله با به‌روزرسانی خودکار", "دستور snap"]
           - ["snap-classic", "Classic confinement — دسترسی کامل سیستم برای برنامه‌های IDE-مانند", "فلگ --classic"]
+        labels: ["پیکربندی"]
       - q: "snap list"
         a: "تمام بسته‌های snap نصب‌شده و نسخه‌های آنها"
         rel:
           - ["snap-list", "لیست تمام بسته‌های snap نصب‌شده", "snap list"]
+        labels: ["پیکربندی"]
 
   - title: "🖥️ آزمون ترمینال"
     explanation: |
@@ -120,6 +133,7 @@ sections:
       - q: "کدام دستور لیست بسته‌ها را در Ubuntu/Debian به‌روز می‌کند؟"
         type: input
         a: "sudo apt update"
+        labels: ["پیکربندی"]
       - q: "تفاوت بین 'apt update' و 'apt upgrade' چیست؟"
         type: select
         options:
@@ -128,6 +142,7 @@ sections:
           - text: "update بسته‌ها را نصب می‌کند، upgrade قدیمی‌ها را حذف می‌کند"
           - text: "update و upgrade یک کار را انجام می‌دهند"
           - text: "upgrade لیست بسته‌ها را دریافت می‌کند، update بسته‌ها را به‌روز می‌کند"
+        labels: ["پیکربندی"]
       - q: "کدام دستور یک بسته را شامل فایل‌های پیکربندی حذف می‌کند؟"
         type: select
         options:
@@ -136,6 +151,7 @@ sections:
           - text: "sudo apt remove nginx"
           - text: "sudo apt delete nginx"
           - text: "sudo apt uninstall nginx"
+        labels: ["پیکربندی"]
       - q: "کدام‌یک از این جملات درباره apt درست هستند؟"
         type: multiple-choice
         options:
@@ -146,3 +162,4 @@ sections:
           - text: "apt search پایگاه داده بسته‌ها را جستجو می‌کند"
             correct: true
           - text: "apt نیاز به مجوز مدیر ندارد"
+        labels: ["پیکربندی"]

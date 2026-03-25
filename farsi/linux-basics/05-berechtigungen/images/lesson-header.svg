@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#1a2540"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="360" fill="url(#bg)"/>
+
+  <!-- Shield icon -->
+  <path d="M320 30 L380 60 L380 130 Q380 180 320 210 Q260 180 260 130 L260 60 Z" fill="none" stroke="#58a6ff" stroke-width="3"/>
+  <path d="M320 45 L370 70 L370 128 Q370 170 320 195 Q270 170 270 128 L270 70 Z" fill="#58a6ff" opacity="0.15"/>
+  <!-- Lock icon inside shield -->
+  <rect x="305" y="100" width="30" height="24" rx="3" fill="#58a6ff"/>
+  <path d="M310 100 L310 88 Q310 76 320 76 Q330 76 330 88 L330 100" fill="none" stroke="#58a6ff" stroke-width="3"/>
+  <circle cx="320" cy="112" r="4" fill="#0d1117"/>
+  <rect x="318" y="112" width="4" height="6" fill="#0d1117"/>
+
+  <!-- Permission grid -->
+  <!-- Headers -->
+  <text x="200" y="260" font-family="monospace" font-size="14" fill="#8b949e" text-anchor="middle">Owner</text>
+  <text x="320" y="260" font-family="monospace" font-size="14" fill="#8b949e" text-anchor="middle">Group</text>
+  <text x="440" y="260" font-family="monospace" font-size="14" fill="#8b949e" text-anchor="middle">Other</text>
+
+  <!-- rwx boxes - Owner -->
+  <rect x="155" y="270" width="30" height="30" rx="4" fill="#3fb950" opacity="0.8"/>
+  <text x="170" y="291" font-family="monospace" font-size="16" fill="#0d1117" text-anchor="middle" font-weight="bold">r</text>
+  <rect x="190" y="270" width="30" height="30" rx="4" fill="#3fb950" opacity="0.8"/>
+  <text x="205" y="291" font-family="monospace" font-size="16" fill="#0d1117" text-anchor="middle" font-weight="bold">w</text>
+  <rect x="225" y="270" width="30" height="30" rx="4" fill="#3fb950" opacity="0.8"/>
+  <text x="240" y="291" font-family="monospace" font-size="16" fill="#0d1117" text-anchor="middle" font-weight="bold">x</text>
+
+  <!-- rwx boxes - Group -->
+  <rect x="275" y="270" width="30" height="30" rx="4" fill="#58a6ff" opacity="0.8"/>
+  <text x="290" y="291" font-family="monospace" font-size="16" fill="#0d1117" text-anchor="middle" font-weight="bold">r</text>
+  <rect x="310" y="270" width="30" height="30" rx="4" fill="#30363d"/>
+  <text x="325" y="291" font-family="monospace" font-size="16" fill="#8b949e" text-anchor="middle">-</text>
+  <rect x="345" y="270" width="30" height="30" rx="4" fill="#58a6ff" opacity="0.8"/>
+  <text x="360" y="291" font-family="monospace" font-size="16" fill="#0d1117" text-anchor="middle" font-weight="bold">x</text>
+
+  <!-- rwx boxes - Other -->
+  <rect x="395" y="270" width="30" height="30" rx="4" fill="#f0883e" opacity="0.8"/>
+  <text x="410" y="291" font-family="monospace" font-size="16" fill="#0d1117" text-anchor="middle" font-weight="bold">r</text>
+  <rect x="430" y="270" width="30" height="30" rx="4" fill="#30363d"/>
+  <text x="445" y="291" font-family="monospace" font-size="16" fill="#8b949e" text-anchor="middle">-</text>
+  <rect x="465" y="270" width="30" height="30" rx="4" fill="#30363d"/>
+  <text x="480" y="291" font-family="monospace" font-size="16" fill="#8b949e" text-anchor="middle">-</text>
+
+  <!-- Numeric representation -->
+  <text x="200" y="328" font-family="monospace" font-size="20" fill="#3fb950" text-anchor="middle">7</text>
+  <text x="320" y="328" font-family="monospace" font-size="20" fill="#58a6ff" text-anchor="middle">5</text>
+  <text x="440" y="328" font-family="monospace" font-size="20" fill="#f0883e" text-anchor="middle">4</text>
+
+  <!-- User icons -->
+  <!-- Owner -->
+  <circle cx="90" cy="278" r="12" fill="none" stroke="#3fb950" stroke-width="2"/>
+  <circle cx="90" cy="273" r="5" fill="#3fb950"/>
+  <path d="M78 292 Q78 283 90 283 Q102 283 102 292" fill="none" stroke="#3fb950" stroke-width="2"/>
+  <!-- Group -->
+  <circle cx="90" cy="230" r="10" fill="none" stroke="#58a6ff" stroke-width="1.5"/>
+  <circle cx="90" cy="226" r="4" fill="#58a6ff"/>
+  <circle cx="108" cy="233" r="10" fill="none" stroke="#58a6ff" stroke-width="1.5"/>
+  <circle cx="108" cy="229" r="4" fill="#58a6ff"/>
+
+  <!-- Decorative lines -->
+  <line x1="155" y1="310" x2="255" y2="310" stroke="#3fb950" stroke-width="1" opacity="0.3"/>
+  <line x1="275" y1="310" x2="375" y2="310" stroke="#58a6ff" stroke-width="1" opacity="0.3"/>
+  <line x1="395" y1="310" x2="495" y2="310" stroke="#f0883e" stroke-width="1" opacity="0.3"/>
+</svg>

@@ -1,7 +1,9 @@
-version: 1
+version: 2
 number: 9
 title: "Shell Scripting Basics"
 description: "Variablen, if-Bedingungen und Schleifen — eigene Skripte schreiben und Aufgaben automatisieren"
+image: "images/lesson-header.svg"
+image_caption: "Code-Editor mit Bash-Skript und Syntax-Highlighting"
 sections:
   - title: "Dein erstes Skript — Shebang und Variablen"
     explanation: |
@@ -33,20 +35,24 @@ sections:
         a: "Shebang — erste Zeile jedes Bash-Skripts, gibt den Interpreter an"
         rel:
           - ["shebang", "Erste Zeile eines Skripts die den Interpreter festlegt", "#!/bin/bash"]
+        labels: ["Scripting"]
       - q: "NAME=\"Alice\" && echo \"Hallo, $NAME\""
         a: "Variable setzen und sofort verwenden — kein Leerzeichen um das Gleichheitszeichen!"
         rel:
           - ["bash-variable", "Variable in Bash: NAME=wert (ohne $), $NAME (bei Verwendung)", "Variable"]
+        labels: ["Scripting"]
       - q: "HEUTE=$(date +%d.%m.%Y)"
         a: "Befehlsausgabe in Variable speichern — $(date) gibt das aktuelle Datum zurück"
         rel:
           - ["command-sub", "Befehlssubstitution: $(befehl) speichert Ausgabe in Variable", "$()"]
           - ["date-format", "Datumsformat: %d=Tag, %m=Monat, %Y=Jahr", "date +Format"]
+        labels: ["Scripting"]
       - q: "echo \"Pfad: $HOME, User: $USER\""
         a: "Eingebaute Umgebungsvariablen nutzen — HOME und USER sind immer verfügbar"
         rel:
           - ["env-var-user", "Umgebungsvariable mit aktuellem Benutzernamen", "$USER"]
           - ["env-var-home", "Umgebungsvariable mit Pfad zum Home-Verzeichnis", "$HOME"]
+        labels: ["Scripting"]
 
   - title: "if-Bedingungen — Entscheidungen im Skript"
     explanation: |
@@ -81,14 +87,17 @@ sections:
         rel:
           - ["if-bash", "if [ Bedingung ]; then Befehle; fi — Grundstruktur", "if-then-fi"]
           - ["test-f", "-f testet ob Datei existiert (file)", "Testoperator -f"]
+        labels: ["Scripting", "Sicherheit"]
       - q: "[ -d /var/www ] && echo \"Webverzeichnis existiert\""
         a: "Kurzform: && führt zweiten Befehl nur aus wenn erste Bedingung wahr ist"
         rel:
           - ["test-d", "-d testet ob Verzeichnis existiert (directory)", "Testoperator -d"]
+        labels: ["Scripting"]
       - q: "if [ \"$USER\" = \"root\" ]; then echo \"Du bist root!\"; fi"
         a: "Prüft ob das Skript als root ausgeführt wird — wichtig für Installationsskripte"
         rel:
           - ["string-compare", "Strings in Bash mit = vergleichen", "String-Vergleich"]
+        labels: ["Scripting", "Sicherheit"]
 
   - title: "Schleifen — Wiederholungen automatisieren"
     explanation: |
@@ -125,20 +134,24 @@ sections:
         a: "For-Schleife über eine Liste — gibt Zahl 1 bis 5 aus"
         rel:
           - ["for-loop", "For-Schleife: for VAR in LISTE; do ... done", "for-do-done"]
+        labels: ["Scripting"]
       - q: "for USER in alice bob charlie; do useradd \"$USER\"; done"
         a: "Mehrere Benutzer auf einmal anlegen — typische Sysadmin-Aufgabe"
         rel:
           - ["for-list", "For-Schleife über eine Liste von Werten", "for VAR in Wert1 Wert2"]
+        labels: ["Scripting", "Sicherheit"]
       - q: "for f in /var/log/*.log; do echo \"$(wc -l < $f) Zeilen: $f\"; done"
         a: "Zeilen aller Log-Dateien zählen und auflisten"
         rel:
           - ["for-glob", "For-Schleife mit Glob-Muster über Dateien", "for f in *.ext"]
           - ["wc-l", "Word Count -l — Zeilen einer Datei zählen", "wc -l"]
+        labels: ["Scripting", "Dateisystem"]
       - q: "while true; do df -h / | grep '/'; sleep 60; done"
         a: "Festplattenauslastung jede Minute überwachen — Endlosschleife mit sleep"
         rel:
           - ["while-loop", "While-Schleife: while Bedingung; do ... done", "while-do-done"]
           - ["while-true", "while true — Endlosschleife, nur mit Ctrl+C beenden", "while true"]
+        labels: ["Scripting"]
 
   - title: "🖥️ Terminal-Check"
     explanation: |
@@ -147,6 +160,7 @@ sections:
       - q: "Wie lautet die erste Zeile jedes Bash-Skripts (Shebang)?"
         type: input
         a: "#!/bin/bash"
+        labels: ["Scripting"]
       - q: "Was ist bei der Zuweisung einer Bash-Variable zu beachten?"
         type: select
         options:
@@ -155,6 +169,7 @@ sections:
           - text: "Immer $ vor dem Variablennamen: $NAME=\"Alice\""
           - text: "Variablen müssen in Großbuchstaben sein"
           - text: "Variablen müssen mit export deklariert werden"
+        labels: ["Scripting"]
       - q: "Welche Syntax schließt eine if-Bedingung in Bash korrekt ab?"
         type: select
         options:
@@ -163,6 +178,7 @@ sections:
           - text: "end"
           - text: "endif"
           - text: "done"
+        labels: ["Scripting"]
       - q: "Welche dieser Aussagen über Shell Scripting stimmen?"
         type: multiple-choice
         options:
@@ -173,3 +189,4 @@ sections:
           - text: "-f prüft ob eine Datei existiert"
             correct: true
           - text: "Leerzeichen um = sind bei Variablen Pflicht"
+        labels: ["Scripting"]

@@ -1,7 +1,8 @@
-version: 1
+version: 2
 number: 10
 title: "Vim ومحررات النصوص"
 description: "nano للمبتدئين، vim للمحترفين — تحرير الملفات مباشرة في الطرفية"
+image: "images/lesson-header.svg"
 sections:
   - title: "nano — البداية السهلة"
     explanation: |
@@ -28,14 +29,17 @@ sections:
         rel:
           - ["nano-cmd", "محرر نصوص سهل الاستخدام في الطرفية مع تلميحات لوحة المفاتيح", "أمر nano"]
           - ["nano-save", "Ctrl+O ثم Enter — حفظ الملف في nano", "nano Ctrl+O"]
+        labels: ["المحرر", "الإعدادات"]
       - q: "nano -l /etc/hosts"
         a: "تحرير ملف hosts مع أرقام الأسطر — مفيد للملفات الطويلة"
         rel:
           - ["nano-l", "Line numbers — عرض أرقام الأسطر في nano", "علم nano -l"]
+        labels: ["المحرر"]
       - q: "nano +50 app.conf"
         a: "يفتح nano مباشرة عند السطر ٥٠ — يوفر التمرير في الإعدادات الطويلة"
         rel:
           - ["nano-jump-line", "+N يفتح الملف مباشرة عند السطر N", "nano +رقم_السطر"]
+        labels: ["المحرر"]
 
   - title: "vim — محرر المحترفين"
     explanation: |
@@ -64,19 +68,23 @@ sections:
         a: "فتح إعدادات Nginx بـ vim — متاح دائمًا حتى على الخوادم البسيطة"
         rel:
           - ["vim-cmd", "Vi Improved — محرر نصوص قوي يعتمد على الأوضاع في الطرفية", "أمر vim"]
+        labels: ["المحرر", "الإعدادات"]
       - q: ":wq"
         a: "في vim: حفظ الملف (write) والخروج (quit) — يُدخل في وضع Command"
         rel:
           - ["vim-wq", "Write Quit — حفظ والخروج في vim", ":wq"]
           - ["vim-command-mode", "النقطتان : تُفعّل وضع Command في vim", "vim :"]
+        labels: ["المحرر"]
       - q: ":q!"
         a: "الخروج من vim بدون حفظ — ! يفرض العملية"
         rel:
           - ["vim-q-bang", "خروج بدون حفظ بالإجبار — تجاهل جميع التغييرات", ":q!"]
+        labels: ["المحرر"]
       - q: "i"
         a: "تفعيل وضع Insert — الآن يمكن إدخال النص"
         rel:
           - ["vim-insert", "i — الدخول إلى وضع Insert (قبل المؤشر)، a = بعد المؤشر", "vim i"]
+        labels: ["المحرر"]
 
   - title: "التنقل والبحث في vim"
     explanation: |
@@ -106,19 +114,23 @@ sections:
         rel:
           - ["vim-substitute", ":%s/قديم/جديد/g — بحث واستبدال في الملف بالكامل", "vim :%s"]
           - ["vim-g-flag", "g = global — استبدال جميع الحالات في السطر", "علم Vim /g"]
+        labels: ["المحرر"]
       - q: "/ERROR"
         a: "في vim: البحث عن ERROR — n للنتيجة التالية، N للسابقة"
         rel:
           - ["vim-search", "/كلمة بحث للأمام في vim", "vim /"]
+        labels: ["المحرر"]
       - q: "dd"
         a: "في vim (وضع Normal): حذف السطر الحالي — p للصقه"
         rel:
           - ["vim-dd", "Delete — حذف سطر كامل في vim (وحفظه في المخزن المؤقت)", "vim dd"]
+        labels: ["المحرر"]
       - q: "yy"
         a: "في vim: نسخ السطر الحالي (yank) — p للصقه في المكان التالي"
         rel:
           - ["vim-yy", "Yank — نسخ سطر في vim", "vim yy"]
           - ["vim-p", "Put/Paste — لصق المحتوى المنسوخ/المحذوف", "vim p"]
+        labels: ["المحرر"]
 
   - title: "🖥️ اختبار الطرفية"
     explanation: |
@@ -127,6 +139,7 @@ sections:
       - q: "أي أمر vim يحفظ ويخرج من المحرر؟"
         type: input
         a: ":wq"
+        labels: ["المحرر"]
       - q: "كيف تنتقل إلى وضع Insert في vim؟"
         type: select
         options:
@@ -135,6 +148,7 @@ sections:
           - text: "الضغط على مفتاح 'Esc'"
           - text: "إدخال ':i'"
           - text: "الضغط على مفتاح 'v'"
+        labels: ["المحرر"]
       - q: "ماذا يفعل ':q!' في vim؟"
         type: select
         options:
@@ -143,6 +157,7 @@ sections:
           - text: "يحفظ ويخرج من vim"
           - text: "يبحث عن الحرف !"
           - text: "يفتح ملفًا جديدًا"
+        labels: ["المحرر"]
       - q: "أي من أوضاع vim التالية موجودة فعلاً؟"
         type: multiple-choice
         options:
@@ -153,3 +168,4 @@ sections:
           - text: "وضع Visual"
             correct: true
           - text: "وضع Debug"
+        labels: ["المحرر"]

@@ -1,7 +1,9 @@
-version: 1
+version: 2
 number: 8
 title: "Netzwerk"
 description: "ping, curl, wget, ssh und ip — Netzwerkverbindungen testen, Daten übertragen und remote arbeiten"
+image: "images/lesson-header.svg"
+image_caption: "Netzwerktopologie mit Router, Server und Clients"
 sections:
   - title: "Netzwerk prüfen — ping, ip und ss"
     explanation: |
@@ -26,16 +28,19 @@ sections:
         rel:
           - ["ping-cmd", "Netzwerk-Erreichbarkeit und Latenz testen", "Befehl ping"]
           - ["ping-c", "Count — Anzahl der gesendeten Pakete begrenzen", "Flag -c"]
+        labels: ["Netzwerk"]
       - q: "ip addr show"
         a: "Alle Netzwerkschnittstellen mit IP-Adressen anzeigen (ersetzt ifconfig)"
         rel:
           - ["ip-cmd", "Modernes Netzwerk-Verwaltungstool (ersetzt ifconfig)", "Befehl ip"]
           - ["ip-addr", "IP-Adressen aller Netzwerkinterfaces anzeigen", "ip addr"]
+        labels: ["Netzwerk"]
       - q: "ss -tulpn"
         a: "Alle offenen TCP/UDP-Ports und die zugehörigen Programme anzeigen"
         rel:
           - ["ss-cmd", "Socket Statistics — Netzwerkverbindungen und offene Ports", "Befehl ss"]
           - ["ss-tulpn", "t=TCP, u=UDP, l=listening, p=prozess, n=numerisch", "Flags -tulpn"]
+        labels: ["Netzwerk"]
 
   - title: "curl und wget — Daten aus dem Netz holen"
     explanation: |
@@ -61,19 +66,23 @@ sections:
         rel:
           - ["curl-cmd", "Client URL — HTTP-Anfragen stellen und Daten übertragen", "Befehl curl"]
           - ["curl-I", "Head — nur HTTP-Response-Header anzeigen", "Flag -I"]
+        labels: ["Netzwerk"]
       - q: "curl -s https://ipinfo.io/ip"
         a: "Eigene öffentliche IP-Adresse anzeigen — -s unterdrückt Fortschrittsbalken"
         rel:
           - ["curl-s", "Silent — Fortschrittsanzeige und Fehlermeldungen unterdrücken", "Flag -s"]
+        labels: ["Netzwerk"]
       - q: "wget -O nodejs.tar.gz https://nodejs.org/dist/v20.0.0/node-v20.0.0.tar.gz"
         a: "Datei herunterladen und mit eigenem Namen speichern"
         rel:
           - ["wget-cmd", "Web Get — Dateien aus dem Internet herunterladen", "Befehl wget"]
           - ["wget-O", "Output — Datei unter anderem Namen speichern", "Flag -O"]
+        labels: ["Netzwerk"]
       - q: "curl -fsSL https://get.docker.com | sudo sh"
         a: "Docker-Installationsskript herunterladen und direkt ausführen"
         rel:
           - ["curl-fssl", "f=fail silent, s=silent, S=errors, L=redirects folgen", "Flags -fsSL"]
+        labels: ["Netzwerk", "Konfiguration"]
 
   - title: "SSH — sicher auf Remote-Server verbinden"
     explanation: |
@@ -103,20 +112,24 @@ sections:
         a: "Per SSH mit Server verbinden — Login mit Passwort oder SSH-Schlüssel"
         rel:
           - ["ssh-cmd", "Secure Shell — verschlüsselte Remote-Verbindung", "Befehl ssh"]
+        labels: ["Netzwerk", "Sicherheit"]
       - q: "ssh-keygen -t ed25519 -C \"alice@meinlaptop\""
         a: "Erstellt ein modernes Ed25519-Schlüsselpaar — sicherer als das ältere RSA"
         rel:
           - ["ssh-keygen", "SSH-Schlüsselpaar generieren", "Befehl ssh-keygen"]
           - ["ed25519", "Moderner Algorithmus für SSH-Schlüssel, empfohlen seit 2022", "Schlüsseltyp Ed25519"]
+        labels: ["Netzwerk", "Sicherheit"]
       - q: "ssh-copy-id -i ~/.ssh/id_ed25519.pub alice@server.example.com"
         a: "Öffentlichen Schlüssel auf Server kopieren — danach kein Passwort mehr nötig"
         rel:
           - ["ssh-copy-id", "Öffentlichen SSH-Schlüssel auf Remote-Server installieren", "Befehl ssh-copy-id"]
+        labels: ["Netzwerk", "Sicherheit"]
       - q: "scp -r ~/projekte/webseite/ alice@server:/var/www/html/"
         a: "Gesamten Webseitenordner per scp auf den Server übertragen"
         rel:
           - ["scp-cmd", "Secure Copy — verschlüsselte Dateiübertragung via SSH", "Befehl scp"]
           - ["scp-r", "Recursive — Verzeichnisse übertragen", "Flag -r"]
+        labels: ["Netzwerk"]
 
   - title: "🖥️ Terminal-Check"
     explanation: |
@@ -125,6 +138,7 @@ sections:
       - q: "Welcher Befehl testet die Erreichbarkeit von google.com mit 4 Paketen?"
         type: input
         a: "ping -c 4 google.com"
+        labels: ["Netzwerk"]
       - q: "Was macht 'curl -s https://ipinfo.io/ip'?"
         type: select
         options:
@@ -133,6 +147,7 @@ sections:
           - text: "Testet die Geschwindigkeit der Internetverbindung"
           - text: "Lädt die IP-Datenbank herunter"
           - text: "Zeigt alle Netzwerkschnittstellen"
+        labels: ["Netzwerk"]
       - q: "Welcher Befehl zeigt alle offenen Ports und zugehörigen Programme?"
         type: select
         options:
@@ -141,6 +156,7 @@ sections:
           - text: "ip addr show"
           - text: "ping -a localhost"
           - text: "netstat --list"
+        labels: ["Netzwerk"]
       - q: "Welche dieser Aussagen über SSH stimmen?"
         type: multiple-choice
         options:
@@ -151,3 +167,4 @@ sections:
           - text: "ssh-keygen erstellt ein Schlüsselpaar"
             correct: true
           - text: "SSH sendet Passwörter im Klartext"
+        labels: ["Netzwerk", "Sicherheit"]

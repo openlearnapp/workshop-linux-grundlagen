@@ -1,7 +1,9 @@
-version: 1
+version: 2
 number: 6
 title: "Prozesse"
 description: "ps, top, kill und Hintergrundjobs — laufende Programme verstehen und steuern"
+image: "images/lesson-header.svg"
+image_caption: "Prozessbaum mit PID-Nummern und Ressourcenanzeige"
 sections:
   - title: "ps und top — was läuft gerade?"
     explanation: |
@@ -27,19 +29,23 @@ sections:
         rel:
           - ["ps-cmd", "Process Status — laufende Prozesse anzeigen", "Befehl ps"]
           - ["ps-aux", "a=alle User, u=user-Format, x=auch ohne Terminal", "Flags aux"]
+        labels: ["Prozesse"]
       - q: "ps aux | grep nginx"
         a: "Zeigt nur Nginx-Prozesse aus der Prozessliste — Kombination mit grep"
         rel:
           - ["ps-grep", "Prozessliste nach bestimmtem Prozessnamen filtern", "ps aux | grep"]
+        labels: ["Prozesse"]
       - q: "top"
         a: "Interaktive Echtzeit-Übersicht: CPU, RAM, alle Prozesse — q zum Beenden"
         rel:
           - ["top-cmd", "Interaktiver Prozess-Monitor in Echtzeit", "Befehl top"]
+        labels: ["Prozesse"]
       - q: "pgrep -l python"
         a: "Alle Python-Prozesse mit ihren PIDs anzeigen"
         rel:
           - ["pgrep-cmd", "Prozesse nach Namen suchen und PIDs ausgeben", "Befehl pgrep"]
           - ["pgrep-l", "List — Prozessnamen zusätzlich zur PID anzeigen", "Flag -l"]
+        labels: ["Prozesse"]
 
   - title: "kill — Prozesse beenden"
     explanation: |
@@ -63,19 +69,23 @@ sections:
         a: "Sendet SIGTERM (sanftes Beenden) an Prozess mit PID 1234"
         rel:
           - ["kill-cmd", "Signal an Prozess senden (Standard: SIGTERM = sanftes Beenden)", "Befehl kill"]
+        labels: ["Prozesse"]
       - q: "kill -9 1234"
         a: "Sendet SIGKILL — Prozess wird sofort beendet, kein Speichern möglich"
         rel:
           - ["kill-9", "SIGKILL — sofortiges Beenden, nicht abfangbar", "Signal -9"]
+        labels: ["Prozesse"]
       - q: "kill -1 $(pgrep nginx)"
         a: "Nginx SIGHUP senden — lädt Konfiguration neu ohne Downtime"
         rel:
           - ["kill-1", "SIGHUP — Konfiguration neu laden", "Signal -1"]
           - ["command-substitution", "$() führt Befehl aus und nutzt die Ausgabe", "$(befehl)"]
+        labels: ["Prozesse", "Konfiguration"]
       - q: "killall -9 firefox"
         a: "Alle Firefox-Prozesse sofort beenden — nützlich wenn der Browser hängt"
         rel:
           - ["killall-cmd", "Alle Prozesse mit gegebenem Namen beenden", "Befehl killall"]
+        labels: ["Prozesse"]
 
   - title: "Hintergrundjobs — Multitasking im Terminal"
     explanation: |
@@ -102,20 +112,24 @@ sections:
         rel:
           - ["background-amp", "& am Ende startet Prozess im Hintergrund", "& Operator"]
           - ["sleep-cmd", "Für N Sekunden warten — nützlich in Skripten", "Befehl sleep"]
+        labels: ["Prozesse"]
       - q: "jobs -l"
         a: "Alle Hintergrundjobs mit Job-Nummer und PID anzeigen"
         rel:
           - ["jobs-cmd", "Liste aller Hintergrundjobs der aktuellen Shell", "Befehl jobs"]
           - ["jobs-l", "Long — zusätzlich PIDs der Jobs anzeigen", "Flag -l"]
+        labels: ["Prozesse"]
       - q: "fg %1"
         a: "Job Nummer 1 in den Vordergrund holen"
         rel:
           - ["fg-cmd", "Foreground — Hintergrundjob in den Vordergrund bringen", "Befehl fg"]
+        labels: ["Prozesse"]
       - q: "nohup python3 webserver.py > server.log 2>&1 &"
         a: "Server starten der auch nach Terminal-Schließen weiterläuft, Ausgabe in Logdatei"
         rel:
           - ["nohup-cmd", "No Hangup — Prozess läuft weiter wenn Terminal geschlossen wird", "Befehl nohup"]
           - ["redirect-stderr", "2>&1 leitet Fehlermeldungen in dieselbe Datei wie Standardausgabe", "2>&1"]
+        labels: ["Prozesse", "Scripting"]
 
   - title: "🖥️ Terminal-Check"
     explanation: |
@@ -124,6 +138,7 @@ sections:
       - q: "Welcher Befehl zeigt alle laufenden Prozesse aller Benutzer?"
         type: input
         a: "ps aux"
+        labels: ["Prozesse"]
       - q: "Was bewirkt 'kill -9 1234'?"
         type: select
         options:
@@ -132,6 +147,7 @@ sections:
           - text: "Sendet SIGTERM — Prozess kann aufräumen"
           - text: "Pausiert den Prozess mit PID 1234"
           - text: "Startet den Prozess neu"
+        labels: ["Prozesse"]
       - q: "Wie startet man einen Prozess direkt im Hintergrund?"
         type: select
         options:
@@ -140,6 +156,7 @@ sections:
           - text: "Befehl mit bg am Anfang ausführen"
           - text: "Befehl mit nohup am Ende ausführen"
           - text: "Strg+Z vor dem Befehl drücken"
+        labels: ["Prozesse"]
       - q: "Welche dieser Aussagen über Prozess-Signale stimmen?"
         type: multiple-choice
         options:
@@ -150,3 +167,4 @@ sections:
           - text: "SIGHUP (1) lädt die Konfiguration neu"
             correct: true
           - text: "SIGPAUSE (7) ist das Standard-Signal"
+        labels: ["Prozesse"]

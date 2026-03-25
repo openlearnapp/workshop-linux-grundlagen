@@ -1,7 +1,8 @@
-version: 1
+version: 2
 number: 8
 title: "شبکه"
 description: "ping، curl، wget، ssh و ip — تست اتصالات شبکه، انتقال داده و کار از راه دور"
+image: "images/lesson-header.svg"
 sections:
   - title: "بررسی شبکه — ping، ip و ss"
     explanation: |
@@ -26,16 +27,19 @@ sections:
         rel:
           - ["ping-cmd", "تست دسترس‌پذیری و تأخیر شبکه", "دستور ping"]
           - ["ping-c", "Count — محدود کردن تعداد بسته‌های ارسالی", "فلگ -c"]
+        labels: ["شبکه"]
       - q: "ip addr show"
         a: "تمام رابط‌های شبکه با آدرس‌های IP (جایگزین ifconfig)"
         rel:
           - ["ip-cmd", "ابزار مدرن مدیریت شبکه (جایگزین ifconfig)", "دستور ip"]
           - ["ip-addr", "نمایش آدرس‌های IP تمام رابط‌های شبکه", "ip addr"]
+        labels: ["شبکه"]
       - q: "ss -tulpn"
         a: "تمام پورت‌های باز TCP/UDP و برنامه‌های مربوطه"
         rel:
           - ["ss-cmd", "Socket Statistics — اتصالات شبکه و پورت‌های باز", "دستور ss"]
           - ["ss-tulpn", "t=TCP، u=UDP، l=listening، p=پروسس، n=عددی", "فلگ‌های -tulpn"]
+        labels: ["شبکه"]
 
   - title: "curl و wget — دریافت داده از شبکه"
     explanation: |
@@ -61,19 +65,23 @@ sections:
         rel:
           - ["curl-cmd", "Client URL — ارسال درخواست‌های HTTP و انتقال داده", "دستور curl"]
           - ["curl-I", "Head — فقط نمایش هدرهای HTTP پاسخ", "فلگ -I"]
+        labels: ["شبکه"]
       - q: "curl -s https://ipinfo.io/ip"
         a: "نمایش آدرس IP عمومی شما — فلگ -s نوار پیشرفت را مخفی می‌کند"
         rel:
           - ["curl-s", "Silent — مخفی کردن نمایش پیشرفت و پیام‌های خطا", "فلگ -s"]
+        labels: ["شبکه"]
       - q: "wget -O nodejs.tar.gz https://nodejs.org/dist/v20.0.0/node-v20.0.0.tar.gz"
         a: "دانلود فایل و ذخیره با نام دلخواه"
         rel:
           - ["wget-cmd", "Web Get — دانلود فایل از اینترنت", "دستور wget"]
           - ["wget-O", "Output — ذخیره فایل با نام دیگر", "فلگ -O"]
+        labels: ["شبکه"]
       - q: "curl -fsSL https://get.docker.com | sudo sh"
         a: "دانلود و اجرای مستقیم اسکریپت نصب Docker"
         rel:
           - ["curl-fssl", "f=شکست بی‌صدا، s=بی‌صدا، S=خطاها، L=دنبال ریدایرکت‌ها", "فلگ‌های -fsSL"]
+        labels: ["شبکه", "پیکربندی"]
 
   - title: "SSH — اتصال امن به سرور راه دور"
     explanation: |
@@ -103,20 +111,24 @@ sections:
         a: "اتصال به سرور از طریق SSH — ورود با رمز عبور یا کلید SSH"
         rel:
           - ["ssh-cmd", "Secure Shell — اتصال رمزنگاری‌شده از راه دور", "دستور ssh"]
+        labels: ["شبکه", "امنیت"]
       - q: "ssh-keygen -t ed25519 -C \"alice@meinlaptop\""
         a: "ساخت یک جفت کلید مدرن Ed25519 — امن‌تر از RSA قدیمی"
         rel:
           - ["ssh-keygen", "ساخت جفت کلید SSH", "دستور ssh-keygen"]
           - ["ed25519", "الگوریتم مدرن برای کلیدهای SSH، توصیه‌شده از ۲۰۲۲", "نوع کلید Ed25519"]
+        labels: ["شبکه", "امنیت"]
       - q: "ssh-copy-id -i ~/.ssh/id_ed25519.pub alice@server.example.com"
         a: "کپی کلید عمومی روی سرور — بعد از آن دیگر نیاز به رمز عبور نیست"
         rel:
           - ["ssh-copy-id", "نصب کلید عمومی SSH روی سرور راه دور", "دستور ssh-copy-id"]
+        labels: ["شبکه", "امنیت"]
       - q: "scp -r ~/projekte/webseite/ alice@server:/var/www/html/"
         a: "انتقال کل پوشه وبسایت از طریق scp به سرور"
         rel:
           - ["scp-cmd", "Secure Copy — انتقال رمزنگاری‌شده فایل از طریق SSH", "دستور scp"]
           - ["scp-r", "Recursive — انتقال پوشه‌ها", "فلگ -r"]
+        labels: ["شبکه"]
 
   - title: "🖥️ آزمون ترمینال"
     explanation: |
@@ -125,6 +137,7 @@ sections:
       - q: "کدام دستور دسترس‌پذیری google.com را با ۴ بسته تست می‌کند؟"
         type: input
         a: "ping -c 4 google.com"
+        labels: ["شبکه"]
       - q: "دستور 'curl -s https://ipinfo.io/ip' چه کار می‌کند؟"
         type: select
         options:
@@ -133,6 +146,7 @@ sections:
           - text: "سرعت اتصال اینترنت را تست می‌کند"
           - text: "پایگاه داده IP را دانلود می‌کند"
           - text: "تمام رابط‌های شبکه را نشان می‌دهد"
+        labels: ["شبکه"]
       - q: "کدام دستور تمام پورت‌های باز و برنامه‌های مربوطه را نشان می‌دهد؟"
         type: select
         options:
@@ -141,6 +155,7 @@ sections:
           - text: "ip addr show"
           - text: "ping -a localhost"
           - text: "netstat --list"
+        labels: ["شبکه"]
       - q: "کدام‌یک از این جملات درباره SSH درست هستند؟"
         type: multiple-choice
         options:
@@ -151,3 +166,4 @@ sections:
           - text: "ssh-keygen یک جفت کلید می‌سازد"
             correct: true
           - text: "SSH رمزهای عبور را به صورت متن ساده ارسال می‌کند"
+        labels: ["شبکه", "امنیت"]

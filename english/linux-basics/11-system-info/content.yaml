@@ -1,7 +1,8 @@
-version: 1
+version: 2
 number: 11
 title: "System Info"
 description: "df, du, free, uname and history — keeping an eye on system state"
+image: "images/lesson-header.svg"
 sections:
   - title: "Disk space — df and du"
     explanation: |
@@ -24,20 +25,24 @@ sections:
         rel:
           - ["en-df-cmd", "Disk Free — show disk usage", "df command"]
           - ["en-df-h", "Human-readable — sizes in KB/MB/GB instead of bytes", "flag -h"]
+        labels: ["Filesystem"]
       - q: "df -h /"
         a: "Show only root partition usage — the most important partition"
         rel:
           - ["en-df-root", "Check usage of root partition /", "df -h /"]
+        labels: ["Filesystem"]
       - q: "du -sh ~/Downloads/*"
         a: "Show size of each item in the Downloads folder"
         rel:
           - ["en-du-cmd", "Disk Usage — show storage use of files/folders", "du command"]
           - ["en-du-sh", "s=summary (total size), h=human-readable", "flags -sh"]
+        labels: ["Filesystem"]
       - q: "du -h --max-depth=1 /var | sort -rh | head -10"
         a: "Top 10 largest subdirectories in /var sorted by size — find disk hogs"
         rel:
           - ["en-du-max-depth", "Only show up to a certain directory depth", "--max-depth=1"]
           - ["en-sort-rh", "r=reverse (descending), h=sort human-readable sizes", "sort -rh"]
+        labels: ["Filesystem"]
 
   - title: "Memory and CPU — free and uptime"
     explanation: |
@@ -65,15 +70,18 @@ sections:
         a: "RAM usage in MB/GB — available column shows truly free memory"
         rel:
           - ["en-free-cmd", "Show RAM usage and swap utilization", "free command"]
+        labels: ["Basics"]
       - q: "uptime"
         a: "System uptime, active users and CPU load average over last 1/5/15 minutes"
         rel:
           - ["en-uptime-cmd", "System uptime and load over past minutes", "uptime command"]
           - ["en-load-average", "Average CPU load: 1.0 = 100% with one core", "Load Average"]
+        labels: ["Basics"]
       - q: "vmstat 2 5"
         a: "System statistics every 2 seconds, 5 times — CPU, RAM, I/O, processes"
         rel:
           - ["en-vmstat-cmd", "Virtual Memory Statistics — detailed system performance data", "vmstat command"]
+        labels: ["Basics"]
 
   - title: "history and the command log"
     explanation: |
@@ -98,20 +106,24 @@ sections:
         a: "Show the last 20 entered commands"
         rel:
           - ["en-history-cmd", "Show history of entered commands", "history command"]
+        labels: ["Basics"]
       - q: "history | grep \"apt install\""
         a: "Find all apt install commands from history — what did I install when?"
         rel:
           - ["en-history-grep", "Combine history with grep — find specific commands from log", "history | grep"]
+        labels: ["Basics"]
       - q: "!!"
         a: "Immediately repeat the last command — especially useful for: sudo !!"
         rel:
           - ["en-bang-bang", "!! runs the last entered command again", "!!"]
           - ["en-sudo-bang-bang", "sudo !! — repeat last command with administrator rights", "sudo !!"]
+        labels: ["Basics"]
       - q: "cat /proc/cpuinfo | grep \"model name\" | head -1"
         a: "Read the CPU model and type from kernel process information"
         rel:
           - ["en-proc-cpuinfo", "Kernel file with detailed CPU information", "/proc/cpuinfo"]
           - ["en-proc-filesystem", "/proc is not a real filesystem — contains kernel info as files", "/proc"]
+        labels: ["Basics"]
 
   - title: "🖥️ Terminal Check"
     explanation: |
@@ -120,6 +132,7 @@ sections:
       - q: "Which command shows disk usage of all partitions?"
         type: input
         a: "df -h"
+        labels: ["Filesystem"]
       - q: "What does the 'available' column in 'free -h' show?"
         type: select
         options:
@@ -128,6 +141,7 @@ sections:
           - text: "The free disk space"
           - text: "The used swap space"
           - text: "The CPU utilization in percent"
+        labels: ["Basics"]
       - q: "Which command searches the command history for 'apt install'?"
         type: select
         options:
@@ -136,6 +150,7 @@ sections:
           - text: "history search \"apt install\""
           - text: "grep history \"apt install\""
           - text: "find history -name \"apt install\""
+        labels: ["Basics"]
       - q: "Which of these commands show system information?"
         type: multiple-choice
         options:
@@ -146,3 +161,4 @@ sections:
           - text: "uptime"
             correct: true
           - text: "chmod 755"
+        labels: ["Basics"]

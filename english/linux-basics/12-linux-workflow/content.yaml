@@ -1,7 +1,8 @@
-version: 1
+version: 2
 number: 12
 title: "Professional Linux Workflow"
 description: "Pipes, redirects, aliases and xargs — using the command line like a pro"
+image: "images/lesson-header.svg"
 sections:
   - title: "Pipes — chaining commands"
     explanation: |
@@ -28,17 +29,20 @@ sections:
         rel:
           - ["en-pipe-operator", "| passes output of one command as input to the next", "pipe |"]
           - ["en-grep-v-grep", "grep -v grep removes the grep line from the process list", "grep -v grep"]
+        labels: ["Scripting", "Processes"]
       - q: "cat /var/log/nginx/access.log | awk '{print $1}' | sort | uniq -c | sort -rn | head -10"
         a: "Extract top 10 IP addresses by access count from Nginx log"
         rel:
           - ["en-awk-ip", "awk '{print $1}' outputs the first field (IP) of each line", "awk print"]
           - ["en-uniq-c", "uniq -c counts consecutive identical lines", "uniq -c"]
+        labels: ["Scripting", "Network"]
       - q: "find /var/log -name \"*.log\" -mtime +30 | xargs ls -lh"
         a: "Find log files older than 30 days and show their sizes"
         rel:
           - ["en-find-cmd", "Find files based on various criteria", "find command"]
           - ["en-find-mtime", "-mtime +30 = last modified more than 30 days ago", "find -mtime"]
           - ["en-xargs-cmd", "Pass output as arguments to the next command", "xargs command"]
+        labels: ["Scripting", "Filesystem"]
 
   - title: "Redirects — redirecting input and output"
     explanation: |
@@ -65,19 +69,23 @@ sections:
         a: "Save directory listing to file — overwrites existing file"
         rel:
           - ["en-redirect-out", "> redirects stdout to file (overwriting)", "redirect >"]
+        labels: ["Scripting", "Filesystem"]
       - q: "echo \"[$(date)] Server started\" >> /var/log/myapp.log"
         a: "Append line to log file without overwriting it"
         rel:
           - ["en-redirect-append", ">> appends output to file (no overwriting)", "redirect >>"]
+        labels: ["Scripting"]
       - q: "find / -name \"*.conf\" 2>/dev/null"
         a: "Search for config files — discard permission denied error messages"
         rel:
           - ["en-dev-null", "/dev/null discards all output — the black hole", "/dev/null"]
           - ["en-redirect-stderr", "2> redirects stderr (standard error)", "redirect 2>"]
+        labels: ["Scripting", "Filesystem"]
       - q: "wc -l < /etc/passwd"
         a: "Count lines in /etc/passwd using file as input"
         rel:
           - ["en-redirect-input", "< uses file contents as input to command", "redirect <"]
+        labels: ["Scripting"]
 
   - title: "Aliases and .bashrc — personalizing your workflow"
     explanation: |
@@ -111,23 +119,28 @@ sections:
         a: "Creates the alias 'll' for detailed, colorized directory listing"
         rel:
           - ["en-alias-cmd", "Create shortcuts for frequent or long commands", "alias command"]
+        labels: ["Config"]
       - q: "alias update='sudo apt update && sudo apt upgrade -y'"
         a: "Make system update runnable as a single word 'update'"
         rel:
           - ["en-alias-complex", "Alias for complex command chain", "alias example"]
+        labels: ["Config"]
       - q: "source ~/.bashrc"
         a: "Reload bash config — new aliases available immediately without restarting terminal"
         rel:
           - ["en-source-cmd", "Load configuration file into current shell", "source command"]
           - ["en-bashrc-reload", "Reload ~/.bashrc after changes", "source ~/.bashrc"]
+        labels: ["Config"]
       - q: "alias | grep git"
         a: "Show all git-related aliases — alias without argument shows all"
         rel:
           - ["en-alias-list", "alias without argument lists all defined aliases", "alias without arguments"]
+        labels: ["Config"]
       - q: "unalias ll"
         a: "Remove the 'll' alias — only effective for the current session"
         rel:
           - ["en-unalias-cmd", "Remove a defined alias", "unalias command"]
+        labels: ["Config"]
 
   - title: "🖥️ Terminal Check"
     explanation: |
@@ -136,6 +149,7 @@ sections:
       - q: "Which character connects two commands via pipe?"
         type: input
         a: "|"
+        labels: ["Scripting"]
       - q: "What does '>>' do compared to '>'?"
         type: select
         options:
@@ -144,6 +158,7 @@ sections:
           - text: ">> overwrites the file, > appends"
           - text: ">> redirects errors, > redirects output"
           - text: ">> and > do the same thing"
+        labels: ["Scripting"]
       - q: "How do you apply changes to ~/.bashrc immediately?"
         type: select
         options:
@@ -152,6 +167,7 @@ sections:
           - text: "reload ~/.bashrc"
           - text: "bash --refresh"
           - text: "apply ~/.bashrc"
+        labels: ["Config"]
       - q: "Which of these statements about aliases and pipes are true?"
         type: multiple-choice
         options:
@@ -162,3 +178,4 @@ sections:
           - text: "/dev/null discards all output"
             correct: true
           - text: "source permanently saves commands in the terminal"
+        labels: ["Scripting", "Config"]
