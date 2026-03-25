@@ -130,27 +130,26 @@ sections:
       - q: "كيف تنتقل إلى وضع Insert في vim؟"
         type: select
         options:
-          - "الضغط على مفتاح 'i'"
-          - "الضغط على مفتاح 'Esc'"
-          - "إدخال ':i'"
-          - "الضغط على مفتاح 'v'"
-        a: "الضغط على مفتاح 'i'"
+          - text: "الضغط على مفتاح 'i'"
+            correct: true
+          - text: "الضغط على مفتاح 'Esc'"
+          - text: "إدخال ':i'"
+          - text: "الضغط على مفتاح 'v'"
       - q: "ماذا يفعل ':q!' في vim؟"
         type: select
         options:
-          - "يخرج من vim بدون حفظ"
-          - "يحفظ ويخرج من vim"
-          - "يبحث عن الحرف !"
-          - "يفتح ملفًا جديدًا"
-        a: "يخرج من vim بدون حفظ"
+          - text: "يخرج من vim بدون حفظ"
+            correct: true
+          - text: "يحفظ ويخرج من vim"
+          - text: "يبحث عن الحرف !"
+          - text: "يفتح ملفًا جديدًا"
       - q: "أي من أوضاع vim التالية موجودة فعلاً؟"
         type: multiple-choice
         options:
-          - "وضع Normal"
-          - "وضع Insert"
-          - "وضع Visual"
-          - "وضع Debug"
-        a:
-          - "وضع Normal"
-          - "وضع Insert"
-          - "وضع Visual"
+          - text: "وضع Normal"
+            correct: true
+          - text: "وضع Insert"
+            correct: true
+          - text: "وضع Visual"
+            correct: true
+          - text: "وضع Debug"

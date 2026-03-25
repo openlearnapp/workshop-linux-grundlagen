@@ -128,27 +128,26 @@ sections:
       - q: "دستور 'curl -s https://ipinfo.io/ip' چه کار می‌کند؟"
         type: select
         options:
-          - "آدرس IP عمومی شما را نشان می‌دهد"
-          - "سرعت اتصال اینترنت را تست می‌کند"
-          - "پایگاه داده IP را دانلود می‌کند"
-          - "تمام رابط‌های شبکه را نشان می‌دهد"
-        a: "آدرس IP عمومی شما را نشان می‌دهد"
+          - text: "آدرس IP عمومی شما را نشان می‌دهد"
+            correct: true
+          - text: "سرعت اتصال اینترنت را تست می‌کند"
+          - text: "پایگاه داده IP را دانلود می‌کند"
+          - text: "تمام رابط‌های شبکه را نشان می‌دهد"
       - q: "کدام دستور تمام پورت‌های باز و برنامه‌های مربوطه را نشان می‌دهد؟"
         type: select
         options:
-          - "ss -tulpn"
-          - "ip addr show"
-          - "ping -a localhost"
-          - "netstat --list"
-        a: "ss -tulpn"
+          - text: "ss -tulpn"
+            correct: true
+          - text: "ip addr show"
+          - text: "ping -a localhost"
+          - text: "netstat --list"
       - q: "کدام‌یک از این جملات درباره SSH درست هستند؟"
         type: multiple-choice
         options:
-          - "SSH اتصال را رمزنگاری می‌کند"
-          - "کلیدهای SSH امن‌تر از رمز عبور هستند"
-          - "ssh-keygen یک جفت کلید می‌سازد"
-          - "SSH رمزهای عبور را به صورت متن ساده ارسال می‌کند"
-        a:
-          - "SSH اتصال را رمزنگاری می‌کند"
-          - "کلیدهای SSH امن‌تر از رمز عبور هستند"
-          - "ssh-keygen یک جفت کلید می‌سازد"
+          - text: "SSH اتصال را رمزنگاری می‌کند"
+            correct: true
+          - text: "کلیدهای SSH امن‌تر از رمز عبور هستند"
+            correct: true
+          - text: "ssh-keygen یک جفت کلید می‌سازد"
+            correct: true
+          - text: "SSH رمزهای عبور را به صورت متن ساده ارسال می‌کند"

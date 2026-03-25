@@ -149,27 +149,26 @@ sections:
       - q: "What must you watch out for when assigning a Bash variable?"
         type: select
         options:
-          - "No spaces around the equals sign: NAME=\"Alice\""
-          - "Always put $ before the variable name: $NAME=\"Alice\""
-          - "Variables must be uppercase"
-          - "Variables must be declared with export"
-        a: "No spaces around the equals sign: NAME=\"Alice\""
+          - text: "No spaces around the equals sign: NAME=\"Alice\""
+            correct: true
+          - text: "Always put $ before the variable name: $NAME=\"Alice\""
+          - text: "Variables must be uppercase"
+          - text: "Variables must be declared with export"
       - q: "Which keyword correctly closes an if-condition in Bash?"
         type: select
         options:
-          - "fi"
-          - "end"
-          - "endif"
-          - "done"
-        a: "fi"
+          - text: "fi"
+            correct: true
+          - text: "end"
+          - text: "endif"
+          - text: "done"
       - q: "Which of these statements about shell scripting are true?"
         type: multiple-choice
         options:
-          - "$() stores command output in a variable"
-          - "for loops end with 'done'"
-          - "-f checks whether a file exists"
-          - "Spaces around = are required for variables"
-        a:
-          - "$() stores command output in a variable"
-          - "for loops end with 'done'"
-          - "-f checks whether a file exists"
+          - text: "$() stores command output in a variable"
+            correct: true
+          - text: "for loops end with 'done'"
+            correct: true
+          - text: "-f checks whether a file exists"
+            correct: true
+          - text: "Spaces around = are required for variables"

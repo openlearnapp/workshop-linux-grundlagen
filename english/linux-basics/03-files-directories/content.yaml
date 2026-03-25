@@ -122,27 +122,26 @@ sections:
       - q: "What does the '-p' flag do in 'mkdir -p projects/web/assets'?"
         type: select
         options:
-          - "Creates all missing intermediate directories automatically"
-          - "Asks for confirmation before creating"
-          - "Displays the created folder"
-          - "Protects the folder from deletion"
-        a: "Creates all missing intermediate directories automatically"
+          - text: "Creates all missing intermediate directories automatically"
+            correct: true
+          - text: "Asks for confirmation before creating"
+          - text: "Displays the created folder"
+          - text: "Protects the folder from deletion"
       - q: "Which command renames a file from 'draft.txt' to 'final.txt'?"
         type: select
         options:
-          - "mv draft.txt final.txt"
-          - "cp draft.txt final.txt"
-          - "rename draft.txt final.txt"
-          - "touch final.txt draft.txt"
-        a: "mv draft.txt final.txt"
+          - text: "mv draft.txt final.txt"
+            correct: true
+          - text: "cp draft.txt final.txt"
+          - text: "rename draft.txt final.txt"
+          - text: "touch final.txt draft.txt"
       - q: "Which of these statements about 'rm' are true?"
         type: multiple-choice
         options:
-          - "rm deletes files without a recycle bin"
-          - "rm -r deletes folders recursively"
-          - "rm -i asks for confirmation before deleting"
-          - "rm can undo deletions"
-        a:
-          - "rm deletes files without a recycle bin"
-          - "rm -r deletes folders recursively"
-          - "rm -i asks for confirmation before deleting"
+          - text: "rm deletes files without a recycle bin"
+            correct: true
+          - text: "rm -r deletes folders recursively"
+            correct: true
+          - text: "rm -i asks for confirmation before deleting"
+            correct: true
+          - text: "rm can undo deletions"

@@ -113,27 +113,26 @@ sections:
       - q: "What does 'tail -f /var/log/nginx/access.log' do?"
         type: select
         options:
-          - "Follows the file in real time and shows new lines immediately"
-          - "Shows the last 10 lines and exits"
-          - "Deletes the last lines of the file"
-          - "Searches for the term 'nginx'"
-        a: "Follows the file in real time and shows new lines immediately"
+          - text: "Follows the file in real time and shows new lines immediately"
+            correct: true
+          - text: "Shows the last 10 lines and exits"
+          - text: "Deletes the last lines of the file"
+          - text: "Searches for the term 'nginx'"
       - q: "Which command searches case-insensitively for 'error' in a file?"
         type: select
         options:
-          - "grep -i \"error\" file.txt"
-          - "grep -n \"error\" file.txt"
-          - "grep -r \"error\" file.txt"
-          - "grep -v \"error\" file.txt"
-        a: "grep -i \"error\" file.txt"
+          - text: "grep -i \"error\" file.txt"
+            correct: true
+          - text: "grep -n \"error\" file.txt"
+          - text: "grep -r \"error\" file.txt"
+          - text: "grep -v \"error\" file.txt"
       - q: "Which of these grep flags are described correctly?"
         type: multiple-choice
         options:
-          - "-i ignores case"
-          - "-n shows line numbers"
-          - "-r searches directories recursively"
-          - "-v shows only matches without context"
-        a:
-          - "-i ignores case"
-          - "-n shows line numbers"
-          - "-r searches directories recursively"
+          - text: "-i ignores case"
+            correct: true
+          - text: "-n shows line numbers"
+            correct: true
+          - text: "-r searches directories recursively"
+            correct: true
+          - text: "-v shows only matches without context"

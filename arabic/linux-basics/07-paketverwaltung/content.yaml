@@ -123,27 +123,26 @@ sections:
       - q: "ما الفرق بين 'apt update' و 'apt upgrade'؟"
         type: select
         options:
-          - "update يجلب قوائم حزم جديدة، upgrade يُحدّث الحزم نفسها"
-          - "update يثبت الحزم، upgrade يزيل القديمة"
-          - "update و upgrade يفعلان نفس الشيء"
-          - "upgrade يجلب قوائم حزم جديدة، update يُحدّث الحزم"
-        a: "update يجلب قوائم حزم جديدة، upgrade يُحدّث الحزم نفسها"
+          - text: "update يجلب قوائم حزم جديدة، upgrade يُحدّث الحزم نفسها"
+            correct: true
+          - text: "update يثبت الحزم، upgrade يزيل القديمة"
+          - text: "update و upgrade يفعلان نفس الشيء"
+          - text: "upgrade يجلب قوائم حزم جديدة، update يُحدّث الحزم"
       - q: "أي أمر يزيل حزمة بما في ذلك ملفات إعدادها؟"
         type: select
         options:
-          - "sudo apt purge nginx"
-          - "sudo apt remove nginx"
-          - "sudo apt delete nginx"
-          - "sudo apt uninstall nginx"
-        a: "sudo apt purge nginx"
+          - text: "sudo apt purge nginx"
+            correct: true
+          - text: "sudo apt remove nginx"
+          - text: "sudo apt delete nginx"
+          - text: "sudo apt uninstall nginx"
       - q: "أي من العبارات التالية عن apt صحيحة؟"
         type: multiple-choice
         options:
-          - "apt يمكنه تثبيت عدة حزم دفعة واحدة"
-          - "apt autoremove يزيل الحزم غير المطلوبة"
-          - "apt search يبحث في قاعدة بيانات الحزم"
-          - "apt لا يحتاج صلاحيات المسؤول"
-        a:
-          - "apt يمكنه تثبيت عدة حزم دفعة واحدة"
-          - "apt autoremove يزيل الحزم غير المطلوبة"
-          - "apt search يبحث في قاعدة بيانات الحزم"
+          - text: "apt يمكنه تثبيت عدة حزم دفعة واحدة"
+            correct: true
+          - text: "apt autoremove يزيل الحزم غير المطلوبة"
+            correct: true
+          - text: "apt search يبحث في قاعدة بيانات الحزم"
+            correct: true
+          - text: "apt لا يحتاج صلاحيات المسؤول"

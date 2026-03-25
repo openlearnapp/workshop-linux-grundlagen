@@ -119,27 +119,26 @@ sections:
       - q: "What does the permission '755' mean in octal notation?"
         type: select
         options:
-          - "rwxr-xr-x — owner all, group and others read+execute"
-          - "rw-rw-rw- — everyone can read and write"
-          - "rwx------ — only owner has all permissions"
-          - "r--r--r-- — everyone can only read"
-        a: "rwxr-xr-x — owner all, group and others read+execute"
+          - text: "rwxr-xr-x — owner all, group and others read+execute"
+            correct: true
+          - text: "rw-rw-rw- — everyone can read and write"
+          - text: "rwx------ — only owner has all permissions"
+          - text: "r--r--r-- — everyone can only read"
       - q: "What octal value should a private SSH key have?"
         type: select
         options:
-          - "600"
-          - "755"
-          - "777"
-          - "644"
-        a: "600"
+          - text: "600"
+            correct: true
+          - text: "755"
+          - text: "777"
+          - text: "644"
       - q: "Which of these statements about the Linux permission system are true?"
         type: multiple-choice
         options:
-          - "r stands for read"
-          - "x stands for execute"
-          - "w stands for write"
-          - "s stands for system"
-        a:
-          - "r stands for read"
-          - "x stands for execute"
-          - "w stands for write"
+          - text: "r stands for read"
+            correct: true
+          - text: "x stands for execute"
+            correct: true
+          - text: "w stands for write"
+            correct: true
+          - text: "s stands for system"

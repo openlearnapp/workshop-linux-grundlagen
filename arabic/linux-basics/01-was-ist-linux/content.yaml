@@ -113,27 +113,26 @@ sections:
       - q: "ماذا يفعل الأمر 'lsb_release -a'؟"
         type: select
         options:
-          - "يعرض التوزيعة والإصدار بالتفصيل"
-          - "يحذف جميع ملفات السجلات"
-          - "يحدّث نواة لينكس"
-          - "يعيد تشغيل النظام"
-        a: "يعرض التوزيعة والإصدار بالتفصيل"
+          - text: "يعرض التوزيعة والإصدار بالتفصيل"
+            correct: true
+          - text: "يحذف جميع ملفات السجلات"
+          - text: "يحدّث نواة لينكس"
+          - text: "يعيد تشغيل النظام"
       - q: "أي أمر يعرض توزيعة لينكس المثبتة؟"
         type: select
         options:
-          - "cat /etc/os-release"
-          - "cat /etc/passwd"
-          - "ls /usr/bin"
-          - "echo $PATH"
-        a: "cat /etc/os-release"
+          - text: "cat /etc/os-release"
+            correct: true
+          - text: "cat /etc/passwd"
+          - text: "ls /usr/bin"
+          - text: "echo $PATH"
       - q: "أي من العبارات التالية عن لينكس صحيحة؟"
         type: multiple-choice
         options:
-          - "لينكس مفتوح المصدر"
-          - "لينكس يعمل على ٩٦٪ من خوادم الويب"
-          - "لينكس لديه توزيعة واحدة فقط"
-          - "Android مبني على لينكس"
-        a:
-          - "لينكس مفتوح المصدر"
-          - "لينكس يعمل على ٩٦٪ من خوادم الويب"
-          - "Android مبني على لينكس"
+          - text: "لينكس مفتوح المصدر"
+            correct: true
+          - text: "لينكس يعمل على ٩٦٪ من خوادم الويب"
+            correct: true
+          - text: "لينكس لديه توزيعة واحدة فقط"
+          - text: "Android مبني على لينكس"
+            correct: true

@@ -124,27 +124,26 @@ sections:
       - q: "ماذا يفعل العلم '-p' في 'mkdir -p projekte/web/assets'؟"
         type: select
         options:
-          - "ينشئ جميع المجلدات الوسيطة المفقودة تلقائيًا"
-          - "يسأل قبل الإنشاء"
-          - "يعرض المجلد المُنشأ"
-          - "يحمي المجلد من الحذف"
-        a: "ينشئ جميع المجلدات الوسيطة المفقودة تلقائيًا"
+          - text: "ينشئ جميع المجلدات الوسيطة المفقودة تلقائيًا"
+            correct: true
+          - text: "يسأل قبل الإنشاء"
+          - text: "يعرض المجلد المُنشأ"
+          - text: "يحمي المجلد من الحذف"
       - q: "أي أمر يُعيد تسمية ملف من 'entwurf.txt' إلى 'final.txt'؟"
         type: select
         options:
-          - "mv entwurf.txt final.txt"
-          - "cp entwurf.txt final.txt"
-          - "rename entwurf.txt final.txt"
-          - "touch final.txt entwurf.txt"
-        a: "mv entwurf.txt final.txt"
+          - text: "mv entwurf.txt final.txt"
+            correct: true
+          - text: "cp entwurf.txt final.txt"
+          - text: "rename entwurf.txt final.txt"
+          - text: "touch final.txt entwurf.txt"
       - q: "أي من العبارات التالية عن 'rm' صحيحة؟"
         type: multiple-choice
         options:
-          - "rm يحذف الملفات بلا سلة محذوفات"
-          - "rm -r يحذف المجلدات بشكل متكرر"
-          - "rm -i يسأل قبل الحذف"
-          - "rm يمكنه التراجع عن الحذف"
-        a:
-          - "rm يحذف الملفات بلا سلة محذوفات"
-          - "rm -r يحذف المجلدات بشكل متكرر"
-          - "rm -i يسأل قبل الحذف"
+          - text: "rm يحذف الملفات بلا سلة محذوفات"
+            correct: true
+          - text: "rm -r يحذف المجلدات بشكل متكرر"
+            correct: true
+          - text: "rm -i يسأل قبل الحذف"
+            correct: true
+          - text: "rm يمكنه التراجع عن الحذف"

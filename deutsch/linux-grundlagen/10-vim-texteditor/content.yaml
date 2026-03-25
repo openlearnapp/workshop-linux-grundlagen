@@ -130,27 +130,26 @@ sections:
       - q: "Wie wechselt man in vim in den Insert-Modus?"
         type: select
         options:
-          - "Taste 'i' drücken"
-          - "Taste 'Esc' drücken"
-          - "':i' eingeben"
-          - "Taste 'v' drücken"
-        a: "Taste 'i' drücken"
+          - text: "Taste 'i' drücken"
+            correct: true
+          - text: "Taste 'Esc' drücken"
+          - text: "':i' eingeben"
+          - text: "Taste 'v' drücken"
       - q: "Was macht ':q!' in vim?"
         type: select
         options:
-          - "Beendet vim ohne zu speichern"
-          - "Speichert und beendet vim"
-          - "Sucht nach dem Zeichen !"
-          - "Öffnet eine neue Datei"
-        a: "Beendet vim ohne zu speichern"
+          - text: "Beendet vim ohne zu speichern"
+            correct: true
+          - text: "Speichert und beendet vim"
+          - text: "Sucht nach dem Zeichen !"
+          - text: "Öffnet eine neue Datei"
       - q: "Welche dieser vim-Modi existieren?"
         type: multiple-choice
         options:
-          - "Normal-Modus"
-          - "Insert-Modus"
-          - "Visual-Modus"
-          - "Debug-Modus"
-        a:
-          - "Normal-Modus"
-          - "Insert-Modus"
-          - "Visual-Modus"
+          - text: "Normal-Modus"
+            correct: true
+          - text: "Insert-Modus"
+            correct: true
+          - text: "Visual-Modus"
+            correct: true
+          - text: "Debug-Modus"

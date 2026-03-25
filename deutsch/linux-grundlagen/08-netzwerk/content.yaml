@@ -128,27 +128,26 @@ sections:
       - q: "Was macht 'curl -s https://ipinfo.io/ip'?"
         type: select
         options:
-          - "Zeigt die eigene öffentliche IP-Adresse an"
-          - "Testet die Geschwindigkeit der Internetverbindung"
-          - "Lädt die IP-Datenbank herunter"
-          - "Zeigt alle Netzwerkschnittstellen"
-        a: "Zeigt die eigene öffentliche IP-Adresse an"
+          - text: "Zeigt die eigene öffentliche IP-Adresse an"
+            correct: true
+          - text: "Testet die Geschwindigkeit der Internetverbindung"
+          - text: "Lädt die IP-Datenbank herunter"
+          - text: "Zeigt alle Netzwerkschnittstellen"
       - q: "Welcher Befehl zeigt alle offenen Ports und zugehörigen Programme?"
         type: select
         options:
-          - "ss -tulpn"
-          - "ip addr show"
-          - "ping -a localhost"
-          - "netstat --list"
-        a: "ss -tulpn"
+          - text: "ss -tulpn"
+            correct: true
+          - text: "ip addr show"
+          - text: "ping -a localhost"
+          - text: "netstat --list"
       - q: "Welche dieser Aussagen über SSH stimmen?"
         type: multiple-choice
         options:
-          - "SSH verschlüsselt die Verbindung"
-          - "SSH-Schlüssel sind sicherer als Passwörter"
-          - "ssh-keygen erstellt ein Schlüsselpaar"
-          - "SSH sendet Passwörter im Klartext"
-        a:
-          - "SSH verschlüsselt die Verbindung"
-          - "SSH-Schlüssel sind sicherer als Passwörter"
-          - "ssh-keygen erstellt ein Schlüsselpaar"
+          - text: "SSH verschlüsselt die Verbindung"
+            correct: true
+          - text: "SSH-Schlüssel sind sicherer als Passwörter"
+            correct: true
+          - text: "ssh-keygen erstellt ein Schlüsselpaar"
+            correct: true
+          - text: "SSH sendet Passwörter im Klartext"

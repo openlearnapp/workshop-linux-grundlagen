@@ -125,29 +125,28 @@ sections:
       - q: "Was macht der Befehl 'ls -la'?"
         type: select
         options:
-          - "Alle Dateien inkl. versteckter, mit Details anzeigen"
-          - "Alle Dateien löschen"
-          - "Letzte Aktion rückgängig machen"
-          - "Log-Dateien anzeigen"
-        a: "Alle Dateien inkl. versteckter, mit Details anzeigen"
+          - text: "Alle Dateien inkl. versteckter, mit Details anzeigen"
+            correct: true
+          - text: "Alle Dateien löschen"
+          - text: "Letzte Aktion rückgängig machen"
+          - text: "Log-Dateien anzeigen"
       - q: "Welcher Befehl wechselt zum zuletzt besuchten Verzeichnis?"
         type: select
         options:
-          - "cd -"
-          - "cd .."
-          - "cd ~"
-          - "cd /"
-        a: "cd -"
+          - text: "cd -"
+            correct: true
+          - text: "cd .."
+          - text: "cd ~"
+          - text: "cd /"
       - q: "Welche dieser Flags gehören zum Befehl 'ls'?"
         type: multiple-choice
         options:
-          - "-l"
-          - "-a"
-          - "-x"
-          - "-h"
-          - "-t"
-        a:
-          - "-l"
-          - "-a"
-          - "-h"
-          - "-t"
+          - text: "-l"
+            correct: true
+          - text: "-a"
+            correct: true
+          - text: "-x"
+          - text: "-h"
+            correct: true
+          - text: "-t"
+            correct: true

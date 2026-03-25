@@ -139,27 +139,26 @@ sections:
       - q: "Was macht '>>' im Gegensatz zu '>'?"
         type: select
         options:
-          - ">> hängt Ausgabe an die Datei an, > überschreibt sie"
-          - ">> überschreibt die Datei, > hängt an"
-          - ">> leitet Fehler um, > leitet Ausgabe um"
-          - ">> und > machen dasselbe"
-        a: ">> hängt Ausgabe an die Datei an, > überschreibt sie"
+          - text: ">> hängt Ausgabe an die Datei an, > überschreibt sie"
+            correct: true
+          - text: ">> überschreibt die Datei, > hängt an"
+          - text: ">> leitet Fehler um, > leitet Ausgabe um"
+          - text: ">> und > machen dasselbe"
       - q: "Wie wird eine Änderung in ~/.bashrc sofort wirksam?"
         type: select
         options:
-          - "source ~/.bashrc"
-          - "reload ~/.bashrc"
-          - "bash --refresh"
-          - "apply ~/.bashrc"
-        a: "source ~/.bashrc"
+          - text: "source ~/.bashrc"
+            correct: true
+          - text: "reload ~/.bashrc"
+          - text: "bash --refresh"
+          - text: "apply ~/.bashrc"
       - q: "Welche dieser Aussagen über Aliases und Pipes stimmen?"
         type: multiple-choice
         options:
-          - "alias erstellt Abkürzungen für häufige Befehle"
-          - "| leitet Ausgabe als Eingabe weiter"
-          - "/dev/null verwirft alle Ausgaben"
-          - "source speichert Befehle dauerhaft im Terminal"
-        a:
-          - "alias erstellt Abkürzungen für häufige Befehle"
-          - "| leitet Ausgabe als Eingabe weiter"
-          - "/dev/null verwirft alle Ausgaben"
+          - text: "alias erstellt Abkürzungen für häufige Befehle"
+            correct: true
+          - text: "| leitet Ausgabe als Eingabe weiter"
+            correct: true
+          - text: "/dev/null verwirft alle Ausgaben"
+            correct: true
+          - text: "source speichert Befehle dauerhaft im Terminal"

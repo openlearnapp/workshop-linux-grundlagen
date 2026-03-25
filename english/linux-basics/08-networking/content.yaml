@@ -123,27 +123,26 @@ sections:
       - q: "What does 'curl -s https://ipinfo.io/ip' do?"
         type: select
         options:
-          - "Shows your own public IP address"
-          - "Tests the internet connection speed"
-          - "Downloads the IP database"
-          - "Shows all network interfaces"
-        a: "Shows your own public IP address"
+          - text: "Shows your own public IP address"
+            correct: true
+          - text: "Tests the internet connection speed"
+          - text: "Downloads the IP database"
+          - text: "Shows all network interfaces"
       - q: "Which command shows all open ports and associated programs?"
         type: select
         options:
-          - "ss -tulpn"
-          - "ip addr show"
-          - "ping -a localhost"
-          - "netstat --list"
-        a: "ss -tulpn"
+          - text: "ss -tulpn"
+            correct: true
+          - text: "ip addr show"
+          - text: "ping -a localhost"
+          - text: "netstat --list"
       - q: "Which of these statements about SSH are true?"
         type: multiple-choice
         options:
-          - "SSH encrypts the connection"
-          - "SSH keys are more secure than passwords"
-          - "ssh-keygen creates a key pair"
-          - "SSH sends passwords in plain text"
-        a:
-          - "SSH encrypts the connection"
-          - "SSH keys are more secure than passwords"
-          - "ssh-keygen creates a key pair"
+          - text: "SSH encrypts the connection"
+            correct: true
+          - text: "SSH keys are more secure than passwords"
+            correct: true
+          - text: "ssh-keygen creates a key pair"
+            correct: true
+          - text: "SSH sends passwords in plain text"

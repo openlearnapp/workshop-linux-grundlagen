@@ -114,27 +114,26 @@ sections:
       - q: "Was macht 'tail -f /var/log/nginx/access.log'?"
         type: select
         options:
-          - "Verfolgt die Datei in Echtzeit und zeigt neue Zeilen sofort"
-          - "Zeigt die letzten 10 Zeilen und beendet sich"
-          - "Löscht die letzten Zeilen der Datei"
-          - "Sucht nach dem Begriff 'nginx'"
-        a: "Verfolgt die Datei in Echtzeit und zeigt neue Zeilen sofort"
+          - text: "Verfolgt die Datei in Echtzeit und zeigt neue Zeilen sofort"
+            correct: true
+          - text: "Zeigt die letzten 10 Zeilen und beendet sich"
+          - text: "Löscht die letzten Zeilen der Datei"
+          - text: "Sucht nach dem Begriff 'nginx'"
       - q: "Welcher Befehl sucht case-insensitiv nach 'error' in einer Datei?"
         type: select
         options:
-          - "grep -i \"error\" datei.txt"
-          - "grep -n \"error\" datei.txt"
-          - "grep -r \"error\" datei.txt"
-          - "grep -v \"error\" datei.txt"
-        a: "grep -i \"error\" datei.txt"
+          - text: "grep -i \"error\" datei.txt"
+            correct: true
+          - text: "grep -n \"error\" datei.txt"
+          - text: "grep -r \"error\" datei.txt"
+          - text: "grep -v \"error\" datei.txt"
       - q: "Welche dieser grep-Flags stimmen in ihrer Bedeutung?"
         type: multiple-choice
         options:
-          - "-i ignoriert Groß-/Kleinschreibung"
-          - "-n zeigt Zeilennummern"
-          - "-r durchsucht Verzeichnisse rekursiv"
-          - "-v zeigt nur Treffer ohne Kontext"
-        a:
-          - "-i ignoriert Groß-/Kleinschreibung"
-          - "-n zeigt Zeilennummern"
-          - "-r durchsucht Verzeichnisse rekursiv"
+          - text: "-i ignoriert Groß-/Kleinschreibung"
+            correct: true
+          - text: "-n zeigt Zeilennummern"
+            correct: true
+          - text: "-r durchsucht Verzeichnisse rekursiv"
+            correct: true
+          - text: "-v zeigt nur Treffer ohne Kontext"

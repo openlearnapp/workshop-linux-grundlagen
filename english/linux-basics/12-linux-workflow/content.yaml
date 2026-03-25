@@ -139,27 +139,26 @@ sections:
       - q: "What does '>>' do compared to '>'?"
         type: select
         options:
-          - ">> appends output to the file, > overwrites it"
-          - ">> overwrites the file, > appends"
-          - ">> redirects errors, > redirects output"
-          - ">> and > do the same thing"
-        a: ">> appends output to the file, > overwrites it"
+          - text: ">> appends output to the file, > overwrites it"
+            correct: true
+          - text: ">> overwrites the file, > appends"
+          - text: ">> redirects errors, > redirects output"
+          - text: ">> and > do the same thing"
       - q: "How do you apply changes to ~/.bashrc immediately?"
         type: select
         options:
-          - "source ~/.bashrc"
-          - "reload ~/.bashrc"
-          - "bash --refresh"
-          - "apply ~/.bashrc"
-        a: "source ~/.bashrc"
+          - text: "source ~/.bashrc"
+            correct: true
+          - text: "reload ~/.bashrc"
+          - text: "bash --refresh"
+          - text: "apply ~/.bashrc"
       - q: "Which of these statements about aliases and pipes are true?"
         type: multiple-choice
         options:
-          - "alias creates shortcuts for frequent commands"
-          - "| passes output as input to the next command"
-          - "/dev/null discards all output"
-          - "source permanently saves commands in the terminal"
-        a:
-          - "alias creates shortcuts for frequent commands"
-          - "| passes output as input to the next command"
-          - "/dev/null discards all output"
+          - text: "alias creates shortcuts for frequent commands"
+            correct: true
+          - text: "| passes output as input to the next command"
+            correct: true
+          - text: "/dev/null discards all output"
+            correct: true
+          - text: "source permanently saves commands in the terminal"

@@ -124,27 +124,26 @@ sections:
       - q: "ستون 'available' در 'free -h' چه چیزی را نشان می‌دهد؟"
         type: select
         options:
-          - "حافظه RAM واقعاً قابل استفاده"
-          - "فضای آزاد دیسک"
-          - "حافظه Swap استفاده‌شده"
-          - "میزان استفاده CPU به درصد"
-        a: "حافظه RAM واقعاً قابل استفاده"
+          - text: "حافظه RAM واقعاً قابل استفاده"
+            correct: true
+          - text: "فضای آزاد دیسک"
+          - text: "حافظه Swap استفاده‌شده"
+          - text: "میزان استفاده CPU به درصد"
       - q: "کدام دستور در تاریخچه دستورات 'apt install' را جستجو می‌کند؟"
         type: select
         options:
-          - "history | grep \"apt install\""
-          - "history search \"apt install\""
-          - "grep history \"apt install\""
-          - "find history -name \"apt install\""
-        a: "history | grep \"apt install\""
+          - text: "history | grep \"apt install\""
+            correct: true
+          - text: "history search \"apt install\""
+          - text: "grep history \"apt install\""
+          - text: "find history -name \"apt install\""
       - q: "کدام‌یک از این دستورات اطلاعات سیستم را نشان می‌دهند؟"
         type: multiple-choice
         options:
-          - "df -h"
-          - "free -h"
-          - "uptime"
-          - "chmod 755"
-        a:
-          - "df -h"
-          - "free -h"
-          - "uptime"
+          - text: "df -h"
+            correct: true
+          - text: "free -h"
+            correct: true
+          - text: "uptime"
+            correct: true
+          - text: "chmod 755"

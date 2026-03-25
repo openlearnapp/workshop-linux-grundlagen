@@ -123,27 +123,26 @@ sections:
       - q: "تفاوت بین 'apt update' و 'apt upgrade' چیست؟"
         type: select
         options:
-          - "update لیست بسته‌های جدید را دریافت می‌کند، upgrade خود بسته‌ها را به‌روز می‌کند"
-          - "update بسته‌ها را نصب می‌کند، upgrade قدیمی‌ها را حذف می‌کند"
-          - "update و upgrade یک کار را انجام می‌دهند"
-          - "upgrade لیست بسته‌ها را دریافت می‌کند، update بسته‌ها را به‌روز می‌کند"
-        a: "update لیست بسته‌های جدید را دریافت می‌کند، upgrade خود بسته‌ها را به‌روز می‌کند"
+          - text: "update لیست بسته‌های جدید را دریافت می‌کند، upgrade خود بسته‌ها را به‌روز می‌کند"
+            correct: true
+          - text: "update بسته‌ها را نصب می‌کند، upgrade قدیمی‌ها را حذف می‌کند"
+          - text: "update و upgrade یک کار را انجام می‌دهند"
+          - text: "upgrade لیست بسته‌ها را دریافت می‌کند، update بسته‌ها را به‌روز می‌کند"
       - q: "کدام دستور یک بسته را شامل فایل‌های پیکربندی حذف می‌کند؟"
         type: select
         options:
-          - "sudo apt purge nginx"
-          - "sudo apt remove nginx"
-          - "sudo apt delete nginx"
-          - "sudo apt uninstall nginx"
-        a: "sudo apt purge nginx"
+          - text: "sudo apt purge nginx"
+            correct: true
+          - text: "sudo apt remove nginx"
+          - text: "sudo apt delete nginx"
+          - text: "sudo apt uninstall nginx"
       - q: "کدام‌یک از این جملات درباره apt درست هستند؟"
         type: multiple-choice
         options:
-          - "apt می‌تواند چند بسته را یکجا نصب کند"
-          - "apt autoremove بسته‌های غیرضروری را حذف می‌کند"
-          - "apt search پایگاه داده بسته‌ها را جستجو می‌کند"
-          - "apt نیاز به مجوز مدیر ندارد"
-        a:
-          - "apt می‌تواند چند بسته را یکجا نصب کند"
-          - "apt autoremove بسته‌های غیرضروری را حذف می‌کند"
-          - "apt search پایگاه داده بسته‌ها را جستجو می‌کند"
+          - text: "apt می‌تواند چند بسته را یکجا نصب کند"
+            correct: true
+          - text: "apt autoremove بسته‌های غیرضروری را حذف می‌کند"
+            correct: true
+          - text: "apt search پایگاه داده بسته‌ها را جستجو می‌کند"
+            correct: true
+          - text: "apt نیاز به مجوز مدیر ندارد"
