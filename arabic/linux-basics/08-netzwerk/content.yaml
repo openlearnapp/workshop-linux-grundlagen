@@ -128,27 +128,26 @@ sections:
       - q: "ماذا يفعل 'curl -s https://ipinfo.io/ip'؟"
         type: select
         options:
-          - "يعرض عنوان IP العام الخاص بك"
-          - "يختبر سرعة اتصال الإنترنت"
-          - "يُنزّل قاعدة بيانات IP"
-          - "يعرض جميع واجهات الشبكة"
-        a: "يعرض عنوان IP العام الخاص بك"
+          - text: "يعرض عنوان IP العام الخاص بك"
+            correct: true
+          - text: "يختبر سرعة اتصال الإنترنت"
+          - text: "يُنزّل قاعدة بيانات IP"
+          - text: "يعرض جميع واجهات الشبكة"
       - q: "أي أمر يعرض جميع المنافذ المفتوحة والبرامج المرتبطة بها؟"
         type: select
         options:
-          - "ss -tulpn"
-          - "ip addr show"
-          - "ping -a localhost"
-          - "netstat --list"
-        a: "ss -tulpn"
+          - text: "ss -tulpn"
+            correct: true
+          - text: "ip addr show"
+          - text: "ping -a localhost"
+          - text: "netstat --list"
       - q: "أي من العبارات التالية عن SSH صحيحة؟"
         type: multiple-choice
         options:
-          - "SSH يُشفّر الاتصال"
-          - "مفاتيح SSH أكثر أمانًا من كلمات المرور"
-          - "ssh-keygen ينشئ زوج مفاتيح"
-          - "SSH يرسل كلمات المرور بنص واضح"
-        a:
-          - "SSH يُشفّر الاتصال"
-          - "مفاتيح SSH أكثر أمانًا من كلمات المرور"
-          - "ssh-keygen ينشئ زوج مفاتيح"
+          - text: "SSH يُشفّر الاتصال"
+            correct: true
+          - text: "مفاتيح SSH أكثر أمانًا من كلمات المرور"
+            correct: true
+          - text: "ssh-keygen ينشئ زوج مفاتيح"
+            correct: true
+          - text: "SSH يرسل كلمات المرور بنص واضح"

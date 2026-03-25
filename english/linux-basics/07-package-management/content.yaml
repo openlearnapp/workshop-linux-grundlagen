@@ -119,27 +119,26 @@ sections:
       - q: "What is the difference between 'apt update' and 'apt upgrade'?"
         type: select
         options:
-          - "update fetches new package lists, upgrade updates the packages themselves"
-          - "update installs packages, upgrade removes old ones"
-          - "update and upgrade do the same thing"
-          - "upgrade fetches new package lists, update updates the packages"
-        a: "update fetches new package lists, upgrade updates the packages themselves"
+          - text: "update fetches new package lists, upgrade updates the packages themselves"
+            correct: true
+          - text: "update installs packages, upgrade removes old ones"
+          - text: "update and upgrade do the same thing"
+          - text: "upgrade fetches new package lists, update updates the packages"
       - q: "Which command removes a package including its configuration files?"
         type: select
         options:
-          - "sudo apt purge nginx"
-          - "sudo apt remove nginx"
-          - "sudo apt delete nginx"
-          - "sudo apt uninstall nginx"
-        a: "sudo apt purge nginx"
+          - text: "sudo apt purge nginx"
+            correct: true
+          - text: "sudo apt remove nginx"
+          - text: "sudo apt delete nginx"
+          - text: "sudo apt uninstall nginx"
       - q: "Which of these statements about apt are true?"
         type: multiple-choice
         options:
-          - "apt can install multiple packages at once"
-          - "apt autoremove removes no-longer-needed packages"
-          - "apt search searches the package database"
-          - "apt requires no administrator rights"
-        a:
-          - "apt can install multiple packages at once"
-          - "apt autoremove removes no-longer-needed packages"
-          - "apt search searches the package database"
+          - text: "apt can install multiple packages at once"
+            correct: true
+          - text: "apt autoremove removes no-longer-needed packages"
+            correct: true
+          - text: "apt search searches the package database"
+            correct: true
+          - text: "apt requires no administrator rights"

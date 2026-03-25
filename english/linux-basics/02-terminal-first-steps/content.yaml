@@ -124,29 +124,28 @@ sections:
       - q: "What does 'ls -la' show?"
         type: select
         options:
-          - "All files including hidden ones, with details"
-          - "Deletes all files"
-          - "Undoes the last action"
-          - "Shows log files"
-        a: "All files including hidden ones, with details"
+          - text: "All files including hidden ones, with details"
+            correct: true
+          - text: "Deletes all files"
+          - text: "Undoes the last action"
+          - text: "Shows log files"
       - q: "Which command switches to the last visited directory?"
         type: select
         options:
-          - "cd -"
-          - "cd .."
-          - "cd ~"
-          - "cd /"
-        a: "cd -"
+          - text: "cd -"
+            correct: true
+          - text: "cd .."
+          - text: "cd ~"
+          - text: "cd /"
       - q: "Which of these flags belong to the 'ls' command?"
         type: multiple-choice
         options:
-          - "-l"
-          - "-a"
-          - "-x"
-          - "-h"
-          - "-t"
-        a:
-          - "-l"
-          - "-a"
-          - "-h"
-          - "-t"
+          - text: "-l"
+            correct: true
+          - text: "-a"
+            correct: true
+          - text: "-x"
+          - text: "-h"
+            correct: true
+          - text: "-t"
+            correct: true

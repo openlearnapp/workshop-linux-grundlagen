@@ -125,29 +125,28 @@ sections:
       - q: "ماذا يفعل الأمر 'ls -la'؟"
         type: select
         options:
-          - "عرض جميع الملفات بما فيها المخفية مع التفاصيل"
-          - "حذف جميع الملفات"
-          - "التراجع عن آخر عملية"
-          - "عرض ملفات السجلات"
-        a: "عرض جميع الملفات بما فيها المخفية مع التفاصيل"
+          - text: "عرض جميع الملفات بما فيها المخفية مع التفاصيل"
+            correct: true
+          - text: "حذف جميع الملفات"
+          - text: "التراجع عن آخر عملية"
+          - text: "عرض ملفات السجلات"
       - q: "أي أمر ينتقل إلى آخر مجلد تمت زيارته؟"
         type: select
         options:
-          - "cd -"
-          - "cd .."
-          - "cd ~"
-          - "cd /"
-        a: "cd -"
+          - text: "cd -"
+            correct: true
+          - text: "cd .."
+          - text: "cd ~"
+          - text: "cd /"
       - q: "أي من هذه الأعلام تنتمي إلى الأمر 'ls'؟"
         type: multiple-choice
         options:
-          - "-l"
-          - "-a"
-          - "-x"
-          - "-h"
-          - "-t"
-        a:
-          - "-l"
-          - "-a"
-          - "-h"
-          - "-t"
+          - text: "-l"
+            correct: true
+          - text: "-a"
+            correct: true
+          - text: "-x"
+          - text: "-h"
+            correct: true
+          - text: "-t"
+            correct: true

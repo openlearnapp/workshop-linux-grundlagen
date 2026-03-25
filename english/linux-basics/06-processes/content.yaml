@@ -123,27 +123,26 @@ sections:
       - q: "What does 'kill -9 1234' do?"
         type: select
         options:
-          - "Sends SIGKILL — process is immediately terminated"
-          - "Sends SIGTERM — process can clean up"
-          - "Pauses the process with PID 1234"
-          - "Restarts the process"
-        a: "Sends SIGKILL — process is immediately terminated"
+          - text: "Sends SIGKILL — process is immediately terminated"
+            correct: true
+          - text: "Sends SIGTERM — process can clean up"
+          - text: "Pauses the process with PID 1234"
+          - text: "Restarts the process"
       - q: "How do you start a process directly in the background?"
         type: select
         options:
-          - "Run the command with & at the end"
-          - "Run the command with bg at the beginning"
-          - "Run the command with nohup at the end"
-          - "Press Ctrl+Z before the command"
-        a: "Run the command with & at the end"
+          - text: "Run the command with & at the end"
+            correct: true
+          - text: "Run the command with bg at the beginning"
+          - text: "Run the command with nohup at the end"
+          - text: "Press Ctrl+Z before the command"
       - q: "Which of these statements about process signals are true?"
         type: multiple-choice
         options:
-          - "SIGTERM (15) is the graceful shutdown signal"
-          - "SIGKILL (9) cannot be caught or ignored"
-          - "SIGHUP (1) reloads the configuration"
-          - "SIGPAUSE (7) is the default signal"
-        a:
-          - "SIGTERM (15) is the graceful shutdown signal"
-          - "SIGKILL (9) cannot be caught or ignored"
-          - "SIGHUP (1) reloads the configuration"
+          - text: "SIGTERM (15) is the graceful shutdown signal"
+            correct: true
+          - text: "SIGKILL (9) cannot be caught or ignored"
+            correct: true
+          - text: "SIGHUP (1) reloads the configuration"
+            correct: true
+          - text: "SIGPAUSE (7) is the default signal"

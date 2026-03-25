@@ -139,27 +139,26 @@ sections:
       - q: "ما الفرق بين '>>' و '>'؟"
         type: select
         options:
-          - ">> يُلحق المخرجات بالملف، > يستبدله"
-          - ">> يستبدل الملف، > يُلحق"
-          - ">> يوجّه الأخطاء، > يوجّه المخرجات"
-          - ">> و > يفعلان نفس الشيء"
-        a: ">> يُلحق المخرجات بالملف، > يستبدله"
+          - text: ">> يُلحق المخرجات بالملف، > يستبدله"
+            correct: true
+          - text: ">> يستبدل الملف، > يُلحق"
+          - text: ">> يوجّه الأخطاء، > يوجّه المخرجات"
+          - text: ">> و > يفعلان نفس الشيء"
       - q: "كيف تجعل تغييرًا في ~/.bashrc ساري المفعول فورًا؟"
         type: select
         options:
-          - "source ~/.bashrc"
-          - "reload ~/.bashrc"
-          - "bash --refresh"
-          - "apply ~/.bashrc"
-        a: "source ~/.bashrc"
+          - text: "source ~/.bashrc"
+            correct: true
+          - text: "reload ~/.bashrc"
+          - text: "bash --refresh"
+          - text: "apply ~/.bashrc"
       - q: "أي من العبارات التالية عن الاختصارات و Pipes صحيحة؟"
         type: multiple-choice
         options:
-          - "alias ينشئ اختصارات للأوامر المتكررة"
-          - "| يُمرر المخرجات كمدخلات"
-          - "/dev/null يتجاهل جميع المخرجات"
-          - "source يحفظ الأوامر بشكل دائم في الطرفية"
-        a:
-          - "alias ينشئ اختصارات للأوامر المتكررة"
-          - "| يُمرر المخرجات كمدخلات"
-          - "/dev/null يتجاهل جميع المخرجات"
+          - text: "alias ينشئ اختصارات للأوامر المتكررة"
+            correct: true
+          - text: "| يُمرر المخرجات كمدخلات"
+            correct: true
+          - text: "/dev/null يتجاهل جميع المخرجات"
+            correct: true
+          - text: "source يحفظ الأوامر بشكل دائم في الطرفية"

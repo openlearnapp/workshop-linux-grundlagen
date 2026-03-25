@@ -124,27 +124,26 @@ sections:
       - q: "Was macht das Flag '-p' bei 'mkdir -p projekte/web/assets'?"
         type: select
         options:
-          - "Erstellt alle fehlenden Zwischenverzeichnisse automatisch"
-          - "Fragt vor dem Erstellen nach"
-          - "Zeigt den erstellten Ordner an"
-          - "Schützt den Ordner vor dem Löschen"
-        a: "Erstellt alle fehlenden Zwischenverzeichnisse automatisch"
+          - text: "Erstellt alle fehlenden Zwischenverzeichnisse automatisch"
+            correct: true
+          - text: "Fragt vor dem Erstellen nach"
+          - text: "Zeigt den erstellten Ordner an"
+          - text: "Schützt den Ordner vor dem Löschen"
       - q: "Welcher Befehl benennt eine Datei von 'entwurf.txt' zu 'final.txt' um?"
         type: select
         options:
-          - "mv entwurf.txt final.txt"
-          - "cp entwurf.txt final.txt"
-          - "rename entwurf.txt final.txt"
-          - "touch final.txt entwurf.txt"
-        a: "mv entwurf.txt final.txt"
+          - text: "mv entwurf.txt final.txt"
+            correct: true
+          - text: "cp entwurf.txt final.txt"
+          - text: "rename entwurf.txt final.txt"
+          - text: "touch final.txt entwurf.txt"
       - q: "Welche dieser Aussagen über 'rm' stimmen?"
         type: multiple-choice
         options:
-          - "rm löscht Dateien ohne Papierkorb"
-          - "rm -r löscht Ordner rekursiv"
-          - "rm -i fragt vor dem Löschen nach"
-          - "rm kann Löschen rückgängig machen"
-        a:
-          - "rm löscht Dateien ohne Papierkorb"
-          - "rm -r löscht Ordner rekursiv"
-          - "rm -i fragt vor dem Löschen nach"
+          - text: "rm löscht Dateien ohne Papierkorb"
+            correct: true
+          - text: "rm -r löscht Ordner rekursiv"
+            correct: true
+          - text: "rm -i fragt vor dem Löschen nach"
+            correct: true
+          - text: "rm kann Löschen rückgängig machen"

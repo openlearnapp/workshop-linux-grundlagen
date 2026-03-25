@@ -124,27 +124,26 @@ sections:
       - q: "Was bedeutet die Berechtigung '755' in der Oktal-Notation?"
         type: select
         options:
-          - "rwxr-xr-x — Besitzer alles, Gruppe und Andere lesen+ausführen"
-          - "rw-rw-rw- — alle dürfen lesen und schreiben"
-          - "rwx------ — nur Besitzer hat alle Rechte"
-          - "r--r--r-- — alle dürfen nur lesen"
-        a: "rwxr-xr-x — Besitzer alles, Gruppe und Andere lesen+ausführen"
+          - text: "rwxr-xr-x — Besitzer alles, Gruppe und Andere lesen+ausführen"
+            correct: true
+          - text: "rw-rw-rw- — alle dürfen lesen und schreiben"
+          - text: "rwx------ — nur Besitzer hat alle Rechte"
+          - text: "r--r--r-- — alle dürfen nur lesen"
       - q: "Welchen Oktalwert sollte ein privater SSH-Schlüssel haben?"
         type: select
         options:
-          - "600"
-          - "755"
-          - "777"
-          - "644"
-        a: "600"
+          - text: "600"
+            correct: true
+          - text: "755"
+          - text: "777"
+          - text: "644"
       - q: "Welche dieser Aussagen über das Linux-Rechtesystem stimmen?"
         type: multiple-choice
         options:
-          - "r steht für read (lesen)"
-          - "x steht für execute (ausführen)"
-          - "w steht für write (schreiben)"
-          - "s steht für system (System)"
-        a:
-          - "r steht für read (lesen)"
-          - "x steht für execute (ausführen)"
-          - "w steht für write (schreiben)"
+          - text: "r steht für read (lesen)"
+            correct: true
+          - text: "x steht für execute (ausführen)"
+            correct: true
+          - text: "w steht für write (schreiben)"
+            correct: true
+          - text: "s steht für system (System)"

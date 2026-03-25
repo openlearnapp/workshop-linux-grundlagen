@@ -123,27 +123,26 @@ sections:
       - q: "What does the 'available' column in 'free -h' show?"
         type: select
         options:
-          - "The truly available RAM"
-          - "The free disk space"
-          - "The used swap space"
-          - "The CPU utilization in percent"
-        a: "The truly available RAM"
+          - text: "The truly available RAM"
+            correct: true
+          - text: "The free disk space"
+          - text: "The used swap space"
+          - text: "The CPU utilization in percent"
       - q: "Which command searches the command history for 'apt install'?"
         type: select
         options:
-          - "history | grep \"apt install\""
-          - "history search \"apt install\""
-          - "grep history \"apt install\""
-          - "find history -name \"apt install\""
-        a: "history | grep \"apt install\""
+          - text: "history | grep \"apt install\""
+            correct: true
+          - text: "history search \"apt install\""
+          - text: "grep history \"apt install\""
+          - text: "find history -name \"apt install\""
       - q: "Which of these commands show system information?"
         type: multiple-choice
         options:
-          - "df -h"
-          - "free -h"
-          - "uptime"
-          - "chmod 755"
-        a:
-          - "df -h"
-          - "free -h"
-          - "uptime"
+          - text: "df -h"
+            correct: true
+          - text: "free -h"
+            correct: true
+          - text: "uptime"
+            correct: true
+          - text: "chmod 755"

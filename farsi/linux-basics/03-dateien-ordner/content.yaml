@@ -124,27 +124,26 @@ sections:
       - q: "فلگ '-p' در 'mkdir -p projekte/web/assets' چه کار می‌کند؟"
         type: select
         options:
-          - "تمام پوشه‌های میانی ناموجود را خودکار می‌سازد"
-          - "قبل از ساختن سؤال می‌کند"
-          - "پوشه ساخته‌شده را نمایش می‌دهد"
-          - "پوشه را از حذف محافظت می‌کند"
-        a: "تمام پوشه‌های میانی ناموجود را خودکار می‌سازد"
+          - text: "تمام پوشه‌های میانی ناموجود را خودکار می‌سازد"
+            correct: true
+          - text: "قبل از ساختن سؤال می‌کند"
+          - text: "پوشه ساخته‌شده را نمایش می‌دهد"
+          - text: "پوشه را از حذف محافظت می‌کند"
       - q: "کدام دستور نام فایل را از 'entwurf.txt' به 'final.txt' تغییر می‌دهد؟"
         type: select
         options:
-          - "mv entwurf.txt final.txt"
-          - "cp entwurf.txt final.txt"
-          - "rename entwurf.txt final.txt"
-          - "touch final.txt entwurf.txt"
-        a: "mv entwurf.txt final.txt"
+          - text: "mv entwurf.txt final.txt"
+            correct: true
+          - text: "cp entwurf.txt final.txt"
+          - text: "rename entwurf.txt final.txt"
+          - text: "touch final.txt entwurf.txt"
       - q: "کدام‌یک از این جملات درباره 'rm' درست هستند؟"
         type: multiple-choice
         options:
-          - "rm فایل‌ها را بدون سطل زباله حذف می‌کند"
-          - "rm -r پوشه‌ها را به صورت بازگشتی حذف می‌کند"
-          - "rm -i قبل از حذف سؤال می‌کند"
-          - "rm می‌تواند حذف را برگرداند"
-        a:
-          - "rm فایل‌ها را بدون سطل زباله حذف می‌کند"
-          - "rm -r پوشه‌ها را به صورت بازگشتی حذف می‌کند"
-          - "rm -i قبل از حذف سؤال می‌کند"
+          - text: "rm فایل‌ها را بدون سطل زباله حذف می‌کند"
+            correct: true
+          - text: "rm -r پوشه‌ها را به صورت بازگشتی حذف می‌کند"
+            correct: true
+          - text: "rm -i قبل از حذف سؤال می‌کند"
+            correct: true
+          - text: "rm می‌تواند حذف را برگرداند"

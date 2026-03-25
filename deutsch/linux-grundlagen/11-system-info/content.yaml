@@ -124,27 +124,26 @@ sections:
       - q: "Was zeigt die 'available'-Spalte bei 'free -h'?"
         type: select
         options:
-          - "Den wirklich verfügbaren Arbeitsspeicher"
-          - "Den freien Festplattenspeicher"
-          - "Den belegten Swap-Speicher"
-          - "Die CPU-Auslastung in Prozent"
-        a: "Den wirklich verfügbaren Arbeitsspeicher"
+          - text: "Den wirklich verfügbaren Arbeitsspeicher"
+            correct: true
+          - text: "Den freien Festplattenspeicher"
+          - text: "Den belegten Swap-Speicher"
+          - text: "Die CPU-Auslastung in Prozent"
       - q: "Welcher Befehl sucht in der Befehlshistorie nach 'apt install'?"
         type: select
         options:
-          - "history | grep \"apt install\""
-          - "history search \"apt install\""
-          - "grep history \"apt install\""
-          - "find history -name \"apt install\""
-        a: "history | grep \"apt install\""
+          - text: "history | grep \"apt install\""
+            correct: true
+          - text: "history search \"apt install\""
+          - text: "grep history \"apt install\""
+          - text: "find history -name \"apt install\""
       - q: "Welche dieser Befehle geben Systeminformationen aus?"
         type: multiple-choice
         options:
-          - "df -h"
-          - "free -h"
-          - "uptime"
-          - "chmod 755"
-        a:
-          - "df -h"
-          - "free -h"
-          - "uptime"
+          - text: "df -h"
+            correct: true
+          - text: "free -h"
+            correct: true
+          - text: "uptime"
+            correct: true
+          - text: "chmod 755"

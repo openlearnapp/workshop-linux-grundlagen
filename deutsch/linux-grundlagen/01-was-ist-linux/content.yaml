@@ -113,27 +113,26 @@ sections:
       - q: "Was macht der Befehl 'lsb_release -a'?"
         type: select
         options:
-          - "Zeigt die genaue Distribution und Version"
-          - "Löscht alle Log-Dateien"
-          - "Aktualisiert den Linux-Kernel"
-          - "Startet das System neu"
-        a: "Zeigt die genaue Distribution und Version"
+          - text: "Zeigt die genaue Distribution und Version"
+            correct: true
+          - text: "Löscht alle Log-Dateien"
+          - text: "Aktualisiert den Linux-Kernel"
+          - text: "Startet das System neu"
       - q: "Welcher Befehl zeigt, welche Linux-Distribution installiert ist?"
         type: select
         options:
-          - "cat /etc/os-release"
-          - "cat /etc/passwd"
-          - "ls /usr/bin"
-          - "echo $PATH"
-        a: "cat /etc/os-release"
+          - text: "cat /etc/os-release"
+            correct: true
+          - text: "cat /etc/passwd"
+          - text: "ls /usr/bin"
+          - text: "echo $PATH"
       - q: "Welche dieser Aussagen über Linux stimmen?"
         type: multiple-choice
         options:
-          - "Linux ist Open Source"
-          - "Linux läuft auf 96% aller Webserver"
-          - "Linux hat nur eine einzige Distribution"
-          - "Android basiert auf Linux"
-        a:
-          - "Linux ist Open Source"
-          - "Linux läuft auf 96% aller Webserver"
-          - "Android basiert auf Linux"
+          - text: "Linux ist Open Source"
+            correct: true
+          - text: "Linux läuft auf 96% aller Webserver"
+            correct: true
+          - text: "Linux hat nur eine einzige Distribution"
+          - text: "Android basiert auf Linux"
+            correct: true

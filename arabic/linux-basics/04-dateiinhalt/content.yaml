@@ -114,27 +114,26 @@ sections:
       - q: "ماذا يفعل 'tail -f /var/log/nginx/access.log'؟"
         type: select
         options:
-          - "يتتبع الملف في الوقت الحقيقي ويعرض الأسطر الجديدة فورًا"
-          - "يعرض آخر ١٠ أسطر وينتهي"
-          - "يحذف الأسطر الأخيرة من الملف"
-          - "يبحث عن كلمة 'nginx'"
-        a: "يتتبع الملف في الوقت الحقيقي ويعرض الأسطر الجديدة فورًا"
+          - text: "يتتبع الملف في الوقت الحقيقي ويعرض الأسطر الجديدة فورًا"
+            correct: true
+          - text: "يعرض آخر ١٠ أسطر وينتهي"
+          - text: "يحذف الأسطر الأخيرة من الملف"
+          - text: "يبحث عن كلمة 'nginx'"
       - q: "أي أمر يبحث بدون تمييز حالة الأحرف عن 'error' في ملف؟"
         type: select
         options:
-          - "grep -i \"error\" datei.txt"
-          - "grep -n \"error\" datei.txt"
-          - "grep -r \"error\" datei.txt"
-          - "grep -v \"error\" datei.txt"
-        a: "grep -i \"error\" datei.txt"
+          - text: "grep -i \"error\" datei.txt"
+            correct: true
+          - text: "grep -n \"error\" datei.txt"
+          - text: "grep -r \"error\" datei.txt"
+          - text: "grep -v \"error\" datei.txt"
       - q: "أي من أعلام grep التالية صحيحة في معناها؟"
         type: multiple-choice
         options:
-          - "-i يتجاهل حالة الأحرف"
-          - "-n يعرض أرقام الأسطر"
-          - "-r يبحث في المجلدات بشكل متكرر"
-          - "-v يعرض النتائج فقط بدون سياق"
-        a:
-          - "-i يتجاهل حالة الأحرف"
-          - "-n يعرض أرقام الأسطر"
-          - "-r يبحث في المجلدات بشكل متكرر"
+          - text: "-i يتجاهل حالة الأحرف"
+            correct: true
+          - text: "-n يعرض أرقام الأسطر"
+            correct: true
+          - text: "-r يبحث في المجلدات بشكل متكرر"
+            correct: true
+          - text: "-v يعرض النتائج فقط بدون سياق"

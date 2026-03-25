@@ -130,27 +130,26 @@ sections:
       - q: "چگونه در vim به حالت Insert می‌رویم؟"
         type: select
         options:
-          - "فشردن کلید 'i'"
-          - "فشردن کلید 'Esc'"
-          - "وارد کردن ':i'"
-          - "فشردن کلید 'v'"
-        a: "فشردن کلید 'i'"
+          - text: "فشردن کلید 'i'"
+            correct: true
+          - text: "فشردن کلید 'Esc'"
+          - text: "وارد کردن ':i'"
+          - text: "فشردن کلید 'v'"
       - q: "دستور ':q!' در vim چه کار می‌کند؟"
         type: select
         options:
-          - "خروج از vim بدون ذخیره"
-          - "ذخیره و خروج از vim"
-          - "جستجوی کاراکتر !"
-          - "باز کردن فایل جدید"
-        a: "خروج از vim بدون ذخیره"
+          - text: "خروج از vim بدون ذخیره"
+            correct: true
+          - text: "ذخیره و خروج از vim"
+          - text: "جستجوی کاراکتر !"
+          - text: "باز کردن فایل جدید"
       - q: "کدام‌یک از حالت‌های vim وجود دارند؟"
         type: multiple-choice
         options:
-          - "حالت Normal"
-          - "حالت Insert"
-          - "حالت Visual"
-          - "حالت Debug"
-        a:
-          - "حالت Normal"
-          - "حالت Insert"
-          - "حالت Visual"
+          - text: "حالت Normal"
+            correct: true
+          - text: "حالت Insert"
+            correct: true
+          - text: "حالت Visual"
+            correct: true
+          - text: "حالت Debug"

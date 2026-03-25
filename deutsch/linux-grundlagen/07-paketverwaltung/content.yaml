@@ -123,27 +123,26 @@ sections:
       - q: "Was ist der Unterschied zwischen 'apt update' und 'apt upgrade'?"
         type: select
         options:
-          - "update holt neue Paketlisten, upgrade aktualisiert die Pakete selbst"
-          - "update installiert Pakete, upgrade entfernt alte"
-          - "update und upgrade machen dasselbe"
-          - "upgrade holt neue Paketlisten, update aktualisiert die Pakete"
-        a: "update holt neue Paketlisten, upgrade aktualisiert die Pakete selbst"
+          - text: "update holt neue Paketlisten, upgrade aktualisiert die Pakete selbst"
+            correct: true
+          - text: "update installiert Pakete, upgrade entfernt alte"
+          - text: "update und upgrade machen dasselbe"
+          - text: "upgrade holt neue Paketlisten, update aktualisiert die Pakete"
       - q: "Welcher Befehl entfernt ein Paket inkl. seiner Konfigurationsdateien?"
         type: select
         options:
-          - "sudo apt purge nginx"
-          - "sudo apt remove nginx"
-          - "sudo apt delete nginx"
-          - "sudo apt uninstall nginx"
-        a: "sudo apt purge nginx"
+          - text: "sudo apt purge nginx"
+            correct: true
+          - text: "sudo apt remove nginx"
+          - text: "sudo apt delete nginx"
+          - text: "sudo apt uninstall nginx"
       - q: "Welche dieser Aussagen über apt stimmen?"
         type: multiple-choice
         options:
-          - "apt kann mehrere Pakete auf einmal installieren"
-          - "apt autoremove entfernt nicht mehr benötigte Pakete"
-          - "apt search durchsucht die Paketdatenbank"
-          - "apt benötigt keine Administratorrechte"
-        a:
-          - "apt kann mehrere Pakete auf einmal installieren"
-          - "apt autoremove entfernt nicht mehr benötigte Pakete"
-          - "apt search durchsucht die Paketdatenbank"
+          - text: "apt kann mehrere Pakete auf einmal installieren"
+            correct: true
+          - text: "apt autoremove entfernt nicht mehr benötigte Pakete"
+            correct: true
+          - text: "apt search durchsucht die Paketdatenbank"
+            correct: true
+          - text: "apt benötigt keine Administratorrechte"

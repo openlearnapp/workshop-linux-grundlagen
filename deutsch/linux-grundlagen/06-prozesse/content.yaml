@@ -127,27 +127,26 @@ sections:
       - q: "Was bewirkt 'kill -9 1234'?"
         type: select
         options:
-          - "Sendet SIGKILL — Prozess wird sofort beendet"
-          - "Sendet SIGTERM — Prozess kann aufräumen"
-          - "Pausiert den Prozess mit PID 1234"
-          - "Startet den Prozess neu"
-        a: "Sendet SIGKILL — Prozess wird sofort beendet"
+          - text: "Sendet SIGKILL — Prozess wird sofort beendet"
+            correct: true
+          - text: "Sendet SIGTERM — Prozess kann aufräumen"
+          - text: "Pausiert den Prozess mit PID 1234"
+          - text: "Startet den Prozess neu"
       - q: "Wie startet man einen Prozess direkt im Hintergrund?"
         type: select
         options:
-          - "Befehl mit & am Ende ausführen"
-          - "Befehl mit bg am Anfang ausführen"
-          - "Befehl mit nohup am Ende ausführen"
-          - "Strg+Z vor dem Befehl drücken"
-        a: "Befehl mit & am Ende ausführen"
+          - text: "Befehl mit & am Ende ausführen"
+            correct: true
+          - text: "Befehl mit bg am Anfang ausführen"
+          - text: "Befehl mit nohup am Ende ausführen"
+          - text: "Strg+Z vor dem Befehl drücken"
       - q: "Welche dieser Aussagen über Prozess-Signale stimmen?"
         type: multiple-choice
         options:
-          - "SIGTERM (15) ist das sanfte Beenden"
-          - "SIGKILL (9) kann nicht abgefangen werden"
-          - "SIGHUP (1) lädt die Konfiguration neu"
-          - "SIGPAUSE (7) ist das Standard-Signal"
-        a:
-          - "SIGTERM (15) ist das sanfte Beenden"
-          - "SIGKILL (9) kann nicht abgefangen werden"
-          - "SIGHUP (1) lädt die Konfiguration neu"
+          - text: "SIGTERM (15) ist das sanfte Beenden"
+            correct: true
+          - text: "SIGKILL (9) kann nicht abgefangen werden"
+            correct: true
+          - text: "SIGHUP (1) lädt die Konfiguration neu"
+            correct: true
+          - text: "SIGPAUSE (7) ist das Standard-Signal"

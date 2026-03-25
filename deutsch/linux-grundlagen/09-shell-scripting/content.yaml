@@ -150,27 +150,26 @@ sections:
       - q: "Was ist bei der Zuweisung einer Bash-Variable zu beachten?"
         type: select
         options:
-          - "Kein Leerzeichen um das Gleichheitszeichen: NAME=\"Alice\""
-          - "Immer $ vor dem Variablennamen: $NAME=\"Alice\""
-          - "Variablen müssen in Großbuchstaben sein"
-          - "Variablen müssen mit export deklariert werden"
-        a: "Kein Leerzeichen um das Gleichheitszeichen: NAME=\"Alice\""
+          - text: "Kein Leerzeichen um das Gleichheitszeichen: NAME=\"Alice\""
+            correct: true
+          - text: "Immer $ vor dem Variablennamen: $NAME=\"Alice\""
+          - text: "Variablen müssen in Großbuchstaben sein"
+          - text: "Variablen müssen mit export deklariert werden"
       - q: "Welche Syntax schließt eine if-Bedingung in Bash korrekt ab?"
         type: select
         options:
-          - "fi"
-          - "end"
-          - "endif"
-          - "done"
-        a: "fi"
+          - text: "fi"
+            correct: true
+          - text: "end"
+          - text: "endif"
+          - text: "done"
       - q: "Welche dieser Aussagen über Shell Scripting stimmen?"
         type: multiple-choice
         options:
-          - "$() speichert Befehlsausgabe in einer Variable"
-          - "for-Schleifen enden mit 'done'"
-          - "-f prüft ob eine Datei existiert"
-          - "Leerzeichen um = sind bei Variablen Pflicht"
-        a:
-          - "$() speichert Befehlsausgabe in einer Variable"
-          - "for-Schleifen enden mit 'done'"
-          - "-f prüft ob eine Datei existiert"
+          - text: "$() speichert Befehlsausgabe in einer Variable"
+            correct: true
+          - text: "for-Schleifen enden mit 'done'"
+            correct: true
+          - text: "-f prüft ob eine Datei existiert"
+            correct: true
+          - text: "Leerzeichen um = sind bei Variablen Pflicht"

@@ -110,27 +110,26 @@ sections:
       - q: "What does 'lsb_release -a' show?"
         type: select
         options:
-          - "The exact Linux distribution and version"
-          - "Deletes all log files"
-          - "Updates the Linux kernel"
-          - "Restarts the system"
-        a: "The exact Linux distribution and version"
+          - text: "The exact Linux distribution and version"
+            correct: true
+          - text: "Deletes all log files"
+          - text: "Updates the Linux kernel"
+          - text: "Restarts the system"
       - q: "Which command shows which Linux distribution is installed?"
         type: select
         options:
-          - "cat /etc/os-release"
-          - "cat /etc/passwd"
-          - "ls /usr/bin"
-          - "echo $PATH"
-        a: "cat /etc/os-release"
+          - text: "cat /etc/os-release"
+            correct: true
+          - text: "cat /etc/passwd"
+          - text: "ls /usr/bin"
+          - text: "echo $PATH"
       - q: "Which of these statements about Linux are true?"
         type: multiple-choice
         options:
-          - "Linux is open source"
-          - "Linux runs on 96% of all web servers"
-          - "Linux has only one single distribution"
-          - "Android is based on Linux"
-        a:
-          - "Linux is open source"
-          - "Linux runs on 96% of all web servers"
-          - "Android is based on Linux"
+          - text: "Linux is open source"
+            correct: true
+          - text: "Linux runs on 96% of all web servers"
+            correct: true
+          - text: "Linux has only one single distribution"
+          - text: "Android is based on Linux"
+            correct: true
