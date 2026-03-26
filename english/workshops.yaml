@@ -6,3 +6,4 @@ workshops:
     color: "210 35% 94%"
     primaryColor: "210 70% 42%"
     image: "linux-basics/thumbnail.svg"
+    labels: ["IT"]
