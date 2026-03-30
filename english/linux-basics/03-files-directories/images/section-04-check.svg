@@ -7,22 +7,22 @@
   </defs>
   <rect width="640" height="160" fill="url(#bg)" rx="8"/>
   <!-- Decorative elements -->
-  <circle cx="80" cy="60" r="2" fill="#3fb950" opacity="0.15"/><circle cx="95" cy="45" r="1.5" fill="#3fb950" opacity="0.1"/><circle cx="70" cy="100" r="1" fill="#3fb950" opacity="0.12"/>
-  <circle cx="560" cy="60" r="2" fill="#3fb950" opacity="0.15"/><circle cx="545" cy="100" r="1.5" fill="#3fb950" opacity="0.1"/><circle cx="570" cy="45" r="1" fill="#3fb950" opacity="0.12"/>
+  <circle cx="80" cy="60" r="2" fill="#3fb950" opacity="0.4"/><circle cx="95" cy="45" r="1.5" fill="#3fb950" opacity="0.35"/><circle cx="70" cy="100" r="1" fill="#3fb950" opacity="0.35"/>
+  <circle cx="560" cy="60" r="2" fill="#3fb950" opacity="0.4"/><circle cx="545" cy="100" r="1.5" fill="#3fb950" opacity="0.35"/><circle cx="570" cy="45" r="1" fill="#3fb950" opacity="0.35"/>
   <!-- Icon -->
     <!-- Terminal window -->
   <rect x="270" y="30" width="100" height="70" rx="6" fill="#161b22" stroke="#30363d" stroke-width="1.5"/>
   <rect x="270" y="30" width="100" height="16" rx="6" fill="#21262d"/>
   <rect x="270" y="40" width="100" height="6" fill="#21262d"/>
-  <circle cx="281" cy="38" r="3" fill="#f85149" opacity="0.8"/>
-  <circle cx="291" cy="38" r="3" fill="#f0883e" opacity="0.8"/>
-  <circle cx="301" cy="38" r="3" fill="#3fb950" opacity="0.8"/>
+  <circle cx="281" cy="38" r="3" fill="#f85149" opacity="1"/>
+  <circle cx="291" cy="38" r="3" fill="#f0883e" opacity="1"/>
+  <circle cx="301" cy="38" r="3" fill="#3fb950" opacity="1"/>
   <!-- Prompt -->
   <text x="280" y="62" font-family="monospace" font-size="10" fill="#8b949e">$</text>
   <text x="292" y="62" font-family="monospace" font-size="10" fill="#e6edf3">check</text>
   <!-- Checkmark -->
-  <circle cx="320" cy="120" r="14" fill="none" stroke="#3fb950" stroke-width="2" opacity="0.6"/>
+  <circle cx="320" cy="120" r="14" fill="none" stroke="#3fb950" stroke-width="2" opacity="0.9"/>
   <polyline points="312,120 318,126 328,114" fill="none" stroke="#3fb950" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
   <!-- Accent bar -->
-  <rect x="220" y="152" width="200" height="3" fill="#3fb950" opacity="0.5" rx="1.5"/>
+  <rect x="180" y="152" width="280" height="4" fill="#3fb950" opacity="0.8" rx="1.5"/>
 </svg>

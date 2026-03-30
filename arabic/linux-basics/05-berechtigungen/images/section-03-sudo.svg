@@ -7,17 +7,17 @@
   </defs>
   <rect width="640" height="160" fill="url(#bg)" rx="8"/>
   <!-- Decorative elements -->
-  <circle cx="80" cy="60" r="2" fill="#f85149" opacity="0.15"/><circle cx="95" cy="45" r="1.5" fill="#f85149" opacity="0.1"/><circle cx="70" cy="100" r="1" fill="#f85149" opacity="0.12"/>
-  <circle cx="560" cy="60" r="2" fill="#f85149" opacity="0.15"/><circle cx="545" cy="100" r="1.5" fill="#f85149" opacity="0.1"/><circle cx="570" cy="45" r="1" fill="#f85149" opacity="0.12"/>
+  <circle cx="80" cy="60" r="2" fill="#f85149" opacity="0.4"/><circle cx="95" cy="45" r="1.5" fill="#f85149" opacity="0.35"/><circle cx="70" cy="100" r="1" fill="#f85149" opacity="0.35"/>
+  <circle cx="560" cy="60" r="2" fill="#f85149" opacity="0.4"/><circle cx="545" cy="100" r="1.5" fill="#f85149" opacity="0.35"/><circle cx="570" cy="45" r="1" fill="#f85149" opacity="0.35"/>
   <!-- Icon -->
   
   <!-- Shield shape -->
-  <path d="M320 30 L355 48 L355 85 Q355 110 320 125 Q285 110 285 85 L285 48 Z" fill="none" stroke="#f85149" stroke-width="2" opacity="0.6"/>
-  <path d="M320 38 L348 52 L348 83 Q348 104 320 116 Q292 104 292 83 L292 52 Z" fill="#f85149" opacity="0.08"/>
+  <path d="M320 30 L355 48 L355 85 Q355 110 320 125 Q285 110 285 85 L285 48 Z" fill="none" stroke="#f85149" stroke-width="2" opacity="0.9"/>
+  <path d="M320 38 L348 52 L348 83 Q348 104 320 116 Q292 104 292 83 L292 52 Z" fill="#f85149" opacity="0.2"/>
   <!-- Lock inside -->
   <rect x="310" y="72" width="20" height="16" rx="3" fill="#21262d" stroke="#f85149" stroke-width="1.5"/>
   <path d="M314 72 L314 64 Q314 56 320 56 Q326 56 326 64 L326 72" fill="none" stroke="#f85149" stroke-width="1.5"/>
   <circle cx="320" cy="80" r="2" fill="#f85149"/>
   <!-- Accent bar -->
-  <rect x="220" y="152" width="200" height="3" fill="#f85149" opacity="0.5" rx="1.5"/>
+  <rect x="180" y="152" width="280" height="4" fill="#f85149" opacity="0.8" rx="1.5"/>
 </svg>

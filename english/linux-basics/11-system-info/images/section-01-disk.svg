@@ -7,21 +7,21 @@
   </defs>
   <rect width="640" height="160" fill="url(#bg)" rx="8"/>
   <!-- Decorative elements -->
-  <circle cx="80" cy="60" r="2" fill="#bc8cff" opacity="0.15"/><circle cx="95" cy="45" r="1.5" fill="#bc8cff" opacity="0.1"/><circle cx="70" cy="100" r="1" fill="#bc8cff" opacity="0.12"/>
-  <circle cx="560" cy="60" r="2" fill="#bc8cff" opacity="0.15"/><circle cx="545" cy="100" r="1.5" fill="#bc8cff" opacity="0.1"/><circle cx="570" cy="45" r="1" fill="#bc8cff" opacity="0.12"/>
+  <circle cx="80" cy="60" r="2" fill="#bc8cff" opacity="0.4"/><circle cx="95" cy="45" r="1.5" fill="#bc8cff" opacity="0.35"/><circle cx="70" cy="100" r="1" fill="#bc8cff" opacity="0.35"/>
+  <circle cx="560" cy="60" r="2" fill="#bc8cff" opacity="0.4"/><circle cx="545" cy="100" r="1.5" fill="#bc8cff" opacity="0.35"/><circle cx="570" cy="45" r="1" fill="#bc8cff" opacity="0.35"/>
   <!-- Icon -->
   
   <!-- Disk circle (pie chart) -->
   <circle cx="320" cy="70" r="30" fill="none" stroke="#30363d" stroke-width="4"/>
   <!-- Used portion (270deg = 75%) -->
-  <circle cx="320" cy="70" r="30" fill="none" stroke="#bc8cff" stroke-width="4" stroke-dasharray="141 47" stroke-dashoffset="47" opacity="0.6"/>
+  <circle cx="320" cy="70" r="30" fill="none" stroke="#bc8cff" stroke-width="4" stroke-dasharray="141 47" stroke-dashoffset="47" opacity="0.9"/>
   <!-- Center label -->
   <text x="308" y="74" font-family="monospace" font-size="10" fill="#bc8cff">75%</text>
   <!-- Legend -->
-  <rect x="280" y="112" width="8" height="8" rx="1" fill="#bc8cff" opacity="0.5"/>
+  <rect x="280" y="112" width="8" height="8" rx="1" fill="#bc8cff" opacity="0.8"/>
   <text x="292" y="120" font-family="monospace" font-size="8" fill="#8b949e">used</text>
   <rect x="330" y="112" width="8" height="8" rx="1" fill="#30363d"/>
   <text x="342" y="120" font-family="monospace" font-size="8" fill="#8b949e">free</text>
   <!-- Accent bar -->
-  <rect x="220" y="152" width="200" height="3" fill="#bc8cff" opacity="0.5" rx="1.5"/>
+  <rect x="180" y="152" width="280" height="4" fill="#bc8cff" opacity="0.8" rx="1.5"/>
 </svg>
