@@ -5,6 +5,7 @@ description: "cat، less، head، tail و grep — خواندن، مرور و ف
 image: "images/lesson-header.svg"
 sections:
   - title: "cat، less و more — خواندن فایل‌ها"
+    image: "images/section-01-read.svg"
     explanation: |
       **چرا این مهم است؟** به عنوان کاربر لینوکس، مدام فایل‌ها را می‌خوانید:
       پیکربندی‌ها، فایل‌های لاگ، اسکریپت‌ها، خروجی پایگاه داده. ابزار مناسب
@@ -43,6 +44,7 @@ sections:
         labels: ["فایل‌سیستم"]
 
   - title: "head و tail — ابتدا و انتها"
+    image: "images/section-02-head-tail.svg"
     explanation: |
       `head` و `tail` به ترتیب اولین یا آخرین خطوط یک فایل را نشان می‌دهند.
       پیش‌فرض: ۱۰ خط. با `-n` می‌توانید تعداد را تنظیم کنید.
@@ -74,6 +76,7 @@ sections:
         labels: ["فایل‌سیستم", "شبکه"]
 
   - title: "grep — پیدا کردن سوزن در انبار کاه"
+    image: "images/section-03-grep.svg"
     explanation: |
       `grep` (Global Regular Expression Print) فایل‌ها را بر اساس الگو جستجو می‌کند.
       یکی از پرکاربردترین ابزارهای لینوکس است.
@@ -116,6 +119,7 @@ sections:
         labels: ["فایل‌سیستم", "پیکربندی"]
 
   - title: "🖥️ آزمون ترمینال"
+    image: "images/section-04-check.svg"
     explanation: |
       حالا دانش خود را تست کنید — دستورات را مستقیماً وارد کنید!
     examples:

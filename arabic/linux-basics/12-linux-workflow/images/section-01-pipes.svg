@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 160" width="640" height="160">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#161b22"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="160" fill="url(#bg)" rx="8"/>
+  <!-- Decorative elements -->
+  <circle cx="80" cy="60" r="2" fill="#58a6ff" opacity="0.15"/><circle cx="95" cy="45" r="1.5" fill="#58a6ff" opacity="0.1"/><circle cx="70" cy="100" r="1" fill="#58a6ff" opacity="0.12"/>
+  <circle cx="560" cy="60" r="2" fill="#58a6ff" opacity="0.15"/><circle cx="545" cy="100" r="1.5" fill="#58a6ff" opacity="0.1"/><circle cx="570" cy="45" r="1" fill="#58a6ff" opacity="0.12"/>
+  <!-- Icon -->
+  
+  <!-- Command boxes connected by pipes -->
+  <rect x="220" y="55" width="55" height="26" rx="4" fill="#21262d" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="231" y="72" font-family="monospace" font-size="9" fill="#3fb950">cat</text>
+  <!-- Pipe symbol -->
+  <text x="283" y="74" font-family="monospace" font-size="16" fill="#58a6ff" opacity="0.6">|</text>
+  <rect x="298" y="55" width="55" height="26" rx="4" fill="#21262d" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="306" y="72" font-family="monospace" font-size="9" fill="#f0883e">grep</text>
+  <!-- Pipe symbol -->
+  <text x="361" y="74" font-family="monospace" font-size="16" fill="#58a6ff" opacity="0.6">|</text>
+  <rect x="376" y="55" width="55" height="26" rx="4" fill="#21262d" stroke="#bc8cff" stroke-width="1.5"/>
+  <text x="384" y="72" font-family="monospace" font-size="9" fill="#bc8cff">sort</text>
+  <!-- Flow arrows -->
+  <line x1="275" y1="68" x2="283" y2="68" stroke="#30363d" stroke-width="1"/>
+  <line x1="353" y1="68" x2="361" y2="68" stroke="#30363d" stroke-width="1"/>
+  <!-- Accent bar -->
+  <rect x="220" y="152" width="200" height="3" fill="#58a6ff" opacity="0.5" rx="1.5"/>
+</svg>

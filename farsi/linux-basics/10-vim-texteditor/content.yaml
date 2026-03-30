@@ -5,6 +5,7 @@ description: "nano برای مبتدیان، vim برای حرفه‌ای‌ها
 image: "images/lesson-header.svg"
 sections:
   - title: "nano — شروع کاربرپسند"
+    image: "images/section-01-nano.svg"
     explanation: |
       **چرا این مهم است؟** روی سرورها رابط گرافیکی وجود ندارد.
       باید فایل‌های پیکربندی را مستقیماً در ترمینال ویرایش کنید — `nano` ساده‌ترین
@@ -42,6 +43,7 @@ sections:
         labels: ["ویرایشگر"]
 
   - title: "vim — ویرایشگر حرفه‌ای"
+    image: "images/section-02-vim.svg"
     explanation: |
       **vim** (Vi Improved) قدرتمند است اما ابتدا گیج‌کننده، چون **حالت‌ها** دارد:
 
@@ -87,6 +89,7 @@ sections:
         labels: ["ویرایشگر"]
 
   - title: "حرکت و جستجو در vim"
+    image: "images/section-03-vim-nav.svg"
     explanation: |
       در **حالت Normal** بدون کلیدهای جهتی حرکت می‌کنید (کارآمدتر!):
 
@@ -133,6 +136,7 @@ sections:
         labels: ["ویرایشگر"]
 
   - title: "🖥️ آزمون ترمینال"
+    image: "images/section-04-check.svg"
     explanation: |
       حالا دانش خود را تست کنید — دستورات را مستقیماً وارد کنید!
     examples:

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 160" width="640" height="160">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#161b22"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="160" fill="url(#bg)" rx="8"/>
+  <!-- Decorative elements -->
+  <circle cx="80" cy="60" r="2" fill="#58a6ff" opacity="0.15"/><circle cx="95" cy="45" r="1.5" fill="#58a6ff" opacity="0.1"/><circle cx="70" cy="100" r="1" fill="#58a6ff" opacity="0.12"/>
+  <circle cx="560" cy="60" r="2" fill="#58a6ff" opacity="0.15"/><circle cx="545" cy="100" r="1.5" fill="#58a6ff" opacity="0.1"/><circle cx="570" cy="45" r="1" fill="#58a6ff" opacity="0.12"/>
+  <!-- Icon -->
+  
+  <!-- Lightbulb -->
+  <path d="M310 55 Q310 40 320 35 Q330 40 330 55" fill="none" stroke="#58a6ff" stroke-width="2"/>
+  <path d="M305 55 Q305 80 312 85 L328 85 Q335 80 335 55" fill="none" stroke="#58a6ff" stroke-width="2"/>
+  <rect x="312" y="85" width="16" height="6" rx="2" fill="#58a6ff" opacity="0.4"/>
+  <rect x="314" y="93" width="12" height="4" rx="2" fill="#58a6ff" opacity="0.3"/>
+  <!-- Rays -->
+  <line x1="320" y1="20" x2="320" y2="28" stroke="#58a6ff" stroke-width="1.5" opacity="0.5"/>
+  <line x1="345" y1="35" x2="350" y2="30" stroke="#58a6ff" stroke-width="1.5" opacity="0.4"/>
+  <line x1="295" y1="35" x2="290" y2="30" stroke="#58a6ff" stroke-width="1.5" opacity="0.4"/>
+  <line x1="350" y1="55" x2="356" y2="55" stroke="#58a6ff" stroke-width="1.5" opacity="0.3"/>
+  <line x1="290" y1="55" x2="284" y2="55" stroke="#58a6ff" stroke-width="1.5" opacity="0.3"/>
+  <!-- Year -->
+  <text x="295" y="125" font-family="monospace" font-size="22" fill="#58a6ff" opacity="0.15">1991</text>
+  <!-- Accent bar -->
+  <rect x="220" y="152" width="200" height="3" fill="#58a6ff" opacity="0.5" rx="1.5"/>
+</svg>

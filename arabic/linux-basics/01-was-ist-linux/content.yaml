@@ -5,6 +5,7 @@ description: "التاريخ، التوزيعات، ولماذا يُشغّل ل
 image: "images/lesson-header.svg"
 sections:
   - title: "طالب غيّر العالم"
+    image: "images/section-01-history.svg"
     explanation: |
       في عام **١٩٩١** كتب طالب علوم حاسب يبلغ من العمر ٢١ عامًا في جامعة هلسنكي
       رسالة بريد إلكتروني ستُغيّر العالم:
@@ -40,6 +41,7 @@ sections:
         labels: ["أساسيات", "نظام الملفات"]
 
   - title: "التوزيعات — لينكس لكل غرض"
+    image: "images/section-02-distros.svg"
     explanation: |
       لينكس ليس نظام تشغيل واحد، بل هو **نواة (Kernel)** بُنيت حولها
       أنظمة كاملة من قِبل شركات ومجتمعات مختلفة.
@@ -76,6 +78,7 @@ sections:
         labels: ["أساسيات"]
 
   - title: "نظام ملفات لينكس — كل شيء ملف"
+    image: "images/section-03-filesystem.svg"
     explanation: |
       يتبع لينكس فلسفة: **كل شيء ملف** — حتى الأجهزة والعمليات
       واتصالات الشبكة ممثلة كملفات.
@@ -114,6 +117,7 @@ sections:
         labels: ["نظام الملفات", "أساسيات"]
 
   - title: "🖥️ اختبار الطرفية"
+    image: "images/section-04-check.svg"
     explanation: |
       اختبر معرفتك الآن — أدخل الأوامر مباشرة!
     examples:

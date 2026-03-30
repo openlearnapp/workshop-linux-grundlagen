@@ -5,6 +5,7 @@ description: "Pipe‌ها، Redirect‌ها، Alias‌ها و xargs — استف
 image: "images/lesson-header.svg"
 sections:
   - title: "Pipe‌ها — اتصال زنجیره‌ای دستورات"
+    image: "images/section-01-pipes.svg"
     explanation: |
       **چرا این مهم است؟** قدرت واقعی لینوکس در دستورات تکی نیست،
       بلکه در ترکیب آنهاست. علامت Pipe `|` خروجی یک دستور را
@@ -45,6 +46,7 @@ sections:
         labels: ["اسکریپت", "فایل‌سیستم"]
 
   - title: "Redirect‌ها — هدایت ورودی و خروجی"
+    image: "images/section-02-redirects.svg"
     explanation: |
       Redirect‌ها خروجی را به فایل‌ها یا از فایل‌ها به عنوان ورودی هدایت می‌کنند:
 
@@ -88,6 +90,7 @@ sections:
         labels: ["اسکریپت"]
 
   - title: "Alias‌ها و .bashrc — شخصی‌سازی گردش کار"
+    image: "images/section-03-bashrc.svg"
     explanation: |
       **Alias‌ها** میانبرهایی برای دستورات پرکاربرد هستند.
       آنها در `~/.bashrc` (یا `~/.zshrc` برای Zsh) ذخیره می‌شوند.
@@ -143,6 +146,7 @@ sections:
         labels: ["پیکربندی"]
 
   - title: "🖥️ آزمون ترمینال"
+    image: "images/section-04-check.svg"
     explanation: |
       حالا دانش خود را تست کنید — دستورات را مستقیماً وارد کنید!
     examples:

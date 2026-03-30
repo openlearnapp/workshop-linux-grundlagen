@@ -5,6 +5,7 @@ description: "History, distributions and why Linux powers 96% of the world's ser
 image: "images/lesson-header.svg"
 sections:
   - title: "A student changed the world"
+    image: "images/section-01-history.svg"
     explanation: |
       In **1991**, a 21-year-old computer science student at the University of Helsinki
       sent an email that would change the world:
@@ -39,6 +40,7 @@ sections:
         labels: ["Basics", "Filesystem"]
 
   - title: "Distributions — Linux for every purpose"
+    image: "images/section-02-distros.svg"
     explanation: |
       Linux is not a single operating system, but a **kernel** around which various
       companies and communities have built complete systems. These are called
@@ -74,6 +76,7 @@ sections:
         labels: ["Basics"]
 
   - title: "The Linux filesystem — everything is a file"
+    image: "images/section-03-filesystem.svg"
     explanation: |
       Linux follows one philosophy: **everything is a file** — including devices,
       processes, and network connections are represented as files.
@@ -111,6 +114,7 @@ sections:
         labels: ["Filesystem", "Basics"]
 
   - title: "🖥️ Terminal Check"
+    image: "images/section-04-check.svg"
     explanation: |
       Test your knowledge — type the commands yourself!
     examples:

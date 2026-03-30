@@ -5,6 +5,7 @@ description: "تسلط بر pwd، ls و cd — سه دستور پایه برای
 image: "images/lesson-header.svg"
 sections:
   - title: "باز کردن ترمینال — من کجا هستم؟"
+    image: "images/section-01-open-terminal.svg"
     explanation: |
       **ترمینال** (همچنین: Shell، کنسول، خط فرمان) ارتباط مستقیم شما
       با سیستم‌عامل است. بدون کلیک ماوس، بدون جستجوی منو — فقط شما و کامپیوتر.
@@ -39,6 +40,7 @@ sections:
         labels: ["مبانی"]
 
   - title: "ls — اینجا چه چیزی هست؟"
+    image: "images/section-02-ls.svg"
     explanation: |
       `ls` محتوای پوشه فعلی را لیست می‌کند.
       با فلگ‌ها، `ls` واقعاً قدرتمند می‌شود:
@@ -83,6 +85,7 @@ sections:
         labels: ["فایل‌سیستم", "پیکربندی"]
 
   - title: "cd — کجا می‌خواهید بروید؟"
+    image: "images/section-03-cd.svg"
     explanation: |
       `cd` (Change Directory) ابزار حرکت شما در سیستم فایل است.
 
@@ -129,6 +132,7 @@ sections:
         labels: ["فایل‌سیستم"]
 
   - title: "🖥️ آزمون ترمینال"
+    image: "images/section-04-check.svg"
     explanation: |
       حالا دانش خود را تست کنید — دستورات را مستقیماً وارد کنید!
     examples:

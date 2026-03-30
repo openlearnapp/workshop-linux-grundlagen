@@ -5,6 +5,7 @@ description: "touch, mkdir, cp, mv and rm — create, move and delete files and 
 image: "images/lesson-header.svg"
 sections:
   - title: "Creating — touch and mkdir"
+    image: "images/section-01-create.svg"
     explanation: |
       **Why does this matter?** Everything in Linux starts with files and directories.
       Setting up projects, writing scripts, creating configs — you need these commands daily.
@@ -42,6 +43,7 @@ sections:
         labels: ["Filesystem"]
 
   - title: "Copying and moving — cp and mv"
+    image: "images/section-02-copy-move.svg"
     explanation: |
       `cp` copies files or directories, `mv` moves (or renames) them.
 
@@ -80,6 +82,7 @@ sections:
         labels: ["Filesystem"]
 
   - title: "Deleting — rm and rmdir"
+    image: "images/section-03-delete.svg"
     explanation: |
       ⚠️ **Warning: Linux has no recycle bin!**
       What's deleted with `rm` is **immediately and permanently** gone.
@@ -125,6 +128,7 @@ sections:
         labels: ["Filesystem"]
 
   - title: "🖥️ Terminal Check"
+    image: "images/section-04-check.svg"
     explanation: |
       Test your knowledge — type the commands yourself!
     examples:

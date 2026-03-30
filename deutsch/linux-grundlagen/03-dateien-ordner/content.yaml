@@ -6,6 +6,7 @@ image: "images/lesson-header.svg"
 image_caption: "Verzeichnisbaum mit Dateien und Ordnern"
 sections:
   - title: "Erstellen — touch und mkdir"
+    image: "images/section-01-create.svg"
     explanation: |
       **Warum ist das wichtig?** Alles in Linux beginnt mit Dateien und Verzeichnissen.
       Projekte einrichten, Skripte schreiben, Konfigurationen anlegen — du brauchst diese
@@ -44,6 +45,7 @@ sections:
         labels: ["Dateisystem"]
 
   - title: "Kopieren und Verschieben — cp und mv"
+    image: "images/section-02-copy-move.svg"
     explanation: |
       `cp` kopiert Dateien oder Verzeichnisse, `mv` verschiebt (oder benennt um).
 
@@ -83,6 +85,7 @@ sections:
         labels: ["Dateisystem"]
 
   - title: "Löschen — rm und rmdir"
+    image: "images/section-03-delete.svg"
     explanation: |
       ⚠️ **Vorsicht: Linux hat keinen Papierkorb!**
       Was mit `rm` gelöscht wird, ist **sofort und unwiederbringlich** weg.
@@ -128,6 +131,7 @@ sections:
         labels: ["Dateisystem"]
 
   - title: "🖥️ Terminal-Check"
+    image: "images/section-04-check.svg"
     explanation: |
       Teste jetzt dein Wissen — gib die Befehle direkt ein!
     examples:

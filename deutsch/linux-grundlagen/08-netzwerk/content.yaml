@@ -6,6 +6,7 @@ image: "images/lesson-header.svg"
 image_caption: "Netzwerktopologie mit Router, Server und Clients"
 sections:
   - title: "Netzwerk prüfen — ping, ip und ss"
+    image: "images/section-01-network.svg"
     explanation: |
       **Warum ist das wichtig?** Als Linux-Nutzer wirst du Server verwalten, APIs aufrufen
       und Netzwerkprobleme debuggen. Diese Befehle sind die Grundlage.
@@ -43,6 +44,7 @@ sections:
         labels: ["Netzwerk"]
 
   - title: "curl und wget — Daten aus dem Netz holen"
+    image: "images/section-02-curl-wget.svg"
     explanation: |
       `curl` und `wget` sind die Schweizer Taschenmesser für HTTP-Anfragen.
 
@@ -85,6 +87,7 @@ sections:
         labels: ["Netzwerk", "Konfiguration"]
 
   - title: "SSH — sicher auf Remote-Server verbinden"
+    image: "images/section-03-ssh.svg"
     explanation: |
       **SSH** (Secure Shell) ist das wichtigste Werkzeug für die Remote-Verwaltung von Servern.
       Alles wird verschlüsselt übertragen.
@@ -132,6 +135,7 @@ sections:
         labels: ["Netzwerk"]
 
   - title: "🖥️ Terminal-Check"
+    image: "images/section-04-check.svg"
     explanation: |
       Teste jetzt dein Wissen — gib die Befehle direkt ein!
     examples:

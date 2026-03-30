@@ -5,6 +5,7 @@ description: "nano for beginners, vim for power users — edit files directly in
 image: "images/lesson-header.svg"
 sections:
   - title: "nano — the beginner-friendly editor"
+    image: "images/section-01-nano.svg"
     explanation: |
       **Why does this matter?** Servers have no graphical interface.
       You need to edit configuration files directly in the terminal — `nano` is the
@@ -42,6 +43,7 @@ sections:
         labels: ["Editor"]
 
   - title: "vim — the power editor"
+    image: "images/section-02-vim.svg"
     explanation: |
       **vim** (Vi Improved) is powerful but initially confusing because it has **modes**:
 
@@ -87,6 +89,7 @@ sections:
         labels: ["Editor"]
 
   - title: "vim navigation and searching"
+    image: "images/section-03-vim-nav.svg"
     explanation: |
       In **Normal mode** you navigate without arrow keys (more efficient!):
 
@@ -133,6 +136,7 @@ sections:
         labels: ["Editor"]
 
   - title: "🖥️ Terminal Check"
+    image: "images/section-04-check.svg"
     explanation: |
       Test your knowledge — type the commands yourself!
     examples:

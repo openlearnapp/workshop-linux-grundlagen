@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 160" width="640" height="160">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#161b22"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="160" fill="url(#bg)" rx="8"/>
+  <!-- Decorative elements -->
+  <circle cx="80" cy="60" r="2" fill="#f0883e" opacity="0.15"/><circle cx="95" cy="45" r="1.5" fill="#f0883e" opacity="0.1"/><circle cx="70" cy="100" r="1" fill="#f0883e" opacity="0.12"/>
+  <circle cx="560" cy="60" r="2" fill="#f0883e" opacity="0.15"/><circle cx="545" cy="100" r="1.5" fill="#f0883e" opacity="0.1"/><circle cx="570" cy="45" r="1" fill="#f0883e" opacity="0.12"/>
+  <!-- Icon -->
+  
+  <!-- Source file -->
+  <rect x="250" y="50" width="28" height="34" rx="2" fill="#21262d" stroke="#e6edf3" stroke-width="1" opacity="0.6"/>
+  <!-- Copy arrow (dashed — copies) -->
+  <line x1="285" y1="57" x2="320" y2="57" stroke="#58a6ff" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polyline points="316,52 322,57 316,62" fill="none" stroke="#58a6ff" stroke-width="1.5"/>
+  <!-- Copy target -->
+  <rect x="325" y="42" width="28" height="34" rx="2" fill="#21262d" stroke="#58a6ff" stroke-width="1"/>
+  <!-- Move arrow (solid — moves) -->
+  <line x1="285" y1="80" x2="320" y2="80" stroke="#f0883e" stroke-width="1.5"/>
+  <polyline points="316,75 322,80 316,85" fill="none" stroke="#f0883e" stroke-width="1.5"/>
+  <!-- Move target -->
+  <rect x="325" y="66" width="28" height="34" rx="2" fill="#21262d" stroke="#f0883e" stroke-width="1"/>
+  <!-- Labels -->
+  <text x="365" y="58" font-family="monospace" font-size="9" fill="#58a6ff" opacity="0.5">cp</text>
+  <text x="365" y="82" font-family="monospace" font-size="9" fill="#f0883e" opacity="0.5">mv</text>
+  <!-- Accent bar -->
+  <rect x="220" y="152" width="200" height="3" fill="#f0883e" opacity="0.5" rx="1.5"/>
+</svg>

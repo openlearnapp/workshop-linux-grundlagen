@@ -5,6 +5,7 @@ description: "df, du, free, uname and history — keeping an eye on system state
 image: "images/lesson-header.svg"
 sections:
   - title: "Disk space — df and du"
+    image: "images/section-01-disk.svg"
     explanation: |
       **Why does this matter?** A full disk is one of the most common reasons why
       servers crash or services fail. `df` and `du` help you spot storage problems
@@ -45,6 +46,7 @@ sections:
         labels: ["Filesystem"]
 
   - title: "Memory and CPU — free and uptime"
+    image: "images/section-02-memory.svg"
     explanation: |
       `free` shows RAM usage:
       ```
@@ -84,6 +86,7 @@ sections:
         labels: ["Basics"]
 
   - title: "history and the command log"
+    image: "images/section-03-history.svg"
     explanation: |
       `history` shows all recently entered commands — with numbers.
       The terminal saves 1000–2000 commands by default.
@@ -126,6 +129,7 @@ sections:
         labels: ["Basics"]
 
   - title: "🖥️ Terminal Check"
+    image: "images/section-04-check.svg"
     explanation: |
       Test your knowledge — type the commands yourself!
     examples:

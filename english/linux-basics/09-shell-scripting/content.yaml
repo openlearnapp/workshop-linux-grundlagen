@@ -5,6 +5,7 @@ description: "Variables, if-conditions and loops — write your own scripts and 
 image: "images/lesson-header.svg"
 sections:
   - title: "Your first script — shebang and variables"
+    image: "images/section-01-shebang.svg"
     explanation: |
       **Why does this matter?** Shell scripting is the key to automation.
       Everything you type multiple times in the terminal can go into a script — and then
@@ -53,6 +54,7 @@ sections:
         labels: ["Scripting"]
 
   - title: "if-conditions — decisions in scripts"
+    image: "images/section-02-if.svg"
     explanation: |
       Conditional execution makes scripts intelligent:
 
@@ -98,6 +100,7 @@ sections:
         labels: ["Scripting", "Security"]
 
   - title: "Loops — automating repetition"
+    image: "images/section-03-loops.svg"
     explanation: |
       Loops run commands multiple times — ideal for batch operations:
 
@@ -152,6 +155,7 @@ sections:
         labels: ["Scripting"]
 
   - title: "🖥️ Terminal Check"
+    image: "images/section-04-check.svg"
     explanation: |
       Test your knowledge — type the commands yourself!
     examples:

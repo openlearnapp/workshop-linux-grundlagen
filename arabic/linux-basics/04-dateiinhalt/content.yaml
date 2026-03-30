@@ -5,6 +5,7 @@ description: "cat و less و head و tail و grep — قراءة الملفات 
 image: "images/lesson-header.svg"
 sections:
   - title: "cat و less و more — قراءة الملفات"
+    image: "images/section-01-read.svg"
     explanation: |
       **لماذا هذا مهم؟** كمستخدم لينكس ستقرأ الملفات باستمرار:
       الإعدادات، ملفات السجلات، السكريبتات، تفريغات قواعد البيانات. الأدوات المناسبة
@@ -43,6 +44,7 @@ sections:
         labels: ["نظام الملفات"]
 
   - title: "head و tail — البداية والنهاية"
+    image: "images/section-02-head-tail.svg"
     explanation: |
       `head` و `tail` يعرضان أول أو آخر أسطر من ملف.
       الافتراضي: ١٠ أسطر. يمكنك تعديل العدد بـ `-n`.
@@ -74,6 +76,7 @@ sections:
         labels: ["نظام الملفات", "الشبكة"]
 
   - title: "grep — إيجاد الإبرة في كومة القش"
+    image: "images/section-03-grep.svg"
     explanation: |
       `grep` (Global Regular Expression Print) يبحث في الملفات عن أنماط.
       وهو من أكثر أدوات لينكس استخدامًا.
@@ -116,6 +119,7 @@ sections:
         labels: ["نظام الملفات", "الإعدادات"]
 
   - title: "🖥️ اختبار الطرفية"
+    image: "images/section-04-check.svg"
     explanation: |
       اختبر معرفتك الآن — أدخل الأوامر مباشرة!
     examples:

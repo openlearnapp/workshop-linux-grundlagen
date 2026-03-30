@@ -5,6 +5,7 @@ description: "ps, top, kill and background jobs — understand and control runni
 image: "images/lesson-header.svg"
 sections:
   - title: "ps and top — what's running right now?"
+    image: "images/section-01-ps-top.svg"
     explanation: |
       **Why does this matter?** A server is slow, an app is unresponsive, memory is full —
       in these situations you need to know which processes are running and how many
@@ -46,6 +47,7 @@ sections:
         labels: ["Processes"]
 
   - title: "kill — stopping processes"
+    image: "images/section-02-kill.svg"
     explanation: |
       Processes are controlled via **signals**. `kill` sends signals to processes.
 
@@ -86,6 +88,7 @@ sections:
         labels: ["Processes"]
 
   - title: "Background jobs — multitasking in the terminal"
+    image: "images/section-03-background.svg"
     explanation: |
       Linux allows multiple jobs simultaneously in one terminal:
 
@@ -127,6 +130,7 @@ sections:
         labels: ["Processes", "Scripting"]
 
   - title: "🖥️ Terminal Check"
+    image: "images/section-04-check.svg"
     explanation: |
       Test your knowledge — type the commands yourself!
     examples:

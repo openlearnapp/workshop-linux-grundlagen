@@ -5,6 +5,7 @@ description: "nano للمبتدئين، vim للمحترفين — تحرير ا
 image: "images/lesson-header.svg"
 sections:
   - title: "nano — البداية السهلة"
+    image: "images/section-01-nano.svg"
     explanation: |
       **لماذا هذا مهم؟** على الخوادم لا توجد واجهة رسومية.
       يجب عليك تحرير ملفات الإعداد مباشرة في الطرفية — `nano` هو
@@ -42,6 +43,7 @@ sections:
         labels: ["المحرر"]
 
   - title: "vim — محرر المحترفين"
+    image: "images/section-02-vim.svg"
     explanation: |
       **vim** (Vi Improved) قوي لكنه محير في البداية، لأنه يعتمد على **الأوضاع**:
 
@@ -87,6 +89,7 @@ sections:
         labels: ["المحرر"]
 
   - title: "التنقل والبحث في vim"
+    image: "images/section-03-vim-nav.svg"
     explanation: |
       في **وضع Normal** تتنقل بدون مفاتيح الأسهم (أكثر كفاءة!):
 
@@ -133,6 +136,7 @@ sections:
         labels: ["المحرر"]
 
   - title: "🖥️ اختبار الطرفية"
+    image: "images/section-04-check.svg"
     explanation: |
       اختبر معرفتك الآن — أدخل الأوامر مباشرة!
     examples:

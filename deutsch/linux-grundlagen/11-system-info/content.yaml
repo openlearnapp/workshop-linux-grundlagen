@@ -6,6 +6,7 @@ image: "images/lesson-header.svg"
 image_caption: "Dashboard mit CPU-, RAM- und Disk-Auslastungsanzeigen"
 sections:
   - title: "Speicherplatz — df und du"
+    image: "images/section-01-disk.svg"
     explanation: |
       **Warum ist das wichtig?** Ein voller Festplattenspeicher ist einer der häufigsten
       Gründe warum Server abstürzen oder Services ausfallen. `df` und `du` helfen dir,
@@ -46,6 +47,7 @@ sections:
         labels: ["Dateisystem"]
 
   - title: "Arbeitsspeicher und CPU — free und uptime"
+    image: "images/section-02-memory.svg"
     explanation: |
       `free` zeigt den RAM-Verbrauch:
       ```
@@ -86,6 +88,7 @@ sections:
         labels: ["Basics"]
 
   - title: "history und der Befehlsverlauf"
+    image: "images/section-03-history.svg"
     explanation: |
       `history` zeigt alle zuletzt eingegebenen Befehle — mit Nummern.
       Das Terminal speichert standardmäßig 1000–2000 Befehle.
@@ -128,6 +131,7 @@ sections:
         labels: ["Basics"]
 
   - title: "🖥️ Terminal-Check"
+    image: "images/section-04-check.svg"
     explanation: |
       Teste jetzt dein Wissen — gib die Befehle direkt ein!
     examples:

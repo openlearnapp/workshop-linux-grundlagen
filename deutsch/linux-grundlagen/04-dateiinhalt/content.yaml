@@ -6,6 +6,7 @@ image: "images/lesson-header.svg"
 image_caption: "Terminal mit cat, head und grep Ausgaben"
 sections:
   - title: "cat, less und more — Dateien lesen"
+    image: "images/section-01-read.svg"
     explanation: |
       **Warum ist das wichtig?** Als Linux-Nutzer liest du ständig Dateien:
       Konfigurationen, Log-Files, Skripte, Datenbankdumps. Die richtigen Werkzeuge
@@ -44,6 +45,7 @@ sections:
         labels: ["Dateisystem"]
 
   - title: "head und tail — Anfang und Ende"
+    image: "images/section-02-head-tail.svg"
     explanation: |
       `head` und `tail` zeigen jeweils die ersten oder letzten Zeilen einer Datei.
       Standard: 10 Zeilen. Mit `-n` kannst du die Anzahl anpassen.
@@ -75,6 +77,7 @@ sections:
         labels: ["Dateisystem", "Netzwerk"]
 
   - title: "grep — Nadel im Heuhaufen finden"
+    image: "images/section-03-grep.svg"
     explanation: |
       `grep` (Global Regular Expression Print) durchsucht Dateien nach Mustern.
       Es ist eines der meistgenutzten Linux-Werkzeuge überhaupt.
@@ -117,6 +120,7 @@ sections:
         labels: ["Dateisystem", "Konfiguration"]
 
   - title: "🖥️ Terminal-Check"
+    image: "images/section-04-check.svg"
     explanation: |
       Teste jetzt dein Wissen — gib die Befehle direkt ein!
     examples:

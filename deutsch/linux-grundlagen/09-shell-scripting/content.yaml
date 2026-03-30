@@ -6,6 +6,7 @@ image: "images/lesson-header.svg"
 image_caption: "Code-Editor mit Bash-Skript und Syntax-Highlighting"
 sections:
   - title: "Dein erstes Skript — Shebang und Variablen"
+    image: "images/section-01-shebang.svg"
     explanation: |
       **Warum ist das wichtig?** Shell-Scripting ist der Schlüssel zur Automatisierung.
       Alles was du mehrfach im Terminal tippst, kann in ein Skript — und dann mit einem
@@ -55,6 +56,7 @@ sections:
         labels: ["Scripting"]
 
   - title: "if-Bedingungen — Entscheidungen im Skript"
+    image: "images/section-02-if.svg"
     explanation: |
       Bedingte Ausführung macht Skripte intelligent:
 
@@ -100,6 +102,7 @@ sections:
         labels: ["Scripting", "Sicherheit"]
 
   - title: "Schleifen — Wiederholungen automatisieren"
+    image: "images/section-03-loops.svg"
     explanation: |
       Schleifen führen Befehle mehrfach aus — ideal für Batch-Operationen:
 
@@ -154,6 +157,7 @@ sections:
         labels: ["Scripting"]
 
   - title: "🖥️ Terminal-Check"
+    image: "images/section-04-check.svg"
     explanation: |
       Teste jetzt dein Wissen — gib die Befehle direkt ein!
     examples:

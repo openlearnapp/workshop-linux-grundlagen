@@ -6,6 +6,7 @@ image: "images/lesson-header.svg"
 image_caption: "Vim-Interface mit Modus-Anzeigen (Normal, Insert, Visual, Command)"
 sections:
   - title: "nano — der benutzerfreundliche Einstieg"
+    image: "images/section-01-nano.svg"
     explanation: |
       **Warum ist das wichtig?** Auf Servern gibt es keine grafische Oberfläche.
       Du musst Konfigurationsdateien direkt im Terminal bearbeiten — `nano` ist der
@@ -43,6 +44,7 @@ sections:
         labels: ["Editor"]
 
   - title: "vim — der Profi-Editor"
+    image: "images/section-02-vim.svg"
     explanation: |
       **vim** (Vi Improved) ist mächtig aber zunächst verwirrend, weil es **Modi** hat:
 
@@ -88,6 +90,7 @@ sections:
         labels: ["Editor"]
 
   - title: "vim Navigation und Suchen"
+    image: "images/section-03-vim-nav.svg"
     explanation: |
       Im **Normal-Modus** navigierst du ohne Pfeiltasten (effizienter!):
 
@@ -134,6 +137,7 @@ sections:
         labels: ["Editor"]
 
   - title: "🖥️ Terminal-Check"
+    image: "images/section-04-check.svg"
     explanation: |
       Teste jetzt dein Wissen — gib die Befehle direkt ein!
     examples:

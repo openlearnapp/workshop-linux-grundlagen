@@ -5,6 +5,7 @@ description: "cat, less, head, tail and grep — read, browse and filter file co
 image: "images/lesson-header.svg"
 sections:
   - title: "cat, less and more — reading files"
+    image: "images/section-01-read.svg"
     explanation: |
       **Why does this matter?** As a Linux user you constantly read files:
       configurations, log files, scripts, database dumps. The right tools mean the
@@ -43,6 +44,7 @@ sections:
         labels: ["Filesystem"]
 
   - title: "head and tail — beginning and end"
+    image: "images/section-02-head-tail.svg"
     explanation: |
       `head` and `tail` show the first or last lines of a file respectively.
       Default: 10 lines. Use `-n` to customize the count.
@@ -73,6 +75,7 @@ sections:
         labels: ["Filesystem", "Network"]
 
   - title: "grep — finding a needle in a haystack"
+    image: "images/section-03-grep.svg"
     explanation: |
       `grep` (Global Regular Expression Print) searches files for patterns.
       It is one of the most used Linux tools of all time.
@@ -115,6 +118,7 @@ sections:
         labels: ["Filesystem", "Config"]
 
   - title: "🖥️ Terminal Check"
+    image: "images/section-04-check.svg"
     explanation: |
       Test your knowledge — type the commands yourself!
     examples:
