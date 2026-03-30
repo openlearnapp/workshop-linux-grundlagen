@@ -5,6 +5,7 @@ description: "Master pwd, ls and cd — the three fundamental commands for navig
 image: "images/lesson-header.svg"
 sections:
   - title: "Opening the terminal — where am I?"
+    image: "images/section-01-open-terminal.svg"
     explanation: |
       The **terminal** (also: shell, console, command line) is your direct connection
       to the operating system. No mouse clicking, no menu searching — just you and the computer.
@@ -39,6 +40,7 @@ sections:
         labels: ["Basics"]
 
   - title: "ls — what's here?"
+    image: "images/section-02-ls.svg"
     explanation: |
       `ls` lists the contents of the current directory.
       With flags, `ls` becomes very powerful:
@@ -82,6 +84,7 @@ sections:
         labels: ["Filesystem", "Config"]
 
   - title: "cd — where do you want to go?"
+    image: "images/section-03-cd.svg"
     explanation: |
       `cd` (Change Directory) is your navigation tool in the filesystem.
 
@@ -128,6 +131,7 @@ sections:
         labels: ["Filesystem"]
 
   - title: "🖥️ Terminal Check"
+    image: "images/section-04-check.svg"
     explanation: |
       Test your knowledge — type the commands yourself!
     examples:

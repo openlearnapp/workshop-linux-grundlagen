@@ -6,6 +6,7 @@ image: "images/lesson-header.svg"
 image_caption: "Tux Penguin mit Server-Racks"
 sections:
   - title: "Ein Student verändert die Welt"
+    image: "images/section-01-history.svg"
     explanation: |
       Im Jahr **1991** schrieb ein 21-jähriger Informatikstudent an der Universität Helsinki
       eine E-Mail, die die Welt verändern sollte:
@@ -41,6 +42,7 @@ sections:
         labels: ["Basics", "Dateisystem"]
 
   - title: "Distributionen — Linux für jeden Zweck"
+    image: "images/section-02-distros.svg"
     explanation: |
       Linux ist kein einzelnes Betriebssystem, sondern ein **Kern (Kernel)**, um den herum
       verschiedene Unternehmen und Communities vollständige Systeme gebaut haben.
@@ -77,6 +79,7 @@ sections:
         labels: ["Basics"]
 
   - title: "Das Linux-Dateisystem — alles ist eine Datei"
+    image: "images/section-03-filesystem.svg"
     explanation: |
       Linux folgt einer Philosophie: **alles ist eine Datei** — auch Geräte, Prozesse und
       Netzwerkverbindungen sind als Dateien repräsentiert.
@@ -115,6 +118,7 @@ sections:
         labels: ["Dateisystem", "Basics"]
 
   - title: "🖥️ Terminal-Check"
+    image: "images/section-04-check.svg"
     explanation: |
       Teste jetzt dein Wissen — gib die Befehle direkt ein!
     examples:

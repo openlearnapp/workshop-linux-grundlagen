@@ -5,6 +5,7 @@ description: "chmod, chown and sudo — understand and apply the Linux permissio
 image: "images/lesson-header.svg"
 sections:
   - title: "rwx — decoding the permission system"
+    image: "images/section-01-rwx.svg"
     explanation: |
       **Why does this matter?** Security is at the heart of Linux. Wrong permissions
       can cause scripts to fail, web servers not to start, or in the worst case, let
@@ -42,6 +43,7 @@ sections:
         labels: ["Security"]
 
   - title: "chmod — changing permissions"
+    image: "images/section-02-chmod.svg"
     explanation: |
       `chmod` (Change Mode) changes file permissions. There are two notations:
 
@@ -87,6 +89,7 @@ sections:
         labels: ["Security"]
 
   - title: "sudo and chown — superuser powers and ownership"
+    image: "images/section-03-sudo.svg"
     explanation: |
       **sudo** (Super User Do) allows regular users to run individual commands as
       administrator (root). This is safer than working as root permanently.
@@ -120,6 +123,7 @@ sections:
         labels: ["Security"]
 
   - title: "🖥️ Terminal Check"
+    image: "images/section-04-check.svg"
     explanation: |
       Test your knowledge — type the commands yourself!
     examples:

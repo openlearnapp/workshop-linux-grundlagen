@@ -6,6 +6,7 @@ image: "images/lesson-header.svg"
 image_caption: "Paket-Boxen mit apt, dnf und snap Labels"
 sections:
   - title: "apt — der App Store der Kommandozeile"
+    image: "images/section-01-apt.svg"
     explanation: |
       **Warum ist das wichtig?** Unter Linux installierst du Software nicht durch das
       Herunterladen von .exe-Dateien, sondern über **Paketmanager**. Diese holen Programme
@@ -46,6 +47,7 @@ sections:
         labels: ["Konfiguration"]
 
   - title: "Pakete suchen, entfernen und aufräumen"
+    image: "images/section-02-search-remove.svg"
     explanation: |
       `apt` kann auch nach Paketen suchen und nicht mehr benötigte Software entfernen.
 
@@ -84,6 +86,7 @@ sections:
         labels: ["Konfiguration"]
 
   - title: "dpkg und snap — alternative Installationswege"
+    image: "images/section-03-dpkg-snap.svg"
     explanation: |
       Manchmal ist ein Programm nicht im apt-Repository — dann gibt es andere Wege:
 
@@ -128,6 +131,7 @@ sections:
         labels: ["Konfiguration"]
 
   - title: "🖥️ Terminal-Check"
+    image: "images/section-04-check.svg"
     explanation: |
       Teste jetzt dein Wissen — gib die Befehle direkt ein!
     examples:

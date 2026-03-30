@@ -5,6 +5,7 @@ description: "ps، top، kill و کارهای پس‌زمینه — درک و م
 image: "images/lesson-header.svg"
 sections:
   - title: "ps و top — الان چه چیزی اجرا می‌شود؟"
+    image: "images/section-01-ps-top.svg"
     explanation: |
       **چرا این مهم است؟** سرور کند شده، یک برنامه پاسخ نمی‌دهد،
       حافظه پر شده — در این شرایط باید بدانید کدام پروسس‌ها
@@ -47,6 +48,7 @@ sections:
         labels: ["فرآیندها"]
 
   - title: "kill — خاتمه دادن به پروسس‌ها"
+    image: "images/section-02-kill.svg"
     explanation: |
       پروسس‌ها از طریق **سیگنال‌ها** کنترل می‌شوند. `kill` سیگنال به پروسس‌ها می‌فرستد.
 
@@ -87,6 +89,7 @@ sections:
         labels: ["فرآیندها"]
 
   - title: "کارهای پس‌زمینه — چندوظیفگی در ترمینال"
+    image: "images/section-03-background.svg"
     explanation: |
       لینوکس اجازه می‌دهد چند کار همزمان در یک ترمینال اجرا شوند:
 
@@ -131,6 +134,7 @@ sections:
         labels: ["فرآیندها", "اسکریپت"]
 
   - title: "🖥️ آزمون ترمینال"
+    image: "images/section-04-check.svg"
     explanation: |
       حالا دانش خود را تست کنید — دستورات را مستقیماً وارد کنید!
     examples:

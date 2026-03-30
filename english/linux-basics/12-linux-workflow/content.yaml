@@ -5,6 +5,7 @@ description: "Pipes, redirects, aliases and xargs — using the command line lik
 image: "images/lesson-header.svg"
 sections:
   - title: "Pipes — chaining commands"
+    image: "images/section-01-pipes.svg"
     explanation: |
       **Why does this matter?** The true power of Linux lies not in individual commands,
       but in combining them. The pipe character `|` passes the output of one command
@@ -45,6 +46,7 @@ sections:
         labels: ["Scripting", "Filesystem"]
 
   - title: "Redirects — redirecting input and output"
+    image: "images/section-02-redirects.svg"
     explanation: |
       Redirects route output to files or use files as input:
 
@@ -88,6 +90,7 @@ sections:
         labels: ["Scripting"]
 
   - title: "Aliases and .bashrc — personalizing your workflow"
+    image: "images/section-03-bashrc.svg"
     explanation: |
       **Aliases** are shortcuts for frequently used commands.
       They are stored in `~/.bashrc` (or `~/.zshrc` for Zsh).
@@ -143,6 +146,7 @@ sections:
         labels: ["Config"]
 
   - title: "🖥️ Terminal Check"
+    image: "images/section-04-check.svg"
     explanation: |
       Test your knowledge — type the commands yourself!
     examples:

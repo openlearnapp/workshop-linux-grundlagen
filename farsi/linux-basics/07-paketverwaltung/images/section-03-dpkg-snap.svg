@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 160" width="640" height="160">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#161b22"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="160" fill="url(#bg)" rx="8"/>
+  <!-- Decorative elements -->
+  <circle cx="80" cy="60" r="2" fill="#3fb950" opacity="0.4"/><circle cx="95" cy="45" r="1.5" fill="#3fb950" opacity="0.35"/><circle cx="70" cy="100" r="1" fill="#3fb950" opacity="0.35"/>
+  <circle cx="560" cy="60" r="2" fill="#3fb950" opacity="0.4"/><circle cx="545" cy="100" r="1.5" fill="#3fb950" opacity="0.35"/><circle cx="570" cy="45" r="1" fill="#3fb950" opacity="0.35"/>
+  <!-- Icon -->
+  
+  <!-- dpkg box -->
+  <rect x="260" y="50" width="50" height="36" rx="4" fill="#21262d" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="270" y="73" font-family="monospace" font-size="9" fill="#f0883e">.deb</text>
+  <!-- snap box -->
+  <rect x="330" y="50" width="50" height="36" rx="4" fill="#21262d" stroke="#bc8cff" stroke-width="1.5"/>
+  <text x="337" y="73" font-family="monospace" font-size="9" fill="#bc8cff">snap</text>
+  <!-- vs divider -->
+  <text x="316" y="72" font-family="monospace" font-size="9" fill="#8b949e" opacity="0.7">/</text>
+  <!-- Arrows from both to system -->
+  <line x1="285" y1="90" x2="305" y2="108" stroke="#f0883e" stroke-width="1.5" opacity="0.6"/>
+  <line x1="355" y1="90" x2="335" y2="108" stroke="#bc8cff" stroke-width="1.5" opacity="0.6"/>
+  <rect x="300" y="108" width="40" height="16" rx="3" fill="#161b22" stroke="#30363d" stroke-width="1.5"/>
+  <text x="307" y="120" font-family="monospace" font-size="7" fill="#8b949e">system</text>
+  <!-- Accent bar -->
+  <rect x="180" y="152" width="280" height="4" fill="#3fb950" opacity="0.8" rx="1.5"/>
+</svg>

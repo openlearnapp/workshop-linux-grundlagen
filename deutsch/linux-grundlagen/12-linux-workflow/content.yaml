@@ -6,6 +6,7 @@ image: "images/lesson-header.svg"
 image_caption: "Workflow-Diagramm mit Terminal, Git und SSH"
 sections:
   - title: "Pipes — Befehle verketten"
+    image: "images/section-01-pipes.svg"
     explanation: |
       **Warum ist das wichtig?** Die wahre Stärke von Linux liegt nicht in einzelnen Befehlen,
       sondern darin, sie zu kombinieren. Das Pipe-Zeichen `|` leitet die Ausgabe eines
@@ -46,6 +47,7 @@ sections:
         labels: ["Scripting", "Dateisystem"]
 
   - title: "Redirects — Ein- und Ausgabe umleiten"
+    image: "images/section-02-redirects.svg"
     explanation: |
       Redirects leiten die Ausgabe in Dateien oder von Dateien als Eingabe um:
 
@@ -89,6 +91,7 @@ sections:
         labels: ["Scripting"]
 
   - title: "Aliases und .bashrc — den Workflow personalisieren"
+    image: "images/section-03-bashrc.svg"
     explanation: |
       **Aliases** sind Abkürzungen für häufig verwendete Befehle.
       Sie werden in `~/.bashrc` (oder `~/.zshrc` für Zsh) gespeichert.
@@ -144,6 +147,7 @@ sections:
         labels: ["Konfiguration"]
 
   - title: "🖥️ Terminal-Check"
+    image: "images/section-04-check.svg"
     explanation: |
       Teste jetzt dein Wissen — gib die Befehle direkt ein!
     examples:

@@ -6,6 +6,7 @@ image: "images/lesson-header.svg"
 image_caption: "Prozessbaum mit PID-Nummern und Ressourcenanzeige"
 sections:
   - title: "ps und top — was läuft gerade?"
+    image: "images/section-01-ps-top.svg"
     explanation: |
       **Warum ist das wichtig?** Ein Server läuft langsam, eine App reagiert nicht mehr,
       der Arbeitsspeicher ist voll — in diesen Situationen musst du wissen, welche Prozesse
@@ -48,6 +49,7 @@ sections:
         labels: ["Prozesse"]
 
   - title: "kill — Prozesse beenden"
+    image: "images/section-02-kill.svg"
     explanation: |
       Prozesse werden über **Signale** gesteuert. `kill` sendet Signale an Prozesse.
 
@@ -88,6 +90,7 @@ sections:
         labels: ["Prozesse"]
 
   - title: "Hintergrundjobs — Multitasking im Terminal"
+    image: "images/section-03-background.svg"
     explanation: |
       Linux erlaubt mehrere Jobs gleichzeitig in einem Terminal:
 
@@ -132,6 +135,7 @@ sections:
         labels: ["Prozesse", "Scripting"]
 
   - title: "🖥️ Terminal-Check"
+    image: "images/section-04-check.svg"
     explanation: |
       Teste jetzt dein Wissen — gib die Befehle direkt ein!
     examples:

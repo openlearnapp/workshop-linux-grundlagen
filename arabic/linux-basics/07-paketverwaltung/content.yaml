@@ -5,6 +5,7 @@ description: "apt و snap و dpkg — تثبيت البرمجيات وتحديث
 image: "images/lesson-header.svg"
 sections:
   - title: "apt — متجر التطبيقات في سطر الأوامر"
+    image: "images/section-01-apt.svg"
     explanation: |
       **لماذا هذا مهم؟** في لينكس لا تثبت البرمجيات عبر تنزيل ملفات .exe،
       بل عبر **مديري الحزم**. هؤلاء يجلبون البرامج من مصادر موثوقة،
@@ -45,6 +46,7 @@ sections:
         labels: ["الإعدادات"]
 
   - title: "البحث عن الحزم وإزالتها وتنظيفها"
+    image: "images/section-02-search-remove.svg"
     explanation: |
       `apt` يمكنه أيضًا البحث عن حزم وإزالة البرمجيات غير المطلوبة.
 
@@ -83,6 +85,7 @@ sections:
         labels: ["الإعدادات"]
 
   - title: "dpkg و snap — طرق تثبيت بديلة"
+    image: "images/section-03-dpkg-snap.svg"
     explanation: |
       أحيانًا لا يتوفر برنامج في مستودع apt — حينها توجد طرق أخرى:
 
@@ -127,6 +130,7 @@ sections:
         labels: ["الإعدادات"]
 
   - title: "🖥️ اختبار الطرفية"
+    image: "images/section-04-check.svg"
     explanation: |
       اختبر معرفتك الآن — أدخل الأوامر مباشرة!
     examples:

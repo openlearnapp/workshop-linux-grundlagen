@@ -6,6 +6,7 @@ image: "images/lesson-header.svg"
 image_caption: "Schloss-Symbol mit rwx-Berechtigungsraster"
 sections:
   - title: "rwx — das Rechtesystem entschlüsseln"
+    image: "images/section-01-rwx.svg"
     explanation: |
       **Warum ist das wichtig?** Sicherheit ist der Kern von Linux. Falsche Berechtigungen
       können dazu führen, dass Skripte nicht ausführen, Webserver nicht starten oder
@@ -44,6 +45,7 @@ sections:
         labels: ["Sicherheit"]
 
   - title: "chmod — Berechtigungen ändern"
+    image: "images/section-02-chmod.svg"
     explanation: |
       `chmod` (Change Mode) ändert Dateiberechtigungen. Es gibt zwei Notationen:
 
@@ -89,6 +91,7 @@ sections:
         labels: ["Sicherheit"]
 
   - title: "sudo und chown — Superrechte und Besitz"
+    image: "images/section-03-sudo.svg"
     explanation: |
       **sudo** (Super User Do) erlaubt normalen Benutzern, einzelne Befehle als
       Administrator (root) auszuführen. Das ist sicherer als dauerhaft als root zu arbeiten.
@@ -127,6 +130,7 @@ sections:
         labels: ["Sicherheit"]
 
   - title: "🖥️ Terminal-Check"
+    image: "images/section-04-check.svg"
     explanation: |
       Teste jetzt dein Wissen — gib die Befehle direkt ein!
     examples:

@@ -6,6 +6,7 @@ image: "images/lesson-header.svg"
 image_caption: "Terminal-Fenster mit Prompt und Befehlen"
 sections:
   - title: "Das Terminal öffnen — wo bin ich?"
+    image: "images/section-01-open-terminal.svg"
     explanation: |
       Das **Terminal** (auch: Shell, Konsole, Kommandozeile) ist deine direkte Verbindung
       zum Betriebssystem. Kein Maus-Klicken, kein Menü-Suchen — nur du und der Computer.
@@ -40,6 +41,7 @@ sections:
         labels: ["Basics"]
 
   - title: "ls — was ist hier?"
+    image: "images/section-02-ls.svg"
     explanation: |
       `ls` listet den Inhalt des aktuellen Verzeichnisses auf.
       Mit Flags wird `ls` richtig mächtig:
@@ -84,6 +86,7 @@ sections:
         labels: ["Dateisystem", "Konfiguration"]
 
   - title: "cd — wohin möchtest du?"
+    image: "images/section-03-cd.svg"
     explanation: |
       `cd` (Change Directory) ist dein Navigationswerkzeug im Dateisystem.
 
@@ -130,6 +133,7 @@ sections:
         labels: ["Dateisystem"]
 
   - title: "🖥️ Terminal-Check"
+    image: "images/section-04-check.svg"
     explanation: |
       Teste jetzt dein Wissen — gib die Befehle direkt ein!
     examples:

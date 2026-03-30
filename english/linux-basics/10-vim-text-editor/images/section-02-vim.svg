@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 160" width="640" height="160">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#161b22"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="160" fill="url(#bg)" rx="8"/>
+  <!-- Decorative elements -->
+  <circle cx="80" cy="60" r="2" fill="#3fb950" opacity="0.4"/><circle cx="95" cy="45" r="1.5" fill="#3fb950" opacity="0.35"/><circle cx="70" cy="100" r="1" fill="#3fb950" opacity="0.35"/>
+  <circle cx="560" cy="60" r="2" fill="#3fb950" opacity="0.4"/><circle cx="545" cy="100" r="1.5" fill="#3fb950" opacity="0.35"/><circle cx="570" cy="45" r="1" fill="#3fb950" opacity="0.35"/>
+  <!-- Icon -->
+  
+  <!-- Vim-style diamond shape -->
+  <polygon points="320,30 365,70 320,110 275,70" fill="none" stroke="#3fb950" stroke-width="2" opacity="0.8"/>
+  <polygon points="320,42 353,70 320,98 287,70" fill="#3fb950" opacity="0.06"/>
+  <!-- V letter inside -->
+  <text x="306" y="80" font-family="monospace" font-size="28" font-weight="bold" fill="#3fb950" opacity="0.9">V</text>
+  <!-- Mode indicators -->
+  <text x="268" y="132" font-family="monospace" font-size="8" fill="#3fb950" opacity="0.45">NORMAL  INSERT  VISUAL</text>
+  <!-- Accent bar -->
+  <rect x="180" y="152" width="280" height="4" fill="#3fb950" opacity="0.8" rx="1.5"/>
+</svg>

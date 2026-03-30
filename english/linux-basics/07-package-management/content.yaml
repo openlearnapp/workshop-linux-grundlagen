@@ -5,6 +5,7 @@ description: "apt, snap and dpkg — install, update and manage software under U
 image: "images/lesson-header.svg"
 sections:
   - title: "apt — the command line app store"
+    image: "images/section-01-apt.svg"
     explanation: |
       **Why does this matter?** On Linux you don't install software by downloading .exe files,
       but through **package managers**. These fetch programs from trusted sources, resolve
@@ -45,6 +46,7 @@ sections:
         labels: ["Config"]
 
   - title: "Searching, removing and cleaning up packages"
+    image: "images/section-02-search-remove.svg"
     explanation: |
       `apt` can also search for packages and remove software no longer needed.
 
@@ -83,6 +85,7 @@ sections:
         labels: ["Config"]
 
   - title: "dpkg and snap — alternative installation methods"
+    image: "images/section-03-dpkg-snap.svg"
     explanation: |
       Sometimes a program isn't in the apt repository — then there are other ways:
 
@@ -122,6 +125,7 @@ sections:
         labels: ["Config"]
 
   - title: "🖥️ Terminal Check"
+    image: "images/section-04-check.svg"
     explanation: |
       Test your knowledge — type the commands yourself!
     examples:

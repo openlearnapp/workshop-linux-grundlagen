@@ -5,6 +5,7 @@ description: "chmod، chown و sudo — درک و استفاده از سیستم
 image: "images/lesson-header.svg"
 sections:
   - title: "rwx — رمزگشایی سیستم مجوزها"
+    image: "images/section-01-rwx.svg"
     explanation: |
       **چرا این مهم است؟** امنیت هسته اصلی لینوکس است. مجوزهای اشتباه
       می‌توانند باعث شوند اسکریپت‌ها اجرا نشوند، وب‌سرور راه‌اندازی نشود یا
@@ -43,6 +44,7 @@ sections:
         labels: ["امنیت"]
 
   - title: "chmod — تغییر مجوزها"
+    image: "images/section-02-chmod.svg"
     explanation: |
       `chmod` (Change Mode) مجوزهای فایل را تغییر می‌دهد. دو نوع نوشتار وجود دارد:
 
@@ -88,6 +90,7 @@ sections:
         labels: ["امنیت"]
 
   - title: "sudo و chown — مجوزهای ویژه و مالکیت"
+    image: "images/section-03-sudo.svg"
     explanation: |
       **sudo** (Super User Do) به کاربران عادی اجازه می‌دهد دستورات خاصی را
       به عنوان مدیر (root) اجرا کنند. این امن‌تر از کار دائمی با root است.
@@ -126,6 +129,7 @@ sections:
         labels: ["امنیت"]
 
   - title: "🖥️ آزمون ترمینال"
+    image: "images/section-04-check.svg"
     explanation: |
       حالا دانش خود را تست کنید — دستورات را مستقیماً وارد کنید!
     examples:

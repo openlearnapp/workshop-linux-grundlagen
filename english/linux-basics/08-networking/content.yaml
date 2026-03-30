@@ -5,6 +5,7 @@ description: "ping, curl, wget, ssh and ip — test connections, transfer data a
 image: "images/lesson-header.svg"
 sections:
   - title: "Checking the network — ping, ip and ss"
+    image: "images/section-01-network.svg"
     explanation: |
       **Why does this matter?** As a Linux user you'll manage servers, call APIs
       and debug network problems. These commands are the foundation.
@@ -42,6 +43,7 @@ sections:
         labels: ["Network"]
 
   - title: "curl and wget — fetching data from the web"
+    image: "images/section-02-curl-wget.svg"
     explanation: |
       `curl` and `wget` are the Swiss Army knives for HTTP requests.
 
@@ -79,6 +81,7 @@ sections:
         labels: ["Network"]
 
   - title: "SSH — securely connecting to remote servers"
+    image: "images/section-03-ssh.svg"
     explanation: |
       **SSH** (Secure Shell) is the most important tool for remote server management.
       Everything is transmitted encrypted.
@@ -125,6 +128,7 @@ sections:
         labels: ["Network"]
 
   - title: "🖥️ Terminal Check"
+    image: "images/section-04-check.svg"
     explanation: |
       Test your knowledge — type the commands yourself!
     examples:

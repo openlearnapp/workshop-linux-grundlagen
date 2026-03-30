@@ -5,6 +5,7 @@ description: "chmod و chown و sudo — فهم نظام صلاحيات لينك
 image: "images/lesson-header.svg"
 sections:
   - title: "rwx — فك شفرة نظام الصلاحيات"
+    image: "images/section-01-rwx.svg"
     explanation: |
       **لماذا هذا مهم؟** الأمان هو جوهر لينكس. الصلاحيات الخاطئة
       قد تؤدي إلى عدم تنفيذ السكريبتات، أو عدم تشغيل خادم الويب، أو
@@ -43,6 +44,7 @@ sections:
         labels: ["الأمان"]
 
   - title: "chmod — تغيير الصلاحيات"
+    image: "images/section-02-chmod.svg"
     explanation: |
       `chmod` (Change Mode) يُغيّر صلاحيات الملفات. هناك ترميزان:
 
@@ -88,6 +90,7 @@ sections:
         labels: ["الأمان"]
 
   - title: "sudo و chown — صلاحيات المسؤول وتغيير الملكية"
+    image: "images/section-03-sudo.svg"
     explanation: |
       **sudo** (Super User Do) يسمح للمستخدمين العاديين بتنفيذ أوامر فردية كمسؤول
       (root). وهذا أكثر أمانًا من العمل الدائم كـ root.
@@ -126,6 +129,7 @@ sections:
         labels: ["الأمان"]
 
   - title: "🖥️ اختبار الطرفية"
+    image: "images/section-04-check.svg"
     explanation: |
       اختبر معرفتك الآن — أدخل الأوامر مباشرة!
     examples:
