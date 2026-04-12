@@ -1,143 +1,157 @@
 version: 2
 number: 2
 title: "Das Terminal — erste Schritte"
-description: "pwd, ls und cd meistern — die drei Grundbefehle für die Navigation im Dateisystem"
+description: "Lern das Terminal kennen und meistere deine ersten drei Befehle: pwd, ls und cd"
 image: "images/lesson-header.svg"
 image_caption: "Terminal-Fenster mit Prompt und Befehlen"
 sections:
-  - title: "Das Terminal öffnen — wo bin ich?"
+  - title: "Das Terminal — dein Sprachrohr zum Computer"
     image: "images/section-01-open-terminal.svg"
     explanation: |
-      Das **Terminal** (auch: Shell, Konsole, Kommandozeile) ist deine direkte Verbindung
-      zum Betriebssystem. Kein Maus-Klicken, kein Menü-Suchen — nur du und der Computer.
+      Das **Terminal** (auch: Konsole, Kommandozeile oder Shell) ist wie ein
+      Sprachrohr zum Computer. Statt mit der Maus zu klicken, schreibst du
+      Befehle — und der Computer antwortet mit Text.
 
-      Wenn du das Terminal öffnest, siehst du den **Prompt**:
+      Das klingt vielleicht kompliziert, ist aber ganz einfach!
+      Du lernst ein paar Wörter (die Befehle) — und der Computer macht genau das.
+
+      Wenn du das Terminal öffnest, siehst du den **Prompt**
+      (englisch für "Aufforderung" — der Computer wartet auf deine Eingabe):
       ```
       alice@ubuntu:~$
       ```
       Das bedeutet:
-      - `alice` = Benutzername
-      - `ubuntu` = Computername (Hostname)
-      - `~` = du bist im Home-Verzeichnis
-      - `$` = normaler Benutzer (bei `#` bist du root/Administrator)
+      - `alice` = dein Benutzername (also wie du heißt)
+      - `ubuntu` = der Name deines Computers
+      - `~` = du bist gerade in deinem persönlichen Ordner
+      - `$` = du bist ein normaler Benutzer (kein Administrator)
 
-      **Dein wichtigster erster Befehl:** `pwd` — *Print Working Directory*.
-      Er sagt dir immer, wo du gerade bist.
+      Dein **erster wichtiger Befehl:** `pwd`
+      Er zeigt dir, in welchem Ordner du gerade bist.
+      PWD steht für "Print Working Directory" — also "zeig mir meinen Arbeitsordner".
     examples:
       - q: "pwd"
-        a: "Zeigt den aktuellen Pfad an, z.B. /home/alice — du weißt immer wo du bist"
+        a: "Zeigt den Pfad zum aktuellen Ordner an — z.B. /home/alice. Du weißt immer wo du bist!"
         rel:
           - ["pwd", "Print Working Directory — aktuelles Verzeichnis anzeigen", "Befehl"]
         labels: ["Basics"]
       - q: "whoami"
-        a: "Gibt deinen Benutzernamen aus — nützlich wenn du als mehrere Nutzer arbeitest"
+        a: "Zeigt deinen Benutzernamen an — englisch für 'Wer bin ich?'"
         rel:
           - ["whoami", "Den aktuellen Benutzernamen ausgeben", "Befehl"]
         labels: ["Basics"]
       - q: "date"
-        a: "Zeigt aktuelles Datum und Uhrzeit an"
+        a: "Zeigt das aktuelle Datum und die Uhrzeit an"
         rel:
           - ["date-cmd", "Aktuelles Datum und Uhrzeit anzeigen", "Befehl date"]
         labels: ["Basics"]
 
-  - title: "ls — was ist hier?"
+  - title: "ls — schau was im Ordner ist"
     image: "images/section-02-ls.svg"
     explanation: |
-      `ls` listet den Inhalt des aktuellen Verzeichnisses auf.
-      Mit Flags wird `ls` richtig mächtig:
+      `ls` zeigt dir, was in einem Ordner ist.
+      LS steht für "list" (englisch für "auflisten").
+
+      Wie bei einem Lichtschalter gibt es Extras, die du dazuschalten kannst.
+      Man nennt sie **Flags** (kleine Optionen, die du nach einem `-` anhängst):
 
       | Befehl | Was er zeigt |
       |--------|-------------|
-      | `ls` | Nur Dateinamen |
-      | `ls -l` | Details: Rechte, Größe, Datum |
-      | `ls -a` | Auch versteckte Dateien (beginnen mit `.`) |
-      | `ls -la` | Details + versteckte Dateien (Kombination!) |
-      | `ls -lh` | Dateigrößen in lesbarem Format (KB, MB, GB) |
-      | `ls -lt` | Nach Änderungsdatum sortiert (neueste zuerst) |
+      | `ls` | Nur die Namen der Dateien und Ordner |
+      | `ls -l` | Details: Wer darf was, wie groß, wann verändert |
+      | `ls -a` | Auch versteckte Dateien (die mit einem Punkt beginnen, z.B. `.bashrc`) |
+      | `ls -la` | Details UND versteckte Dateien zusammen |
+      | `ls -lh` | Dateigrößen in lesbarer Form (KB, MB, GB statt langer Zahlen) |
 
-      In der `-l`-Ausgabe bedeuten die Spalten:
+      Super-Tipp: Du kannst `-l` und `-a` zusammen als `-la` schreiben —
+      das ist eine Abkürzung!
+
+      So sieht eine Detail-Zeile aus:
       ```
-      -rw-r--r-- 1 alice alice 4096 Mar 20 10:23 dokument.txt
-      ↑Rechte    ↑Links ↑Besitzer  ↑Größe ↑Datum  ↑Name
+      -rw-r--r-- 1 alice alice 4096 Mar 20 10:23 notizen.txt
       ```
+      Das ist: Rechte — Besitzer — Größe — Datum — Name der Datei.
+      Die Rechte lernst du in Lektion 5 genauer!
     examples:
       - q: "ls -la"
-        a: "Alle Dateien inkl. versteckter Dateien mit Details (Rechte, Größe, Datum)"
+        a: "Alle Dateien inkl. versteckter Dateien mit Details (Rechte, Größe, Datum) — sehr nützlich!"
         rel:
           - ["ls-l", "Long format — Detailansicht", "Flag -l"]
           - ["ls-a", "All — auch versteckte Dateien (.dotfiles)", "Flag -a"]
         labels: ["Basics", "Dateisystem"]
       - q: "ls -lh /var/log"
-        a: "Log-Dateien mit menschenlesbaren Größenangaben (KB, MB) anzeigen"
+        a: "Zeigt Dateien im Log-Ordner mit gut lesbaren Größen (KB, MB)"
         rel:
           - ["ls-h", "Human-readable — lesbare Dateigrößen (KB/MB/GB)", "Flag -h"]
-          - ["var-log", "Systemlog-Verzeichnis mit Protokolldateien", "/var/log"]
+          - ["var-log", "Systemlog-Verzeichnis — hier speichert Linux Protokolle", "/var/log"]
         labels: ["Dateisystem"]
       - q: "ls -lt ~/.ssh"
-        a: "SSH-Konfigurationsdateien nach letzter Änderung sortiert anzeigen"
+        a: "Zeigt Dateien im SSH-Ordner, die neueste Datei zuerst"
         rel:
           - ["ls-t", "Time — nach Änderungszeit sortieren, neueste zuerst", "Flag -t"]
           - ["ssh-dir", "Verzeichnis für SSH-Schlüssel und Konfiguration", "~/.ssh"]
         labels: ["Dateisystem", "Sicherheit"]
       - q: "ls -la /etc/nginx/"
-        a: "Alle Nginx-Konfigurationsdateien mit Details anzeigen"
+        a: "Alle Dateien im nginx-Ordner mit Details anzeigen (nginx ist ein Webserver-Programm)"
         rel:
           - ["nginx-dir", "Konfigurationsverzeichnis des Nginx-Webservers", "/etc/nginx/"]
         labels: ["Dateisystem", "Konfiguration"]
 
-  - title: "cd — wohin möchtest du?"
+  - title: "cd — von Ordner zu Ordner"
     image: "images/section-03-cd.svg"
     explanation: |
-      `cd` (Change Directory) ist dein Navigationswerkzeug im Dateisystem.
+      Mit `cd` wechselst du zwischen Ordnern.
+      CD steht für "Change Directory" — also "wechsle den Ordner".
 
-      **Wichtige Navigationsmuster:**
+      Stell dir das Dateisystem wie ein Haus vor: Jeder Raum ist ein Ordner.
+      Mit `cd` gehst du von Raum zu Raum.
 
-      | Befehl | Wohin? |
-      |--------|--------|
-      | `cd /` | Zum Root-Verzeichnis |
-      | `cd ~` | Zum Home-Verzeichnis (auch: nur `cd`) |
-      | `cd ..` | Ein Verzeichnis nach oben |
-      | `cd ../..` | Zwei Ebenen nach oben |
-      | `cd -` | Zum zuletzt besuchten Verzeichnis (zurück!) |
-      | `cd /etc/nginx` | Absoluter Pfad (beginnt mit /) |
-      | `cd projekte/webseite` | Relativer Pfad (von hier aus) |
+      | Befehl | Was passiert? |
+      |--------|---------------|
+      | `cd /` | Ganz nach oben — zur Wurzel des Dateisystems |
+      | `cd ~` | Zurück in deinen persönlichen Ordner (auch: nur `cd`) |
+      | `cd ..` | Einen Ordner nach oben gehen (wie Backspace) |
+      | `cd ../..` | Zwei Ordner nach oben |
+      | `cd -` | Zum letzten Ordner zurück (wie der Zurück-Knopf im Browser!) |
+      | `cd /etc` | Direkt zu einem bestimmten Ordner springen |
 
-      **Tab-Vervollständigung** — dein bestes Freund:
-      Tippe `cd /etc/ngi` und drücke `Tab` → Terminal ergänzt automatisch zu `/etc/nginx/`
+      **Geheimer Trick — Tab-Taste:**
+      Tippe `cd /etc/ngi` und drücke dann `Tab` (die Taste links über Caps Lock).
+      Das Terminal ergänzt automatisch zu `cd /etc/nginx/` — das spart viel Tipparbeit!
     examples:
       - q: "cd /var/log"
-        a: "Wechselt direkt ins Log-Verzeichnis (absoluter Pfad — beginnt mit /)"
+        a: "Wechselt direkt in den Log-Ordner — das nennt man einen absoluten Pfad (fängt immer mit / an)"
         rel:
           - ["cd-cmd", "Change Directory — Verzeichnis wechseln", "Befehl cd"]
           - ["absolute-path", "Pfad der immer bei / beginnt, unabhängig vom Ort", "absoluter Pfad"]
         labels: ["Dateisystem"]
       - q: "cd .."
-        a: "Eine Ebene nach oben gehen — aus /home/alice wird /home"
+        a: "Einen Ordner nach oben gehen — aus /home/alice wird /home"
         rel:
-          - ["dotdot", "Zwei Punkte = übergeordnetes Verzeichnis", ".."]
+          - ["dotdot", "Zwei Punkte = übergeordnetes Verzeichnis (der Ordner darüber)", ".."]
         labels: ["Dateisystem"]
       - q: "cd ~"
-        a: "Zum eigenen Home-Verzeichnis — egal wo du gerade bist"
+        a: "Immer zurück in deinen persönlichen Ordner — egal wo du gerade bist"
         rel:
           - ["tilde", "Abkürzung für das eigene Home-Verzeichnis", "~"]
         labels: ["Dateisystem"]
       - q: "cd -"
-        a: "Zum zuletzt besuchten Verzeichnis wechseln — praktisch zum Hin-und-Her-Wechseln"
+        a: "Springt zum zuletzt besuchten Ordner zurück — super praktisch!"
         rel:
           - ["cd-minus", "Zum vorherigen Verzeichnis zurück", "cd -"]
         labels: ["Dateisystem"]
       - q: "cd /home/alice/projekte && pwd"
-        a: "Ins Projekte-Verzeichnis wechseln und sofort den Pfad bestätigen"
+        a: "Wechselt in den Projekte-Ordner und zeigt dann sofort den Pfad an"
         rel:
-          - ["double-ampersand", "Zwei Befehle verketten — zweiter läuft nur wenn erster erfolgreich", "&&"]
+          - ["double-ampersand", "Zwei Befehle hintereinander ausführen — zweiter läuft nur wenn der erste geklappt hat", "&&"]
         labels: ["Dateisystem"]
 
-  - title: "🖥️ Terminal-Check"
+  - title: "Terminal-Check"
     image: "images/section-04-check.svg"
     explanation: |
-      Teste jetzt dein Wissen — gib die Befehle direkt ein!
+      Teste jetzt dein Wissen!
     examples:
-      - q: "Welcher Befehl zeigt dein aktuelles Verzeichnis?"
+      - q: "Welcher Befehl zeigt deinen aktuellen Ordner an?"
         type: input
         a: "pwd"
         labels: ["Basics"]
@@ -150,7 +164,7 @@ sections:
           - text: "Letzte Aktion rückgängig machen"
           - text: "Log-Dateien anzeigen"
         labels: ["Basics", "Dateisystem"]
-      - q: "Welcher Befehl wechselt zum zuletzt besuchten Verzeichnis?"
+      - q: "Welcher Befehl wechselt zum zuletzt besuchten Ordner?"
         type: select
         options:
           - text: "cd -"

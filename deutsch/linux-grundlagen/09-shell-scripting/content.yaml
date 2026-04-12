@@ -8,14 +8,18 @@ sections:
   - title: "Dein erstes Skript — Shebang und Variablen"
     image: "images/section-01-shebang.svg"
     explanation: |
-      **Warum ist das wichtig?** Shell-Scripting ist der Schlüssel zur Automatisierung.
-      Alles was du mehrfach im Terminal tippst, kann in ein Skript — und dann mit einem
-      einzigen Befehl ausgeführt werden.
+      Stell dir vor, du hast jeden Morgen dieselbe Aufgabe:
+      Ordner aufräumen, alte Dateien löschen, eine Nachricht ausgeben.
+      Das wäre langweilig, wenn du das jeden Tag von Hand tippen müsstest.
 
-      **Das erste Skript:**
-      ```bash
+      Ein **Shell-Skript** ist wie ein Einkaufszettel für den Computer.
+      Du schreibst einmal auf, was er tun soll —
+      und dann macht er es immer wieder auf Knopfdruck.
+
+      So sieht ein einfaches Skript aus:
+      ```
       #!/bin/bash
-      # Das ist ein Kommentar
+      # Das ist ein Kommentar — der Computer ignoriert ihn
 
       NAME="Alice"
       DATUM=$(date +%Y-%m-%d)
@@ -24,107 +28,112 @@ sections:
       echo "Heute ist: $DATUM"
       ```
 
-      Die erste Zeile `#!/bin/bash` heißt **Shebang** — sie sagt dem System, mit welchem
-      Interpreter das Skript ausgeführt werden soll.
+      Die erste Zeile `#!/bin/bash` heißt **Shebang** (sprich: "She-Bang").
+      Sie sagt Linux: "Führe dieses Skript mit bash aus."
+      Ohne diese Zeile weiß Linux nicht, wie es das Skript lesen soll.
 
-      **Variablen:**
-      - Ohne `$`: Zuweisung: `NAME="Alice"` (kein Leerzeichen um `=`!)
-      - Mit `$`: Verwendung: `echo $NAME`
-      - `$(befehl)`: Befehlsausgabe als Variable
+      **Variablen** (Speicherstellen für Werte):
+      - Zum Speichern: `NAME="Alice"` — kein Leerzeichen um das `=`!
+      - Zum Nutzen: `echo $NAME` — das `$` zeigt an: "Hier ist ein Wert gespeichert"
+      - Befehlsergebnis speichern: `DATUM=$(date)` — was `date` ausgibt, landet in `DATUM`
     examples:
       - q: "#!/bin/bash"
-        a: "Shebang — erste Zeile jedes Bash-Skripts, gibt den Interpreter an"
+        a: "Shebang — muss die erste Zeile jedes Bash-Skripts sein, damit Linux es ausführen kann"
         rel:
           - ["shebang", "Erste Zeile eines Skripts die den Interpreter festlegt", "#!/bin/bash"]
         labels: ["Scripting"]
       - q: "NAME=\"Alice\" && echo \"Hallo, $NAME\""
-        a: "Variable setzen und sofort verwenden — kein Leerzeichen um das Gleichheitszeichen!"
+        a: "Variable setzen und sofort nutzen — kein Leerzeichen um das Gleichheitszeichen!"
         rel:
           - ["bash-variable", "Variable in Bash: NAME=wert (ohne $), $NAME (bei Verwendung)", "Variable"]
         labels: ["Scripting"]
       - q: "HEUTE=$(date +%d.%m.%Y)"
-        a: "Befehlsausgabe in Variable speichern — $(date) gibt das aktuelle Datum zurück"
+        a: "Speichert das heutige Datum in einer Variable — $(date) gibt das aktuelle Datum zurück"
         rel:
           - ["command-sub", "Befehlssubstitution: $(befehl) speichert Ausgabe in Variable", "$()"]
           - ["date-format", "Datumsformat: %d=Tag, %m=Monat, %Y=Jahr", "date +Format"]
         labels: ["Scripting"]
       - q: "echo \"Pfad: $HOME, User: $USER\""
-        a: "Eingebaute Umgebungsvariablen nutzen — HOME und USER sind immer verfügbar"
+        a: "Linux stellt automatisch nützliche Variablen bereit — HOME und USER sind immer da"
         rel:
           - ["env-var-user", "Umgebungsvariable mit aktuellem Benutzernamen", "$USER"]
           - ["env-var-home", "Umgebungsvariable mit Pfad zum Home-Verzeichnis", "$HOME"]
         labels: ["Scripting"]
 
-  - title: "if-Bedingungen — Entscheidungen im Skript"
+  - title: "if-Bedingungen — das Skript denkt mit"
     image: "images/section-02-if.svg"
     explanation: |
-      Bedingte Ausführung macht Skripte intelligent:
+      Manchmal soll dein Skript je nach Situation anders reagieren.
+      "Wenn die Datei existiert — dann mach das. Sonst mach etwas anderes."
 
-      ```bash
+      Das nennt sich **if-Bedingung** (englisch: "wenn"):
+      ```
       #!/bin/bash
-      DATEI="/etc/nginx/nginx.conf"
 
-      if [ -f "$DATEI" ]; then
-          echo "Nginx ist installiert"
+      if [ -f "/etc/nginx/nginx.conf" ]; then
+          echo "Nginx ist installiert!"
       elif [ -d "/etc/apache2" ]; then
-          echo "Apache ist installiert"
+          echo "Apache ist installiert."
       else
-          echo "Kein Webserver gefunden"
+          echo "Kein Webserver gefunden."
       fi
       ```
 
-      **Wichtige Test-Operatoren:**
-      | Operator | Bedeutung |
-      |----------|-----------|
-      | `-f datei` | Datei existiert und ist eine Datei |
-      | `-d pfad` | Pfad existiert und ist ein Verzeichnis |
-      | `-z "$var"` | Variable ist leer |
-      | `-n "$var"` | Variable ist nicht leer |
-      | `"$a" = "$b"` | Strings sind gleich |
-      | `$a -eq $b` | Zahlen sind gleich |
-      | `$a -gt $b` | a ist größer als b (greater than) |
+      Das `fi` am Ende — das ist einfach "if" rückwärts geschrieben.
+      So weiß bash, dass die Bedingung fertig ist.
+
+      Wichtige Test-Zeichen:
+      - `-f datei` — Prüft: Ist das eine Datei?
+      - `-d pfad` — Prüft: Ist das ein Ordner?
+      - `-z "$var"` — Prüft: Ist die Variable leer?
+      - `"$a" = "$b"` — Prüft: Sind zwei Texte gleich?
+      - `$a -gt $b` — Prüft: Ist Zahl a größer als b? (gt = greater than)
     examples:
-      - q: "if [ -f \"~/.ssh/id_ed25519\" ]; then echo \"SSH-Key vorhanden\"; fi"
-        a: "Prüft ob SSH-Key existiert — -f testet auf vorhandene Datei"
+      - q: "if [ -f \"~/.ssh/id_ed25519\" ]; then echo \"SSH-Schlüssel vorhanden\"; fi"
+        a: "Prüft ob ein SSH-Schlüssel existiert — -f prüft ob es eine Datei gibt"
         rel:
           - ["if-bash", "if [ Bedingung ]; then Befehle; fi — Grundstruktur", "if-then-fi"]
           - ["test-f", "-f testet ob Datei existiert (file)", "Testoperator -f"]
         labels: ["Scripting", "Sicherheit"]
       - q: "[ -d /var/www ] && echo \"Webverzeichnis existiert\""
-        a: "Kurzform: && führt zweiten Befehl nur aus wenn erste Bedingung wahr ist"
+        a: "Kurzschreibweise: && bedeutet 'und wenn das stimmt, dann...' — nur eine Zeile nötig"
         rel:
           - ["test-d", "-d testet ob Verzeichnis existiert (directory)", "Testoperator -d"]
         labels: ["Scripting"]
-      - q: "if [ \"$USER\" = \"root\" ]; then echo \"Du bist root!\"; fi"
-        a: "Prüft ob das Skript als root ausgeführt wird — wichtig für Installationsskripte"
+      - q: "if [ \"$USER\" = \"root\" ]; then echo \"Du bist Administrator!\"; fi"
+        a: "Prüft ob das Skript als Administrator ausgeführt wird — sinnvoll vor Systemänderungen"
         rel:
           - ["string-compare", "Strings in Bash mit = vergleichen", "String-Vergleich"]
         labels: ["Scripting", "Sicherheit"]
 
-  - title: "Schleifen — Wiederholungen automatisieren"
+  - title: "Schleifen — etwas viele Male wiederholen"
     image: "images/section-03-loops.svg"
     explanation: |
-      Schleifen führen Befehle mehrfach aus — ideal für Batch-Operationen:
+      Stell dir vor, du musst 100 Dateien umbenennen.
+      Von Hand würde das ewig dauern.
+      Eine **Schleife** macht das in Sekunden.
 
-      **for-Schleife:**
-      ```bash
+      Die **for-Schleife** geht eine Liste durch, Punkt für Punkt:
+      ```
       for DATEI in *.log; do
           echo "Verarbeite: $DATEI"
           gzip "$DATEI"
       done
       ```
+      Das `do` bedeutet "dann tue das:", `done` bedeutet "fertig".
 
-      **while-Schleife:**
-      ```bash
+      Die **while-Schleife** läuft so lange, wie eine Bedingung gilt:
+      ```
       ZAEHLER=1
       while [ $ZAEHLER -le 5 ]; do
           echo "Durchlauf $ZAEHLER"
           ZAEHLER=$((ZAEHLER + 1))
       done
       ```
+      `-le` bedeutet "less or equal" (kleiner oder gleich).
 
-      **Praktisches Beispiel — Backup-Skript:**
-      ```bash
+      Ein echtes Beispiel — Backup für drei Ordner auf einmal:
+      ```
       #!/bin/bash
       DATUM=$(date +%Y%m%d)
       for ORDNER in ~/dokumente ~/bilder ~/projekte; do
@@ -134,23 +143,23 @@ sections:
       ```
     examples:
       - q: "for i in 1 2 3 4 5; do echo \"Zahl: $i\"; done"
-        a: "For-Schleife über eine Liste — gibt Zahl 1 bis 5 aus"
+        a: "Schleife über die Zahlen 1 bis 5 — gibt jede Zahl einmal aus"
         rel:
           - ["for-loop", "For-Schleife: for VAR in LISTE; do ... done", "for-do-done"]
         labels: ["Scripting"]
       - q: "for USER in alice bob charlie; do useradd \"$USER\"; done"
-        a: "Mehrere Benutzer auf einmal anlegen — typische Sysadmin-Aufgabe"
+        a: "Legt drei Nutzer auf einmal an — statt dreimal denselben Befehl zu tippen"
         rel:
           - ["for-list", "For-Schleife über eine Liste von Werten", "for VAR in Wert1 Wert2"]
         labels: ["Scripting", "Sicherheit"]
       - q: "for f in /var/log/*.log; do echo \"$(wc -l < $f) Zeilen: $f\"; done"
-        a: "Zeilen aller Log-Dateien zählen und auflisten"
+        a: "Zählt die Zeilen jeder Log-Datei und gibt das Ergebnis aus"
         rel:
           - ["for-glob", "For-Schleife mit Glob-Muster über Dateien", "for f in *.ext"]
           - ["wc-l", "Word Count -l — Zeilen einer Datei zählen", "wc -l"]
         labels: ["Scripting", "Dateisystem"]
       - q: "while true; do df -h / | grep '/'; sleep 60; done"
-        a: "Festplattenauslastung jede Minute überwachen — Endlosschleife mit sleep"
+        a: "Prüft jede Minute den Festplattenspeicher — läuft bis du Ctrl+C drückst"
         rel:
           - ["while-loop", "While-Schleife: while Bedingung; do ... done", "while-do-done"]
           - ["while-true", "while true — Endlosschleife, nur mit Ctrl+C beenden", "while true"]
@@ -165,7 +174,7 @@ sections:
         type: input
         a: "#!/bin/bash"
         labels: ["Scripting"]
-      - q: "Was ist bei der Zuweisung einer Bash-Variable zu beachten?"
+      - q: "Was muss man bei der Zuweisung einer Bash-Variable beachten?"
         type: select
         options:
           - text: "Kein Leerzeichen um das Gleichheitszeichen: NAME=\"Alice\""
@@ -174,7 +183,7 @@ sections:
           - text: "Variablen müssen in Großbuchstaben sein"
           - text: "Variablen müssen mit export deklariert werden"
         labels: ["Scripting"]
-      - q: "Welche Syntax schließt eine if-Bedingung in Bash korrekt ab?"
+      - q: "Mit welchem Wort schließt eine if-Bedingung in Bash ab?"
         type: select
         options:
           - text: "fi"
@@ -186,7 +195,7 @@ sections:
       - q: "Welche dieser Aussagen über Shell Scripting stimmen?"
         type: multiple-choice
         options:
-          - text: "$() speichert Befehlsausgabe in einer Variable"
+          - text: "$() speichert das Ergebnis eines Befehls in einer Variable"
             correct: true
           - text: "for-Schleifen enden mit 'done'"
             correct: true

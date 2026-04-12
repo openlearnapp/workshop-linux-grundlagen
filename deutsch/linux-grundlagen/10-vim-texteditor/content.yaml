@@ -5,40 +5,45 @@ description: "nano für Einsteiger, vim für Profis — Dateien direkt im Termin
 image: "images/lesson-header.svg"
 image_caption: "Vim-Interface mit Modus-Anzeigen (Normal, Insert, Visual, Command)"
 sections:
-  - title: "nano — der benutzerfreundliche Einstieg"
+  - title: "nano — der freundliche Texteditor"
     image: "images/section-01-nano.svg"
     explanation: |
-      **Warum ist das wichtig?** Auf Servern gibt es keine grafische Oberfläche.
-      Du musst Konfigurationsdateien direkt im Terminal bearbeiten — `nano` ist der
-      einfachste Weg, `vim` der mächtigste.
+      Stell dir vor, du bist auf einem Server ohne Maus, ohne Fenster —
+      nur das Terminal. Und du musst eine Datei bearbeiten.
 
-      **nano** zeigt am unteren Rand alle wichtigen Tastenkombinationen an:
-      - `Ctrl+O` dann `Enter`: Speichern (Write **O**ut)
-      - `Ctrl+X`: Beenden (e**X**it)
-      - `Ctrl+W`: Suchen (**W**here is)
-      - `Ctrl+K`: Zeile ausschneiden (**K**ut)
-      - `Ctrl+U`: Einfügen (**U**ncut)
-      - `Ctrl+G`: Hilfe (**G**et help)
+      Dafür gibt es **Texteditoren für das Terminal**.
+      Der einfachste heißt **nano**.
+      Er ist so gemacht, dass Einsteiger sofort damit arbeiten können.
 
-      nano öffnen und sofort eine Datei bearbeiten:
-      ```bash
-      nano /etc/hosts
-      sudo nano /etc/nginx/sites-available/default
+      So öffnest du eine Datei mit nano:
       ```
+      nano meine-datei.txt
+      ```
+
+      Am unteren Rand zeigt nano dir die wichtigsten Tastenkombinationen.
+      Das `^` bedeutet immer die `Ctrl`-Taste (Steuerung):
+      - `Ctrl+O` dann `Enter` — Speichern (das O steht für "Output")
+      - `Ctrl+X` — Beenden (X wie "Exit")
+      - `Ctrl+W` — Suchen (W wie "Where is this text?")
+      - `Ctrl+K` — Zeile ausschneiden (K wie "Kill the line")
+      - `Ctrl+U` — Eingefügtes wieder einfügen (U wie "Uncut")
+      - `Ctrl+G` — Hilfe anzeigen (G wie "Get help")
+
+      Probier es einfach aus — nano ist sehr verzeihend!
     examples:
       - q: "nano ~/.bashrc"
-        a: "Bash-Konfiguration mit nano bearbeiten — Ctrl+O speichern, Ctrl+X beenden"
+        a: "Öffnet die Bash-Konfigurationsdatei — Ctrl+O zum Speichern, Ctrl+X zum Beenden"
         rel:
           - ["nano-cmd", "Benutzerfreundlicher Terminal-Texteditor mit Tastaturhinweisen", "Befehl nano"]
           - ["nano-save", "Ctrl+O dann Enter — Datei in nano speichern", "nano Ctrl+O"]
         labels: ["Editor", "Konfiguration"]
       - q: "nano -l /etc/hosts"
-        a: "Hosts-Datei mit Zeilennummern bearbeiten — hilfreich bei langen Dateien"
+        a: "Öffnet die Datei und zeigt Zeilennummern an — praktisch bei langen Dateien"
         rel:
           - ["nano-l", "Line numbers — Zeilennummern in nano anzeigen", "nano Flag -l"]
         labels: ["Editor"]
       - q: "nano +50 app.conf"
-        a: "Nano öffnet direkt bei Zeile 50 — spart Scrollen in langen Konfigurationen"
+        a: "Öffnet die Datei direkt bei Zeile 50 — du musst nicht lange scrollen"
         rel:
           - ["nano-jump-line", "+N öffnet Datei direkt bei Zeile N", "nano +Zeilennummer"]
         labels: ["Editor"]
@@ -46,91 +51,110 @@ sections:
   - title: "vim — der Profi-Editor"
     image: "images/section-02-vim.svg"
     explanation: |
-      **vim** (Vi Improved) ist mächtig aber zunächst verwirrend, weil es **Modi** hat:
+      **vim** (Vi Improved — "verbessertes Vi") ist ein Texteditor,
+      der zuerst komisch wirkt, aber sehr schnell ist.
 
-      | Modus | Aktivierung | Wofür? |
-      |-------|-------------|--------|
-      | **Normal** | `Esc` | Navigation, Befehle |
-      | **Insert** | `i`, `a`, `o` | Text eingeben |
-      | **Visual** | `v`, `V` | Text markieren |
-      | **Command** | `:` | Speichern, Beenden, Suchen |
+      Das Besondere: vim hat **Modi** (Zustände).
+      Das ist wie bei einem Videospiel —
+      manchmal läufst du, manchmal kämpfst du, manchmal redest du.
 
-      **Das Wichtigste zum Starten:**
-      1. vim öffnet sich im Normal-Modus
-      2. `i` drücken → Insert-Modus → Text tippen
-      3. `Esc` → zurück in Normal-Modus
-      4. `:w` → speichern
-      5. `:q` → beenden
-      6. `:wq` → speichern und beenden
-      7. `:q!` → beenden ohne speichern (erzwingen)
+      Die wichtigsten Modi:
+      - **Normal-Modus** — zum Navigieren und Befehle geben (Standard beim Start)
+      - **Insert-Modus** — zum Tippen von Text
+      - **Command-Modus** — für Befehle wie Speichern oder Suchen
 
-      **Warum vim lernen?** Es ist auf *jedem* Linux-System vorinstalliert. Wenn du auf
-      einem frisch installierten Server bist, ist vim immer verfügbar.
+      Dein erster Einstieg in vim, Schritt für Schritt:
+      1. vim öffnen: `vim meine-datei.txt`
+      2. vim startet im Normal-Modus — du kannst noch keinen Text tippen
+      3. Drücke `i` — jetzt bist du im Insert-Modus, unten steht `-- INSERT --`
+      4. Schreibe deinen Text
+      5. Drücke `Esc` — zurück in den Normal-Modus
+      6. Tippe `:wq` — das speichert (w = write) und beendet (q = quit)
+
+      Wichtige Notfall-Befehle in vim:
+      - `:wq` — speichern und beenden
+      - `:q!` — beenden OHNE zu speichern (! = erzwingen)
+      - `:w` — nur speichern, nicht beenden
+
+      Warum vim lernen?
+      Es ist auf fast jedem Linux-System vorinstalliert.
+      Wenn du auf einem neuen Server bist, ist vim immer da.
     examples:
       - q: "vim /etc/nginx/nginx.conf"
-        a: "Nginx-Konfiguration mit vim öffnen — immer verfügbar, auch auf minimalen Servern"
+        a: "Öffnet eine Konfigurationsdatei mit vim — läuft auf jedem Linux-System"
         rel:
           - ["vim-cmd", "Vi Improved — mächtiger modaler Terminal-Texteditor", "Befehl vim"]
         labels: ["Editor", "Konfiguration"]
       - q: ":wq"
-        a: "In vim: Datei speichern (write) und beenden (quit) — im Command-Modus eingeben"
+        a: "In vim: Datei speichern und Editor beenden — im Command-Modus mit : starten"
         rel:
           - ["vim-wq", "Write Quit — in vim speichern und beenden", ":wq"]
           - ["vim-command-mode", "Doppelpunkt : aktiviert den Command-Modus in vim", "vim :"]
         labels: ["Editor"]
       - q: ":q!"
-        a: "vim beenden ohne zu speichern — ! erzwingt die Aktion"
+        a: "vim beenden ohne zu speichern — das ! bedeutet 'erzwinge es, egal was'"
         rel:
           - ["vim-q-bang", "Quit ohne Speichern erzwingen — alle Änderungen verwerfen", ":q!"]
         labels: ["Editor"]
       - q: "i"
-        a: "Insert-Modus aktivieren — jetzt kann Text eingegeben werden"
+        a: "Wechselt in den Insert-Modus — jetzt kannst du Text tippen"
         rel:
           - ["vim-insert", "i — in Insert-Modus wechseln (vor Cursor), a = nach Cursor", "vim i"]
         labels: ["Editor"]
 
-  - title: "vim Navigation und Suchen"
+  - title: "vim — navigieren und suchen"
     image: "images/section-03-vim-nav.svg"
     explanation: |
-      Im **Normal-Modus** navigierst du ohne Pfeiltasten (effizienter!):
+      Im Normal-Modus kannst du dich durch die Datei bewegen —
+      sogar ohne die Pfeiltasten!
 
-      | Taste | Aktion |
-      |-------|--------|
-      | `h`, `j`, `k`, `l` | Links, Runter, Hoch, Rechts |
-      | `w` | Nächstes Wort vorwärts |
-      | `b` | Vorheriges Wort rückwärts |
-      | `0` | Zeilenanfang |
-      | `$` | Zeilenende |
-      | `gg` | Anfang der Datei |
-      | `G` | Ende der Datei |
-      | `50G` | Zu Zeile 50 springen |
+      Die **hjkl**-Tasten sind die Navigation:
+      - `h` — nach links
+      - `j` — nach unten
+      - `k` — nach oben
+      - `l` — nach rechts
 
-      **Suchen und Ersetzen in vim:**
+      Das klingt seltsam, aber Profis nutzen diese Tasten,
+      weil die Finger nicht von der Hauptreihe müssen.
+
+      Weitere nützliche Sprünge:
+      - `w` — ein Wort vorwärts springen
+      - `b` — ein Wort rückwärts springen
+      - `gg` — ganz an den Anfang der Datei
+      - `G` — ganz ans Ende der Datei
+      - `50G` — zu Zeile 50 springen
+
+      **Suchen in vim:**
       ```
-      /suchbegriff      → vorwärts suchen, n = nächster Treffer
-      ?suchbegriff      → rückwärts suchen
-      :%s/alt/neu/g     → alle Vorkommen ersetzen
-      :%s/alt/neu/gc    → mit Bestätigung ersetzen
+      /fehler
       ```
+      Tippe `/` und dann das Wort — vim springt zum ersten Treffer.
+      Mit `n` gehst du zum nächsten Treffer.
+
+      **Ersetzen in der ganzen Datei:**
+      ```
+      :%s/alt/neu/g
+      ```
+      Das bedeutet: "Ersetze in der ganzen Datei `:` jedes `%s` Vorkommen von 'alt' durch 'neu', überall `g`."
     examples:
       - q: ":%s/localhost/example.com/g"
-        a: "In vim: alle Vorkommen von 'localhost' durch 'example.com' ersetzen"
+        a: "Ersetzt in vim alle Vorkommen von 'localhost' durch 'example.com'"
         rel:
           - ["vim-substitute", ":%s/alt/neu/g — Suchen und Ersetzen in der ganzen Datei", "vim :%s"]
           - ["vim-g-flag", "g = global — alle Vorkommen in einer Zeile ersetzen", "Vim Flag /g"]
         labels: ["Editor"]
       - q: "/ERROR"
-        a: "In vim: nach ERROR suchen — n für nächsten Treffer, N für vorherigen"
+        a: "Sucht in vim nach 'ERROR' — n für nächsten Treffer, N für vorherigen"
         rel:
           - ["vim-search", "/Begriff vorwärts suchen in vim", "vim /"]
         labels: ["Editor"]
       - q: "dd"
-        a: "In vim (Normal-Modus): aktuelle Zeile löschen — p zum Einfügen"
+        a: "Löscht die aktuelle Zeile in vim — sie landet im Zwischenspeicher, p fügt sie wieder ein"
         rel:
           - ["vim-dd", "Delete — ganze Zeile in vim löschen (und in Buffer speichern)", "vim dd"]
         labels: ["Editor"]
       - q: "yy"
-        a: "In vim: aktuelle Zeile kopieren (yank) — p zum Einfügen an nächste Stelle"
+        a: "Kopiert die aktuelle Zeile in vim (yank = kopieren) — p fügt sie danach ein"
         rel:
           - ["vim-yy", "Yank — Zeile kopieren in vim", "vim yy"]
           - ["vim-p", "Put/Paste — kopierten/gelöschten Inhalt einfügen", "vim p"]
@@ -141,7 +165,7 @@ sections:
     explanation: |
       Teste jetzt dein Wissen — gib die Befehle direkt ein!
     examples:
-      - q: "Welcher vim-Befehl speichert und beendet den Editor?"
+      - q: "Welcher vim-Befehl speichert die Datei und beendet den Editor?"
         type: input
         a: ":wq"
         labels: ["Editor"]

@@ -5,127 +5,161 @@ description: "apt, snap und dpkg — Software installieren, aktualisieren und ve
 image: "images/lesson-header.svg"
 image_caption: "Paket-Boxen mit apt, dnf und snap Labels"
 sections:
-  - title: "apt — der App Store der Kommandozeile"
+  - title: "apt — der App Store von Linux"
     image: "images/section-01-apt.svg"
     explanation: |
-      **Warum ist das wichtig?** Unter Linux installierst du Software nicht durch das
-      Herunterladen von .exe-Dateien, sondern über **Paketmanager**. Diese holen Programme
-      aus vertrauenswürdigen Quellen, lösen Abhängigkeiten auf und halten alles aktuell.
+      Stell dir vor: Du hast ein neues Handy.
+      Du gehst in den App Store, suchst eine App und tippst auf "Installieren".
+      Fertig!
 
-      Der wichtigste Paketmanager für Ubuntu/Debian: **apt** (Advanced Package Tool).
+      Linux hat genau das auch — nur über das Terminal.
+      Das Programm heißt **apt** (sprich: "apt").
 
-      **Der Standard-Workflow:**
-      ```bash
-      sudo apt update           # 1. Paketliste aktualisieren
-      sudo apt upgrade          # 2. Alle Pakete upgraden
-      sudo apt install nginx    # 3. Paket installieren
+      Bevor du etwas installierst, sagst du Linux:
+      "Schau mal nach, was es Neues gibt!"
+      ```
+      sudo apt update
       ```
 
-      **Wichtig:** `update` aktualisiert nur die *Liste* der verfügbaren Pakete,
-      nicht die Pakete selbst. `upgrade` aktualisiert dann die tatsächlichen Programme.
+      Dann installierst du ein Programm — zum Beispiel den Browser Firefox:
+      ```
+      sudo apt install firefox
+      ```
+
+      Das bedeutet Schritt für Schritt:
+      - `sudo` — "Ich bin der Chef hier, ich darf das"
+      - `apt install` — "Installiere bitte..."
+      - `firefox` — "...dieses Programm"
+
+      Und wenn du alle Programme auf dem neuesten Stand bringen willst:
+      ```
+      sudo apt upgrade
+      ```
+
+      Merke: `apt update` holt nur die **Liste** der neuen Versionen.
+      `apt upgrade` installiert dann wirklich die Neuigkeiten.
     examples:
       - q: "sudo apt update"
-        a: "Holt die aktuellen Paketlisten von allen Paketquellen — immer zuerst ausführen"
+        a: "Holt die aktuelle Liste aller verfügbaren Programme — wie ein Blick in den App Store"
         rel:
           - ["apt-cmd", "Advanced Package Tool — Paketverwaltung für Debian/Ubuntu", "Befehl apt"]
           - ["apt-update", "Paketlisten von Servern aktualisieren (nicht die Pakete selbst)", "apt update"]
         labels: ["Konfiguration"]
       - q: "sudo apt upgrade"
-        a: "Aktualisiert alle installierten Pakete auf die neueste Version"
+        a: "Aktualisiert alle installierten Programme auf die neueste Version"
         rel:
           - ["apt-upgrade", "Alle installierten Pakete auf neueste Version aktualisieren", "apt upgrade"]
         labels: ["Konfiguration"]
       - q: "sudo apt install git curl wget"
-        a: "Installiert drei Pakete auf einmal — apt akzeptiert mehrere Paketnamen"
+        a: "Installiert gleich drei Programme auf einmal — einfach alle Namen hintereinander schreiben"
         rel:
           - ["apt-install", "Paket(e) installieren", "apt install"]
         labels: ["Konfiguration"]
       - q: "sudo apt update && sudo apt upgrade -y"
-        a: "Komplett-Update in einem Befehl — -y beantwortet alle Rückfragen automatisch mit Ja"
+        a: "Update und Upgrade in einem Schritt — -y sagt automatisch Ja zu allen Fragen"
         rel:
           - ["apt-y-flag", "Yes — alle Rückfragen automatisch bestätigen", "Flag -y"]
         labels: ["Konfiguration"]
 
-  - title: "Pakete suchen, entfernen und aufräumen"
+  - title: "Programme suchen, entfernen und aufräumen"
     image: "images/section-02-search-remove.svg"
     explanation: |
-      `apt` kann auch nach Paketen suchen und nicht mehr benötigte Software entfernen.
+      Du weißt nicht genau, wie ein Programm heißt?
+      Kein Problem — du kannst danach suchen:
+      ```
+      apt search "text editor"
+      ```
 
-      | Befehl | Wirkung |
-      |--------|---------|
-      | `apt search nginx` | Nach Paketen suchen |
-      | `apt show nginx` | Details zu einem Paket anzeigen |
-      | `apt remove nginx` | Paket entfernen (Konfiguration bleibt) |
-      | `apt purge nginx` | Paket + Konfiguration vollständig entfernen |
-      | `apt autoremove` | Nicht mehr benötigte Abhängigkeiten entfernen |
-      | `apt list --installed` | Alle installierten Pakete anzeigen |
+      Das ist wie die Suchfunktion im App Store.
+      Linux zeigt dir alle Programme, die zu deiner Suche passen.
 
-      **Nach dem Aufräumen** empfiehlt sich `sudo apt autoremove` — es entfernt
-      Pakete die automatisch installiert wurden, aber nicht mehr gebraucht werden.
+      Wenn du ein Programm nicht mehr brauchst, kannst du es entfernen:
+      ```
+      sudo apt remove firefox
+      ```
+
+      Oder komplett löschen (auch alle Einstellungen):
+      ```
+      sudo apt purge firefox
+      ```
+
+      Und nach dem Aufräumen löscht du alte, unnötige Reste:
+      ```
+      sudo apt autoremove
+      ```
+
+      Das ist wie "Speicher bereinigen" auf dem Handy —
+      Programme, die niemand mehr braucht, werden entfernt.
     examples:
       - q: "apt search \"text editor\""
-        a: "Sucht nach Paketen mit 'text editor' im Namen oder der Beschreibung"
+        a: "Sucht nach Programmen mit 'text editor' im Namen — wie die Suche im App Store"
         rel:
           - ["apt-search", "In Paketdatenbank suchen", "apt search"]
         labels: ["Konfiguration"]
       - q: "apt show nodejs"
-        a: "Zeigt Details zu nodejs: Version, Abhängigkeiten, Beschreibung, Größe"
+        a: "Zeigt Details zu nodejs: Version, Größe, Beschreibung — bevor du es installierst"
         rel:
           - ["apt-show", "Detaillierte Informationen zu einem Paket anzeigen", "apt show"]
         labels: ["Konfiguration"]
       - q: "sudo apt remove --purge apache2"
-        a: "Entfernt Apache2 komplett inkl. aller Konfigurationsdateien"
+        a: "Entfernt Apache2 komplett — auch alle Einstellungen werden gelöscht"
         rel:
           - ["apt-purge", "Paket und alle Konfigurationsdateien komplett entfernen", "apt purge / --purge"]
         labels: ["Konfiguration"]
       - q: "sudo apt autoremove && sudo apt clean"
-        a: "Verwaiste Pakete entfernen und Paket-Cache leeren — gibt Speicherplatz frei"
+        a: "Alten Ballast entfernen und Speicherplatz freigeben — wie Frühjahrsputz für Linux"
         rel:
           - ["apt-autoremove", "Automatisch installierte, nicht mehr benötigte Pakete entfernen", "apt autoremove"]
           - ["apt-clean", "Heruntergeladene Paketdateien aus Cache löschen", "apt clean"]
         labels: ["Konfiguration"]
 
-  - title: "dpkg und snap — alternative Installationswege"
+  - title: "dpkg und snap — andere Wege zur Installation"
     image: "images/section-03-dpkg-snap.svg"
     explanation: |
-      Manchmal ist ein Programm nicht im apt-Repository — dann gibt es andere Wege:
+      Manchmal ist ein Programm nicht im normalen App Store von Linux.
+      Dann gibt es andere Wege:
 
-      **dpkg** installiert `.deb`-Dateien direkt (wie ein .exe-Installer, aber für Linux):
-      ```bash
+      **Weg 1: .deb-Datei direkt installieren**
+      Eine `.deb`-Datei (sprich: "deb") ist wie eine Installationsdatei für Linux.
+      Das Werkzeug dafür heißt **dpkg** (sprich: "dee-pee-kay-gee").
+      ```
       sudo dpkg -i google-chrome.deb
-      sudo apt install -f    # fehlende Abhängigkeiten nachinstallieren
+      ```
+      Das `-i` steht für "install" (englisch für "installieren").
+
+      **Weg 2: snap**
+      **Snap** ist ein moderneres System — Programme laufen dabei extra sicher,
+      abgetrennt vom Rest des Systems, wie in einer kleinen Schachtel.
+      ```
+      snap install vlc
       ```
 
-      **snap** ist ein moderneres Paketsystem von Canonical (Ubuntu):
-      - Pakete laufen isoliert (sandboxed)
-      - Automatische Updates
-      - Etwas langsamer beim Start als normale apt-Pakete
-
-      **curl + Installationsskript** — viele Programme nutzen diesen Weg:
-      ```bash
-      curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
-      sudo apt install nodejs
+      **Weg 3: Installationsskript**
+      Viele Profi-Programme haben einen eigenen Installationshelfer:
       ```
+      curl -fsSL https://get.docker.com | sudo sh
+      ```
+      Das lädt den Helfer herunter und startet ihn sofort.
     examples:
       - q: "sudo dpkg -i vscode.deb"
-        a: "Installiert eine lokal heruntergeladene .deb-Datei direkt"
+        a: "Installiert eine heruntergeladene .deb-Datei direkt — wie eine Installationsdatei öffnen"
         rel:
           - ["dpkg-cmd", "Debian Package — .deb-Dateien direkt verwalten", "Befehl dpkg"]
           - ["dpkg-i", "Install — .deb-Datei installieren", "Flag -i"]
         labels: ["Konfiguration"]
       - q: "dpkg -l | grep \"^ii\""
-        a: "Listet alle korrekt installierten Pakete (ii = installed properly)"
+        a: "Zeigt alle korrekt installierten Programme — ii bedeutet 'korrekt installiert'"
         rel:
           - ["dpkg-l", "List — alle bekannten Pakete und ihren Status", "dpkg -l"]
         labels: ["Konfiguration"]
       - q: "snap install code --classic"
-        a: "Visual Studio Code über snap installieren — --classic erlaubt vollen Systemzugriff"
+        a: "Visual Studio Code über snap installieren — --classic gibt dem Programm mehr Rechte"
         rel:
           - ["snap-cmd", "Snap-Paketsystem — isolierte, auto-updatende Apps", "Befehl snap"]
           - ["snap-classic", "Classic confinement — volles Systemzugriff für IDE-artige Programme", "Flag --classic"]
         labels: ["Konfiguration"]
       - q: "snap list"
-        a: "Alle installierten snap-Pakete und ihre Versionen anzeigen"
+        a: "Zeigt alle Programme an, die über snap installiert wurden"
         rel:
           - ["snap-list", "Alle installierten snap-Pakete auflisten", "snap list"]
         labels: ["Konfiguration"]
@@ -135,20 +169,20 @@ sections:
     explanation: |
       Teste jetzt dein Wissen — gib die Befehle direkt ein!
     examples:
-      - q: "Welcher Befehl aktualisiert die Paketlisten unter Ubuntu/Debian?"
+      - q: "Welcher Befehl aktualisiert die Programmliste unter Ubuntu?"
         type: input
         a: "sudo apt update"
         labels: ["Konfiguration"]
       - q: "Was ist der Unterschied zwischen 'apt update' und 'apt upgrade'?"
         type: select
         options:
-          - text: "update holt neue Paketlisten, upgrade aktualisiert die Pakete selbst"
+          - text: "update holt neue Programmlisten, upgrade installiert die Updates selbst"
             correct: true
-          - text: "update installiert Pakete, upgrade entfernt alte"
+          - text: "update installiert Programme, upgrade entfernt alte"
           - text: "update und upgrade machen dasselbe"
-          - text: "upgrade holt neue Paketlisten, update aktualisiert die Pakete"
+          - text: "upgrade holt neue Programmlisten, update installiert die Updates"
         labels: ["Konfiguration"]
-      - q: "Welcher Befehl entfernt ein Paket inkl. seiner Konfigurationsdateien?"
+      - q: "Welcher Befehl entfernt ein Programm inkl. aller Einstellungen?"
         type: select
         options:
           - text: "sudo apt purge nginx"
@@ -160,11 +194,11 @@ sections:
       - q: "Welche dieser Aussagen über apt stimmen?"
         type: multiple-choice
         options:
-          - text: "apt kann mehrere Pakete auf einmal installieren"
+          - text: "apt kann mehrere Programme auf einmal installieren"
             correct: true
-          - text: "apt autoremove entfernt nicht mehr benötigte Pakete"
+          - text: "apt autoremove entfernt nicht mehr benötigte Programme"
             correct: true
-          - text: "apt search durchsucht die Paketdatenbank"
+          - text: "apt search sucht in der Programmdatenbank"
             correct: true
-          - text: "apt benötigt keine Administratorrechte"
+          - text: "apt braucht keine Administratorrechte"
         labels: ["Konfiguration"]

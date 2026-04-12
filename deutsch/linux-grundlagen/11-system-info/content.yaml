@@ -8,39 +8,51 @@ sections:
   - title: "Speicherplatz — df und du"
     image: "images/section-01-disk.svg"
     explanation: |
-      **Warum ist das wichtig?** Ein voller Festplattenspeicher ist einer der häufigsten
-      Gründe warum Server abstürzen oder Services ausfallen. `df` und `du` helfen dir,
-      Speicherprobleme frühzeitig zu erkennen und die Übeltäter zu finden.
+      Stell dir vor, dein Computer ist wie ein Zimmer.
+      Wenn das Zimmer voll ist, passt nichts mehr rein —
+      und der Computer fängt an, sich zu verschlucken.
 
-      | Befehl | Zweck |
-      |--------|-------|
-      | `df -h` | Festplattenauslastung aller Partitionen |
-      | `du -sh ordner/` | Größe eines Ordners |
-      | `du -sh * | sort -rh` | Größe aller Dateien/Ordner sortiert |
-      | `du -h --max-depth=1` | Nur eine Ebene tief anzeigen |
+      Mit **df** (Disk Free — "freier Platz auf dem Datenträger")
+      siehst du, wie voll deine Festplatte ist:
+      ```
+      df -h
+      ```
+      Das `-h` steht für "human-readable" (menschenlesbar) —
+      es zeigt GB und MB statt riesige Zahlen.
 
-      **Alarm-Schwellenwert:** Wenn `df -h` bei `/` über 80% zeigt, ist Handlungsbedarf.
-      Typische Speicherfresser: `/var/log`, `/var/cache`, alte Docker-Images.
+      Mit **du** (Disk Usage — "Speicherverbrauch") schaust du,
+      welcher Ordner am meisten Platz frisst:
+      ```
+      du -sh ~/Downloads/*
+      ```
+      - `s` = summary (nur die Gesamtgröße, nicht jede Datei einzeln)
+      - `h` = human-readable (GB/MB statt Bytes)
+
+      Tipp: Wenn du die größten Ordner finden willst, kombiniere du mit sort:
+      ```
+      du -h --max-depth=1 /var | sort -rh | head -10
+      ```
+      Das zeigt die 10 größten Ordner in `/var` — sortiert von groß nach klein.
     examples:
       - q: "df -h"
-        a: "Zeigt alle Partitionen mit belegtem/freiem Platz in GB/MB — h = human-readable"
+        a: "Zeigt alle Festplatten-Bereiche mit freiem und belegtem Platz in GB/MB"
         rel:
           - ["df-cmd", "Disk Free — Festplattenauslastung anzeigen", "Befehl df"]
           - ["df-h", "Human-readable — Größen in KB/MB/GB statt Bytes", "Flag -h"]
         labels: ["Dateisystem"]
       - q: "df -h /"
-        a: "Nur die Auslastung der Root-Partition anzeigen — die wichtigste Partition"
+        a: "Zeigt nur den Hauptbereich des Computers (/) — der wichtigste Platz"
         rel:
           - ["df-root", "Auslastung der Root-Partition / prüfen", "df -h /"]
         labels: ["Dateisystem"]
       - q: "du -sh ~/Downloads/*"
-        a: "Größe jedes Elements im Downloads-Ordner anzeigen"
+        a: "Zeigt die Größe jeder Datei und jedes Ordners im Downloads-Ordner"
         rel:
           - ["du-cmd", "Disk Usage — Speicherverbrauch von Dateien/Ordnern", "Befehl du"]
           - ["du-sh", "s=summary (Gesamtgröße), h=human-readable", "Flags -sh"]
         labels: ["Dateisystem"]
       - q: "du -h --max-depth=1 /var | sort -rh | head -10"
-        a: "Die 10 größten Unterordner in /var nach Größe sortiert — Speicherfresser finden"
+        a: "Findet die 10 größten Ordner in /var — praktisch zum Aufspüren von Speicherfressern"
         rel:
           - ["du-max-depth", "Nur bis zu einer bestimmten Verzeichnistiefe anzeigen", "--max-depth=1"]
           - ["sort-rh", "r=reverse (absteigend), h=human-readable Größen sortieren", "sort -rh"]
@@ -49,82 +61,102 @@ sections:
   - title: "Arbeitsspeicher und CPU — free und uptime"
     image: "images/section-02-memory.svg"
     explanation: |
-      `free` zeigt den RAM-Verbrauch:
+      Dein Computer hat zwei Arten von Speicher:
+      - **Festplatte** — wie ein Bücherregal: viel Platz, aber langsam
+      - **Arbeitsspeicher (RAM)** — wie dein Schreibtisch: schnell, aber begrenzt
+
+      Mit **free** siehst du, wie voll dein Schreibtisch gerade ist:
       ```
-      $ free -h
+      free -h
+      ```
+
+      Die Ausgabe sieht ungefähr so aus:
+      ```
                     total   used   free  shared  cache  available
       Mem:           15Gi   4.2Gi  8.1Gi  512Mi  3.1Gi    10.4Gi
       Swap:          2.0Gi  0B     2.0Gi
       ```
 
-      **Wichtige Spalten:**
-      - `total`: Gesamter RAM
-      - `used`: Belegter RAM
-      - **`available`**: Wirklich verfügbarer RAM (wichtiger als `free`!)
-      - `Swap`: Auslagerungsspeicher auf der Festplatte — wenn Swap voll ist, wird's langsam
+      Wichtig: Schau auf die Spalte **available** — das ist der wirklich freie Platz.
+      Die Spalte `free` allein sagt nicht viel, weil Linux Speicher oft für Cache nutzt.
 
-      `uptime` zeigt wie lange das System läuft und die **Load Average**:
+      **Swap** ist wie eine Notfallerweiterung des Schreibtischs —
+      Linux legt selten benutzte Sachen kurz auf die Festplatte.
+      Wenn Swap voll ist, wird der Computer langsam.
+
+      Mit **uptime** siehst du, wie lange dein Computer schon läuft:
       ```
-      15:42:01 up 7 days, 3:25,  2 users,  load average: 0.52, 0.48, 0.45
+      uptime
       ```
-      Load Average 1/5/15 Minuten — bei einem Kern ist 1.0 = 100% ausgelastet.
+      Es zeigt auch die **Load Average** (Auslastung) —
+      kleine Zahlen bedeuten: alles ist entspannt.
     examples:
       - q: "free -h"
-        a: "RAM-Auslastung in MB/GB — available-Spalte zeigt wirklich verfügbaren Speicher"
+        a: "Zeigt den Arbeitsspeicher-Verbrauch in GB/MB — available-Spalte ist das Wichtigste"
         rel:
           - ["free-cmd", "RAM-Auslastung und Swap-Nutzung anzeigen", "Befehl free"]
           - ["free-h", "Human-readable — Speicher in MB/GB statt Bytes", "free -h"]
         labels: ["Basics"]
       - q: "uptime"
-        a: "Systemlaufzeit, aktive Nutzer und CPU Load Average der letzten 1/5/15 Minuten"
+        a: "Zeigt wie lange der Computer läuft, wie viele Nutzer da sind und wie ausgelastet er ist"
         rel:
           - ["uptime-cmd", "Systemlaufzeit und Auslastung der letzten Minuten", "Befehl uptime"]
           - ["load-average", "Durchschnittliche CPU-Auslastung: 1=100% bei einem Kern", "Load Average"]
         labels: ["Basics"]
       - q: "vmstat 2 5"
-        a: "System-Statistik alle 2 Sekunden, 5 Mal — CPU, RAM, I/O, Prozesse"
+        a: "Zeigt System-Statistiken alle 2 Sekunden, insgesamt 5 Mal — für Profis"
         rel:
           - ["vmstat-cmd", "Virtual Memory Statistics — detaillierte System-Performance-Daten", "Befehl vmstat"]
         labels: ["Basics"]
 
-  - title: "history und der Befehlsverlauf"
+  - title: "history — was habe ich zuletzt gemacht?"
     image: "images/section-03-history.svg"
     explanation: |
-      `history` zeigt alle zuletzt eingegebenen Befehle — mit Nummern.
-      Das Terminal speichert standardmäßig 1000–2000 Befehle.
+      Hast du einen Befehl eingegeben, den du wieder brauchst —
+      aber nicht mehr weißt, wie er genau lautete?
 
-      **Produktivitäts-Tricks:**
-      | Kürzel | Wirkung |
-      |--------|---------|
-      | `history` | Alle Befehle anzeigen |
-      | `history 20` | Letzte 20 Befehle |
-      | `!!` | Letzten Befehl wiederholen |
-      | `!50` | Befehl Nummer 50 ausführen |
-      | `!apt` | Letzten Befehl der mit 'apt' anfing |
-      | `Ctrl+R` | Rückwärts in history suchen (sehr praktisch!) |
-      | `history | grep ssh` | history nach ssh-Befehlen durchsuchen |
+      Linux erinnert sich für dich!
+      **history** zeigt alle Befehle, die du zuletzt eingegeben hast:
+      ```
+      history
+      ```
 
-      `Ctrl+R` ist einer der wertvollsten Shortcuts: tippe Suchbegriff und bash sucht
-      automatisch den letzten passenden Befehl.
+      Nützliche Tricks mit history:
+      - `history 20` — nur die letzten 20 Befehle
+      - `!!` — letzten Befehl sofort wiederholen
+      - `!50` — Befehl Nummer 50 aus der Liste ausführen
+      - `history | grep ssh` — nur SSH-Befehle aus der Liste suchen
+
+      Und der Geheimtipp der Profis: **Ctrl+R**
+      Drücke Ctrl+R und tippe ein Wort —
+      Linux sucht automatisch rückwärts in der history und zeigt den letzten passenden Befehl.
+      Das spart unglaublich viel Tipparbeit!
+
+      Und noch ein Blick in das Innere des Computers —
+      Linux speichert viele Informationen in speziellen "Dateien" unter `/proc`:
+      ```
+      cat /proc/cpuinfo | grep "model name" | head -1
+      ```
+      Das zeigt dir, welche CPU in deinem Computer steckt.
     examples:
       - q: "history | tail -20"
-        a: "Die letzten 20 eingegebenen Befehle anzeigen"
+        a: "Zeigt die letzten 20 eingegebenen Befehle — praktisch zum Nachschauen"
         rel:
           - ["history-cmd", "Verlauf der eingegebenen Befehle anzeigen", "Befehl history"]
         labels: ["Basics"]
       - q: "history | grep \"apt install\""
-        a: "Alle apt install-Befehle aus der history suchen — was habe ich wann installiert?"
+        a: "Sucht in der history nach allen Befehlen, die apt install enthalten"
         rel:
           - ["history-grep", "history mit grep kombinieren — spezifische Befehle aus Verlauf suchen", "history | grep"]
         labels: ["Basics"]
       - q: "!!"
-        a: "Letzten Befehl sofort wiederholen — besonders nützlich für: sudo !!"
+        a: "Wiederholt den letzten Befehl sofort — besonders nützlich als: sudo !!"
         rel:
           - ["bang-bang", "!! führt den zuletzt eingegebenen Befehl erneut aus", "!!"]
           - ["sudo-bang-bang", "sudo !! — letzten Befehl mit Administratorrechten wiederholen", "sudo !!"]
         labels: ["Basics"]
       - q: "cat /proc/cpuinfo | grep \"model name\" | head -1"
-        a: "CPU-Modell und -Typ aus den Kernel-Prozessinformationen auslesen"
+        a: "Zeigt das CPU-Modell deines Computers — /proc ist ein Fenster in den Kernel"
         rel:
           - ["proc-cpuinfo", "Kernel-Datei mit detaillierten CPU-Informationen", "/proc/cpuinfo"]
           - ["proc-filesystem", "/proc ist kein echtes Dateisystem — enthält Kernel-Infos als Dateien", "/proc"]
@@ -135,7 +167,7 @@ sections:
     explanation: |
       Teste jetzt dein Wissen — gib die Befehle direkt ein!
     examples:
-      - q: "Welcher Befehl zeigt die Festplattenauslastung aller Partitionen?"
+      - q: "Welcher Befehl zeigt die Festplattenauslastung aller Bereiche an?"
         type: input
         a: "df -h"
         labels: ["Dateisystem"]
