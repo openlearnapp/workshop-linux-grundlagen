@@ -1,143 +1,164 @@
 version: 2
 number: 4
 title: "Dateiinhalt"
-description: "cat, less, head, tail und grep — Dateien lesen, durchsuchen und filtern"
+description: "Lern wie du Dateien liest, durchblätterst und nach bestimmten Wörtern durchsuchst"
 image: "images/lesson-header.svg"
 image_caption: "Terminal mit cat, head und grep Ausgaben"
 sections:
   - title: "cat, less und more — Dateien lesen"
     image: "images/section-01-read.svg"
     explanation: |
-      **Warum ist das wichtig?** Als Linux-Nutzer liest du ständig Dateien:
-      Konfigurationen, Log-Files, Skripte, Datenbankdumps. Die richtigen Werkzeuge
-      entscheiden, ob du 10 Sekunden oder 10 Minuten brauchst.
+      Wie liest man Dateien im Terminal? Dafür gibt es verschiedene Befehle —
+      je nach Dateigröße ist ein anderer besser geeignet.
 
       | Befehl | Für was? |
       |--------|----------|
-      | `cat` | Kurze Dateien komplett anzeigen |
-      | `less` | Lange Dateien interaktiv durchblättern |
-      | `more` | Ähnlich wie less, aber einfacher |
-      | `head` | Nur die ersten N Zeilen |
-      | `tail` | Nur die letzten N Zeilen |
+      | `cat` | Kleine Dateien komplett anzeigen (cat = "concatenate", englisch für "aneinanderreihen") |
+      | `less` | Lange Dateien seitenweise durchblättern — wie ein Buch! |
+      | `head` | Nur die ersten Zeilen einer Datei sehen |
+      | `tail` | Nur die letzten Zeilen einer Datei sehen |
 
-      In `less` navigierst du mit:
-      - `j`/`k` oder Pfeiltasten: Zeile hoch/runter
-      - `Space`/`b`: Seite vor/zurück
-      - `/suchbegriff`: Suchen
-      - `q`: Beenden
+      **`cat`** gibt die ganze Datei auf einmal aus:
+      ```
+      cat meine-datei.txt
+      ```
+
+      **`less`** ist wie ein Buch-Leser für lange Texte.
+      Du kannst darin blättern:
+      - Pfeiltasten oder `j`/`k`: eine Zeile hoch/runter
+      - Leertaste: eine Seite weiter
+      - `q`: beenden (Q wie "Quit" = englisch für "aufhören")
+      - `/wort`: nach einem Wort suchen
+
+      Probier es aus: `less /etc/hostname`
     examples:
       - q: "cat /etc/hostname"
-        a: "Zeigt den Hostnamen des Systems — eine kurze Datei, ideal für cat"
+        a: "Zeigt den Computernamen des Systems — eine kurze Datei, perfekt für cat"
         rel:
           - ["cat-content", "Dateiinhalt vollständig ausgeben", "Befehl cat"]
           - ["etc-hostname", "Datei mit dem Rechnernamen des Systems", "/etc/hostname"]
         labels: ["Dateisystem", "Konfiguration"]
       - q: "cat /etc/passwd"
-        a: "Zeigt alle Benutzerkonten des Systems (Name, ID, Home-Verzeichnis, Shell)"
+        a: "Zeigt alle Benutzerkonten des Systems — Name, Nummer, Ordner und welche Shell sie nutzen"
         rel:
           - ["etc-passwd", "Benutzerdatenbank des Systems", "/etc/passwd"]
         labels: ["Dateisystem", "Sicherheit"]
       - q: "less /var/log/syslog"
-        a: "Systemlog interaktiv durchblättern — mit / suchen, q beenden"
+        a: "Öffnet das Systemprotokoll zum Durchblättern — mit / suchen, mit q beenden"
         rel:
           - ["less-cmd", "Lange Dateien interaktiv und scrollbar lesen", "Befehl less"]
-          - ["syslog", "Zentrales Systemprotokoll mit allen wichtigen Ereignissen", "/var/log/syslog"]
+          - ["syslog", "Das zentrale Systemprotokoll — Linux schreibt hier wichtige Ereignisse auf", "/var/log/syslog"]
         labels: ["Dateisystem"]
 
   - title: "head und tail — Anfang und Ende"
     image: "images/section-02-head-tail.svg"
     explanation: |
-      `head` und `tail` zeigen jeweils die ersten oder letzten Zeilen einer Datei.
-      Standard: 10 Zeilen. Mit `-n` kannst du die Anzahl anpassen.
+      Manchmal willst du nicht die ganze Datei sehen — nur den Anfang oder das Ende.
+      Dafür sind `head` und `tail` da.
 
-      **Das mächtigste tail-Feature:** `tail -f` verfolgt eine Datei in Echtzeit:
-      ```bash
-      tail -f /var/log/nginx/access.log
+      `head` zeigt die **ersten** Zeilen (Standard: die ersten 10).
+      `tail` zeigt die **letzten** Zeilen (Standard: die letzten 10).
+
+      Mit `-n` kannst du bestimmen, wie viele Zeilen du sehen möchtest:
       ```
-      Ideal für Server-Logs, während Anfragen eingehen — du siehst jeden Zugriff sofort.
-      Mit `Ctrl+C` beendest du die Live-Verfolgung.
+      head -5 datei.txt    # Erste 5 Zeilen
+      tail -20 datei.txt   # Letzte 20 Zeilen
+      ```
+
+      Das **coolste Feature von `tail`:** Mit `-f` siehst du eine Datei live —
+      neue Zeilen erscheinen sofort, während sie geschrieben werden.
+      Das ist wie Live-TV für Dateien!
+      ```
+      tail -f /var/log/syslog
+      ```
+      Mit `Strg+C` (Strg gedrückt halten und C drücken) beendest du die Live-Ansicht.
     examples:
       - q: "head -20 /etc/ssh/sshd_config"
-        a: "Zeigt die ersten 20 Zeilen der SSH-Serverkonfiguration"
+        a: "Zeigt die ersten 20 Zeilen der SSH-Server-Einstellungsdatei (SSH ist ein Weg, Computer fernzusteuern)"
         rel:
           - ["head-cmd", "Anfang einer Datei anzeigen (Standard: 10 Zeilen)", "Befehl head"]
           - ["head-n", "Anzahl der anzuzeigenden Zeilen festlegen", "Flag -n"]
           - ["sshd-config", "Konfigurationsdatei des SSH-Servers", "/etc/ssh/sshd_config"]
         labels: ["Dateisystem", "Konfiguration"]
       - q: "tail -50 /var/log/auth.log"
-        a: "Die letzten 50 Zeilen des Auth-Logs — zeigt Login-Versuche und Authentifizierungen"
+        a: "Zeigt die letzten 50 Zeilen der Anmeldedatei — hier steht wer sich eingeloggt hat"
         rel:
           - ["tail-cmd", "Ende einer Datei anzeigen (Standard: 10 Zeilen)", "Befehl tail"]
-          - ["auth-log", "Protokoll für Authentifizierungen und sudo-Nutzung", "/var/log/auth.log"]
+          - ["auth-log", "Protokolldatei für Anmeldungen am System", "/var/log/auth.log"]
         labels: ["Dateisystem", "Sicherheit"]
       - q: "tail -f /var/log/nginx/access.log"
-        a: "Nginx-Zugriffe in Echtzeit verfolgen — perfekt für Live-Debugging"
+        a: "Zeigt live alle Zugriffe auf den Webserver — neue Einträge erscheinen sofort!"
         rel:
           - ["tail-f", "Follow — Datei in Echtzeit verfolgen, neue Zeilen sofort anzeigen", "Flag -f"]
         labels: ["Dateisystem", "Netzwerk"]
 
-  - title: "grep — Nadel im Heuhaufen finden"
+  - title: "grep — suche wie ein Detektiv"
     image: "images/section-03-grep.svg"
     explanation: |
-      `grep` (Global Regular Expression Print) durchsucht Dateien nach Mustern.
-      Es ist eines der meistgenutzten Linux-Werkzeuge überhaupt.
+      `grep` ist dein Detektiv-Werkzeug.
+      Es durchsucht Dateien nach einem bestimmten Wort oder Satz — und zeigt dir nur
+      die Zeilen, in denen das Wort vorkommt.
 
-      | Befehl | Wirkung |
-      |--------|---------|
-      | `grep "fehler" datei.txt` | Alle Zeilen mit "fehler" |
-      | `grep -i "Fehler" datei.txt` | Groß-/Kleinschreibung ignorieren |
-      | `grep -n "ERROR" log.txt` | Mit Zeilennummern |
-      | `grep -r "TODO" ~/projekte/` | Rekursiv in allen Unterordnern |
-      | `grep -v "DEBUG" app.log` | Alle Zeilen OHNE "DEBUG" |
-      | `grep -c "ERROR" app.log` | Nur Anzahl der Treffer zählen |
+      Stell dir vor, du hast eine riesige Liste mit 1000 Einträgen
+      und suchst das Wort "Fehler". Ohne grep müsstest du alles durchlesen.
+      Mit grep findet er es in Sekunden!
 
-      **Kombination mit anderen Befehlen** macht grep besonders mächtig:
-      ```bash
-      cat /var/log/auth.log | grep "Failed"
+      | Befehl | Was er sucht |
+      |--------|--------------|
+      | `grep "hallo" datei.txt` | Alle Zeilen mit "hallo" |
+      | `grep -i "Hallo" datei.txt` | Egal ob groß oder klein geschrieben (`-i` = ignore case) |
+      | `grep -n "Fehler" log.txt` | Mit Zeilennummer — wo genau steht es? |
+      | `grep -r "TODO" ~/projekte/` | In allen Dateien in einem Ordner suchen |
+      | `grep -v "OK" ergebnis.txt` | Alle Zeilen OHNE "OK" — also die Probleme! |
+
+      Du kannst grep auch mit anderen Befehlen kombinieren:
       ```
+      cat /etc/passwd | grep alice
+      ```
+      Das `|` (Pipe, gesprochen "Peip") gibt die Ausgabe von `cat` direkt an `grep` weiter.
     examples:
       - q: "grep -i \"error\" /var/log/syslog"
-        a: "Alle Fehlermeldungen im Systemlog suchen, Groß-/Kleinschreibung egal"
+        a: "Sucht nach 'error' im Systemprotokoll — egal ob groß oder klein geschrieben"
         rel:
           - ["grep-cmd", "Zeilen in Dateien nach Muster durchsuchen", "Befehl grep"]
           - ["grep-i", "Case-insensitive — Groß-/Kleinschreibung ignorieren", "Flag -i"]
         labels: ["Dateisystem"]
       - q: "grep -n \"TODO\" ~/projekte/app.py"
-        a: "Alle TODO-Kommentare im Python-Skript mit Zeilennummern finden"
+        a: "Findet alle TODO-Kommentare im Programm-Code und zeigt die Zeilennummern"
         rel:
           - ["grep-n", "Number — Zeilennummern der Treffer anzeigen", "Flag -n"]
         labels: ["Dateisystem"]
       - q: "grep -r \"database_url\" ~/projekte/"
-        a: "In allen Dateien unter ~/projekte/ nach database_url suchen — findet auch vergessene Configs"
+        a: "Sucht in allen Dateien im Projekte-Ordner nach 'database_url' — findet auch vergessene Einstellungen"
         rel:
           - ["grep-r", "Recursive — in Verzeichnissen und Unterordnern suchen", "Flag -r"]
         labels: ["Dateisystem"]
       - q: "grep -v \"^#\" /etc/ssh/sshd_config"
-        a: "SSH-Config anzeigen, aber alle Kommentarzeilen (beginnen mit #) ausblenden"
+        a: "Zeigt die SSH-Einstellungen ohne Kommentarzeilen (Kommentare beginnen mit # und erklären nur)"
         rel:
           - ["grep-v", "Invert match — Zeilen OHNE das Muster anzeigen", "Flag -v"]
-          - ["regex-caret", "^ in Regex = Zeilenanfang", "Regex ^"]
+          - ["regex-caret", "^ in einem Suchmuster bedeutet: Anfang der Zeile", "Regex ^"]
         labels: ["Dateisystem", "Konfiguration"]
 
-  - title: "🖥️ Terminal-Check"
+  - title: "Terminal-Check"
     image: "images/section-04-check.svg"
     explanation: |
-      Teste jetzt dein Wissen — gib die Befehle direkt ein!
+      Teste jetzt dein Wissen!
     examples:
-      - q: "Welcher Befehl liest eine Datei interaktiv und ermöglicht Scrollen?"
+      - q: "Welcher Befehl lässt dich eine Datei seitenweise durchblättern?"
         type: input
         a: "less"
         labels: ["Dateisystem"]
-      - q: "Was macht 'tail -f /var/log/nginx/access.log'?"
+      - q: "Was macht 'tail -f /var/log/syslog'?"
         type: select
         options:
-          - text: "Verfolgt die Datei in Echtzeit und zeigt neue Zeilen sofort"
+          - text: "Zeigt neue Zeilen in der Datei sofort live an"
             correct: true
-          - text: "Zeigt die letzten 10 Zeilen und beendet sich"
+          - text: "Zeigt die letzten 10 Zeilen und hört dann auf"
           - text: "Löscht die letzten Zeilen der Datei"
-          - text: "Sucht nach dem Begriff 'nginx'"
+          - text: "Sucht nach dem Wort 'syslog'"
         labels: ["Dateisystem"]
-      - q: "Welcher Befehl sucht case-insensitiv nach 'error' in einer Datei?"
+      - q: "Welcher Befehl sucht unabhängig von Groß- und Kleinschreibung nach 'error'?"
         type: select
         options:
           - text: "grep -i \"error\" datei.txt"
@@ -146,14 +167,14 @@ sections:
           - text: "grep -r \"error\" datei.txt"
           - text: "grep -v \"error\" datei.txt"
         labels: ["Dateisystem"]
-      - q: "Welche dieser grep-Flags stimmen in ihrer Bedeutung?"
+      - q: "Welche dieser grep-Flags haben die richtige Bedeutung?"
         type: multiple-choice
         options:
           - text: "-i ignoriert Groß-/Kleinschreibung"
             correct: true
           - text: "-n zeigt Zeilennummern"
             correct: true
-          - text: "-r durchsucht Verzeichnisse rekursiv"
+          - text: "-r durchsucht Ordner rekursiv"
             correct: true
           - text: "-v zeigt nur Treffer ohne Kontext"
         labels: ["Dateisystem"]

@@ -1,136 +1,174 @@
 version: 2
 number: 8
 title: "Networking"
-description: "ping, curl, wget, ssh and ip — test connections, transfer data and work remotely"
+description: "ping, curl, wget, ssh and ip — test network connections, transfer data and work remotely"
 image: "images/lesson-header.svg"
+image_caption: "Network topology with router, server and clients"
 sections:
   - title: "Checking the network — ping, ip and ss"
     image: "images/section-01-network.svg"
     explanation: |
-      **Why does this matter?** As a Linux user you'll manage servers, call APIs
-      and debug network problems. These commands are the foundation.
+      Imagine you send a letter to a friend.
+      You want to know: "Does the letter even arrive?"
 
-      | Command | Purpose |
-      |---------|---------|
-      | `ping` | Test reachability |
-      | `ip addr` | IP addresses of network interfaces |
-      | `ip route` | Show routing table |
-      | `ss -tulpn` | Open ports and connections |
-      | `netstat -tulpn` | Similar to ss (older tool) |
+      On the internet, the command **ping** does that.
+      It sends small test packets to an address and measures
+      whether and how quickly they arrive:
+      ```
+      ping -c 4 google.com
+      ```
+      The `-c 4` means: "Send exactly 4 test packets."
 
-      **Network interfaces** are the connections to the network:
-      - `lo` = Loopback (local only, 127.0.0.1)
-      - `eth0` or `enp3s0` = wired Ethernet
-      - `wlan0` or `wlp2s0` = Wi-Fi
+      With **ip addr** you see your computer's address on the network —
+      like your house number:
+      ```
+      ip addr show
+      ```
+
+      And with **ss** you see which "doors" (ports) are open on your computer:
+      ```
+      ss -tulpn
+      ```
+      It sounds complicated, but it's simple:
+      - `t` = TCP connections (the most common type)
+      - `u` = UDP connections (for fast data like videos)
+      - `l` = Only show the open doors
+      - `p` = Which program has the door open?
+      - `n` = Show numbers instead of names
     examples:
       - q: "ping -c 4 google.com"
-        a: "Sends 4 ICMP packets to google.com — tests internet connection and latency"
+        a: "Sends 4 test packets to Google — checks if the internet is working"
         rel:
           - ["en-ping-cmd", "Test network reachability and latency", "ping command"]
           - ["en-ping-c", "Count — limit the number of packets sent", "flag -c"]
         labels: ["Network"]
       - q: "ip addr show"
-        a: "Show all network interfaces with IP addresses (replaces ifconfig)"
+        a: "Shows your computer's network address — like your house number on the internet"
         rel:
           - ["en-ip-cmd", "Modern network management tool (replaces ifconfig)", "ip command"]
           - ["en-ip-addr", "Show IP addresses of all network interfaces", "ip addr"]
         labels: ["Network"]
       - q: "ss -tulpn"
-        a: "Show all open TCP/UDP ports and the associated programs"
+        a: "Shows all open ports and which programs are using them"
         rel:
           - ["en-ss-cmd", "Socket Statistics — network connections and open ports", "ss command"]
           - ["en-ss-tulpn", "t=TCP, u=UDP, l=listening, p=process, n=numeric", "flags -tulpn"]
         labels: ["Network"]
 
-  - title: "curl and wget — fetching data from the web"
+  - title: "curl and wget — fetching data from the internet"
     image: "images/section-02-curl-wget.svg"
     explanation: |
-      `curl` and `wget` are the Swiss Army knives for HTTP requests.
+      Your browser downloads websites — you can see that.
+      But what if you want to get data into the terminal
+      without opening a browser?
 
-      **curl** (Client URL) — very flexible, ideal for APIs:
-      ```bash
-      curl https://api.github.com/users/torvalds
-      curl -X POST -H "Content-Type: application/json" \
-           -d '{"name":"test"}' https://api.example.com/data
+      That's what **curl** and **wget** are for.
+
+      **curl** is like an invisible browser:
       ```
-
-      **wget** — better for downloading large files:
-      ```bash
-      wget https://releases.ubuntu.com/22.04/ubuntu-22.04-live-server.iso
-      wget -c largefile.zip   # resume interrupted download
+      curl https://example.com
       ```
+      It shows you the content of a website directly in the terminal.
 
-      **Difference:** curl outputs response, wget saves directly to file.
+      With curl you can also find out your own internet address:
+      ```
+      curl -s https://ipinfo.io/ip
+      ```
+      The `-s` stands for "silent" —
+      it shows only the result, without a progress bar.
+
+      **wget** is better for downloading large files:
+      ```
+      wget https://example.com/bigfile.zip
+      ```
+      wget saves the file directly on your computer.
+      curl just shows it — that's the most important difference.
     examples:
       - q: "curl -I https://example.com"
-        a: "Show only HTTP headers (status code, server, content type) without body"
+        a: "Shows only the headers of the website — like looking at the envelope of a letter"
         rel:
           - ["en-curl-cmd", "Client URL — make HTTP requests and transfer data", "curl command"]
           - ["en-curl-I", "Head — show only HTTP response headers", "flag -I"]
         labels: ["Network"]
       - q: "curl -s https://ipinfo.io/ip"
-        a: "Show your own public IP address — -s suppresses the progress bar"
+        a: "Shows your own internet address — -s makes the output clean"
         rel:
           - ["en-curl-s", "Silent — suppress progress display and error messages", "flag -s"]
         labels: ["Network"]
       - q: "wget -O nodejs.tar.gz https://nodejs.org/dist/v20.0.0/node-v20.0.0.tar.gz"
-        a: "Download file and save it with a custom name"
+        a: "Downloads a file and saves it under a custom name"
         rel:
           - ["en-wget-cmd", "Web Get — download files from the internet", "wget command"]
           - ["en-wget-O", "Output — save file under different name", "flag -O"]
         labels: ["Network"]
+      - q: "curl -fsSL https://get.docker.com | sudo sh"
+        a: "Downloads an installation script and runs it immediately"
+        rel:
+          - ["en-curl-fssl", "f=fail silent, s=silent, S=show errors, L=follow redirects", "flags -fsSL"]
+        labels: ["Network", "Config"]
 
-  - title: "SSH — securely connecting to remote servers"
+  - title: "SSH — securely connecting to another computer"
     image: "images/section-03-ssh.svg"
     explanation: |
-      **SSH** (Secure Shell) is the most important tool for remote server management.
-      Everything is transmitted encrypted.
+      Imagine you're sitting at home, but working on a computer
+      that's 1000 km away in a data center.
 
-      **Connecting:**
-      ```bash
-      ssh user@server.example.com
-      ssh -p 2222 alice@192.168.1.100    # specify port
+      That's exactly what **SSH** does (Secure Shell — "secure shell").
+      Everything you type is transmitted encrypted.
+      Nobody can eavesdrop.
+
+      This is how you connect:
       ```
-
-      **SSH keys** are more secure than passwords:
-      ```bash
-      ssh-keygen -t ed25519 -C "alice@laptop"  # create key pair
-      ssh-copy-id alice@server.example.com      # copy key to server
-      ssh alice@server.example.com              # now without password!
+      ssh alice@192.168.1.100
       ```
+      This means: "Connect as user 'alice' to the computer 192.168.1.100"
 
-      **Transfer files with scp:**
-      ```bash
-      scp file.txt alice@server:/home/alice/
-      scp -r folder/ alice@server:/var/www/
+      Even more secure than a password are **SSH keys**.
+      It's like a magic ID card — you don't have to type a password anymore:
+      ```
+      ssh-keygen -t ed25519 -C "my-laptop"
+      ```
+      This creates a key.
+      With `-t ed25519` you choose a modern, secure type.
+
+      Then you send your ID card to the other computer:
+      ```
+      ssh-copy-id alice@server.example.com
+      ```
+      From now on you can get in — without a password!
+
+      You can transfer files with **scp** (Secure Copy):
+      ```
+      scp my-file.txt alice@server:/home/alice/
       ```
     examples:
       - q: "ssh alice@192.168.1.100"
-        a: "Connect to server via SSH — login with password or SSH key"
+        a: "Connects as 'alice' to the computer 192.168.1.100 — everything encrypted"
         rel:
           - ["en-ssh-cmd", "Secure Shell — encrypted remote connection", "ssh command"]
         labels: ["Network", "Security"]
       - q: "ssh-keygen -t ed25519 -C \"alice@mylaptop\""
-        a: "Creates a modern Ed25519 key pair — more secure than the older RSA"
+        a: "Creates a modern SSH key — like a digital ID card"
         rel:
           - ["en-ssh-keygen", "Generate SSH key pair", "ssh-keygen command"]
           - ["en-ed25519", "Modern algorithm for SSH keys, recommended since 2022", "Ed25519 key type"]
         labels: ["Network", "Security"]
       - q: "ssh-copy-id -i ~/.ssh/id_ed25519.pub alice@server.example.com"
-        a: "Copy public key to server — no password required afterward"
+        a: "Sends your key to the server — no password needed afterward"
         rel:
           - ["en-ssh-copy-id", "Install public SSH key on remote server", "ssh-copy-id command"]
         labels: ["Network", "Security"]
       - q: "scp -r ~/projects/website/ alice@server:/var/www/html/"
-        a: "Transfer the entire website folder to the server via scp"
+        a: "Copies an entire folder securely to another computer"
         rel:
           - ["en-scp-cmd", "Secure Copy — encrypted file transfer via SSH", "scp command"]
+          - ["en-scp-r", "Recursive — transfer directories", "flag -r"]
         labels: ["Network"]
 
-  - title: "🖥️ Terminal Check"
+  - title: "Terminal Check"
     image: "images/section-04-check.svg"
     explanation: |
-      Test your knowledge — type the commands yourself!
+      Test your knowledge — type the commands directly!
     examples:
       - q: "Which command tests reachability of google.com with 4 packets?"
         type: input
@@ -139,13 +177,13 @@ sections:
       - q: "What does 'curl -s https://ipinfo.io/ip' do?"
         type: select
         options:
-          - text: "Shows your own public IP address"
+          - text: "Shows your own internet address"
             correct: true
           - text: "Tests the internet connection speed"
           - text: "Downloads the IP database"
-          - text: "Shows all network interfaces"
+          - text: "Shows all network cards"
         labels: ["Network"]
-      - q: "Which command shows all open ports and associated programs?"
+      - q: "Which command shows all open ports and the associated programs?"
         type: select
         options:
           - text: "ss -tulpn"

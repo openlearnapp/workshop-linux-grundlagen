@@ -1,139 +1,173 @@
 version: 2
 number: 11
 title: "System Info"
-description: "df, du, free, uname and history — keeping an eye on system state"
+description: "df, du, free, uname and history — keeping track of your system's state"
 image: "images/lesson-header.svg"
+image_caption: "Dashboard with CPU, RAM and disk usage displays"
 sections:
   - title: "Disk space — df and du"
     image: "images/section-01-disk.svg"
     explanation: |
-      **Why does this matter?** A full disk is one of the most common reasons why
-      servers crash or services fail. `df` and `du` help you spot storage problems
-      early and find the culprits.
+      Imagine your computer is like a room.
+      When the room is full, nothing more fits in —
+      and the computer starts to choke.
 
-      | Command | Purpose |
-      |---------|---------|
-      | `df -h` | Disk usage of all partitions |
-      | `du -sh folder/` | Size of a folder |
-      | `du -sh * | sort -rh` | Size of all files/folders sorted |
-      | `du -h --max-depth=1` | Show only one level deep |
+      With **df** (Disk Free — "free space on the drive")
+      you see how full your hard drive is:
+      ```
+      df -h
+      ```
+      The `-h` stands for "human-readable" —
+      it shows GB and MB instead of huge numbers.
 
-      **Alert threshold:** When `df -h` shows `/` above 80%, action is needed.
-      Typical disk hogs: `/var/log`, `/var/cache`, old Docker images.
+      With **du** (Disk Usage — "storage usage") you look at
+      which folder is eating the most space:
+      ```
+      du -sh ~/Downloads/*
+      ```
+      - `s` = summary (only the total size, not each file individually)
+      - `h` = human-readable (GB/MB instead of bytes)
+
+      Tip: If you want to find the biggest folders, combine du with sort:
+      ```
+      du -h --max-depth=1 /var | sort -rh | head -10
+      ```
+      This shows the 10 biggest folders in `/var` — sorted from big to small.
     examples:
       - q: "df -h"
-        a: "Shows all partitions with used/free space in GB/MB — h = human-readable"
+        a: "Shows all disk areas with free and used space in GB/MB"
         rel:
           - ["en-df-cmd", "Disk Free — show disk usage", "df command"]
           - ["en-df-h", "Human-readable — sizes in KB/MB/GB instead of bytes", "flag -h"]
         labels: ["Filesystem"]
       - q: "df -h /"
-        a: "Show only root partition usage — the most important partition"
+        a: "Shows only the main area of the computer (/) — the most important space"
         rel:
           - ["en-df-root", "Check usage of root partition /", "df -h /"]
         labels: ["Filesystem"]
       - q: "du -sh ~/Downloads/*"
-        a: "Show size of each item in the Downloads folder"
+        a: "Shows the size of each file and folder in the Downloads folder"
         rel:
           - ["en-du-cmd", "Disk Usage — show storage use of files/folders", "du command"]
           - ["en-du-sh", "s=summary (total size), h=human-readable", "flags -sh"]
         labels: ["Filesystem"]
       - q: "du -h --max-depth=1 /var | sort -rh | head -10"
-        a: "Top 10 largest subdirectories in /var sorted by size — find disk hogs"
+        a: "Finds the 10 biggest folders in /var — handy for tracking down space hogs"
         rel:
           - ["en-du-max-depth", "Only show up to a certain directory depth", "--max-depth=1"]
           - ["en-sort-rh", "r=reverse (descending), h=sort human-readable sizes", "sort -rh"]
         labels: ["Filesystem"]
 
-  - title: "Memory and CPU — free and uptime"
+  - title: "RAM and CPU — free and uptime"
     image: "images/section-02-memory.svg"
     explanation: |
-      `free` shows RAM usage:
+      Your computer has two types of storage:
+      - **Hard drive** — like a bookshelf: lots of space, but slow
+      - **RAM (Random Access Memory)** — like your desk: fast, but limited
+
+      With **free** you see how full your desk currently is:
       ```
-      $ free -h
+      free -h
+      ```
+
+      The output looks roughly like this:
+      ```
                     total   used   free  shared  cache  available
       Mem:           15Gi   4.2Gi  8.1Gi  512Mi  3.1Gi    10.4Gi
       Swap:          2.0Gi  0B     2.0Gi
       ```
 
-      **Key columns:**
-      - `total`: Total RAM
-      - `used`: Used RAM
-      - **`available`**: Actually available RAM (more important than `free`!)
-      - `Swap`: Disk-based swap space — if swap is full, things get slow
+      Important: Look at the **available** column — that's the truly free space.
+      The `free` column alone doesn't say much, because Linux often uses memory for cache.
 
-      `uptime` shows how long the system has been running and the **Load Average**:
+      **Swap** is like an emergency extension of your desk —
+      Linux temporarily puts rarely used things on the hard drive.
+      When swap is full, the computer gets slow.
+
+      With **uptime** you see how long your computer has been running:
       ```
-      15:42:01 up 7 days, 3:25,  2 users,  load average: 0.52, 0.48, 0.45
+      uptime
       ```
-      Load average 1/5/15 minutes — with one core, 1.0 = 100% utilized.
+      It also shows the **Load Average** —
+      small numbers mean: everything is relaxed.
     examples:
       - q: "free -h"
-        a: "RAM usage in MB/GB — available column shows truly free memory"
+        a: "Shows RAM usage in GB/MB — the available column is what matters most"
         rel:
           - ["en-free-cmd", "Show RAM usage and swap utilization", "free command"]
+          - ["en-free-h", "Human-readable — memory in MB/GB instead of bytes", "free -h"]
         labels: ["Basics"]
       - q: "uptime"
-        a: "System uptime, active users and CPU load average over last 1/5/15 minutes"
+        a: "Shows how long the computer has been running, how many users are on, and how loaded it is"
         rel:
           - ["en-uptime-cmd", "System uptime and load over past minutes", "uptime command"]
           - ["en-load-average", "Average CPU load: 1.0 = 100% with one core", "Load Average"]
         labels: ["Basics"]
       - q: "vmstat 2 5"
-        a: "System statistics every 2 seconds, 5 times — CPU, RAM, I/O, processes"
+        a: "Shows system statistics every 2 seconds, 5 times — for advanced users"
         rel:
           - ["en-vmstat-cmd", "Virtual Memory Statistics — detailed system performance data", "vmstat command"]
         labels: ["Basics"]
 
-  - title: "history and the command log"
+  - title: "history — what did I do last?"
     image: "images/section-03-history.svg"
     explanation: |
-      `history` shows all recently entered commands — with numbers.
-      The terminal saves 1000–2000 commands by default.
+      Did you type a command you need again —
+      but can't remember exactly what it was?
 
-      **Productivity tricks:**
-      | Shortcut | Effect |
-      |----------|--------|
-      | `history` | Show all commands |
-      | `history 20` | Last 20 commands |
-      | `!!` | Repeat last command |
-      | `!50` | Run command number 50 |
-      | `!apt` | Last command that started with 'apt' |
-      | `Ctrl+R` | Search backward in history (very useful!) |
-      | `history | grep ssh` | Search history for ssh commands |
+      Linux remembers for you!
+      **history** shows all the commands you recently typed:
+      ```
+      history
+      ```
 
-      `Ctrl+R` is one of the most valuable shortcuts: type a search term and bash
-      automatically finds the last matching command.
+      Useful tricks with history:
+      - `history 20` — only the last 20 commands
+      - `!!` — repeat the last command immediately
+      - `!50` — run command number 50 from the list
+      - `history | grep ssh` — search for only SSH commands in the list
+
+      And the pros' secret tip: **Ctrl+R**
+      Press Ctrl+R and type a word —
+      Linux automatically searches backward in the history and shows the last matching command.
+      This saves an incredible amount of typing!
+
+      And one more look inside the computer —
+      Linux stores lots of information in special "files" under `/proc`:
+      ```
+      cat /proc/cpuinfo | grep "model name" | head -1
+      ```
+      This shows you which CPU is in your computer.
     examples:
       - q: "history | tail -20"
-        a: "Show the last 20 entered commands"
+        a: "Shows the last 20 entered commands — handy for looking things up"
         rel:
           - ["en-history-cmd", "Show history of entered commands", "history command"]
         labels: ["Basics"]
       - q: "history | grep \"apt install\""
-        a: "Find all apt install commands from history — what did I install when?"
+        a: "Searches history for all commands that contain apt install"
         rel:
           - ["en-history-grep", "Combine history with grep — find specific commands from log", "history | grep"]
         labels: ["Basics"]
       - q: "!!"
-        a: "Immediately repeat the last command — especially useful for: sudo !!"
+        a: "Repeats the last command immediately — especially useful as: sudo !!"
         rel:
           - ["en-bang-bang", "!! runs the last entered command again", "!!"]
           - ["en-sudo-bang-bang", "sudo !! — repeat last command with administrator rights", "sudo !!"]
         labels: ["Basics"]
       - q: "cat /proc/cpuinfo | grep \"model name\" | head -1"
-        a: "Read the CPU model and type from kernel process information"
+        a: "Shows the CPU model in your computer — /proc is a window into the kernel"
         rel:
           - ["en-proc-cpuinfo", "Kernel file with detailed CPU information", "/proc/cpuinfo"]
           - ["en-proc-filesystem", "/proc is not a real filesystem — contains kernel info as files", "/proc"]
         labels: ["Basics"]
 
-  - title: "🖥️ Terminal Check"
+  - title: "Terminal Check"
     image: "images/section-04-check.svg"
     explanation: |
-      Test your knowledge — type the commands yourself!
+      Test your knowledge — type the commands directly!
     examples:
-      - q: "Which command shows disk usage of all partitions?"
+      - q: "Which command shows disk usage of all areas?"
         type: input
         a: "df -h"
         labels: ["Filesystem"]

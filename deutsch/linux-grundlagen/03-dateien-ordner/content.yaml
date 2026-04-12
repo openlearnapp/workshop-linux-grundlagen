@@ -1,44 +1,52 @@
 version: 2
 number: 3
 title: "Dateien & Ordner"
-description: "touch, mkdir, cp, mv und rm — Dateien und Verzeichnisse erstellen, verschieben und löschen"
+description: "Lern wie du Dateien und Ordner erstellst, kopierst, umbenennst und löschst"
 image: "images/lesson-header.svg"
 image_caption: "Verzeichnisbaum mit Dateien und Ordnern"
 sections:
   - title: "Erstellen — touch und mkdir"
     image: "images/section-01-create.svg"
     explanation: |
-      **Warum ist das wichtig?** Alles in Linux beginnt mit Dateien und Verzeichnissen.
-      Projekte einrichten, Skripte schreiben, Konfigurationen anlegen — du brauchst diese
-      Befehle täglich.
+      Bevor du Dateien bearbeiten kannst, musst du sie erstellen.
+      Dafür gibt es zwei einfache Befehle:
 
-      `touch` erstellt eine leere Datei (oder aktualisiert den Timestamp einer vorhandenen):
+      **`touch`** erstellt eine leere Datei:
       ```
       touch notizen.txt
-      touch index.html style.css script.js   # mehrere auf einmal!
+      ```
+      Das ist wie ein leeres Blatt Papier anlegen.
+      Du kannst auch mehrere Dateien auf einmal erstellen:
+      ```
+      touch seite.html stil.css
       ```
 
-      `mkdir` erstellt ein Verzeichnis:
+      **`mkdir`** erstellt einen neuen Ordner.
+      MKDIR steht für "Make Directory" — also "erstelle einen Ordner":
       ```
-      mkdir projekte
-      mkdir -p projekte/webseite/assets      # ganze Pfade auf einmal!
+      mkdir fotos
       ```
 
-      Das `-p` Flag bei `mkdir` ist besonders nützlich: Es erstellt alle fehlenden
-      Zwischenverzeichnisse und gibt keinen Fehler aus, wenn der Ordner schon existiert.
+      Das `-p` Flag bei `mkdir` ist besonders praktisch:
+      Es erstellt gleich mehrere Ordner auf einmal, auch wenn Zwischenordner fehlen:
+      ```
+      mkdir -p projekte/meine-webseite/bilder
+      ```
+      Das erstellt `projekte`, darin `meine-webseite`, und darin `bilder` —
+      alles in einem Schritt!
     examples:
       - q: "touch README.md"
-        a: "Erstellt eine leere Datei README.md im aktuellen Verzeichnis"
+        a: "Erstellt eine leere Datei namens README.md im aktuellen Ordner"
         rel:
           - ["touch-cmd", "Leere Datei erstellen oder Timestamp aktualisieren", "Befehl touch"]
         labels: ["Dateisystem"]
       - q: "touch index.html style.css app.js"
-        a: "Erstellt drei Dateien auf einmal — touch akzeptiert mehrere Argumente"
+        a: "Erstellt drei Dateien gleichzeitig — touch kann beliebig viele Namen auf einmal bekommen"
         rel:
           - ["touch-multiple", "Mehrere Dateien gleichzeitig mit touch erstellen", "touch Datei1 Datei2"]
         labels: ["Dateisystem"]
       - q: "mkdir -p ~/projekte/meine-webseite/assets/img"
-        a: "Erstellt den gesamten Verzeichnisbaum auf einmal, keine Fehler bei vorhandenen Ordnern"
+        a: "Erstellt den gesamten Ordnerpfad auf einmal — alle fehlenden Ordner dazwischen werden auch erstellt"
         rel:
           - ["mkdir-cmd", "Make Directory — Verzeichnis erstellen", "Befehl mkdir"]
           - ["mkdir-p", "Parents — alle Zwischenverzeichnisse automatisch erstellen", "Flag -p"]
@@ -47,93 +55,110 @@ sections:
   - title: "Kopieren und Verschieben — cp und mv"
     image: "images/section-02-copy-move.svg"
     explanation: |
-      `cp` kopiert Dateien oder Verzeichnisse, `mv` verschiebt (oder benennt um).
+      Stell dir vor, du arbeitest mit Papieren auf deinem Schreibtisch:
 
-      | Befehl | Wirkung |
-      |--------|---------|
-      | `cp datei.txt backup.txt` | Kopie mit neuem Namen |
+      **`cp`** ist wie ein Kopierer — das Original bleibt, du bekommst eine Kopie.
+      CP steht für "Copy" (englisch für "kopieren"):
+      ```
+      cp notizen.txt notizen-backup.txt
+      ```
+      Für ganze Ordner brauchst du `-r` (rekursiv, also "mit allem drin"):
+      ```
+      cp -r fotos/ fotos-backup/
+      ```
+
+      **`mv`** ist wie ein Umzug — das Original verschwindet vom alten Ort.
+      MV steht für "Move" (englisch für "verschieben"):
+      ```
+      mv entwurf.txt fertig.txt
+      ```
+      Wenn du keinen anderen Ordner angibst, benennt `mv` die Datei einfach um!
+
+      | Befehl | Was passiert? |
+      |--------|---------------|
+      | `cp datei.txt kopie.txt` | Kopie mit neuem Namen |
       | `cp datei.txt /tmp/` | In anderen Ordner kopieren |
-      | `cp -r ordner/ ordner_backup/` | Ordner rekursiv kopieren |
+      | `cp -r ordner/ backup/` | Ganzen Ordner kopieren |
       | `mv alt.txt neu.txt` | Umbenennen |
-      | `mv datei.txt /home/alice/` | Verschieben |
-      | `mv *.log /var/archive/` | Mehrere Dateien verschieben |
-
-      **Wichtiger Unterschied:** `cp` lässt das Original, `mv` entfernt es.
-      Für Verzeichnisse braucht `cp` das `-r` Flag (rekursiv).
+      | `mv datei.txt ~/dokumente/` | Verschieben |
     examples:
       - q: "cp ~/.bashrc ~/.bashrc.backup"
-        a: "Sicherheitskopie der bash-Konfiguration erstellen — vor Änderungen immer sinnvoll!"
+        a: "Erstellt eine Sicherheitskopie der Bash-Einstellungsdatei — gut vor Änderungen!"
         rel:
           - ["cp-cmd", "Copy — Dateien und Verzeichnisse kopieren", "Befehl cp"]
-          - ["bashrc", "Bash-Konfigurationsdatei für Aliase, Variablen etc.", "~/.bashrc"]
+          - ["bashrc", "Bash-Konfigurationsdatei für Einstellungen und Abkürzungen", "~/.bashrc"]
         labels: ["Dateisystem"]
       - q: "cp -r /etc/nginx/ ~/nginx-backup/"
-        a: "Gesamte Nginx-Konfiguration als Backup ins Home-Verzeichnis kopieren"
+        a: "Kopiert den gesamten nginx-Einstellungsordner als Backup in deinen persönlichen Ordner"
         rel:
           - ["cp-r", "Recursive — Verzeichnisse inkl. Inhalt kopieren", "Flag -r"]
         labels: ["Dateisystem", "Konfiguration"]
       - q: "mv entwurf.txt final.txt"
-        a: "Datei umbenennen — mv ohne Pfad benennt einfach um"
+        a: "Benennt die Datei um — aus 'entwurf.txt' wird 'final.txt', kein Original mehr"
         rel:
           - ["mv-cmd", "Move — Dateien verschieben oder umbenennen", "Befehl mv"]
         labels: ["Dateisystem"]
       - q: "mv ~/Downloads/*.pdf ~/Dokumente/PDFs/"
-        a: "Alle PDF-Dateien aus Downloads in den PDFs-Ordner verschieben"
+        a: "Alle PDF-Dateien aus dem Downloads-Ordner in den PDFs-Ordner verschieben"
         rel:
-          - ["glob-star", "Platzhalter * passt auf beliebige Zeichen", "Wildcard *"]
+          - ["glob-star", "Das Sternchen * ist ein Platzhalter — passt auf beliebige Zeichen", "Wildcard *"]
           - ["mv-multiple", "Mehrere Dateien mit Platzhaltern verschieben", "mv *.pdf Ziel/"]
         labels: ["Dateisystem"]
 
   - title: "Löschen — rm und rmdir"
     image: "images/section-03-delete.svg"
     explanation: |
-      ⚠️ **Vorsicht: Linux hat keinen Papierkorb!**
-      Was mit `rm` gelöscht wird, ist **sofort und unwiederbringlich** weg.
+      Jetzt kommt ein wichtiger Hinweis — bitte gut lesen!
 
-      | Befehl | Wirkung |
-      |--------|---------|
-      | `rm datei.txt` | Datei löschen |
-      | `rm -i datei.txt` | Nachfragen vor dem Löschen (`-i` = interactive) |
-      | `rm *.tmp` | Alle .tmp-Dateien löschen |
-      | `rmdir leerer-ordner/` | Leeres Verzeichnis löschen |
-      | `rm -r ordner/` | Ordner mit Inhalt löschen |
+      **Linux hat keinen Papierkorb.**
+      Was mit `rm` gelöscht wird, ist **sofort und für immer** weg.
+      Es gibt kein Rückgängigmachen!
 
-      ⚠️ **Der gefährlichste Befehl in Linux:**
+      | Befehl | Was passiert? |
+      |--------|---------------|
+      | `rm datei.txt` | Datei löschen (unwiderruflich!) |
+      | `rm -i datei.txt` | Löschen, aber vorher nachfragen (`-i` = interactive = "frag mich") |
+      | `rm *.tmp` | Alle Dateien, die auf .tmp enden, löschen |
+      | `rmdir leerer-ordner/` | Einen leeren Ordner löschen |
+      | `rm -r ordner/` | Einen Ordner mit allem drin löschen |
+
+      **Goldene Regel:** Bevor du etwas löschst, schau dir an was gelöscht wird:
       ```
-      rm -rf /    # Löscht ALLES auf dem System — NIEMALS ausführen!
-      rm -rf /*   # Genauso gefährlich
+      ls *.tmp
       ```
-      Das `-f` Flag (force) unterdrückt alle Rückfragen. Kombiniert mit `-r` (rekursiv)
-      und einem weiten Pfad: vollständige Katastrophe.
+      Erst wenn du sicher bist, dann:
+      ```
+      rm *.tmp
+      ```
 
-      **Sichere Alternative:** Erst mit `ls` überprüfen, was du löschen willst.
+      Merke dir: `rm -i` ist dein Freund am Anfang — er fragt immer nach!
     examples:
       - q: "rm -i wichtige-datei.txt"
-        a: "Löscht die Datei, fragt aber vorher nach — empfohlen für wichtige Dateien"
+        a: "Löscht die Datei, fragt aber vorher nach — für Anfänger sehr empfohlen!"
         rel:
           - ["rm-cmd", "Remove — Dateien löschen (kein Papierkorb!)", "Befehl rm"]
           - ["rm-i", "Interactive — vor dem Löschen nachfragen", "Flag -i"]
         labels: ["Dateisystem"]
       - q: "rm -r ~/projekte/altes-projekt/"
-        a: "Löscht den Ordner altes-projekt und seinen gesamten Inhalt"
+        a: "Löscht den Ordner 'altes-projekt' und alles darin — Vorsicht, kein Papierkorb!"
         rel:
           - ["rm-r", "Recursive — Verzeichnisse und Inhalt löschen", "Flag -r"]
         labels: ["Dateisystem"]
       - q: "rmdir leerer-ordner/"
-        a: "Löscht nur leere Verzeichnisse — sicherer als rm -r, gibt Fehler bei nicht-leerem Ordner"
+        a: "Löscht nur einen leeren Ordner — gibt eine Fehlermeldung wenn noch Dateien drin sind"
         rel:
           - ["rmdir-cmd", "Remove Directory — nur leere Verzeichnisse löschen", "Befehl rmdir"]
         labels: ["Dateisystem"]
       - q: "ls *.log && rm *.log"
-        a: "Erst alle .log-Dateien anzeigen, dann erst löschen — sicheres Vorgehen"
+        a: "Erst alle .log-Dateien anzeigen, dann erst löschen — das sichere Vorgehen!"
         rel:
           - ["safe-delete", "Erst ls, dann rm — sicheres Löschen mit Vorschau", "Best Practice"]
         labels: ["Dateisystem"]
 
-  - title: "🖥️ Terminal-Check"
+  - title: "Terminal-Check"
     image: "images/section-04-check.svg"
     explanation: |
-      Teste jetzt dein Wissen — gib die Befehle direkt ein!
+      Teste jetzt dein Wissen!
     examples:
       - q: "Welcher Befehl erstellt eine leere Datei namens 'notizen.txt'?"
         type: input
@@ -142,7 +167,7 @@ sections:
       - q: "Was macht das Flag '-p' bei 'mkdir -p projekte/web/assets'?"
         type: select
         options:
-          - text: "Erstellt alle fehlenden Zwischenverzeichnisse automatisch"
+          - text: "Erstellt alle fehlenden Zwischenordner automatisch"
             correct: true
           - text: "Fragt vor dem Erstellen nach"
           - text: "Zeigt den erstellten Ordner an"
@@ -162,9 +187,9 @@ sections:
         options:
           - text: "rm löscht Dateien ohne Papierkorb"
             correct: true
-          - text: "rm -r löscht Ordner rekursiv"
+          - text: "rm -r löscht Ordner mit allem drin"
             correct: true
           - text: "rm -i fragt vor dem Löschen nach"
             correct: true
-          - text: "rm kann Löschen rückgängig machen"
+          - text: "rm kann das Löschen rückgängig machen"
         labels: ["Dateisystem"]

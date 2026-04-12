@@ -1,44 +1,46 @@
 version: 2
 number: 5
 title: "Berechtigungen"
-description: "chmod, chown und sudo — das Linux-Rechtesystem verstehen und anwenden"
+description: "Lern wie Linux regelt, wer was lesen, schreiben und starten darf"
 image: "images/lesson-header.svg"
 image_caption: "Schloss-Symbol mit rwx-Berechtigungsraster"
 sections:
-  - title: "rwx — das Rechtesystem entschlüsseln"
+  - title: "rwx — wer darf was?"
     image: "images/section-01-rwx.svg"
     explanation: |
-      **Warum ist das wichtig?** Sicherheit ist der Kern von Linux. Falsche Berechtigungen
-      können dazu führen, dass Skripte nicht ausführen, Webserver nicht starten oder
-      im schlimmsten Fall fremde Nutzer Zugriff auf deine Daten bekommen.
+      Linux fragt bei jeder Datei: **Wer darf das?**
 
-      Jede Datei hat drei Zugriffsebenen:
-      ```
-      -rwxr-xr--
-      ↑↑↑↑↑↑↑↑↑↑
-      │└┬┘└┬┘└┬┘
-      │ │  │  └─ Other (alle anderen)
-      │ │  └──── Group (Gruppenangehörige)
-      │ └──────── Owner (Besitzer)
-      └────────── Dateityp (- = Datei, d = Directory)
-      ```
+      Das ist wie in einem Haus: Dein Zimmer gehört dir.
+      Andere dürfen vielleicht rein, aber nicht deine Sachen anfassen.
 
-      **Bedeutung der Buchstaben:**
-      | Buchstabe | Bedeutung | Für Dateien | Für Verzeichnisse |
-      |-----------|-----------|-------------|-------------------|
-      | `r` | read | Datei lesen | Inhalt listen (ls) |
-      | `w` | write | Datei schreiben | Dateien darin erstellen/löschen |
-      | `x` | execute | Datei ausführen | Verzeichnis betreten (cd) |
-      | `-` | keine Rechte | — | — |
+      Jede Datei in Linux hat drei Berechtigungsebenen:
+      - **Besitzer** (Owner): Die Person, der die Datei gehört
+      - **Gruppe** (Group): Eine Gruppe von Benutzern, z.B. alle Lehrer einer Schule
+      - **Alle anderen** (Other): Jeder, der sonst noch am Computer ist
+
+      Und für jede Ebene gibt es drei mögliche Rechte:
+      | Buchstabe | Bedeutung | Was das heißt |
+      |-----------|-----------|---------------|
+      | `r` | read (lesen) | Datei lesen oder Ordnerinhalt anzeigen |
+      | `w` | write (schreiben) | Datei ändern oder Dateien in einem Ordner erstellen |
+      | `x` | execute (ausführen) | Programm starten oder in Ordner wechseln |
+      | `-` | keine Berechtigung | Das ist nicht erlaubt |
+
+      Wenn du `ls -l` eingibst, siehst du z.B.:
+      ```
+      -rw-r--r-- 1 alice alice 4096 Mar 20 notizen.txt
+      ```
+      Das bedeutet: Besitzerin Alice darf lesen und schreiben (`rw-`),
+      alle anderen dürfen nur lesen (`r--`).
     examples:
       - q: "ls -la ~/.ssh/id_rsa"
-        a: "Zeigt Berechtigungen des privaten SSH-Schlüssels — sollte -rw------- sein (nur Besitzer!)"
+        a: "Zeigt die Berechtigungen des privaten SSH-Schlüssels — sollte -rw------- sein (nur der Besitzer!)"
         rel:
           - ["ssh-key-perms", "SSH private key braucht 600 Rechte — sonst verweigert SSH die Nutzung", "Sicherheit"]
           - ["rw-owner-only", "-rw------- bedeutet: Besitzer lesen/schreiben, alle anderen nichts", "Rechtemuster"]
         labels: ["Sicherheit"]
       - q: "ls -l /usr/bin/sudo"
-        a: "Zeigt die speziellen SUID-Rechte von sudo — das s im Rechtstring ist besonders"
+        a: "Zeigt die speziellen Rechte von sudo — das s im Berechtigungsstring ist besonders"
         rel:
           - ["suid-bit", "Set User ID — Programm läuft mit Rechten des Besitzers", "SUID"]
           - ["sudo-bin", "sudo-Programm mit erhöhten Systemrechten", "/usr/bin/sudo"]
@@ -47,45 +49,51 @@ sections:
   - title: "chmod — Berechtigungen ändern"
     image: "images/section-02-chmod.svg"
     explanation: |
-      `chmod` (Change Mode) ändert Dateiberechtigungen. Es gibt zwei Notationen:
+      Mit `chmod` (Change Mode — "ändere den Modus") kannst du die
+      Berechtigungen einer Datei ändern.
 
-      **Symbolische Notation** (leichter zu merken):
-      ```bash
-      chmod u+x skript.sh      # Besitzer: Ausführen hinzufügen
-      chmod g-w datei.txt      # Gruppe: Schreiben entfernen
-      chmod o=r config.txt     # Andere: nur lesen setzen
-      chmod a+x deploy.sh      # Alle: Ausführen hinzufügen
+      Es gibt zwei Schreibweisen:
+
+      **Buchstaben-Schreibweise** (leichter zu verstehen):
+      ```
+      chmod u+x mein-skript.sh    # u = user (Besitzer), + = hinzufügen, x = ausführen
+      chmod g-w datei.txt         # g = group (Gruppe), - = entfernen, w = schreiben
+      chmod o=r geheim.txt        # o = other (andere), = = genau setzen, r = nur lesen
+      chmod a+x alle-dürfen.sh    # a = all (alle), + = hinzufügen, x = ausführen
       ```
 
-      **Numerische Notation** (schneller zu tippen):
+      **Zahlen-Schreibweise** (schneller wenn du sie kennst):
+
+      Jedes Recht hat einen Zahlenwert: r=4, w=2, x=1. Diese addierst du:
       | Zahl | Rechte | Bedeutung |
       |------|--------|-----------|
-      | 7 | rwx | alle Rechte |
-      | 6 | rw- | lesen + schreiben |
-      | 5 | r-x | lesen + ausführen |
+      | 7 | rwx | alles erlaubt |
+      | 6 | rw- | lesen und schreiben |
+      | 5 | r-x | lesen und ausführen |
       | 4 | r-- | nur lesen |
-      | 0 | --- | keine Rechte |
+      | 0 | --- | nichts erlaubt |
 
-      Beispiel: `chmod 755` = `rwxr-xr-x` (Besitzer alles, Gruppe/Andere lesen+ausführen)
+      `chmod 755 programm.sh` bedeutet:
+      Besitzer alles (7 = rwx), Gruppe lesen+ausführen (5 = r-x), Andere lesen+ausführen (5 = r-x).
     examples:
       - q: "chmod +x deploy.sh"
-        a: "Gibt allen (Besitzer, Gruppe, Andere) Ausführrechte — macht das Skript ausführbar"
+        a: "Gibt allen (Besitzer, Gruppe, Andere) das Ausführ-Recht — macht das Skript startbar"
         rel:
           - ["chmod-cmd", "Change Mode — Dateiberechtigungen ändern", "Befehl chmod"]
           - ["chmod-x", "+x fügt Ausführrechte hinzu", "chmod +x"]
         labels: ["Sicherheit"]
       - q: "chmod 755 /usr/local/bin/meinprogramm"
-        a: "755 = rwxr-xr-x: Besitzer darf alles, alle anderen dürfen nur lesen und ausführen"
+        a: "755 = rwxr-xr-x: Besitzer darf alles, alle anderen dürfen lesen und starten"
         rel:
           - ["chmod-755", "rwxr-xr-x — Standard für ausführbare Programme", "Oktalwert 755"]
         labels: ["Sicherheit"]
       - q: "chmod 600 ~/.ssh/id_rsa"
-        a: "600 = rw------- : Nur Besitzer darf lesen/schreiben — für SSH-Schlüssel obligatorisch"
+        a: "600 = rw------- : Nur der Besitzer darf lesen/schreiben — bei SSH-Schlüsseln Pflicht!"
         rel:
           - ["chmod-600", "rw------- nur Besitzer lesen/schreiben, SSH-Schlüssel-Standard", "Oktalwert 600"]
         labels: ["Sicherheit"]
       - q: "chmod -R 755 ~/webseite/"
-        a: "Setzt 755-Rechte rekursiv auf alle Dateien und Unterordner der Webseite"
+        a: "Setzt 755-Rechte für alle Dateien und Unterordner in ~/webseite/ auf einmal"
         rel:
           - ["chmod-R", "Recursive — Berechtigungen auf alle Unterordner anwenden", "Flag -R"]
         labels: ["Sicherheit"]
@@ -93,52 +101,62 @@ sections:
   - title: "sudo und chown — Superrechte und Besitz"
     image: "images/section-03-sudo.svg"
     explanation: |
-      **sudo** (Super User Do) erlaubt normalen Benutzern, einzelne Befehle als
-      Administrator (root) auszuführen. Das ist sicherer als dauerhaft als root zu arbeiten.
+      In Linux gibt es einen Superbenutzer: **root** (englisch für "Wurzel").
+      Root darf alles — Dateien löschen, Programme installieren, das System verändern.
 
-      ⚠️ **Goldene Regel:** Nutze `sudo` nur wenn nötig. Als root-Benutzer gibt es keine
-      Sicherheitsnetz — ein falscher `rm -rf`-Befehl kann das System zerstören.
+      Aber: Immer als root zu arbeiten ist gefährlich.
+      Ein einziger Tippfehler kann das System kaputt machen!
 
-      **chown** (Change Owner) ändert den Besitzer einer Datei:
-      ```bash
-      chown alice datei.txt           # Besitzer ändern
-      chown alice:www-data datei.txt  # Besitzer und Gruppe ändern
-      chown -R www-data /var/www/     # Rekursiv für Webserver-Dateien
+      Deshalb gibt es **`sudo`** (Super User Do — "mach es als Superuser"):
+      Du bleibst normaler Benutzer, kannst aber einzelne Befehle mit
+      Administrator-Rechten ausführen:
       ```
+      sudo apt update    # Programmliste aktualisieren (braucht Admin-Rechte)
+      ```
+      Linux fragt dann nach deinem Passwort.
+
+      **`chown`** (Change Owner — "ändere den Besitzer") ändert wem eine Datei gehört:
+      ```
+      chown alice notizen.txt          # Alice wird Besitzerin
+      chown alice:freunde notizen.txt  # Alice wird Besitzerin, Gruppe "freunde"
+      chown -R alice ~/dokumente/      # Alles in ~/dokumente gehört Alice
+      ```
+
+      Regel: Nutze `sudo` nur wenn es wirklich nötig ist!
     examples:
       - q: "sudo apt update"
-        a: "Paketliste aktualisieren — erfordert Administratorrechte, daher sudo"
+        a: "Aktualisiert die Liste der verfügbaren Programme — braucht Administrator-Rechte, daher sudo"
         rel:
           - ["sudo-cmd", "Super User Do — Befehl als Administrator ausführen", "Befehl sudo"]
         labels: ["Sicherheit"]
       - q: "sudo chown -R www-data:www-data /var/www/html/"
-        a: "Alle Webserver-Dateien dem www-data Benutzer zuweisen — Nginx/Apache brauchen das"
+        a: "Alle Webseiten-Dateien dem Webserver-Benutzer übergeben (der Webserver heißt www-data)"
         rel:
           - ["chown-cmd", "Change Owner — Dateibesitzer ändern", "Befehl chown"]
           - ["chown-R", "Recursive — Besitz rekursiv ändern", "chown -R"]
-          - ["www-data", "Standardbenutzer für Webserver (Apache, Nginx)", "www-data"]
+          - ["www-data", "Standardbenutzer für Webserver-Programme (Apache, Nginx)", "www-data"]
         labels: ["Sicherheit"]
       - q: "sudo -l"
-        a: "Zeigt welche sudo-Befehle für dich erlaubt sind — nützlich auf fremden Systemen"
+        a: "Zeigt an, welche sudo-Befehle du benutzen darfst — nützlich auf unbekannten Computern"
         rel:
           - ["sudo-l", "List — erlaubte sudo-Befehle für den aktuellen Nutzer anzeigen", "Flag -l"]
         labels: ["Sicherheit"]
       - q: "sudo su -"
-        a: "Zu root-Benutzer wechseln — mit Bindestrich wird auch die root-Umgebung geladen"
+        a: "Wechselt zur root-Shell (vollständige Administrator-Umgebung) — mit Vorsicht benutzen!"
         rel:
           - ["sudo-su", "Zu root-Shell wechseln — mit Vorsicht verwenden", "sudo su -"]
         labels: ["Sicherheit"]
 
-  - title: "🖥️ Terminal-Check"
+  - title: "Terminal-Check"
     image: "images/section-04-check.svg"
     explanation: |
-      Teste jetzt dein Wissen — gib die Befehle direkt ein!
+      Teste jetzt dein Wissen!
     examples:
       - q: "Welcher Befehl macht eine Datei 'deploy.sh' ausführbar?"
         type: input
         a: "chmod +x deploy.sh"
         labels: ["Sicherheit"]
-      - q: "Was bedeutet die Berechtigung '755' in der Oktal-Notation?"
+      - q: "Was bedeutet die Berechtigung '755'?"
         type: select
         options:
           - text: "rwxr-xr-x — Besitzer alles, Gruppe und Andere lesen+ausführen"
@@ -147,7 +165,7 @@ sections:
           - text: "rwx------ — nur Besitzer hat alle Rechte"
           - text: "r--r--r-- — alle dürfen nur lesen"
         labels: ["Sicherheit"]
-      - q: "Welchen Oktalwert sollte ein privater SSH-Schlüssel haben?"
+      - q: "Welchen Zahlenwert sollte ein privater SSH-Schlüssel haben?"
         type: select
         options:
           - text: "600"

@@ -1,146 +1,170 @@
 version: 2
 number: 5
 title: "Permissions"
-description: "chmod, chown and sudo — understand and apply the Linux permission system"
+description: "Learn how Linux controls who can read, write and run things"
 image: "images/lesson-header.svg"
+image_caption: "Lock symbol with rwx permission grid"
 sections:
-  - title: "rwx — decoding the permission system"
+  - title: "rwx — who can do what?"
     image: "images/section-01-rwx.svg"
     explanation: |
-      **Why does this matter?** Security is at the heart of Linux. Wrong permissions
-      can cause scripts to fail, web servers not to start, or in the worst case, let
-      other users access your data.
+      Linux asks about every file: **Who is allowed to do this?**
 
-      Every file has three access levels:
-      ```
-      -rwxr-xr--
-      ↑↑↑↑↑↑↑↑↑↑
-      │└┬┘└┬┘└┬┘
-      │ │  │  └─ Other (everyone else)
-      │ │  └──── Group (group members)
-      │ └──────── Owner (file owner)
-      └────────── File type (- = file, d = directory)
-      ```
+      It's like a house: your room belongs to you.
+      Others might be allowed in, but not to touch your stuff.
 
-      **Meaning of the letters:**
-      | Letter | Meaning | For files | For directories |
-      |--------|---------|-----------|-----------------|
-      | `r` | read | Read file | List contents (ls) |
-      | `w` | write | Write to file | Create/delete files inside |
-      | `x` | execute | Run file | Enter directory (cd) |
-      | `-` | no permission | — | — |
+      Every file in Linux has three permission levels:
+      - **Owner**: The person the file belongs to
+      - **Group**: A group of users, e.g. all teachers at a school
+      - **Others**: Everyone else who is on the computer
+
+      And for each level there are three possible permissions:
+      | Letter | Meaning | What it means |
+      |--------|---------|---------------|
+      | `r` | read | Read a file or show a folder's contents |
+      | `w` | write | Change a file or create files in a folder |
+      | `x` | execute | Run a program or enter a folder |
+      | `-` | no permission | This is not allowed |
+
+      When you type `ls -l`, you see e.g.:
+      ```
+      -rw-r--r-- 1 alice alice 4096 Mar 20 notes.txt
+      ```
+      This means: owner Alice can read and write (`rw-`),
+      everyone else can only read (`r--`).
     examples:
       - q: "ls -la ~/.ssh/id_rsa"
-        a: "Shows permissions of the private SSH key — should be -rw------- (owner only!)"
+        a: "Shows the permissions of the private SSH key — should be -rw------- (owner only!)"
         rel:
           - ["en-ssh-key-perms", "SSH private key needs 600 permissions — SSH refuses to use it otherwise", "security"]
           - ["en-rw-owner-only", "-rw------- means: owner read/write, everyone else nothing", "permission pattern"]
         labels: ["Security"]
       - q: "ls -l /usr/bin/sudo"
-        a: "Shows the special SUID permissions of sudo — the 's' in the permission string is special"
+        a: "Shows the special permissions of sudo — the 's' in the permission string is special"
         rel:
           - ["en-suid-bit", "Set User ID — program runs with owner's permissions", "SUID"]
+          - ["en-sudo-bin", "sudo program with elevated system permissions", "/usr/bin/sudo"]
         labels: ["Security"]
 
   - title: "chmod — changing permissions"
     image: "images/section-02-chmod.svg"
     explanation: |
-      `chmod` (Change Mode) changes file permissions. There are two notations:
+      With `chmod` (Change Mode) you can change a file's permissions.
 
-      **Symbolic notation** (easier to remember):
-      ```bash
-      chmod u+x script.sh      # Owner: add execute
-      chmod g-w file.txt       # Group: remove write
-      chmod o=r config.txt     # Others: set read only
-      chmod a+x deploy.sh      # All: add execute
+      There are two ways to write it:
+
+      **Letter notation** (easier to understand):
+      ```
+      chmod u+x my-script.sh    # u = user (owner), + = add, x = execute
+      chmod g-w file.txt         # g = group, - = remove, w = write
+      chmod o=r secret.txt       # o = other, = = set exactly, r = read only
+      chmod a+x all-can.sh       # a = all, + = add, x = execute
       ```
 
-      **Numeric notation** (faster to type):
+      **Number notation** (faster once you know it):
+
+      Each permission has a number: r=4, w=2, x=1. You add them up:
       | Number | Permissions | Meaning |
       |--------|-------------|---------|
-      | 7 | rwx | all permissions |
-      | 6 | rw- | read + write |
-      | 5 | r-x | read + execute |
+      | 7 | rwx | everything allowed |
+      | 6 | rw- | read and write |
+      | 5 | r-x | read and execute |
       | 4 | r-- | read only |
-      | 0 | --- | no permissions |
+      | 0 | --- | nothing allowed |
 
-      Example: `chmod 755` = `rwxr-xr-x` (owner all, group/others read+execute)
+      `chmod 755 program.sh` means:
+      Owner everything (7 = rwx), group read+execute (5 = r-x), others read+execute (5 = r-x).
     examples:
       - q: "chmod +x deploy.sh"
-        a: "Gives all (owner, group, others) execute permission — makes the script runnable"
+        a: "Gives everyone (owner, group, others) execute permission — makes the script runnable"
         rel:
           - ["en-chmod-cmd", "Change Mode — change file permissions", "chmod command"]
           - ["en-chmod-x", "+x adds execute permission", "chmod +x"]
         labels: ["Security"]
       - q: "chmod 755 /usr/local/bin/myprogram"
-        a: "755 = rwxr-xr-x: owner can do everything, others can only read and execute"
+        a: "755 = rwxr-xr-x: owner can do everything, everyone else can read and run"
         rel:
           - ["en-chmod-755", "rwxr-xr-x — standard for executable programs", "octal 755"]
         labels: ["Security"]
       - q: "chmod 600 ~/.ssh/id_rsa"
-        a: "600 = rw------- : only owner can read/write — mandatory for SSH keys"
+        a: "600 = rw------- : only owner can read/write — mandatory for SSH keys!"
         rel:
           - ["en-chmod-600", "rw------- owner read/write only, SSH key standard", "octal 600"]
         labels: ["Security"]
       - q: "chmod -R 755 ~/website/"
-        a: "Sets 755 permissions recursively on all files and subdirectories"
+        a: "Sets 755 permissions for all files and subfolders in ~/website/ at once"
         rel:
           - ["en-chmod-R", "Recursive — apply permissions to all subdirectories", "flag -R"]
         labels: ["Security"]
 
-  - title: "sudo and chown — superuser powers and ownership"
+  - title: "sudo and chown — super powers and ownership"
     image: "images/section-03-sudo.svg"
     explanation: |
-      **sudo** (Super User Do) allows regular users to run individual commands as
-      administrator (root). This is safer than working as root permanently.
+      In Linux there is a superuser: **root**.
+      Root can do everything — delete files, install programs, change the system.
 
-      ⚠️ **Golden rule:** Only use `sudo` when necessary. As root there is no safety
-      net — one wrong `rm -rf` command can destroy the system.
+      But: working as root all the time is dangerous.
+      A single typo can break the system!
 
-      **chown** (Change Owner) changes the owner of a file:
-      ```bash
-      chown alice file.txt             # change owner
-      chown alice:www-data file.txt    # change owner and group
-      chown -R www-data /var/www/      # recursive for web server files
+      That's why there is **`sudo`** (Super User Do):
+      You stay a normal user, but can run individual commands with
+      administrator rights:
       ```
+      sudo apt update    # Update program list (needs admin rights)
+      ```
+      Linux then asks for your password.
+
+      **`chown`** (Change Owner) changes who owns a file:
+      ```
+      chown alice notes.txt          # Alice becomes the owner
+      chown alice:friends notes.txt  # Alice is owner, group "friends"
+      chown -R alice ~/documents/    # Everything in ~/documents belongs to Alice
+      ```
+
+      Rule: Only use `sudo` when it's really necessary!
     examples:
       - q: "sudo apt update"
-        a: "Update package list — requires administrator rights, hence sudo"
+        a: "Updates the list of available programs — needs administrator rights, hence sudo"
         rel:
           - ["en-sudo-cmd", "Super User Do — run command as administrator", "sudo command"]
         labels: ["Security"]
       - q: "sudo chown -R www-data:www-data /var/www/html/"
-        a: "Assign all web server files to www-data user — Nginx/Apache need this"
+        a: "Hand over all website files to the web server user (the web server is called www-data)"
         rel:
           - ["en-chown-cmd", "Change Owner — change file owner", "chown command"]
           - ["en-chown-R", "Recursive — change ownership recursively", "chown -R"]
           - ["en-www-data", "Default user for web servers (Apache, Nginx)", "www-data"]
         labels: ["Security"]
       - q: "sudo -l"
-        a: "Shows which sudo commands are allowed for you — useful on unfamiliar systems"
+        a: "Shows which sudo commands you are allowed to use — useful on unfamiliar computers"
         rel:
           - ["en-sudo-l", "List — show allowed sudo commands for current user", "flag -l"]
         labels: ["Security"]
+      - q: "sudo su -"
+        a: "Switch to the root shell (full administrator environment) — use with care!"
+        rel:
+          - ["en-sudo-su", "Switch to root shell — use with caution", "sudo su -"]
+        labels: ["Security"]
 
-  - title: "🖥️ Terminal Check"
+  - title: "Terminal Check"
     image: "images/section-04-check.svg"
     explanation: |
-      Test your knowledge — type the commands yourself!
+      Test your knowledge now!
     examples:
-      - q: "Which command makes 'deploy.sh' executable?"
+      - q: "Which command makes the file 'deploy.sh' executable?"
         type: input
         a: "chmod +x deploy.sh"
         labels: ["Security"]
-      - q: "What does the permission '755' mean in octal notation?"
+      - q: "What does the permission '755' mean?"
         type: select
         options:
-          - text: "rwxr-xr-x — owner all, group and others read+execute"
+          - text: "rwxr-xr-x — owner everything, group and others read+execute"
             correct: true
           - text: "rw-rw-rw- — everyone can read and write"
           - text: "rwx------ — only owner has all permissions"
           - text: "r--r--r-- — everyone can only read"
         labels: ["Security"]
-      - q: "What octal value should a private SSH key have?"
+      - q: "What number value should a private SSH key have?"
         type: select
         options:
           - text: "600"

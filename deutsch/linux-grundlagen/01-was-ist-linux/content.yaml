@@ -1,41 +1,48 @@
 version: 2
 number: 1
 title: "Was ist Linux?"
-description: "Geschichte, Distributionen und warum Linux 96% aller Server weltweit antreibt"
+description: "Lern was Linux ist, wo es überall steckt und wie du es sofort ausprobieren kannst"
 image: "images/lesson-header.svg"
 image_caption: "Tux Penguin mit Server-Racks"
 sections:
-  - title: "Ein Student verändert die Welt"
+  - title: "Linux — die Software, die alles steuert"
     image: "images/section-01-history.svg"
     explanation: |
-      Im Jahr **1991** schrieb ein 21-jähriger Informatikstudent an der Universität Helsinki
-      eine E-Mail, die die Welt verändern sollte:
+      **Linux** ist ein Betriebssystem.
 
-      > *"Ich entwickle ein freies Betriebssystem (nur ein Hobby, wird nicht groß und professionell sein
-      > wie GNU)"* — Linus Torvalds, 25. August 1991
+      Ein Betriebssystem (kurz: OS, von englisch "Operating System") ist die wichtigste
+      Software auf deinem Computer. Es sorgt dafür, dass alles funktioniert:
+      dass du tippen kannst, dass Programme starten, dass der Bildschirm leuchtet.
 
-      Heute, über 30 Jahre später, läuft **Linux** auf:
-      - **96%** aller Webserver weltweit
-      - **100%** der schnellsten Supercomputer
-      - Milliarden von Android-Smartphones
-      - Smart-TVs, Routern, Autos, Raumstationen
+      Windows und macOS sind auch Betriebssysteme. Linux ist eine weitere Möglichkeit —
+      und hat einen riesigen Vorteil:
 
-      **Warum ist das wichtig?** Wer Linux versteht, versteht die Infrastruktur des Internets.
-      Jeder Klick, jede Website, jede App läuft irgendwo auf einem Linux-Server.
+      Linux ist **kostenlos** und jeder darf es benutzen, verändern und weitergeben.
+      Das nennt man **Open Source** (englisch für "offene Quelle" —
+      der Bauplan ist für alle sichtbar).
+
+      Linux steckt überall — auch wenn du es nicht weißt:
+      - Fast alle **Webseiten** laufen auf Linux-Servern (ein Server ist ein Computer,
+        der rund um die Uhr läuft und Daten bereitstellt)
+      - **Android-Handys** basieren auf Linux
+      - **Smart-TVs**, Waschmaschinen, Autos — oft Linux drin!
+      - **Raspberry Pi** (ein Mini-Computer für ca. 35€) läuft mit Linux
+
+      Super! Jetzt weißt du schon, was Linux ist.
     examples:
       - q: "uname -r"
-        a: "Zeigt die aktuelle Linux-Kernel-Version an (z.B. 5.15.0-91-generic)"
+        a: "Zeigt die Version des Linux-Kerns an (z.B. 5.15.0-91-generic) — der Kern ist das Herzstück von Linux"
         rel:
           - ["uname", "Unix Name — Systeminformationen anzeigen", "Befehl"]
           - ["uname-r", "Kernel-Release-Version ausgeben", "Flag -r = release"]
         labels: ["Basics"]
       - q: "uname -a"
-        a: "Alle Systeminformationen auf einmal: Kernel, Hostname, Architektur"
+        a: "Alle Systeminformationen auf einmal: Kernel-Version, Computername und mehr"
         rel:
           - ["uname-a", "Alle Systeminfos (All)", "Flag -a = all"]
         labels: ["Basics"]
       - q: "cat /etc/os-release"
-        a: "Zeigt welche Linux-Distribution und Version installiert ist"
+        a: "Zeigt welche Linux-Version installiert ist (z.B. Ubuntu 22.04)"
         rel:
           - ["os-release", "Datei mit Distribution und Versionsinformationen", "/etc/os-release"]
           - ["cat-cmd", "Dateiinhalt im Terminal ausgeben", "Befehl cat"]
@@ -44,130 +51,134 @@ sections:
   - title: "Linux sofort ausprobieren — ohne Installation"
     image: "images/section-02-try-linux.svg"
     explanation: |
-      Bevor du weiter lernst: **Hast du schon Zugang zu einem Linux-Terminal?**
+      Du musst gar nichts installieren, um Linux auszuprobieren!
 
-      Du brauchst kein neues Betriebssystem zu installieren. Es gibt viele einfache Wege:
+      **Direkt im Browser (empfohlen für Anfänger):**
 
-      **Sofort im Browser (kein Download nötig):**
-      - **webminal.org** — echtes Ubuntu-Terminal im Browser, kostenlos, keine Installation
-      - **JSLinux (bellard.org/jslinux)** — Linux direkt im Browser, keine Anmeldung nötig
-      - **replit.com** — Online-IDE mit Linux-Terminal
+      Geh auf **webminal.org** — das ist ein echtes Linux-Terminal,
+      das direkt im Browser läuft. Kostenlos, keine Installation, sofort los!
 
       **Auf Windows:**
-      - **WSL2 (Windows Subsystem for Linux)** — ein echter Ubuntu-Linux-Kern direkt in Windows
-      - Einmal in der PowerShell eingeben: `wsl --install` — danach Ubuntu starten
 
-      **Auf macOS:**
-      - **Terminal.app** öffnen — macOS ist Unix-basiert, fast alle Linux-Befehle funktionieren
-      - Finder → Programme → Dienstprogramme → Terminal
+      Öffne die Suche (Windows-Taste), tippe "PowerShell" und gib ein:
+      ```
+      wsl --install
+      ```
+      Das installiert Ubuntu (eine beliebte Linux-Version) direkt in Windows.
+      Danach kannst du Ubuntu wie eine normale App starten!
 
-      **Als virtuelle Maschine (für tieferes Lernen):**
-      - **VirtualBox** (kostenlos) + Ubuntu ISO herunterladen → Linux in einem Fenster
+      **Auf einem Mac:**
 
-      **Als echter Mini-Computer:**
-      - **Raspberry Pi** (~35€) — vollständiger Linux-Rechner, ideal zum Experimentieren
+      Öffne das Terminal (Finder → Programme → Dienstprogramme → Terminal).
+      macOS ist dem Linux sehr ähnlich — fast alle Befehle aus diesem Kurs funktionieren!
 
-      **Empfehlung für Einsteiger:** Starte mit **webminal.org** im Browser
-      oder installiere **WSL2** auf Windows — kein Risiko, sofort los!
+      **Empfehlung:** Starte mit **webminal.org**.
+      Kein Risiko, kein Download — einfach loslegen!
     examples:
       - q: "uname -s"
-        a: "Zeigt das Betriebssystem an — bei Linux: 'Linux', bei macOS: 'Darwin'"
+        a: "Zeigt das Betriebssystem an — bei Linux steht da 'Linux', bei macOS steht 'Darwin'"
         rel:
           - ["uname-s", "System name — zeigt ob Linux, Darwin (macOS), etc.", "Flag -s = system"]
         labels: ["Basics"]
       - q: "wsl --install"
-        a: "Installiert WSL2 + Ubuntu auf Windows 10/11 — danach Ubuntu direkt in Windows nutzen (PowerShell als Admin)"
+        a: "Installiert WSL2 (Windows Subsystem for Linux) und Ubuntu auf Windows — gibt Linux in Windows!"
         rel:
           - ["wsl-install", "WSL2 und Ubuntu auf Windows 10/11 installieren", "Windows PowerShell Befehl"]
-          - ["wsl2", "Windows Subsystem for Linux — Linux-Kernel direkt in Windows integriert", "WSL2"]
+          - ["wsl2", "Windows Subsystem for Linux — Linux direkt in Windows integriert", "WSL2"]
         labels: ["Basics", "Installation"]
       - q: "bash --version"
-        a: "Zeigt die installierte Bash-Version an — funktioniert auf Linux, macOS und WSL"
+        a: "Zeigt die installierte Bash-Version — Bash ist das Programm, das deine Befehle versteht"
         rel:
           - ["bash-version", "Bash-Shell-Version anzeigen", "Befehl bash --version"]
-          - ["bash-shell", "Bash — Bourne Again Shell, Standard-Shell auf Linux", "Shell"]
+          - ["bash-shell", "Bash — das Programm, das Befehle im Terminal entgegennimmt und ausführt", "Shell"]
         labels: ["Basics"]
 
-  - title: "Distributionen — Linux für jeden Zweck"
+  - title: "Linux-Varianten — für jeden etwas dabei"
     image: "images/section-02-distros.svg"
     explanation: |
-      Linux ist kein einzelnes Betriebssystem, sondern ein **Kern (Kernel)**, um den herum
-      verschiedene Unternehmen und Communities vollständige Systeme gebaut haben.
-      Diese heißen **Distributionen** (kurz: Distros).
+      Linux gibt es in vielen Varianten. Man nennt sie **Distributionen**
+      (gesprochen: dis-tri-bu-TSIO-nen), kurz: Distros.
 
-      | Distribution | Stärke | Zielgruppe |
-      |-------------|--------|------------|
-      | **Ubuntu** | Einfache Installation, viel Support | Einsteiger, Desktop |
-      | **Debian** | Stabilität, langer Support | Server, Systemadmins |
-      | **Fedora** | Modernste Software | Entwickler |
-      | **Arch Linux** | Maximale Kontrolle | Fortgeschrittene |
-      | **Kali Linux** | Sicherheitstools vorinstalliert | Penetrationstester |
-      | **Raspberry Pi OS** | Optimiert für Mini-Computer | Maker, IoT |
+      Stell dir vor: Der Linux-Kern (der innerste Teil, der die Hardware steuert)
+      ist wie ein Motor. Verschiedene Teams bauen dann unterschiedliche Autos darum herum.
 
-      **Der entscheidende Unterschied zu Windows/macOS:** Linux ist **Open Source** —
-      jeder kann den Quellcode lesen, verändern und weitergeben.
+      Das sind die bekanntesten Linux-Varianten:
+
+      | Name | Für wen? |
+      |------|----------|
+      | **Ubuntu** | Super für Anfänger — viel Hilfe online, einfach zu installieren |
+      | **Debian** | Sehr stabil — wird gerne auf Servern eingesetzt |
+      | **Raspberry Pi OS** | Extra für den Raspberry Pi Mini-Computer gemacht |
+      | **Kali Linux** | Für Sicherheitsforschung (erst wenn du Grundlagen kennst!) |
+
+      In diesem Kurs lernst du Befehle, die auf **allen** Linux-Varianten funktionieren.
+      Das ist das Tolle: Einmal lernen, überall anwenden!
     examples:
       - q: "lsb_release -a"
-        a: "Zeigt die genaue Distribution und Version (z.B. Ubuntu 22.04 LTS)"
+        a: "Zeigt welche Linux-Variante (Distribution) und welche Version installiert ist"
         rel:
           - ["lsb-release", "Linux Standard Base Informationen anzeigen", "Befehl lsb_release"]
           - ["lsb-a-flag", "Alle verfügbaren LSB-Infos ausgeben", "Flag -a"]
         labels: ["Basics"]
       - q: "hostnamectl"
-        a: "Zeigt Hostname, Betriebssystem, Kernel und Architektur in übersichtlicher Form"
+        a: "Zeigt den Computernamen, das Betriebssystem und die Kernel-Version übersichtlich an"
         rel:
           - ["hostnamectl", "Hostname und Systeminformationen verwalten", "Befehl"]
         labels: ["Basics"]
       - q: "arch"
-        a: "Gibt die Prozessorarchitektur aus (z.B. x86_64 für 64-Bit-System)"
+        a: "Zeigt den Prozessor-Typ an — z.B. x86_64 bedeutet: 64-Bit-Computer (der normale PC/Laptop)"
         rel:
           - ["arch-cmd", "Prozessorarchitektur anzeigen", "Befehl arch"]
-          - ["x86-64", "64-Bit Intel/AMD Architektur, heute Standard", "Architektur"]
+          - ["x86-64", "64-Bit Intel/AMD Architektur, heute Standard bei PCs und Laptops", "Architektur"]
         labels: ["Basics"]
 
-  - title: "Das Linux-Dateisystem — alles ist eine Datei"
+  - title: "Das Linux-Dateisystem — alles hat seinen Platz"
     image: "images/section-03-filesystem.svg"
     explanation: |
-      Linux folgt einer Philosophie: **alles ist eine Datei** — auch Geräte, Prozesse und
-      Netzwerkverbindungen sind als Dateien repräsentiert.
+      In Linux sind alle Dateien in einem großen Baum organisiert.
 
-      Das Dateisystem startet immer bei `/` (Root — der Wurzel):
+      Der Baum beginnt ganz oben mit `/` — das nennt man **Root**
+      (englisch für "Wurzel"). Von dort aus verzweigen sich alle Ordner.
 
-      | Ordner | Inhalt |
-      |--------|--------|
-      | `/home` | Persönliche Ordner der Benutzer |
-      | `/etc` | Konfigurationsdateien des Systems |
-      | `/bin`, `/usr/bin` | Ausführbare Programme (Befehle) |
-      | `/var/log` | Log-Dateien (Systemprotokolle) |
-      | `/tmp` | Temporäre Dateien, werden beim Neustart gelöscht |
-      | `/dev` | Gerätedateien (Festplatten, USB, etc.) |
+      Das sind die wichtigsten Ordner und was drin ist:
 
-      Das Tilde-Zeichen `~` ist eine Abkürzung für das eigene Home-Verzeichnis:
-      `/home/benutzer` wird zu `~`
+      | Ordner | Was ist drin? |
+      |--------|---------------|
+      | `/home` | Dein persönlicher Ordner — wie dein Zimmer |
+      | `/etc` | Einstellungsdateien für das System (wie die Systemsteuerung) |
+      | `/bin` | Programme, die jeder benutzen darf (z.B. ls, cd) |
+      | `/tmp` | Temporäre Dateien — werden beim Neustart gelöscht |
+      | `/dev` | Geräte wie Festplatten und USB-Sticks (als Dateien!) |
+
+      Das Zeichen `~` (Tilde, auf der Tastatur oben links) ist eine Abkürzung
+      für deinen persönlichen Ordner. Wenn du `alice` heißt,
+      steht `~` für `/home/alice`.
+
+      Probier es aus! Tippe `ls /` im Terminal, um den Inhalt der Wurzel zu sehen.
     examples:
       - q: "ls /"
-        a: "Zeigt den Inhalt des Root-Verzeichnisses — die oberste Ebene des Dateisystems"
+        a: "Zeigt alle Ordner ganz oben im Dateisystem — die Wurzel (Root) des Baums"
         rel:
           - ["ls-cmd", "List — Verzeichnisinhalt anzeigen", "Befehl ls"]
           - ["root-dir", "Das oberste Verzeichnis des Linux-Dateisystems", "/ (Root)"]
         labels: ["Dateisystem"]
       - q: "ls /etc | head -5"
-        a: "Listet die ersten 5 Einträge im Konfigurationsordner /etc"
+        a: "Zeigt die ersten 5 Einträge im Einstellungs-Ordner /etc"
         rel:
           - ["etc-dir", "Konfigurationsdateien des Systems", "Verzeichnis /etc"]
           - ["pipe-head", "Ausgabe durch pipe an head weitergeben", "| head -5"]
         labels: ["Dateisystem", "Konfiguration"]
       - q: "echo $HOME"
-        a: "Gibt den Pfad zum eigenen Home-Verzeichnis aus (z.B. /home/alice)"
+        a: "Zeigt den Pfad zu deinem persönlichen Ordner an (z.B. /home/alice)"
         rel:
           - ["echo-cmd", "Text oder Variable im Terminal ausgeben", "Befehl echo"]
           - ["home-var", "Umgebungsvariable mit Pfad zum Home-Verzeichnis", "$HOME"]
         labels: ["Dateisystem", "Basics"]
 
-  - title: "🖥️ Terminal-Check"
+  - title: "Terminal-Check"
     image: "images/section-04-check.svg"
     explanation: |
-      Teste jetzt dein Wissen — gib die Befehle direkt ein!
+      Teste jetzt dein Wissen!
     examples:
       - q: "Welcher Befehl zeigt die aktuelle Linux-Kernel-Version an?"
         type: input
@@ -179,10 +190,10 @@ sections:
           - text: "Zeigt die genaue Distribution und Version"
             correct: true
           - text: "Löscht alle Log-Dateien"
-          - text: "Aktualisiert den Linux-Kernel"
+          - text: "Aktualisiert den Linux-Kern"
           - text: "Startet das System neu"
         labels: ["Basics"]
-      - q: "Welcher Befehl zeigt, welche Linux-Distribution installiert ist?"
+      - q: "Welcher Befehl zeigt, welche Linux-Version installiert ist?"
         type: select
         options:
           - text: "cat /etc/os-release"
@@ -196,9 +207,9 @@ sections:
         options:
           - text: "Linux ist Open Source"
             correct: true
-          - text: "Linux läuft auf 96% aller Webserver"
+          - text: "Linux läuft auf fast allen Webservern weltweit"
             correct: true
-          - text: "Linux hat nur eine einzige Distribution"
+          - text: "Linux hat nur eine einzige Variante"
           - text: "Android basiert auf Linux"
             correct: true
         labels: ["Basics"]

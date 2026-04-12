@@ -1,141 +1,164 @@
 version: 2
 number: 4
 title: "File Content"
-description: "cat, less, head, tail and grep — read, browse and filter file contents"
+description: "Learn how to read files, scroll through them and search for specific words"
 image: "images/lesson-header.svg"
+image_caption: "Terminal with cat, head and grep output"
 sections:
   - title: "cat, less and more — reading files"
     image: "images/section-01-read.svg"
     explanation: |
-      **Why does this matter?** As a Linux user you constantly read files:
-      configurations, log files, scripts, database dumps. The right tools mean the
-      difference between 10 seconds and 10 minutes.
+      How do you read files in the terminal? There are different commands —
+      depending on the file size, one is better suited than another.
 
-      | Command | Best for |
-      |---------|----------|
-      | `cat` | Short files, display completely |
-      | `less` | Long files, interactive scrolling |
-      | `more` | Similar to less, simpler |
-      | `head` | Only the first N lines |
-      | `tail` | Only the last N lines |
+      | Command | Best for? |
+      |---------|-----------|
+      | `cat` | Show small files completely (cat = "concatenate", to chain together) |
+      | `less` | Browse long files page by page — like a book! |
+      | `head` | See only the first lines of a file |
+      | `tail` | See only the last lines of a file |
 
-      In `less`, navigate with:
-      - `j`/`k` or arrow keys: line down/up
-      - `Space`/`b`: page forward/back
-      - `/searchterm`: search
-      - `q`: quit
+      **`cat`** outputs the whole file at once:
+      ```
+      cat my-file.txt
+      ```
+
+      **`less`** is like a book reader for long texts.
+      You can scroll through it:
+      - Arrow keys or `j`/`k`: one line down/up
+      - Spacebar: one page forward
+      - `q`: quit (Q like "Quit")
+      - `/word`: search for a word
+
+      Give it a try: `less /etc/hostname`
     examples:
       - q: "cat /etc/hostname"
-        a: "Shows the system's hostname — a short file, perfect for cat"
+        a: "Shows the computer name of the system — a short file, perfect for cat"
         rel:
           - ["en-cat-content", "Output full file contents", "cat command"]
           - ["en-etc-hostname", "File containing the system's computer name", "/etc/hostname"]
         labels: ["Filesystem", "Config"]
       - q: "cat /etc/passwd"
-        a: "Shows all user accounts on the system (name, ID, home directory, shell)"
+        a: "Shows all user accounts on the system — name, number, folder, and which shell they use"
         rel:
           - ["en-etc-passwd", "System user database", "/etc/passwd"]
         labels: ["Filesystem", "Security"]
       - q: "less /var/log/syslog"
-        a: "Browse system log interactively — search with /, quit with q"
+        a: "Opens the system log for browsing — search with /, quit with q"
         rel:
           - ["en-less-cmd", "Read long files interactively with scrolling", "less command"]
-          - ["en-syslog", "Central system log with all important events", "/var/log/syslog"]
+          - ["en-syslog", "The central system log — Linux writes important events here", "/var/log/syslog"]
         labels: ["Filesystem"]
 
   - title: "head and tail — beginning and end"
     image: "images/section-02-head-tail.svg"
     explanation: |
-      `head` and `tail` show the first or last lines of a file respectively.
-      Default: 10 lines. Use `-n` to customize the count.
+      Sometimes you don't want to see the whole file — just the beginning or the end.
+      That's what `head` and `tail` are for.
 
-      **The most powerful tail feature:** `tail -f` follows a file in real time:
-      ```bash
-      tail -f /var/log/nginx/access.log
+      `head` shows the **first** lines (default: the first 10).
+      `tail` shows the **last** lines (default: the last 10).
+
+      With `-n` you can choose how many lines you want to see:
       ```
-      Perfect for server logs while requests come in — you see each access instantly.
-      Use `Ctrl+C` to stop the live monitoring.
+      head -5 file.txt    # First 5 lines
+      tail -20 file.txt   # Last 20 lines
+      ```
+
+      The **coolest feature of `tail`:** With `-f` you see a file live —
+      new lines appear immediately as they are written.
+      It's like live TV for files!
+      ```
+      tail -f /var/log/syslog
+      ```
+      Use `Ctrl+C` (hold Ctrl and press C) to stop the live view.
     examples:
       - q: "head -20 /etc/ssh/sshd_config"
-        a: "Shows the first 20 lines of the SSH server configuration"
+        a: "Shows the first 20 lines of the SSH server config file (SSH is a way to control computers remotely)"
         rel:
           - ["en-head-cmd", "Show beginning of a file (default: 10 lines)", "head command"]
           - ["en-head-n", "Set number of lines to display", "flag -n"]
+          - ["en-sshd-config", "Configuration file for the SSH server", "/etc/ssh/sshd_config"]
         labels: ["Filesystem", "Config"]
       - q: "tail -50 /var/log/auth.log"
-        a: "Last 50 lines of the auth log — shows login attempts and authentications"
+        a: "Shows the last 50 lines of the login log — shows who logged in"
         rel:
           - ["en-tail-cmd", "Show end of a file (default: 10 lines)", "tail command"]
-          - ["en-auth-log", "Log for authentications and sudo usage", "/var/log/auth.log"]
+          - ["en-auth-log", "Log file for logins and authentications", "/var/log/auth.log"]
         labels: ["Filesystem", "Security"]
       - q: "tail -f /var/log/nginx/access.log"
-        a: "Follow Nginx accesses in real time — perfect for live debugging"
+        a: "Shows all web server accesses live — new entries appear immediately!"
         rel:
           - ["en-tail-f", "Follow — watch file in real time, show new lines immediately", "flag -f"]
         labels: ["Filesystem", "Network"]
 
-  - title: "grep — finding a needle in a haystack"
+  - title: "grep — search like a detective"
     image: "images/section-03-grep.svg"
     explanation: |
-      `grep` (Global Regular Expression Print) searches files for patterns.
-      It is one of the most used Linux tools of all time.
+      `grep` is your detective tool.
+      It searches files for a specific word or phrase — and shows you only
+      the lines where the word appears.
 
-      | Command | Effect |
-      |---------|--------|
-      | `grep "error" file.txt` | All lines containing "error" |
-      | `grep -i "Error" file.txt` | Ignore case |
-      | `grep -n "ERROR" log.txt` | With line numbers |
-      | `grep -r "TODO" ~/projects/` | Recursively in all subdirectories |
-      | `grep -v "DEBUG" app.log` | All lines WITHOUT "DEBUG" |
-      | `grep -c "ERROR" app.log` | Only count the matches |
+      Imagine you have a huge list with 1000 entries
+      and you're looking for the word "error". Without grep you'd have to read everything.
+      With grep it finds it in seconds!
 
-      **Combining with other commands** makes grep especially powerful:
-      ```bash
-      cat /var/log/auth.log | grep "Failed"
+      | Command | What it searches |
+      |---------|-----------------|
+      | `grep "hello" file.txt` | All lines with "hello" |
+      | `grep -i "Hello" file.txt` | Regardless of upper or lowercase (`-i` = ignore case) |
+      | `grep -n "Error" log.txt` | With line number — where exactly is it? |
+      | `grep -r "TODO" ~/projects/` | In all files in a folder |
+      | `grep -v "OK" result.txt` | All lines WITHOUT "OK" — the problems! |
+
+      You can also combine grep with other commands:
       ```
+      cat /etc/passwd | grep alice
+      ```
+      The `|` (pipe, pronounced "pipe") passes the output of `cat` directly to `grep`.
     examples:
       - q: "grep -i \"error\" /var/log/syslog"
-        a: "Search all error messages in the system log, case-insensitive"
+        a: "Searches for 'error' in the system log — regardless of upper or lowercase"
         rel:
           - ["en-grep-cmd", "Search files for lines matching a pattern", "grep command"]
           - ["en-grep-i", "Case-insensitive — ignore upper/lowercase", "flag -i"]
         labels: ["Filesystem"]
       - q: "grep -n \"TODO\" ~/projects/app.py"
-        a: "Find all TODO comments in the Python script with line numbers"
+        a: "Finds all TODO comments in the code and shows the line numbers"
         rel:
           - ["en-grep-n", "Number — show line numbers of matches", "flag -n"]
         labels: ["Filesystem"]
       - q: "grep -r \"database_url\" ~/projects/"
-        a: "Search all files under ~/projects/ for database_url — finds forgotten configs too"
+        a: "Searches all files in the projects folder for 'database_url' — finds forgotten settings too"
         rel:
           - ["en-grep-r", "Recursive — search in directories and subdirectories", "flag -r"]
         labels: ["Filesystem"]
       - q: "grep -v \"^#\" /etc/ssh/sshd_config"
-        a: "Show SSH config but hide all comment lines (starting with #)"
+        a: "Shows SSH settings without comment lines (comments start with # and just explain things)"
         rel:
           - ["en-grep-v", "Invert match — show lines WITHOUT the pattern", "flag -v"]
-          - ["en-regex-caret", "^ in regex = start of line", "Regex ^"]
+          - ["en-regex-caret", "^ in a pattern means: start of line", "Regex ^"]
         labels: ["Filesystem", "Config"]
 
-  - title: "🖥️ Terminal Check"
+  - title: "Terminal Check"
     image: "images/section-04-check.svg"
     explanation: |
-      Test your knowledge — type the commands yourself!
+      Test your knowledge now!
     examples:
-      - q: "Which command reads a file interactively with scrolling?"
+      - q: "Which command lets you browse a file page by page?"
         type: input
         a: "less"
         labels: ["Filesystem"]
-      - q: "What does 'tail -f /var/log/nginx/access.log' do?"
+      - q: "What does 'tail -f /var/log/syslog' do?"
         type: select
         options:
-          - text: "Follows the file in real time and shows new lines immediately"
+          - text: "Shows new lines in the file live immediately"
             correct: true
-          - text: "Shows the last 10 lines and exits"
+          - text: "Shows the last 10 lines and stops"
           - text: "Deletes the last lines of the file"
-          - text: "Searches for the term 'nginx'"
+          - text: "Searches for the word 'syslog'"
         labels: ["Filesystem"]
-      - q: "Which command searches case-insensitively for 'error' in a file?"
+      - q: "Which command searches for 'error' regardless of case?"
         type: select
         options:
           - text: "grep -i \"error\" file.txt"
@@ -144,14 +167,14 @@ sections:
           - text: "grep -r \"error\" file.txt"
           - text: "grep -v \"error\" file.txt"
         labels: ["Filesystem"]
-      - q: "Which of these grep flags are described correctly?"
+      - q: "Which of these grep flags have the right meaning?"
         type: multiple-choice
         options:
           - text: "-i ignores case"
             correct: true
           - text: "-n shows line numbers"
             correct: true
-          - text: "-r searches directories recursively"
+          - text: "-r searches folders recursively"
             correct: true
           - text: "-v shows only matches without context"
         labels: ["Filesystem"]

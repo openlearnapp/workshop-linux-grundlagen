@@ -1,146 +1,171 @@
 version: 2
 number: 10
 title: "Vim & Text Editors"
-description: "nano for beginners, vim for power users — edit files directly in the terminal"
+description: "nano for beginners, vim for pros — edit files directly in the terminal"
 image: "images/lesson-header.svg"
+image_caption: "Vim interface with mode indicators (Normal, Insert, Visual, Command)"
 sections:
-  - title: "nano — the beginner-friendly editor"
+  - title: "nano — the friendly text editor"
     image: "images/section-01-nano.svg"
     explanation: |
-      **Why does this matter?** Servers have no graphical interface.
-      You need to edit configuration files directly in the terminal — `nano` is the
-      easiest way, `vim` is the most powerful.
+      Imagine you're on a server with no mouse, no windows —
+      just the terminal. And you need to edit a file.
 
-      **nano** shows all important key combinations at the bottom of the screen:
-      - `Ctrl+O` then `Enter`: Save (Write **O**ut)
-      - `Ctrl+X`: Exit
-      - `Ctrl+W`: Search (**W**here is)
-      - `Ctrl+K`: Cut line (**K**ut)
-      - `Ctrl+U`: Paste (**U**ncut)
-      - `Ctrl+G`: Help (**G**et help)
+      That's what **terminal text editors** are for.
+      The simplest one is called **nano**.
+      It's designed so beginners can use it right away.
 
-      Opening nano and editing a file:
-      ```bash
-      nano /etc/hosts
-      sudo nano /etc/nginx/sites-available/default
+      This is how you open a file with nano:
       ```
+      nano my-file.txt
+      ```
+
+      At the bottom nano shows you the most important keyboard shortcuts.
+      The `^` always means the `Ctrl` key (Control):
+      - `Ctrl+O` then `Enter` — Save (the O stands for "Output")
+      - `Ctrl+X` — Exit (X like "Exit")
+      - `Ctrl+W` — Search (W like "Where is this text?")
+      - `Ctrl+K` — Cut line (K like "Kill the line")
+      - `Ctrl+U` — Paste back what you cut (U like "Uncut")
+      - `Ctrl+G` — Show help (G like "Get help")
+
+      Just give it a try — nano is very forgiving!
     examples:
       - q: "nano ~/.bashrc"
-        a: "Edit bash config with nano — Ctrl+O to save, Ctrl+X to exit"
+        a: "Opens the Bash config file — Ctrl+O to save, Ctrl+X to exit"
         rel:
           - ["en-nano-cmd", "Beginner-friendly terminal text editor with keyboard hints", "nano command"]
           - ["en-nano-save", "Ctrl+O then Enter — save file in nano", "nano Ctrl+O"]
         labels: ["Editor", "Config"]
       - q: "nano -l /etc/hosts"
-        a: "Edit hosts file with line numbers — helpful for long files"
+        a: "Opens the file and shows line numbers — handy for long files"
         rel:
           - ["en-nano-l", "Line numbers — show line numbers in nano", "nano flag -l"]
         labels: ["Editor"]
       - q: "nano +50 app.conf"
-        a: "Nano opens directly at line 50 — saves scrolling in long configs"
+        a: "Opens the file directly at line 50 — no need to scroll down"
         rel:
           - ["en-nano-jump", "+N opens file directly at line N", "nano +line-number"]
         labels: ["Editor"]
 
-  - title: "vim — the power editor"
+  - title: "vim — the pro editor"
     image: "images/section-02-vim.svg"
     explanation: |
-      **vim** (Vi Improved) is powerful but initially confusing because it has **modes**:
+      **vim** (Vi Improved — "improved Vi") is a text editor
+      that seems strange at first, but is very fast.
 
-      | Mode | Activate | Used for |
-      |------|----------|----------|
-      | **Normal** | `Esc` | Navigation, commands |
-      | **Insert** | `i`, `a`, `o` | Typing text |
-      | **Visual** | `v`, `V` | Selecting text |
-      | **Command** | `:` | Saving, quitting, searching |
+      The special thing: vim has **modes** (states).
+      It's like a video game —
+      sometimes you run, sometimes you fight, sometimes you talk.
 
-      **The essentials to get started:**
-      1. vim opens in Normal mode
-      2. Press `i` → Insert mode → type text
-      3. `Esc` → back to Normal mode
-      4. `:w` → save
-      5. `:q` → quit
-      6. `:wq` → save and quit
-      7. `:q!` → quit without saving (force)
+      The most important modes:
+      - **Normal mode** — for navigating and giving commands (default at start)
+      - **Insert mode** — for typing text
+      - **Command mode** — for commands like saving or searching
 
-      **Why learn vim?** It is pre-installed on *every* Linux system. When you're on
-      a freshly installed server, vim is always available.
+      Your first steps in vim, step by step:
+      1. Open vim: `vim my-file.txt`
+      2. vim starts in Normal mode — you can't type text yet
+      3. Press `i` — now you're in Insert mode, at the bottom it says `-- INSERT --`
+      4. Type your text
+      5. Press `Esc` — back to Normal mode
+      6. Type `:wq` — this saves (w = write) and exits (q = quit)
+
+      Important emergency commands in vim:
+      - `:wq` — save and exit
+      - `:q!` — exit WITHOUT saving (! = force)
+      - `:w` — only save, don't exit
+
+      Why learn vim?
+      It's pre-installed on almost every Linux system.
+      When you're on a new server, vim is always there.
     examples:
       - q: "vim /etc/nginx/nginx.conf"
-        a: "Open Nginx config with vim — always available, even on minimal servers"
+        a: "Opens a config file with vim — works on every Linux system"
         rel:
           - ["en-vim-cmd", "Vi Improved — powerful modal terminal text editor", "vim command"]
         labels: ["Editor", "Config"]
       - q: ":wq"
-        a: "In vim: save file (write) and quit — enter in Command mode"
+        a: "In vim: save the file and exit the editor — start in Command mode with :"
         rel:
           - ["en-vim-wq", "Write Quit — save and exit in vim", ":wq"]
           - ["en-vim-command-mode", "Colon : activates Command mode in vim", "vim :"]
         labels: ["Editor"]
       - q: ":q!"
-        a: "Exit vim without saving — ! forces the action"
+        a: "Exit vim without saving — the ! means 'force it, no matter what'"
         rel:
           - ["en-vim-q-bang", "Quit without saving — discard all changes", ":q!"]
         labels: ["Editor"]
       - q: "i"
-        a: "Activate Insert mode — now text can be entered"
+        a: "Switches to Insert mode — now you can type text"
         rel:
           - ["en-vim-insert", "i — switch to Insert mode (before cursor), a = after cursor", "vim i"]
         labels: ["Editor"]
 
-  - title: "vim navigation and searching"
+  - title: "vim — navigating and searching"
     image: "images/section-03-vim-nav.svg"
     explanation: |
-      In **Normal mode** you navigate without arrow keys (more efficient!):
+      In Normal mode you can move through the file —
+      even without arrow keys!
 
-      | Key | Action |
-      |-----|--------|
-      | `h`, `j`, `k`, `l` | Left, Down, Up, Right |
-      | `w` | Next word forward |
-      | `b` | Previous word backward |
-      | `0` | Start of line |
-      | `$` | End of line |
-      | `gg` | Start of file |
-      | `G` | End of file |
-      | `50G` | Jump to line 50 |
+      The **hjkl** keys are navigation:
+      - `h` — left
+      - `j` — down
+      - `k` — up
+      - `l` — right
 
-      **Search and replace in vim:**
+      That sounds weird, but pros use these keys
+      because the fingers don't have to leave the home row.
+
+      More useful jumps:
+      - `w` — jump one word forward
+      - `b` — jump one word backward
+      - `gg` — all the way to the start of the file
+      - `G` — all the way to the end of the file
+      - `50G` — jump to line 50
+
+      **Searching in vim:**
       ```
-      /searchterm       → search forward, n = next match
-      ?searchterm       → search backward
-      :%s/old/new/g     → replace all occurrences
-      :%s/old/new/gc    → replace with confirmation
+      /error
       ```
+      Type `/` and then the word — vim jumps to the first match.
+      With `n` you go to the next match.
+
+      **Replace in the whole file:**
+      ```
+      :%s/old/new/g
+      ```
+      This means: "Replace in the whole file `:` every `%s` occurrence of 'old' with 'new', everywhere `g`."
     examples:
       - q: ":%s/localhost/example.com/g"
-        a: "In vim: replace all occurrences of 'localhost' with 'example.com'"
+        a: "In vim: replaces all occurrences of 'localhost' with 'example.com'"
         rel:
           - ["en-vim-substitute", ":%s/old/new/g — search and replace in entire file", "vim :%s"]
           - ["en-vim-g-flag", "g = global — replace all occurrences in a line", "vim flag /g"]
         labels: ["Editor"]
       - q: "/ERROR"
-        a: "In vim: search for ERROR — n for next match, N for previous"
+        a: "Searches in vim for 'ERROR' — n for next match, N for previous"
         rel:
           - ["en-vim-search", "/term search forward in vim", "vim /"]
         labels: ["Editor"]
       - q: "dd"
-        a: "In vim (Normal mode): delete current line — p to paste"
+        a: "Deletes the current line in vim — it goes to the clipboard, p pastes it back"
         rel:
           - ["en-vim-dd", "Delete — delete entire line in vim (stored in buffer)", "vim dd"]
         labels: ["Editor"]
       - q: "yy"
-        a: "In vim: copy current line (yank) — p to paste at next position"
+        a: "Copies the current line in vim (yank = copy) — p pastes it afterward"
         rel:
           - ["en-vim-yy", "Yank — copy line in vim", "vim yy"]
           - ["en-vim-p", "Put/Paste — insert copied/deleted content", "vim p"]
         labels: ["Editor"]
 
-  - title: "🖥️ Terminal Check"
+  - title: "Terminal Check"
     image: "images/section-04-check.svg"
     explanation: |
-      Test your knowledge — type the commands yourself!
+      Test your knowledge — type the commands directly!
     examples:
-      - q: "Which vim command saves and exits the editor?"
+      - q: "Which vim command saves the file and exits the editor?"
         type: input
         a: ":wq"
         labels: ["Editor"]

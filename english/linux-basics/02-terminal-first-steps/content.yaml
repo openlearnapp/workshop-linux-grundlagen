@@ -1,154 +1,170 @@
 version: 2
 number: 2
-title: "The Terminal — first steps"
-description: "Master pwd, ls and cd — the three fundamental commands for navigating the filesystem"
+title: "The Terminal — First Steps"
+description: "Get to know the terminal and master your first three commands: pwd, ls and cd"
 image: "images/lesson-header.svg"
+image_caption: "Terminal window with prompt and commands"
 sections:
-  - title: "Opening the terminal — where am I?"
+  - title: "The terminal — your voice to the computer"
     image: "images/section-01-open-terminal.svg"
     explanation: |
-      The **terminal** (also: shell, console, command line) is your direct connection
-      to the operating system. No mouse clicking, no menu searching — just you and the computer.
+      The **terminal** (also called: console, command line, or shell) is like
+      a direct line to the computer. Instead of clicking with the mouse, you type
+      commands — and the computer responds with text.
 
-      When you open the terminal, you see the **prompt**:
+      That might sound complicated, but it's really simple!
+      You learn a few words (the commands) — and the computer does exactly that.
+
+      When you open the terminal, you see the **prompt**
+      (the computer is waiting for your input):
       ```
       alice@ubuntu:~$
       ```
       This means:
-      - `alice` = username
-      - `ubuntu` = computer name (hostname)
-      - `~` = you are in the home directory
-      - `$` = regular user (with `#` you are root/administrator)
+      - `alice` = your username (your name)
+      - `ubuntu` = the name of your computer
+      - `~` = you're currently in your personal folder
+      - `$` = you are a regular user (not an administrator)
 
-      **Your most important first command:** `pwd` — *Print Working Directory*.
-      It always tells you where you are.
+      Your **first important command:** `pwd`
+      It shows you which folder you're currently in.
+      PWD stands for "Print Working Directory" — show me my working folder.
     examples:
       - q: "pwd"
-        a: "Shows the current path, e.g. /home/alice — you always know where you are"
+        a: "Shows the path to the current folder — e.g. /home/alice. You always know where you are!"
         rel:
           - ["en-pwd", "Print Working Directory — show current directory", "command"]
         labels: ["Basics"]
       - q: "whoami"
-        a: "Prints your username — useful when working as multiple users"
+        a: "Shows your username — as in 'Who am I?'"
         rel:
           - ["en-whoami", "Print the current username", "command"]
         labels: ["Basics"]
       - q: "date"
-        a: "Shows current date and time"
+        a: "Shows the current date and time"
         rel:
           - ["en-date-cmd", "Display current date and time", "date command"]
         labels: ["Basics"]
 
-  - title: "ls — what's here?"
+  - title: "ls — see what's in the folder"
     image: "images/section-02-ls.svg"
     explanation: |
-      `ls` lists the contents of the current directory.
-      With flags, `ls` becomes very powerful:
+      `ls` shows you what's inside a folder.
+      LS stands for "list".
+
+      Just like a light switch has extras you can turn on,
+      there are **flags** (small options you add after a `-`):
 
       | Command | What it shows |
       |---------|--------------|
-      | `ls` | Only filenames |
-      | `ls -l` | Details: permissions, size, date |
-      | `ls -a` | Also hidden files (start with `.`) |
-      | `ls -la` | Details + hidden files (combined!) |
-      | `ls -lh` | File sizes in readable format (KB, MB, GB) |
-      | `ls -lt` | Sorted by modification date (newest first) |
+      | `ls` | Just the names of files and folders |
+      | `ls -l` | Details: who can do what, size, when changed |
+      | `ls -a` | Also hidden files (those starting with a dot, e.g. `.bashrc`) |
+      | `ls -la` | Details AND hidden files together |
+      | `ls -lh` | File sizes in readable form (KB, MB, GB instead of long numbers) |
 
-      In the `-l` output, the columns mean:
+      Super tip: You can write `-l` and `-a` together as `-la` —
+      that's a shortcut!
+
+      Here's what a detail line looks like:
       ```
-      -rw-r--r-- 1 alice alice 4096 Mar 20 10:23 document.txt
-      ↑Perms     ↑Links ↑Owner   ↑Size ↑Date  ↑Name
+      -rw-r--r-- 1 alice alice 4096 Mar 20 10:23 notes.txt
       ```
+      That's: permissions — owner — size — date — filename.
+      You'll learn more about permissions in Lesson 5!
     examples:
       - q: "ls -la"
-        a: "All files including hidden files with details (permissions, size, date)"
+        a: "All files including hidden files with details (permissions, size, date) — very useful!"
         rel:
           - ["en-ls-l", "Long format — detailed view", "flag -l"]
-          - ["en-ls-a", "All — also show hidden files (.dotfiles)", "flag -a"]
+          - ["en-ls-a", "All — including hidden files (.dotfiles)", "flag -a"]
         labels: ["Basics", "Filesystem"]
       - q: "ls -lh /var/log"
-        a: "Show log files with human-readable size values (KB, MB)"
+        a: "Shows files in the log folder with easy-to-read sizes (KB, MB)"
         rel:
-          - ["en-ls-h", "Human-readable — file sizes in KB/MB/GB", "flag -h"]
+          - ["en-ls-h", "Human-readable — readable file sizes (KB/MB/GB)", "flag -h"]
+          - ["en-var-log", "System log directory — where Linux stores logs", "/var/log"]
         labels: ["Filesystem"]
       - q: "ls -lt ~/.ssh"
-        a: "Show SSH config files sorted by most recently modified"
+        a: "Shows files in the SSH folder, newest file first"
         rel:
           - ["en-ls-t", "Time — sort by modification time, newest first", "flag -t"]
           - ["en-ssh-dir", "Directory for SSH keys and configuration", "~/.ssh"]
         labels: ["Filesystem", "Security"]
       - q: "ls -la /etc/nginx/"
-        a: "Show all Nginx configuration files with full details"
+        a: "Show all files in the nginx folder with details (nginx is a web server program)"
         rel:
           - ["en-nginx-dir", "Configuration directory of the Nginx web server", "/etc/nginx/"]
         labels: ["Filesystem", "Config"]
 
-  - title: "cd — where do you want to go?"
+  - title: "cd — move from folder to folder"
     image: "images/section-03-cd.svg"
     explanation: |
-      `cd` (Change Directory) is your navigation tool in the filesystem.
+      With `cd` you move between folders.
+      CD stands for "Change Directory".
 
-      **Key navigation patterns:**
+      Think of the filesystem like a house: each room is a folder.
+      With `cd` you go from room to room.
 
-      | Command | Where? |
-      |---------|--------|
-      | `cd /` | To root directory |
-      | `cd ~` | To home directory (also: just `cd`) |
-      | `cd ..` | One directory up |
-      | `cd ../..` | Two levels up |
-      | `cd -` | To the last visited directory (back!) |
-      | `cd /etc/nginx` | Absolute path (starts with /) |
-      | `cd projects/website` | Relative path (from here) |
+      | Command | What happens? |
+      |---------|---------------|
+      | `cd /` | All the way up — to the root of the filesystem |
+      | `cd ~` | Back to your personal folder (also: just `cd`) |
+      | `cd ..` | Go one folder up (like Backspace) |
+      | `cd ../..` | Go two folders up |
+      | `cd -` | Go back to the last folder (like the back button in a browser!) |
+      | `cd /etc` | Jump directly to a specific folder |
 
-      **Tab completion** — your best friend:
-      Type `cd /etc/ngi` and press `Tab` → terminal autocompletes to `/etc/nginx/`
+      **Secret trick — Tab key:**
+      Type `cd /etc/ngi` and then press `Tab` (the key above Caps Lock).
+      The terminal automatically completes to `cd /etc/nginx/` — saves a lot of typing!
     examples:
       - q: "cd /var/log"
-        a: "Switch directly to the log directory (absolute path — starts with /)"
+        a: "Goes directly to the log folder — this is called an absolute path (always starts with /)"
         rel:
           - ["en-cd-cmd", "Change Directory — switch directories", "cd command"]
           - ["en-absolute-path", "Path that always starts with /, independent of location", "absolute path"]
         labels: ["Filesystem"]
       - q: "cd .."
-        a: "Go one level up — /home/alice becomes /home"
+        a: "Go one folder up — from /home/alice you get to /home"
         rel:
-          - ["en-dotdot", "Two dots = parent directory", ".."]
+          - ["en-dotdot", "Two dots = parent directory (the folder above)", ".."]
         labels: ["Filesystem"]
       - q: "cd ~"
-        a: "Go to your home directory — no matter where you are"
+        a: "Always back to your personal folder — no matter where you are"
         rel:
           - ["en-tilde", "Shortcut for your own home directory", "~"]
         labels: ["Filesystem"]
       - q: "cd -"
-        a: "Switch to the last visited directory — great for toggling between two places"
+        a: "Jumps to the last visited folder — super handy!"
         rel:
           - ["en-cd-minus", "Return to previous directory", "cd -"]
         labels: ["Filesystem"]
       - q: "cd /home/alice/projects && pwd"
-        a: "Change to projects directory and immediately confirm the path"
+        a: "Goes to the projects folder and then immediately shows the path"
         rel:
-          - ["en-double-amp", "Chain two commands — second runs only if first succeeds", "&&"]
+          - ["en-double-amp", "Run two commands in a row — second runs only if the first succeeded", "&&"]
         labels: ["Filesystem"]
 
-  - title: "🖥️ Terminal Check"
+  - title: "Terminal Check"
     image: "images/section-04-check.svg"
     explanation: |
-      Test your knowledge — type the commands yourself!
+      Test your knowledge now!
     examples:
-      - q: "Which command shows your current directory?"
+      - q: "Which command shows your current folder?"
         type: input
         a: "pwd"
         labels: ["Basics"]
-      - q: "What does 'ls -la' show?"
+      - q: "What does the command 'ls -la' do?"
         type: select
         options:
-          - text: "All files including hidden ones, with details"
+          - text: "Show all files including hidden ones, with details"
             correct: true
-          - text: "Deletes all files"
-          - text: "Undoes the last action"
-          - text: "Shows log files"
+          - text: "Delete all files"
+          - text: "Undo the last action"
+          - text: "Show log files"
         labels: ["Basics", "Filesystem"]
-      - q: "Which command switches to the last visited directory?"
+      - q: "Which command switches to the last visited folder?"
         type: select
         options:
           - text: "cd -"
