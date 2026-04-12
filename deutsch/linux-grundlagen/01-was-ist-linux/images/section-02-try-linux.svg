@@ -30,7 +30,9 @@
   <text x="212" y="96" font-family="monospace" font-size="10.5" fill="#58a6ff">Linux</text>
   <text x="212" y="113" font-family="monospace" font-size="10.5" fill="#3fb950">user@linux:~$</text>
   <!-- Blinking cursor -->
-  <rect x="212" y="118" width="7" height="11" fill="#3fb950" opacity="0.9" rx="1"/>
+  <rect x="212" y="118" width="7" height="11" fill="#3fb950" rx="1">
+    <animate attributeName="opacity" values="0.9;0.1;0.9" dur="1.2s" repeatCount="indefinite"/>
+  </rect>
 
   <!-- Accent bar -->
   <rect x="180" y="152" width="280" height="4" fill="#58a6ff" opacity="0.8" rx="1.5"/>
