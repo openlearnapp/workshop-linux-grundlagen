@@ -3,152 +3,167 @@ number: 12
 title: "Professional Linux Workflow"
 description: "Pipes, redirects, aliases and xargs — using the command line like a pro"
 image: "images/lesson-header.svg"
+image_caption: "Workflow diagram with terminal, git and SSH"
 sections:
-  - title: "Pipes — chaining commands"
+  - title: "Pipes — connecting commands"
     image: "images/section-01-pipes.svg"
     explanation: |
-      **Why does this matter?** The true power of Linux lies not in individual commands,
-      but in combining them. The pipe character `|` passes the output of one command
-      directly as input to the next.
+      Imagine you're building a factory with an assembly line.
+      Each station does exactly one thing —
+      and the result moves on to the next station.
 
-      ```
-      command1 | command2 | command3
-      ```
+      That's exactly how **pipes** work in Linux.
+      The character for it is the vertical bar: `|`
 
-      **Example:** Who uses the most disk space?
-      ```bash
+      Example: You want to know which folder takes up the most space.
+      ```
       du -sh /home/* | sort -rh | head -5
       ```
-      1. `du -sh /home/*` → size of each home directory
-      2. `sort -rh` → sort by size
-      3. `head -5` → only the top 5
 
-      **The Unix philosophy:** One tool, one task — combined through pipes.
+      The assembly line:
+      1. `du -sh /home/*` → measures the size of each folder
+      2. `| sort -rh` → sorts from big to small
+      3. `| head -5` → shows only the top 5
+
+      That's the strength of Linux:
+      Small tools, each for one thing — together very powerful.
+      This is called the **Unix philosophy** (the idea behind Linux and Unix).
     examples:
       - q: "ps aux | grep python | grep -v grep"
-        a: "Show all Python processes — second grep removes the grep line itself"
+        a: "Shows all running Python programs — the second grep removes itself from the list"
         rel:
           - ["en-pipe-operator", "| passes output of one command as input to the next", "pipe |"]
           - ["en-grep-v-grep", "grep -v grep removes the grep line from the process list", "grep -v grep"]
         labels: ["Scripting", "Processes"]
       - q: "cat /var/log/nginx/access.log | awk '{print $1}' | sort | uniq -c | sort -rn | head -10"
-        a: "Extract top 10 IP addresses by access count from Nginx log"
+        a: "Finds the 10 IP addresses that accessed the website most often"
         rel:
           - ["en-awk-ip", "awk '{print $1}' outputs the first field (IP) of each line", "awk print"]
           - ["en-uniq-c", "uniq -c counts consecutive identical lines", "uniq -c"]
         labels: ["Scripting", "Network"]
       - q: "find /var/log -name \"*.log\" -mtime +30 | xargs ls -lh"
-        a: "Find log files older than 30 days and show their sizes"
+        a: "Finds log files older than 30 days and shows their size"
         rel:
           - ["en-find-cmd", "Find files based on various criteria", "find command"]
           - ["en-find-mtime", "-mtime +30 = last modified more than 30 days ago", "find -mtime"]
           - ["en-xargs-cmd", "Pass output as arguments to the next command", "xargs command"]
         labels: ["Scripting", "Filesystem"]
 
-  - title: "Redirects — redirecting input and output"
+  - title: "Redirects — sending output somewhere else"
     image: "images/section-02-redirects.svg"
     explanation: |
-      Redirects route output to files or use files as input:
+      Normally everything a command outputs appears directly in the terminal.
+      With **redirects** you can change that —
+      and write the output to a file.
 
-      | Symbol | Effect |
-      |--------|--------|
-      | `>` | Write output to file (overwrites!) |
-      | `>>` | Append output to file |
-      | `<` | Use file as input |
-      | `2>` | Write error messages to file |
-      | `2>&1` | Errors to same file as output |
-      | `/dev/null` | Discard output (the black hole) |
-
-      **Typical logging script:**
-      ```bash
-      #!/bin/bash
-      DATE=$(date +%Y%m%d_%H%M%S)
-      ./backup.sh >> /var/log/backup.log 2>&1
-      echo "[$DATE] Backup completed" >> /var/log/backup.log
+      The character for it is the arrow `>`:
       ```
+      ls -la > directory.txt
+      ```
+      Now the list isn't in the terminal, it's in the file!
+
+      Watch out: `>` always overwrites the file.
+      With `>>` you append to the end instead:
+      ```
+      echo "Today everything went well" >> diary.txt
+      ```
+
+      And sometimes there are error messages you want to get rid of.
+      Linux's "black hole" is called `/dev/null` —
+      everything that goes there disappears without a trace:
+      ```
+      find / -name "*.conf" 2>/dev/null
+      ```
+      The `2>` redirects error messages —
+      you only see the real results, not the errors.
     examples:
       - q: "ls -la > directory.txt"
-        a: "Save directory listing to file — overwrites existing file"
+        a: "Saves the directory listing to a file — overwrites the file if it exists"
         rel:
           - ["en-redirect-out", "> redirects stdout to file (overwriting)", "redirect >"]
         labels: ["Scripting", "Filesystem"]
       - q: "echo \"[$(date)] Server started\" >> /var/log/myapp.log"
-        a: "Append line to log file without overwriting it"
+        a: "Appends a line to the end of the log file — nothing gets overwritten"
         rel:
           - ["en-redirect-append", ">> appends output to file (no overwriting)", "redirect >>"]
         labels: ["Scripting"]
       - q: "find / -name \"*.conf\" 2>/dev/null"
-        a: "Search for config files — discard permission denied error messages"
+        a: "Searches for config files — error messages are sent to the black hole"
         rel:
           - ["en-dev-null", "/dev/null discards all output — the black hole", "/dev/null"]
           - ["en-redirect-stderr", "2> redirects stderr (standard error)", "redirect 2>"]
         labels: ["Scripting", "Filesystem"]
       - q: "wc -l < /etc/passwd"
-        a: "Count lines in /etc/passwd using file as input"
+        a: "Counts the lines in /etc/passwd — the file is used as input"
         rel:
           - ["en-redirect-input", "< uses file contents as input to command", "redirect <"]
         labels: ["Scripting"]
 
-  - title: "Aliases and .bashrc — personalizing your workflow"
+  - title: "Aliases and .bashrc — setting up Linux your way"
     image: "images/section-03-bashrc.svg"
     explanation: |
-      **Aliases** are shortcuts for frequently used commands.
-      They are stored in `~/.bashrc` (or `~/.zshrc` for Zsh).
+      Imagine you type the same long commands every day.
+      That's like always saying someone's full name instead of a nickname.
 
-      ```bash
-      # Add to ~/.bashrc:
+      **Aliases** (shortcut names) solve that.
+      You can save long commands under a short name:
+      ```
+      alias ll='ls -la'
+      ```
+      From now on `ll` is enough instead of `ls -la`!
+
+      You save these aliases in the file `~/.bashrc`.
+      That's your personal Linux configuration —
+      it's loaded every time you open a terminal.
+
+      Some useful aliases for .bashrc:
+      ```
       alias ll='ls -la'
       alias update='sudo apt update && sudo apt upgrade -y'
       alias myip='curl -s https://ipinfo.io/ip'
-      alias grep='grep --color=auto'
       alias ..='cd ..'
       alias ...='cd ../..'
       alias gs='git status'
-      alias gc='git commit -m'
       ```
 
-      After editing `.bashrc`:
-      ```bash
-      source ~/.bashrc   # apply changes immediately
+      After editing .bashrc you need to reload it:
       ```
-
-      **Environment variables** in `.bashrc`:
-      ```bash
-      export EDITOR=vim
-      export PATH="$PATH:/home/alice/.local/bin"
+      source ~/.bashrc
       ```
+      `source` means: "Read this file and apply everything."
+      Then your new aliases are immediately available.
     examples:
       - q: "alias ll='ls -la --color=auto'"
-        a: "Creates the alias 'll' for detailed, colorized directory listing"
+        a: "Creates the shortcut 'll' — from now on ll is enough instead of ls -la --color=auto"
         rel:
           - ["en-alias-cmd", "Create shortcuts for frequent or long commands", "alias command"]
         labels: ["Config"]
       - q: "alias update='sudo apt update && sudo apt upgrade -y'"
-        a: "Make system update runnable as a single word 'update'"
+        a: "Makes the complete system update callable with a single word"
         rel:
-          - ["en-alias-complex", "Alias for complex command chain", "alias example"]
+          - ["en-alias-complex", "Alias for complex command chain — one word instead of long command sequence", "alias example"]
         labels: ["Config"]
       - q: "source ~/.bashrc"
-        a: "Reload bash config — new aliases available immediately without restarting terminal"
+        a: "Reloads the Bash config — new aliases are immediately active without restarting the terminal"
         rel:
           - ["en-source-cmd", "Load configuration file into current shell", "source command"]
           - ["en-bashrc-reload", "Reload ~/.bashrc after changes", "source ~/.bashrc"]
         labels: ["Config"]
       - q: "alias | grep git"
-        a: "Show all git-related aliases — alias without argument shows all"
+        a: "Shows all aliases that contain the word 'git' — alias without argument shows all"
         rel:
           - ["en-alias-list", "alias without argument lists all defined aliases", "alias without arguments"]
         labels: ["Config"]
       - q: "unalias ll"
-        a: "Remove the 'll' alias — only effective for the current session"
+        a: "Removes the alias 'll' — only effective for the current terminal session"
         rel:
           - ["en-unalias-cmd", "Remove a defined alias", "unalias command"]
         labels: ["Config"]
 
-  - title: "🖥️ Terminal Check"
+  - title: "Terminal Check"
     image: "images/section-04-check.svg"
     explanation: |
-      Test your knowledge — type the commands yourself!
+      Test your knowledge — type the commands directly!
     examples:
       - q: "Which character connects two commands via pipe?"
         type: input
@@ -157,7 +172,7 @@ sections:
       - q: "What does '>>' do compared to '>'?"
         type: select
         options:
-          - text: ">> appends output to the file, > overwrites it"
+          - text: ">> appends the output to the file, > overwrites it"
             correct: true
           - text: ">> overwrites the file, > appends"
           - text: ">> redirects errors, > redirects output"
