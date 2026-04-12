@@ -41,6 +41,53 @@ sections:
           - ["cat-cmd", "Dateiinhalt im Terminal ausgeben", "Befehl cat"]
         labels: ["Basics", "Dateisystem"]
 
+  - title: "Linux sofort ausprobieren — ohne Installation"
+    image: "images/section-02-try-linux.svg"
+    explanation: |
+      Bevor du weiter lernst: **Hast du schon Zugang zu einem Linux-Terminal?**
+
+      Du brauchst kein neues Betriebssystem zu installieren. Es gibt viele einfache Wege:
+
+      **Sofort im Browser (kein Download nötig):**
+      - **webminal.org** — echtes Ubuntu-Terminal im Browser, kostenlos, keine Installation
+      - **JSLinux (bellard.org/jslinux)** — Linux direkt im Browser, keine Anmeldung nötig
+      - **replit.com** — Online-IDE mit Linux-Terminal
+
+      **Auf Windows:**
+      - **WSL2 (Windows Subsystem for Linux)** — ein echter Ubuntu-Linux-Kern direkt in Windows
+      - Einmal in der PowerShell eingeben: `wsl --install` — danach Ubuntu starten
+
+      **Auf macOS:**
+      - **Terminal.app** öffnen — macOS ist Unix-basiert, fast alle Linux-Befehle funktionieren
+      - Finder → Programme → Dienstprogramme → Terminal
+
+      **Als virtuelle Maschine (für tieferes Lernen):**
+      - **VirtualBox** (kostenlos) + Ubuntu ISO herunterladen → Linux in einem Fenster
+
+      **Als echter Mini-Computer:**
+      - **Raspberry Pi** (~35€) — vollständiger Linux-Rechner, ideal zum Experimentieren
+
+      **Empfehlung für Einsteiger:** Starte mit **webminal.org** im Browser
+      oder installiere **WSL2** auf Windows — kein Risiko, sofort los!
+    examples:
+      - q: "uname -s"
+        a: "Zeigt das Betriebssystem an — bei Linux: 'Linux', bei macOS: 'Darwin'"
+        rel:
+          - ["uname-s", "System name — zeigt ob Linux, Darwin (macOS), etc.", "Flag -s = system"]
+        labels: ["Basics"]
+      - q: "wsl --install"
+        a: "Installiert WSL2 + Ubuntu auf Windows 10/11 — danach Ubuntu direkt in Windows nutzen (PowerShell als Admin)"
+        rel:
+          - ["wsl-install", "WSL2 und Ubuntu auf Windows 10/11 installieren", "Windows PowerShell Befehl"]
+          - ["wsl2", "Windows Subsystem for Linux — Linux-Kernel direkt in Windows integriert", "WSL2"]
+        labels: ["Basics", "Installation"]
+      - q: "bash --version"
+        a: "Zeigt die installierte Bash-Version an — funktioniert auf Linux, macOS und WSL"
+        rel:
+          - ["bash-version", "Bash-Shell-Version anzeigen", "Befehl bash --version"]
+          - ["bash-shell", "Bash — Bourne Again Shell, Standard-Shell auf Linux", "Shell"]
+        labels: ["Basics"]
+
   - title: "Distributionen — Linux für jeden Zweck"
     image: "images/section-02-distros.svg"
     explanation: |
