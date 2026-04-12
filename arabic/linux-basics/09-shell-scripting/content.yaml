@@ -3,177 +3,187 @@ number: 9
 title: "أساسيات كتابة سكريبتات الصدفة"
 description: "المتغيرات وشروط if والحلقات — كتابة سكريبتات خاصة وأتمتة المهام"
 image: "images/lesson-header.svg"
+image_caption: "Code-Editor mit Bash-Skript und Syntax-Highlighting"
 sections:
   - title: "أول سكريبت لك — Shebang والمتغيرات"
     image: "images/section-01-shebang.svg"
     explanation: |
-      **لماذا هذا مهم؟** كتابة سكريبتات الصدفة هي مفتاح الأتمتة.
-      كل ما تكتبه عدة مرات في الطرفية يمكن وضعه في سكريبت — ثم
-      تنفيذه بأمر واحد فقط.
+      تخيل أن لديك نفس المهمة كل صباح:
+      ترتيب المجلدات، حذف الملفات القديمة، عرض رسالة.
+      سيكون مملاً لو اضطررت لكتابة ذلك يدوياً كل يوم.
 
-      **أول سكريبت:**
-      ```bash
+      **سكريبت الصدفة** مثل قائمة تسوق للحاسوب.
+      تكتب مرة واحدة ما يجب أن يفعله —
+      ثم يفعله مراراً وتكراراً بضغطة زر.
+
+      هكذا يبدو سكريبت بسيط:
+      ```
       #!/bin/bash
-      # هذا تعليق
+      # هذا تعليق — الحاسوب يتجاهله
 
       NAME="Alice"
       DATUM=$(date +%Y-%m-%d)
 
-      echo "مرحبًا، $NAME!"
+      echo "مرحباً، $NAME!"
       echo "اليوم هو: $DATUM"
       ```
 
-      السطر الأول `#!/bin/bash` يُسمى **Shebang** — يُخبر النظام بأي
-      مُفسّر يجب تنفيذ السكريبت.
+      السطر الأول `#!/bin/bash` يُسمى **Shebang**.
+      يقول للينكس: "نفّذ هذا السكريبت بـ bash."
+      بدون هذا السطر لا يعرف لينكس كيف يقرأ السكريبت.
 
-      **المتغيرات:**
-      - بدون `$`: تعيين: `NAME="Alice"` (لا مسافة حول `=`!)
-      - مع `$`: استخدام: `echo $NAME`
-      - `$(أمر)`: حفظ مخرجات أمر في متغير
+      **المتغيرات** (مواضع تخزين القيم):
+      - للتخزين: `NAME="Alice"` — لا مسافة حول `=`!
+      - للاستخدام: `echo $NAME` — الـ `$` يُشير: "هنا قيمة مخزنة"
+      - حفظ نتيجة أمر: `DATUM=$(date)` — ما يُخرجه `date` يُخزن في `DATUM`
     examples:
       - q: "#!/bin/bash"
-        a: "Shebang — السطر الأول في كل سكريبت Bash، يحدد المُفسّر"
+        a: "Shebang — يجب أن يكون السطر الأول في كل سكريبت Bash حتى يستطيع لينكس تنفيذه"
         rel:
-          - ["shebang", "السطر الأول في السكريبت الذي يحدد المُفسّر", "#!/bin/bash"]
-        labels: ["البرمجة"]
-      - q: "NAME=\"Alice\" && echo \"Hallo, $NAME\""
-        a: "تعيين متغير واستخدامه فورًا — لا مسافة حول علامة المساواة!"
+          - ["shebang", "السطر الأول من السكريبت الذي يحدد المفسر", "#!/bin/bash"]
+        labels: ["Scripting"]
+      - q: "NAME=\"Alice\" && echo \"مرحباً، $NAME\""
+        a: "تعيين متغير واستخدامه فوراً — لا مسافة حول علامة يساوي!"
         rel:
           - ["bash-variable", "متغير في Bash: NAME=قيمة (بدون $)، $NAME (عند الاستخدام)", "متغير"]
-        labels: ["البرمجة"]
+        labels: ["Scripting"]
       - q: "HEUTE=$(date +%d.%m.%Y)"
-        a: "حفظ مخرجات أمر في متغير — $(date) يُرجع التاريخ الحالي"
+        a: "يحفظ تاريخ اليوم في متغير — $(date) يُعيد التاريخ الحالي"
         rel:
-          - ["command-sub", "استبدال الأوامر: $(أمر) يحفظ المخرجات في متغير", "$()"]
-          - ["date-format", "صيغة التاريخ: %d=يوم، %m=شهر، %Y=سنة", "date +صيغة"]
-        labels: ["البرمجة"]
-      - q: "echo \"Pfad: $HOME, User: $USER\""
-        a: "استخدام متغيرات البيئة المدمجة — HOME و USER متاحان دائمًا"
+          - ["command-sub", "استبدال الأمر: $(أمر) يحفظ الإخراج في متغير", "$()"]
+          - ["date-format", "تنسيق التاريخ: %d=يوم، %m=شهر، %Y=سنة", "date +تنسيق"]
+        labels: ["Scripting"]
+      - q: "echo \"المسار: $HOME, المستخدم: $USER\""
+        a: "لينكس يوفر تلقائياً متغيرات مفيدة — HOME وUSER دائماً موجودان"
         rel:
           - ["env-var-user", "متغير بيئي يحتوي اسم المستخدم الحالي", "$USER"]
           - ["env-var-home", "متغير بيئي يحتوي مسار المجلد الشخصي", "$HOME"]
-        labels: ["البرمجة"]
+        labels: ["Scripting"]
 
-  - title: "شروط if — اتخاذ القرارات في السكريبت"
+  - title: "شروط if — السكريبت يفكر"
     image: "images/section-02-if.svg"
     explanation: |
-      التنفيذ المشروط يجعل السكريبتات ذكية:
+      أحياناً تريد من سكريبتك التصرف بشكل مختلف حسب الموقف.
+      "إذا كان الملف موجوداً — افعل هذا. وإلا افعل شيئاً آخر."
 
-      ```bash
+      هذا يُسمى **شرط if** (إذا):
+      ```
       #!/bin/bash
-      DATEI="/etc/nginx/nginx.conf"
 
-      if [ -f "$DATEI" ]; then
-          echo "Nginx مثبت"
+      if [ -f "/etc/nginx/nginx.conf" ]; then
+          echo "Nginx مثبت!"
       elif [ -d "/etc/apache2" ]; then
-          echo "Apache مثبت"
+          echo "Apache مثبت."
       else
-          echo "لم يُعثر على خادم ويب"
+          echo "لم يُعثر على خادم ويب."
       fi
       ```
 
-      **عوامل الاختبار المهمة:**
-      | العامل | المعنى |
-      |--------|--------|
-      | `-f ملف` | الملف موجود وهو ملف |
-      | `-d مسار` | المسار موجود وهو مجلد |
-      | `-z "$var"` | المتغير فارغ |
-      | `-n "$var"` | المتغير ليس فارغًا |
-      | `"$a" = "$b"` | النصوص متساوية |
-      | `$a -eq $b` | الأرقام متساوية |
-      | `$a -gt $b` | a أكبر من b (greater than) |
+      الـ `fi` في النهاية — هو كلمة "if" مكتوبةً بالعكس.
+      هكذا يعرف bash أن الشرط انتهى.
+
+      رموز الاختبار المهمة:
+      - `-f ملف` — هل هذا ملف؟
+      - `-d مسار` — هل هذا مجلد؟
+      - `-z "$var"` — هل المتغير فارغ؟
+      - `"$a" = "$b"` — هل النصان متساويان؟
+      - `$a -gt $b` — هل الرقم a أكبر من b؟ (gt = greater than)
     examples:
-      - q: "if [ -f \"~/.ssh/id_ed25519\" ]; then echo \"SSH-Key vorhanden\"; fi"
-        a: "يتحقق من وجود مفتاح SSH — -f يختبر وجود ملف"
+      - q: "if [ -f \"~/.ssh/id_ed25519\" ]; then echo \"مفتاح SSH موجود\"; fi"
+        a: "يفحص ما إذا كان مفتاح SSH موجوداً — -f يفحص ما إذا كان الملف موجوداً"
         rel:
           - ["if-bash", "if [ شرط ]; then أوامر; fi — البنية الأساسية", "if-then-fi"]
-          - ["test-f", "-f يختبر وجود ملف (file)", "عامل الاختبار -f"]
-        labels: ["البرمجة", "الأمان"]
-      - q: "[ -d /var/www ] && echo \"Webverzeichnis existiert\""
-        a: "صيغة مختصرة: && ينفذ الأمر الثاني فقط إذا كان الشرط الأول صحيحًا"
+          - ["test-f", "-f يختبر ما إذا كان الملف موجوداً (file)", "عامل الاختبار -f"]
+        labels: ["Scripting", "Sicherheit"]
+      - q: "[ -d /var/www ] && echo \"مجلد الويب موجود\""
+        a: "كتابة مختصرة: && تعني 'وإذا صح ذلك، ثم...' — سطر واحد فقط"
         rel:
-          - ["test-d", "-d يختبر وجود مجلد (directory)", "عامل الاختبار -d"]
-        labels: ["البرمجة"]
-      - q: "if [ \"$USER\" = \"root\" ]; then echo \"Du bist root!\"; fi"
-        a: "يتحقق مما إذا كان السكريبت يعمل كـ root — مهم لسكريبتات التثبيت"
+          - ["test-d", "-d يختبر ما إذا كان المجلد موجوداً (directory)", "عامل الاختبار -d"]
+        labels: ["Scripting"]
+      - q: "if [ \"$USER\" = \"root\" ]; then echo \"أنت المسؤول!\"; fi"
+        a: "يفحص ما إذا كان السكريبت يعمل كمسؤول — مفيد قبل تغييرات النظام"
         rel:
-          - ["string-compare", "مقارنة النصوص في Bash باستخدام =", "مقارنة نصية"]
-        labels: ["البرمجة", "الأمان"]
+          - ["string-compare", "مقارنة النصوص في Bash بـ =", "مقارنة النصوص"]
+        labels: ["Scripting", "Sicherheit"]
 
-  - title: "الحلقات — أتمتة التكرار"
+  - title: "الحلقات — تكرار شيء عدة مرات"
     image: "images/section-03-loops.svg"
     explanation: |
-      الحلقات تنفذ الأوامر عدة مرات — مثالية للعمليات الجماعية:
+      تخيل أنك تحتاج إعادة تسمية 100 ملف.
+      يدوياً سيستغرق ذلك وقتاً طويلاً جداً.
+      **حلقة** تفعل ذلك في ثوانٍ.
 
-      **حلقة for:**
-      ```bash
+      **حلقة for** تمر بقائمة، نقطةً نقطة:
+      ```
       for DATEI in *.log; do
-          echo "معالجة: $DATEI"
+          echo "أعالج: $DATEI"
           gzip "$DATEI"
       done
       ```
+      `do` تعني "ثم افعل هذا:"، `done` تعني "انتهيت".
 
-      **حلقة while:**
-      ```bash
+      **حلقة while** تعمل طالما شرط صحيح:
+      ```
       ZAEHLER=1
       while [ $ZAEHLER -le 5 ]; do
           echo "الدورة $ZAEHLER"
           ZAEHLER=$((ZAEHLER + 1))
       done
       ```
+      `-le` تعني "less or equal" (أصغر من أو يساوي).
 
-      **مثال عملي — سكريبت نسخ احتياطي:**
-      ```bash
+      مثال حقيقي — نسخة احتياطية لثلاثة مجلدات دفعة واحدة:
+      ```
       #!/bin/bash
       DATUM=$(date +%Y%m%d)
       for ORDNER in ~/dokumente ~/bilder ~/projekte; do
           tar -czf "/backup/${DATUM}_$(basename $ORDNER).tar.gz" "$ORDNER"
-          echo "تم إنشاء نسخة احتياطية: $ORDNER"
+          echo "تمت النسخ الاحتياطي: $ORDNER"
       done
       ```
     examples:
-      - q: "for i in 1 2 3 4 5; do echo \"Zahl: $i\"; done"
-        a: "حلقة for على قائمة — تطبع الأرقام من ١ إلى ٥"
+      - q: "for i in 1 2 3 4 5; do echo \"الرقم: $i\"; done"
+        a: "حلقة على الأرقام من 1 إلى 5 — تطبع كل رقم مرة واحدة"
         rel:
-          - ["for-loop", "حلقة for: for VAR in LIST; do ... done", "for-do-done"]
-        labels: ["البرمجة"]
+          - ["for-loop", "حلقة for: for VAR in قائمة; do ... done", "for-do-done"]
+        labels: ["Scripting"]
       - q: "for USER in alice bob charlie; do useradd \"$USER\"; done"
-        a: "إنشاء عدة مستخدمين دفعة واحدة — مهمة نموذجية لمسؤول النظام"
+        a: "ينشئ ثلاثة مستخدمين دفعة واحدة — بدلاً من كتابة نفس الأمر ثلاث مرات"
         rel:
           - ["for-list", "حلقة for على قائمة من القيم", "for VAR in قيمة1 قيمة2"]
-        labels: ["البرمجة", "الأمان"]
-      - q: "for f in /var/log/*.log; do echo \"$(wc -l < $f) Zeilen: $f\"; done"
-        a: "عدّ أسطر جميع ملفات السجلات وعرض القائمة"
+        labels: ["Scripting", "Sicherheit"]
+      - q: "for f in /var/log/*.log; do echo \"$(wc -l < $f) أسطر: $f\"; done"
+        a: "يعدّ أسطر كل ملف سجل ويعرض النتيجة"
         rel:
-          - ["for-glob", "حلقة for مع نمط Glob على الملفات", "for f in *.ext"]
+          - ["for-glob", "حلقة for مع نمط glob على الملفات", "for f in *.امتداد"]
           - ["wc-l", "Word Count -l — عدّ أسطر ملف", "wc -l"]
-        labels: ["البرمجة", "نظام الملفات"]
+        labels: ["Scripting", "Dateisystem"]
       - q: "while true; do df -h / | grep '/'; sleep 60; done"
-        a: "مراقبة استخدام القرص كل دقيقة — حلقة لا نهائية مع sleep"
+        a: "يفحص مساحة القرص كل دقيقة — يعمل حتى تضغط Ctrl+C"
         rel:
           - ["while-loop", "حلقة while: while شرط; do ... done", "while-do-done"]
           - ["while-true", "while true — حلقة لا نهائية، تُنهى فقط بـ Ctrl+C", "while true"]
-        labels: ["البرمجة"]
+        labels: ["Scripting"]
 
-  - title: "🖥️ اختبار الطرفية"
+  - title: "اختبار الطرفية"
     image: "images/section-04-check.svg"
     explanation: |
-      اختبر معرفتك الآن — أدخل الأوامر مباشرة!
+      اختبر معلوماتك الآن — أدخل الأوامر مباشرةً!
     examples:
       - q: "ما هو السطر الأول في كل سكريبت Bash (Shebang)؟"
         type: input
         a: "#!/bin/bash"
-        labels: ["البرمجة"]
+        labels: ["Scripting"]
       - q: "ما الذي يجب مراعاته عند تعيين متغير Bash؟"
         type: select
         options:
-          - text: "لا مسافة حول علامة المساواة: NAME=\"Alice\""
+          - text: "لا مسافة حول علامة يساوي: NAME=\"Alice\""
             correct: true
-          - text: "دائمًا $ قبل اسم المتغير: $NAME=\"Alice\""
+          - text: "دائماً $ قبل اسم المتغير: $NAME=\"Alice\""
           - text: "المتغيرات يجب أن تكون بأحرف كبيرة"
-          - text: "المتغيرات يجب التصريح عنها بـ export"
-        labels: ["البرمجة"]
-      - q: "ما الصيغة التي تُنهي شرط if في Bash بشكل صحيح؟"
+          - text: "المتغيرات يجب الإعلان عنها بـ export"
+        labels: ["Scripting"]
+      - q: "بأي كلمة تنتهي شروط if في Bash؟"
         type: select
         options:
           - text: "fi"
@@ -181,15 +191,15 @@ sections:
           - text: "end"
           - text: "endif"
           - text: "done"
-        labels: ["البرمجة"]
-      - q: "أي من العبارات التالية عن كتابة سكريبتات الصدفة صحيحة؟"
+        labels: ["Scripting"]
+      - q: "أيٌّ من هذه العبارات عن كتابة السكريبتات صحيحة؟"
         type: multiple-choice
         options:
-          - text: "$() يحفظ مخرجات أمر في متغير"
+          - text: "$() يحفظ نتيجة أمر في متغير"
             correct: true
           - text: "حلقات for تنتهي بـ 'done'"
             correct: true
-          - text: "-f يتحقق من وجود ملف"
+          - text: "-f يفحص ما إذا كان ملف موجوداً"
             correct: true
           - text: "المسافات حول = إلزامية في المتغيرات"
-        labels: ["البرمجة"]
+        labels: ["Scripting"]

@@ -1,153 +1,188 @@
 version: 2
 number: 7
 title: "إدارة الحزم"
-description: "apt و snap و dpkg — تثبيت البرمجيات وتحديثها وإدارتها على Ubuntu/Debian"
+description: "apt وsnap وdpkg — تثبيت البرامج وتحديثها وإدارتها على Ubuntu/Debian"
 image: "images/lesson-header.svg"
+image_caption: "Paket-Boxen mit apt, dnf und snap Labels"
 sections:
-  - title: "apt — متجر التطبيقات في سطر الأوامر"
+  - title: "apt — متجر التطبيقات في لينكس"
     image: "images/section-01-apt.svg"
     explanation: |
-      **لماذا هذا مهم؟** في لينكس لا تثبت البرمجيات عبر تنزيل ملفات .exe،
-      بل عبر **مديري الحزم**. هؤلاء يجلبون البرامج من مصادر موثوقة،
-      يحلون التبعيات ويبقون كل شيء محدّثًا.
+      تخيل: لديك هاتف جديد.
+      تذهب إلى متجر التطبيقات، تبحث عن تطبيق وتضغط "تثبيت".
+      انتهى الأمر!
 
-      أهم مدير حزم لـ Ubuntu/Debian: **apt** (Advanced Package Tool).
+      لينكس لديه نفس الشيء بالضبط — لكن عبر الطرفية.
+      البرنامج يُسمى **apt**.
 
-      **سير العمل المعتاد:**
-      ```bash
-      sudo apt update           # ١. تحديث قائمة الحزم
-      sudo apt upgrade          # ٢. ترقية جميع الحزم
-      sudo apt install nginx    # ٣. تثبيت حزمة
+      قبل أن تثبت أي شيء، تقول للينكس:
+      "انظر ما هو الجديد!"
+      ```
+      sudo apt update
       ```
 
-      **مهم:** `update` يُحدّث فقط *قائمة* الحزم المتاحة،
-      وليس الحزم نفسها. `upgrade` يُحدّث البرامج الفعلية.
+      ثم تثبت برنامجاً — مثلاً المتصفح Firefox:
+      ```
+      sudo apt install firefox
+      ```
+
+      هذا يعني خطوةً خطوة:
+      - `sudo` — "أنا المسؤول هنا، أنا مسموح لي"
+      - `apt install` — "ثبّت من فضلك..."
+      - `firefox` — "...هذا البرنامج"
+
+      وإذا أردت تحديث جميع البرامج إلى أحدث إصدار:
+      ```
+      sudo apt upgrade
+      ```
+
+      تذكر: `apt update` يجلب فقط **القائمة** بالإصدارات الجديدة.
+      `apt upgrade` يثبّت الجديد فعلاً.
     examples:
       - q: "sudo apt update"
-        a: "يجلب قوائم الحزم الحالية من جميع مصادر الحزم — نفّذه دائمًا أولاً"
+        a: "يجلب القائمة الحالية لجميع البرامج المتاحة — مثل النظر في متجر التطبيقات"
         rel:
           - ["apt-cmd", "Advanced Package Tool — إدارة الحزم لـ Debian/Ubuntu", "أمر apt"]
           - ["apt-update", "تحديث قوائم الحزم من الخوادم (ليس الحزم نفسها)", "apt update"]
-        labels: ["الإعدادات"]
+        labels: ["Konfiguration"]
       - q: "sudo apt upgrade"
-        a: "يُحدّث جميع الحزم المثبتة إلى أحدث إصدار"
+        a: "يُحدّث جميع البرامج المثبتة إلى أحدث إصدار"
         rel:
-          - ["apt-upgrade", "ترقية جميع الحزم المثبتة إلى أحدث إصدار", "apt upgrade"]
-        labels: ["الإعدادات"]
+          - ["apt-upgrade", "تحديث جميع الحزم المثبتة إلى أحدث إصدار", "apt upgrade"]
+        labels: ["Konfiguration"]
       - q: "sudo apt install git curl wget"
-        a: "تثبيت ثلاث حزم دفعة واحدة — apt يقبل عدة أسماء حزم"
+        a: "يثبّت ثلاثة برامج دفعة واحدة — فقط اكتب جميع الأسماء متتاليةً"
         rel:
-          - ["apt-install", "تثبيت حزمة أو عدة حزم", "apt install"]
-        labels: ["الإعدادات"]
+          - ["apt-install", "تثبيت حزمة أو حزم", "apt install"]
+        labels: ["Konfiguration"]
       - q: "sudo apt update && sudo apt upgrade -y"
-        a: "تحديث كامل في أمر واحد — -y يُجيب تلقائيًا بنعم على جميع الاستفسارات"
+        a: "تحديث وترقية في خطوة واحدة — -y يقول نعم تلقائياً لجميع الأسئلة"
         rel:
-          - ["apt-y-flag", "Yes — تأكيد جميع الاستفسارات تلقائيًا", "العلم -y"]
-        labels: ["الإعدادات"]
+          - ["apt-y-flag", "Yes — تأكيد جميع الأسئلة تلقائياً", "الخيار -y"]
+        labels: ["Konfiguration"]
 
-  - title: "البحث عن الحزم وإزالتها وتنظيفها"
+  - title: "البحث والحذف والتنظيف"
     image: "images/section-02-search-remove.svg"
     explanation: |
-      `apt` يمكنه أيضًا البحث عن حزم وإزالة البرمجيات غير المطلوبة.
+      لا تعرف بالضبط اسم البرنامج؟
+      لا مشكلة — يمكنك البحث:
+      ```
+      apt search "text editor"
+      ```
 
-      | الأمر | الأثر |
-      |-------|-------|
-      | `apt search nginx` | البحث عن حزم |
-      | `apt show nginx` | عرض تفاصيل حزمة |
-      | `apt remove nginx` | إزالة حزمة (الإعدادات تبقى) |
-      | `apt purge nginx` | إزالة الحزمة + الإعدادات بالكامل |
-      | `apt autoremove` | إزالة التبعيات غير المطلوبة |
-      | `apt list --installed` | عرض جميع الحزم المثبتة |
+      هذا مثل وظيفة البحث في متجر التطبيقات.
+      لينكس يعرض لك جميع البرامج التي تتناسب مع بحثك.
 
-      **بعد التنظيف** يُنصح بتنفيذ `sudo apt autoremove` — يُزيل
-      الحزم التي تم تثبيتها تلقائيًا ولم تعد مطلوبة.
+      إذا لم تعد تحتاج برنامجاً، يمكنك إزالته:
+      ```
+      sudo apt remove firefox
+      ```
+
+      أو حذفه بالكامل (بما في ذلك جميع الإعدادات):
+      ```
+      sudo apt purge firefox
+      ```
+
+      وبعد التنظيف تحذف البقايا القديمة غير الضرورية:
+      ```
+      sudo apt autoremove
+      ```
+
+      هذا مثل "تنظيف التخزين" على الهاتف —
+      البرامج التي لا يحتاجها أحد تُحذف.
     examples:
       - q: "apt search \"text editor\""
-        a: "يبحث عن حزم تحتوي 'text editor' في الاسم أو الوصف"
+        a: "يبحث عن برامج تحتوي 'text editor' في اسمها — مثل البحث في متجر التطبيقات"
         rel:
           - ["apt-search", "البحث في قاعدة بيانات الحزم", "apt search"]
-        labels: ["الإعدادات"]
+        labels: ["Konfiguration"]
       - q: "apt show nodejs"
-        a: "يعرض تفاصيل nodejs: الإصدار، التبعيات، الوصف، الحجم"
+        a: "يعرض تفاصيل nodejs: الإصدار والحجم والوصف — قبل تثبيته"
         rel:
-          - ["apt-show", "عرض معلومات مفصلة عن حزمة", "apt show"]
-        labels: ["الإعدادات"]
+          - ["apt-show", "عرض معلومات تفصيلية عن حزمة", "apt show"]
+        labels: ["Konfiguration"]
       - q: "sudo apt remove --purge apache2"
-        a: "يُزيل Apache2 بالكامل بما في ذلك جميع ملفات الإعداد"
+        a: "يُزيل Apache2 بالكامل — حتى جميع الإعدادات تُحذف"
         rel:
-          - ["apt-purge", "إزالة الحزمة وجميع ملفات الإعداد بالكامل", "apt purge / --purge"]
-        labels: ["الإعدادات"]
+          - ["apt-purge", "حذف الحزمة وجميع ملفات إعداداتها بالكامل", "apt purge / --purge"]
+        labels: ["Konfiguration"]
       - q: "sudo apt autoremove && sudo apt clean"
-        a: "إزالة الحزم اليتيمة وتنظيف ذاكرة التخزين المؤقت — يحرر مساحة التخزين"
+        a: "إزالة الحمل القديم وتحرير مساحة التخزين — مثل ربيع التنظيف للينكس"
         rel:
-          - ["apt-autoremove", "إزالة الحزم المثبتة تلقائيًا التي لم تعد مطلوبة", "apt autoremove"]
-          - ["apt-clean", "حذف ملفات الحزم المحمّلة من ذاكرة التخزين المؤقت", "apt clean"]
-        labels: ["الإعدادات"]
+          - ["apt-autoremove", "إزالة الحزم المثبتة تلقائياً والتي لم تعد مطلوبة", "apt autoremove"]
+          - ["apt-clean", "حذف ملفات الحزم المُحمَّلة من الكاش", "apt clean"]
+        labels: ["Konfiguration"]
 
-  - title: "dpkg و snap — طرق تثبيت بديلة"
+  - title: "dpkg و snap — طرق أخرى للتثبيت"
     image: "images/section-03-dpkg-snap.svg"
     explanation: |
-      أحيانًا لا يتوفر برنامج في مستودع apt — حينها توجد طرق أخرى:
+      أحياناً لا يكون برنامج في متجر لينكس العادي.
+      عندها هناك طرق أخرى:
 
-      **dpkg** يثبّت ملفات `.deb` مباشرة (مثل مثبّت .exe لكن لنظام لينكس):
-      ```bash
+      **الطريقة 1: تثبيت ملف .deb مباشرةً**
+      ملف `.deb` مثل ملف تثبيت للينكس.
+      الأداة لذلك تُسمى **dpkg**.
+      ```
       sudo dpkg -i google-chrome.deb
-      sudo apt install -f    # تثبيت التبعيات المفقودة لاحقًا
+      ```
+      الـ `-i` تعني "install" (تثبيت).
+
+      **الطريقة 2: snap**
+      **Snap** نظام أحدث — البرامج تعمل بأمان إضافي،
+      معزولة عن بقية النظام، مثل صندوق صغير.
+      ```
+      snap install vlc
       ```
 
-      **snap** نظام حزم أحدث من Canonical (Ubuntu):
-      - الحزم تعمل في بيئة معزولة (sandboxed)
-      - تحديثات تلقائية
-      - أبطأ قليلاً في البدء من حزم apt العادية
-
-      **curl + سكريبت تثبيت** — كثير من البرامج تستخدم هذه الطريقة:
-      ```bash
-      curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
-      sudo apt install nodejs
+      **الطريقة 3: سكريبت تثبيت**
+      كثير من البرامج الاحترافية لديها مساعد تثبيت خاص:
       ```
+      curl -fsSL https://get.docker.com | sudo sh
+      ```
+      هذا يُحمّل المساعد ويشغله فوراً.
     examples:
       - q: "sudo dpkg -i vscode.deb"
-        a: "تثبيت ملف .deb محمّل محليًا مباشرة"
+        a: "يثبّت ملف .deb مُحمَّلاً مباشرةً — مثل فتح ملف تثبيت"
         rel:
-          - ["dpkg-cmd", "Debian Package — إدارة ملفات .deb مباشرة", "أمر dpkg"]
-          - ["dpkg-i", "Install — تثبيت ملف .deb", "العلم -i"]
-        labels: ["الإعدادات"]
+          - ["dpkg-cmd", "Debian Package — إدارة ملفات .deb مباشرةً", "أمر dpkg"]
+          - ["dpkg-i", "Install — تثبيت ملف .deb", "الخيار -i"]
+        labels: ["Konfiguration"]
       - q: "dpkg -l | grep \"^ii\""
-        a: "عرض جميع الحزم المثبتة بشكل صحيح (ii = installed properly)"
+        a: "يعرض جميع البرامج المثبتة بشكل صحيح — ii تعني 'مثبت بشكل صحيح'"
         rel:
           - ["dpkg-l", "List — جميع الحزم المعروفة وحالتها", "dpkg -l"]
-        labels: ["الإعدادات"]
+        labels: ["Konfiguration"]
       - q: "snap install code --classic"
-        a: "تثبيت Visual Studio Code عبر snap — --classic يسمح بوصول كامل للنظام"
+        a: "تثبيت Visual Studio Code عبر snap — --classic يعطي البرنامج صلاحيات أكثر"
         rel:
-          - ["snap-cmd", "نظام حزم Snap — تطبيقات معزولة مع تحديث تلقائي", "أمر snap"]
-          - ["snap-classic", "Classic confinement — وصول كامل للنظام لبرامج مثل IDE", "العلم --classic"]
-        labels: ["الإعدادات"]
+          - ["snap-cmd", "نظام حزم Snap — تطبيقات معزولة تُحدَّث تلقائياً", "أمر snap"]
+          - ["snap-classic", "Classic confinement — وصول كامل للنظام لبرامج مثل IDEs", "الخيار --classic"]
+        labels: ["Konfiguration"]
       - q: "snap list"
-        a: "عرض جميع حزم snap المثبتة وإصداراتها"
+        a: "يعرض جميع البرامج التي ثُبِّتت عبر snap"
         rel:
-          - ["snap-list", "عرض جميع حزم snap المثبتة", "snap list"]
-        labels: ["الإعدادات"]
+          - ["snap-list", "سرد جميع حزم snap المثبتة", "snap list"]
+        labels: ["Konfiguration"]
 
-  - title: "🖥️ اختبار الطرفية"
+  - title: "اختبار الطرفية"
     image: "images/section-04-check.svg"
     explanation: |
-      اختبر معرفتك الآن — أدخل الأوامر مباشرة!
+      اختبر معلوماتك الآن — أدخل الأوامر مباشرةً!
     examples:
-      - q: "أي أمر يُحدّث قوائم الحزم في Ubuntu/Debian؟"
+      - q: "ما هو الأمر الذي يُحدّث قائمة البرامج على Ubuntu؟"
         type: input
         a: "sudo apt update"
-        labels: ["الإعدادات"]
-      - q: "ما الفرق بين 'apt update' و 'apt upgrade'؟"
+        labels: ["Konfiguration"]
+      - q: "ما الفرق بين 'apt update' و'apt upgrade'؟"
         type: select
         options:
-          - text: "update يجلب قوائم حزم جديدة، upgrade يُحدّث الحزم نفسها"
+          - text: "update يجلب قوائم البرامج الجديدة، upgrade يثبّت التحديثات فعلاً"
             correct: true
-          - text: "update يثبت الحزم، upgrade يزيل القديمة"
-          - text: "update و upgrade يفعلان نفس الشيء"
-          - text: "upgrade يجلب قوائم حزم جديدة، update يُحدّث الحزم"
-        labels: ["الإعدادات"]
-      - q: "أي أمر يزيل حزمة بما في ذلك ملفات إعدادها؟"
+          - text: "update يثبّت البرامج، upgrade يُزيل القديمة"
+          - text: "update وupgrade يفعلان نفس الشيء"
+          - text: "upgrade يجلب قوائم البرامج الجديدة، update يثبّت التحديثات"
+        labels: ["Konfiguration"]
+      - q: "ما هو الأمر الذي يُزيل برنامجاً مع جميع إعداداته؟"
         type: select
         options:
           - text: "sudo apt purge nginx"
@@ -155,15 +190,15 @@ sections:
           - text: "sudo apt remove nginx"
           - text: "sudo apt delete nginx"
           - text: "sudo apt uninstall nginx"
-        labels: ["الإعدادات"]
-      - q: "أي من العبارات التالية عن apt صحيحة؟"
+        labels: ["Konfiguration"]
+      - q: "أيٌّ من هذه العبارات عن apt صحيحة؟"
         type: multiple-choice
         options:
-          - text: "apt يمكنه تثبيت عدة حزم دفعة واحدة"
+          - text: "apt يمكنه تثبيت عدة برامج دفعة واحدة"
             correct: true
-          - text: "apt autoremove يزيل الحزم غير المطلوبة"
+          - text: "apt autoremove يُزيل البرامج التي لم تعد مطلوبة"
             correct: true
-          - text: "apt search يبحث في قاعدة بيانات الحزم"
+          - text: "apt search يبحث في قاعدة بيانات البرامج"
             correct: true
-          - text: "apt لا يحتاج صلاحيات المسؤول"
-        labels: ["الإعدادات"]
+          - text: "apt لا يحتاج صلاحيات مسؤول"
+        labels: ["Konfiguration"]

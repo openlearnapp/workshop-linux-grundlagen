@@ -1,138 +1,169 @@
 version: 2
 number: 6
 title: "Processes"
-description: "ps, top, kill and background jobs — understand and control running programs"
+description: "Learn how to see which programs are running and how to control them"
 image: "images/lesson-header.svg"
+image_caption: "Process tree with PID numbers and resource display"
 sections:
   - title: "ps and top — what's running right now?"
     image: "images/section-01-ps-top.svg"
     explanation: |
-      **Why does this matter?** A server is slow, an app is unresponsive, memory is full —
-      in these situations you need to know which processes are running and how many
-      resources they're consuming.
+      A **process** is a program that is currently running.
 
-      Every running process gets a unique **PID** (Process ID).
+      When you open a browser, a process starts.
+      When you listen to music, a process runs.
+      Multiple processes can run at the same time — like multiple apps at once!
 
-      | Command | What for? |
-      |---------|-----------|
-      | `ps` | Your own processes in the current shell |
-      | `ps aux` | All processes from all users with details |
-      | `top` | Interactive live overview (like Task Manager) |
-      | `htop` | Improved top with colors (must be installed) |
-      | `pgrep nginx` | Find PID of a process by name |
+      Every process gets a unique number: the **PID** (Process ID).
+      You can use this number to control the process later.
 
-      In `top`: `q` to quit, `k` + PID to kill a process, `M` to sort by memory,
-      `P` to sort by CPU.
+      Commands to see processes:
+
+      | Command | What it shows |
+      |---------|--------------|
+      | `ps` | Only processes in your current terminal window |
+      | `ps aux` | All processes from all users with details (a=all, u=user-format, x=also without terminal) |
+      | `top` | Live overview like a Task Manager — everything in real time! |
+      | `htop` | Like top, but with colors and easier to use (must be installed first) |
+      | `pgrep firefox` | Find the PID of a specific program by name |
+
+      In `top`: Press `q` to quit, `M` to sort by memory, `P` to sort by CPU.
     examples:
       - q: "ps aux"
-        a: "All running processes from all users with PID, CPU, RAM and command line"
+        a: "All running processes from all users with PID, CPU usage, RAM usage and the started command"
         rel:
           - ["en-ps-cmd", "Process Status — show running processes", "ps command"]
           - ["en-ps-aux", "a=all users, u=user-format, x=also without terminal", "flags aux"]
         labels: ["Processes"]
       - q: "ps aux | grep nginx"
-        a: "Show only Nginx processes from the process list — combining with grep"
+        a: "Shows only processes that have 'nginx' in the name — great for searching!"
         rel:
           - ["en-ps-grep", "Filter process list by process name", "ps aux | grep"]
         labels: ["Processes"]
       - q: "top"
-        a: "Interactive real-time overview: CPU, RAM, all processes — q to quit"
+        a: "Opens a live overview of all processes with CPU and RAM usage — q to quit"
         rel:
           - ["en-top-cmd", "Interactive process monitor in real time", "top command"]
         labels: ["Processes"]
       - q: "pgrep -l python"
-        a: "Show all Python processes with their PIDs"
+        a: "Shows all Python processes with their PID number"
         rel:
           - ["en-pgrep-cmd", "Search for processes by name and output PIDs", "pgrep command"]
+          - ["en-pgrep-l", "List — show process names in addition to PID", "flag -l"]
         labels: ["Processes"]
 
-  - title: "kill — stopping processes"
+  - title: "kill — stopping programs"
     image: "images/section-02-kill.svg"
     explanation: |
-      Processes are controlled via **signals**. `kill` sends signals to processes.
+      What do you do when a program freezes and stops responding?
+      You end it! In the terminal you do that with `kill`.
 
-      | Signal | Number | Effect |
-      |--------|--------|--------|
-      | SIGTERM | 15 | Graceful shutdown (default) — process can clean up |
-      | SIGKILL | 9 | Immediate termination — no cleanup possible |
-      | SIGHUP | 1 | Reload configuration (e.g. Nginx) |
+      `kill` sends a **signal** (a message) to a process.
+      The name sounds dangerous, but it isn't — it's just a command.
 
-      **Rule of thumb:** First try `kill PID` (SIGTERM). Only use `kill -9 PID` (SIGKILL)
-      if that doesn't work.
+      The two most important signals:
 
-      `killall` terminates all processes with a specific name:
-      ```bash
+      | Signal | Number | What happens? |
+      |--------|--------|---------------|
+      | SIGTERM | 15 | Please stop — the program can clean up first (default) |
+      | SIGKILL | 9 | Stop immediately — no cleanup, no matter what |
+
+      **Here's how to proceed:**
+
+      First find the PID of the program:
+      ```
+      ps aux | grep firefox
+      ```
+      Then end it gently:
+      ```
+      kill 1234
+      ```
+      If that doesn't work, force it:
+      ```
+      kill -9 1234
+      ```
+
+      With `killall` you can end all processes with a name at once:
+      ```
       killall firefox
       ```
     examples:
       - q: "kill 1234"
-        a: "Sends SIGTERM (graceful shutdown) to process with PID 1234"
+        a: "Sends SIGTERM (gentle stop request) to the process with PID number 1234"
         rel:
           - ["en-kill-cmd", "Send signal to process (default: SIGTERM = graceful shutdown)", "kill command"]
         labels: ["Processes"]
       - q: "kill -9 1234"
-        a: "Sends SIGKILL — process is terminated immediately, no saving possible"
+        a: "Ends the process immediately — SIGKILL cannot be ignored by the program"
         rel:
           - ["en-kill-9", "SIGKILL — immediate termination, cannot be caught", "signal -9"]
         labels: ["Processes"]
       - q: "kill -1 $(pgrep nginx)"
-        a: "Send SIGHUP to Nginx — reloads configuration without downtime"
+        a: "Asks nginx to reload its settings — without stopping the server"
         rel:
           - ["en-kill-1", "SIGHUP — reload configuration", "signal -1"]
-          - ["en-command-sub", "$() executes command and uses the output", "$(command)"]
+          - ["en-command-sub", "$() runs a command and uses its output", "$(command)"]
         labels: ["Processes", "Config"]
       - q: "killall -9 firefox"
-        a: "Immediately terminate all Firefox processes — useful when the browser freezes"
+        a: "Ends all Firefox processes immediately — useful when the browser freezes"
         rel:
           - ["en-killall-cmd", "Terminate all processes with a given name", "killall command"]
         labels: ["Processes"]
 
-  - title: "Background jobs — multitasking in the terminal"
+  - title: "Background jobs — doing multiple things at once"
     image: "images/section-03-background.svg"
     explanation: |
-      Linux allows multiple jobs simultaneously in one terminal:
+      Normally the terminal waits until a command is finished.
+      But what if you want to do something else at the same time?
 
-      | Command/Key | Effect |
-      |------------|--------|
-      | `command &` | Start directly in background |
-      | `Ctrl+Z` | Pause running job |
-      | `bg` | Resume paused job in background |
-      | `fg` | Bring background job to foreground |
-      | `jobs` | List all background jobs |
-      | `nohup command &` | Job continues even after terminal closes |
-
-      **Practical example:**
-      ```bash
-      python3 server.py &   # start server in background
-      [1] 5892              # job number and PID
+      Then you send the process to the **background**!
+      Just add `&` to the end of the command:
       ```
-      Now you can keep working while the server runs.
+      python3 server.py &
+      [1] 5892
+      ```
+      The `[1]` is the job number, `5892` is the PID. The terminal is immediately free again!
+
+      | Command/Key | What happens? |
+      |------------|---------------|
+      | `command &` | Start directly in background |
+      | `Ctrl+Z` | Pause a running process |
+      | `bg` | Continue a paused process in the background |
+      | `fg` | Bring a background process back to the foreground |
+      | `jobs` | Show all background processes |
+      | `nohup command &` | Background process that keeps running even when you close the terminal |
+
+      Imagine: You start a download process with `&` in the background,
+      and can keep typing at the same time — just like multiple apps at once!
     examples:
       - q: "sleep 60 &"
-        a: "Starts a 60-second sleep process in the background — terminal stays free"
+        a: "Starts a wait process for 60 seconds in the background — the terminal stays free immediately"
         rel:
           - ["en-background-amp", "& at the end starts process in background", "& operator"]
+          - ["en-sleep-cmd", "Wait for N seconds — often used in scripts", "sleep command"]
         labels: ["Processes"]
       - q: "jobs -l"
-        a: "Show all background jobs with job number and PID"
+        a: "Shows all background processes with their job number and PID"
         rel:
           - ["en-jobs-cmd", "List all background jobs in current shell", "jobs command"]
+          - ["en-jobs-l", "Long — also show PIDs of jobs", "flag -l"]
         labels: ["Processes"]
       - q: "fg %1"
-        a: "Bring job number 1 to the foreground"
+        a: "Brings background process number 1 back to the foreground"
         rel:
           - ["en-fg-cmd", "Foreground — bring background job to foreground", "fg command"]
         labels: ["Processes"]
       - q: "nohup python3 webserver.py > server.log 2>&1 &"
-        a: "Start server that keeps running after terminal closes, output to log file"
+        a: "Starts a web server that keeps running even after closing the terminal — output saved to server.log"
         rel:
           - ["en-nohup-cmd", "No Hangup — process continues when terminal is closed", "nohup command"]
+          - ["en-redirect-stderr", "2>&1 redirects error messages to the same file as normal output", "2>&1"]
         labels: ["Processes", "Scripting"]
 
-  - title: "🖥️ Terminal Check"
+  - title: "Terminal Check"
     image: "images/section-04-check.svg"
     explanation: |
-      Test your knowledge — type the commands yourself!
+      Test your knowledge now!
     examples:
       - q: "Which command shows all running processes from all users?"
         type: input
@@ -141,9 +172,9 @@ sections:
       - q: "What does 'kill -9 1234' do?"
         type: select
         options:
-          - text: "Sends SIGKILL — process is immediately terminated"
+          - text: "Ends the process immediately and forcefully (SIGKILL)"
             correct: true
-          - text: "Sends SIGTERM — process can clean up"
+          - text: "Asks the process nicely to stop (SIGTERM)"
           - text: "Pauses the process with PID 1234"
           - text: "Restarts the process"
         labels: ["Processes"]
@@ -159,7 +190,7 @@ sections:
       - q: "Which of these statements about process signals are true?"
         type: multiple-choice
         options:
-          - text: "SIGTERM (15) is the graceful shutdown signal"
+          - text: "SIGTERM (15) is the gentle shutdown signal"
             correct: true
           - text: "SIGKILL (9) cannot be caught or ignored"
             correct: true

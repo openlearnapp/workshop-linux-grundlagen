@@ -1,157 +1,189 @@
 version: 2
 number: 8
 title: "الشبكات"
-description: "ping و curl و wget و ssh و ip — اختبار الاتصالات ونقل البيانات والعمل عن بُعد"
+description: "ping وcurl وwget وssh وip — اختبار اتصالات الشبكة ونقل البيانات والعمل عن بُعد"
 image: "images/lesson-header.svg"
+image_caption: "Netzwerktopologie mit Router, Server und Clients"
 sections:
-  - title: "فحص الشبكة — ping و ip و ss"
+  - title: "فحص الشبكة — ping وip وss"
     image: "images/section-01-network.svg"
     explanation: |
-      **لماذا هذا مهم؟** كمستخدم لينكس ستُدير خوادم، وتستدعي واجهات API،
-      وتُصحح مشاكل الشبكة. هذه الأوامر هي الأساس.
+      تخيل أنك ترسل خطاباً لصديق.
+      تريد أن تعرف: "هل وصل الخطاب أصلاً؟"
 
-      | الأمر | الغرض |
-      |-------|-------|
-      | `ping` | اختبار إمكانية الوصول |
-      | `ip addr` | عناوين IP لواجهات الشبكة |
-      | `ip route` | عرض جدول التوجيه |
-      | `ss -tulpn` | المنافذ والاتصالات المفتوحة |
-      | `netstat -tulpn` | مشابه لـ ss (أداة أقدم) |
+      على الإنترنت يقوم بذلك الأمر **ping**.
+      يرسل حزماً صغيرة تجريبية إلى عنوان ويقيس
+      ما إذا كانت تصل وبأي سرعة:
+      ```
+      ping -c 4 google.com
+      ```
+      الـ `-c 4` يعني: "أرسل 4 حزم تجريبية بالضبط."
 
-      **واجهات الشبكة** هي الاتصالات بالشبكة:
-      - `lo` = Loopback (محلي فقط، 127.0.0.1)
-      - `eth0` أو `enp3s0` = إيثرنت سلكي
-      - `wlan0` أو `wlp2s0` = واي فاي
+      بـ **ip addr** ترى عنوان حاسوبك على الشبكة —
+      مثل رقم منزلك:
+      ```
+      ip addr show
+      ```
+
+      وبـ **ss** ترى أي "أبواب" (منافذ) مفتوحة على حاسوبك:
+      ```
+      ss -tulpn
+      ```
+      يبدو هذا معقداً، لكنه بسيط:
+      - `t` = اتصالات TCP (النوع الأكثر شيوعاً)
+      - `u` = اتصالات UDP (للبيانات السريعة مثل الفيديو)
+      - `l` = عرض الأبواب المفتوحة فقط
+      - `p` = أي برنامج فتح الباب؟
+      - `n` = عرض أرقام بدلاً من أسماء
     examples:
       - q: "ping -c 4 google.com"
-        a: "يرسل ٤ حزم ICMP إلى google.com — يختبر اتصال الإنترنت وزمن الاستجابة"
+        a: "يرسل 4 حزم تجريبية إلى Google — يفحص ما إذا كان الإنترنت يعمل"
         rel:
-          - ["ping-cmd", "اختبار إمكانية الوصول عبر الشبكة وزمن الاستجابة", "أمر ping"]
-          - ["ping-c", "Count — تحديد عدد الحزم المرسلة", "العلم -c"]
-        labels: ["الشبكة"]
+          - ["ping-cmd", "اختبار إمكانية الوصول للشبكة والتأخير", "أمر ping"]
+          - ["ping-c", "Count — تحديد عدد الحزم المرسلة", "الخيار -c"]
+        labels: ["Netzwerk"]
       - q: "ip addr show"
-        a: "عرض جميع واجهات الشبكة مع عناوين IP (يحل محل ifconfig)"
+        a: "يعرض عنوان شبكة حاسوبك — مثل رقم منزلك على الإنترنت"
         rel:
-          - ["ip-cmd", "أداة إدارة شبكات حديثة (تحل محل ifconfig)", "أمر ip"]
+          - ["ip-cmd", "أداة إدارة الشبكة الحديثة (تستبدل ifconfig)", "أمر ip"]
           - ["ip-addr", "عرض عناوين IP لجميع واجهات الشبكة", "ip addr"]
-        labels: ["الشبكة"]
+        labels: ["Netzwerk"]
       - q: "ss -tulpn"
-        a: "عرض جميع منافذ TCP/UDP المفتوحة والبرامج المرتبطة بها"
+        a: "يعرض جميع المنافذ المفتوحة والبرامج التي تستخدمها"
         rel:
           - ["ss-cmd", "Socket Statistics — اتصالات الشبكة والمنافذ المفتوحة", "أمر ss"]
-          - ["ss-tulpn", "t=TCP، u=UDP، l=listening، p=عملية، n=رقمي", "الأعلام -tulpn"]
-        labels: ["الشبكة"]
+          - ["ss-tulpn", "t=TCP، u=UDP، l=listening، p=عملية، n=رقمي", "الخيارات -tulpn"]
+        labels: ["Netzwerk"]
 
-  - title: "curl و wget — جلب البيانات من الشبكة"
+  - title: "curl و wget — جلب البيانات من الإنترنت"
     image: "images/section-02-curl-wget.svg"
     explanation: |
-      `curl` و `wget` هما السكين السويسري لطلبات HTTP.
+      متصفحك يُحمّل مواقع الإنترنت — هذا ترى.
+      لكن ماذا لو أردت جلب بيانات إلى الطرفية
+      بدون فتح متصفح؟
 
-      **curl** (Client URL) — مرن جدًا، مثالي لواجهات API:
-      ```bash
-      curl https://api.github.com/users/torvalds
-      curl -X POST -H "Content-Type: application/json" \
-           -d '{"name":"test"}' https://api.example.com/data
+      لذلك يوجد **curl** و **wget**.
+
+      **curl** مثل متصفح غير مرئي:
       ```
-
-      **wget** — أفضل لتنزيل الملفات الكبيرة:
-      ```bash
-      wget https://releases.ubuntu.com/22.04/ubuntu-22.04-live-server.iso
-      wget -c großedatei.zip   # استئناف تنزيل متوقف
+      curl https://example.com
       ```
+      يعرض لك محتوى موقع مباشرةً في الطرفية.
 
-      **الفرق:** curl يعرض الاستجابة، wget يحفظها مباشرة في ملف.
+      بـ curl يمكنك أيضاً معرفة عنوان الإنترنت الخاص بك:
+      ```
+      curl -s https://ipinfo.io/ip
+      ```
+      الـ `-s` تعني "silent" (هادئ) —
+      يعرض النتيجة فقط، بدون شريط تقدم.
+
+      **wget** أفضل لتحميل الملفات الكبيرة:
+      ```
+      wget https://example.com/grossedatei.zip
+      ```
+      wget يحفظ الملف مباشرةً على حاسوبك.
+      curl يعرضه فقط — هذا الفرق الأهم.
     examples:
       - q: "curl -I https://example.com"
-        a: "عرض ترويسات HTTP فقط (رمز الحالة، الخادم، Content-Type) بدون المحتوى"
+        a: "يعرض فقط رأس الموقع (Header) — مثل النظر في غلاف الرسالة"
         rel:
-          - ["curl-cmd", "Client URL — إجراء طلبات HTTP ونقل البيانات", "أمر curl"]
-          - ["curl-I", "Head — عرض ترويسات استجابة HTTP فقط", "العلم -I"]
-        labels: ["الشبكة"]
+          - ["curl-cmd", "Client URL — إرسال طلبات HTTP ونقل البيانات", "أمر curl"]
+          - ["curl-I", "Head — عرض رأس استجابة HTTP فقط", "الخيار -I"]
+        labels: ["Netzwerk"]
       - q: "curl -s https://ipinfo.io/ip"
-        a: "عرض عنوان IP العام الخاص بك — -s يُخفي شريط التقدم"
+        a: "يعرض عنوان الإنترنت الخاص بك — -s يجعل الإخراج نظيفاً"
         rel:
-          - ["curl-s", "Silent — إخفاء مؤشر التقدم ورسائل الخطأ", "العلم -s"]
-        labels: ["الشبكة"]
+          - ["curl-s", "Silent — إخفاء شريط التقدم ورسائل الخطأ", "الخيار -s"]
+        labels: ["Netzwerk"]
       - q: "wget -O nodejs.tar.gz https://nodejs.org/dist/v20.0.0/node-v20.0.0.tar.gz"
-        a: "تنزيل ملف وحفظه باسم مخصص"
+        a: "يُحمّل ملفاً ويحفظه باسم مختلف"
         rel:
-          - ["wget-cmd", "Web Get — تنزيل الملفات من الإنترنت", "أمر wget"]
-          - ["wget-O", "Output — حفظ الملف باسم آخر", "العلم -O"]
-        labels: ["الشبكة"]
+          - ["wget-cmd", "Web Get — تحميل الملفات من الإنترنت", "أمر wget"]
+          - ["wget-O", "Output — حفظ الملف باسم آخر", "الخيار -O"]
+        labels: ["Netzwerk"]
       - q: "curl -fsSL https://get.docker.com | sudo sh"
-        a: "تنزيل سكريبت تثبيت Docker وتنفيذه مباشرة"
+        a: "يُحمّل سكريبت تثبيت وينفذه فوراً"
         rel:
-          - ["curl-fssl", "f=فشل صامت، s=صامت، S=أخطاء، L=تتبع إعادة التوجيه", "الأعلام -fsSL"]
-        labels: ["الشبكة", "الإعدادات"]
+          - ["curl-fssl", "f=فشل هادئ، s=هادئ، S=أخطاء، L=متابعة التحويلات", "الخيارات -fsSL"]
+        labels: ["Netzwerk", "Konfiguration"]
 
-  - title: "SSH — الاتصال الآمن بالخوادم البعيدة"
+  - title: "SSH — الاتصال بحاسوب آخر بأمان"
     image: "images/section-03-ssh.svg"
     explanation: |
-      **SSH** (Secure Shell) هو أهم أداة لإدارة الخوادم عن بُعد.
-      كل شيء يُنقل بشكل مشفر.
+      تخيل أنك تجلس في منزلك، لكن تعمل على حاسوب
+      يبعد 1000 كيلومتر في مركز بيانات.
 
-      **إنشاء الاتصال:**
-      ```bash
-      ssh benutzer@server.example.com
-      ssh -p 2222 alice@192.168.1.100    # تحديد المنفذ
+      هذا بالضبط ما يفعله **SSH** (Secure Shell — "قشرة آمنة").
+      كل ما تكتبه يُنقل مشفراً.
+      لا أحد يمكنه التنصت.
+
+      هكذا تتصل:
       ```
-
-      **مفاتيح SSH** أكثر أمانًا من كلمات المرور:
-      ```bash
-      ssh-keygen -t ed25519 -C "alice@laptop"  # إنشاء زوج مفاتيح
-      ssh-copy-id alice@server.example.com      # نقل المفتاح إلى الخادم
-      ssh alice@server.example.com              # الآن بدون كلمة مرور!
+      ssh alice@192.168.1.100
       ```
+      هذا يعني: "اتصل كمستخدم 'alice' بالحاسوب 192.168.1.100"
 
-      **نقل الملفات بـ scp:**
-      ```bash
-      scp datei.txt alice@server:/home/alice/
-      scp -r ordner/ alice@server:/var/www/
+      أكثر أماناً من كلمة المرور هي **مفاتيح SSH**.
+      هذه مثل بطاقة هوية سحرية — لا تحتاج كتابة كلمة مرور بعد الآن:
+      ```
+      ssh-keygen -t ed25519 -C "mein-laptop"
+      ```
+      هذا ينشئ مفتاحاً.
+      بـ `-t ed25519` تختار نوعاً حديثاً وآمناً.
+
+      ثم ترسل بطاقة هويتك إلى الحاسوب الآخر:
+      ```
+      ssh-copy-id alice@server.example.com
+      ```
+      من الآن يمكنك الدخول — بدون كلمة مرور!
+
+      نقل الملفات يتم بـ **scp** (Secure Copy — "نسخ آمن"):
+      ```
+      scp meine-datei.txt alice@server:/home/alice/
       ```
     examples:
       - q: "ssh alice@192.168.1.100"
-        a: "الاتصال بالخادم عبر SSH — تسجيل الدخول بكلمة مرور أو مفتاح SSH"
+        a: "يتصل بالحاسوب 192.168.1.100 كـ 'alice' — كل شيء مشفر"
         rel:
-          - ["ssh-cmd", "Secure Shell — اتصال مشفر عن بُعد", "أمر ssh"]
-        labels: ["الشبكة", "الأمان"]
+          - ["ssh-cmd", "Secure Shell — اتصال عن بُعد مشفر", "أمر ssh"]
+        labels: ["Netzwerk", "Sicherheit"]
       - q: "ssh-keygen -t ed25519 -C \"alice@meinlaptop\""
-        a: "إنشاء زوج مفاتيح Ed25519 حديث — أكثر أمانًا من RSA القديم"
+        a: "ينشئ مفتاح SSH حديثاً — مثل بطاقة هوية رقمية"
         rel:
-          - ["ssh-keygen", "إنشاء زوج مفاتيح SSH", "أمر ssh-keygen"]
+          - ["ssh-keygen", "توليد زوج مفاتيح SSH", "أمر ssh-keygen"]
           - ["ed25519", "خوارزمية حديثة لمفاتيح SSH، مُوصى بها منذ 2022", "نوع المفتاح Ed25519"]
-        labels: ["الشبكة", "الأمان"]
+        labels: ["Netzwerk", "Sicherheit"]
       - q: "ssh-copy-id -i ~/.ssh/id_ed25519.pub alice@server.example.com"
-        a: "نسخ المفتاح العام إلى الخادم — بعدها لن تحتاج كلمة مرور"
+        a: "يرسل مفتاحك إلى الخادم — بعدها لا كلمة مرور مطلوبة"
         rel:
-          - ["ssh-copy-id", "تثبيت مفتاح SSH العام على الخادم البعيد", "أمر ssh-copy-id"]
-        labels: ["الشبكة", "الأمان"]
+          - ["ssh-copy-id", "تثبيت مفتاح SSH العام على خادم بعيد", "أمر ssh-copy-id"]
+        labels: ["Netzwerk", "Sicherheit"]
       - q: "scp -r ~/projekte/webseite/ alice@server:/var/www/html/"
-        a: "نقل مجلد الموقع بالكامل عبر scp إلى الخادم"
+        a: "ينسخ مجلداً كاملاً بأمان إلى حاسوب آخر"
         rel:
-          - ["scp-cmd", "Secure Copy — نقل ملفات مشفر عبر SSH", "أمر scp"]
-          - ["scp-r", "Recursive — نقل المجلدات", "العلم -r"]
-        labels: ["الشبكة"]
+          - ["scp-cmd", "Secure Copy — نقل الملفات المشفر عبر SSH", "أمر scp"]
+          - ["scp-r", "Recursive — نقل المجلدات", "الخيار -r"]
+        labels: ["Netzwerk"]
 
-  - title: "🖥️ اختبار الطرفية"
+  - title: "اختبار الطرفية"
     image: "images/section-04-check.svg"
     explanation: |
-      اختبر معرفتك الآن — أدخل الأوامر مباشرة!
+      اختبر معلوماتك الآن — أدخل الأوامر مباشرةً!
     examples:
-      - q: "أي أمر يختبر إمكانية الوصول إلى google.com بأربع حزم؟"
+      - q: "ما هو الأمر الذي يختبر إمكانية الوصول لـ google.com بـ 4 حزم؟"
         type: input
         a: "ping -c 4 google.com"
-        labels: ["الشبكة"]
+        labels: ["Netzwerk"]
       - q: "ماذا يفعل 'curl -s https://ipinfo.io/ip'؟"
         type: select
         options:
-          - text: "يعرض عنوان IP العام الخاص بك"
+          - text: "يعرض عنوان الإنترنت الخاص بك"
             correct: true
-          - text: "يختبر سرعة اتصال الإنترنت"
-          - text: "يُنزّل قاعدة بيانات IP"
-          - text: "يعرض جميع واجهات الشبكة"
-        labels: ["الشبكة"]
-      - q: "أي أمر يعرض جميع المنافذ المفتوحة والبرامج المرتبطة بها؟"
+          - text: "يختبر سرعة الاتصال بالإنترنت"
+          - text: "يُحمّل قاعدة بيانات IP"
+          - text: "يعرض جميع بطاقات الشبكة"
+        labels: ["Netzwerk"]
+      - q: "ما هو الأمر الذي يعرض جميع المنافذ المفتوحة والبرامج المرتبطة بها؟"
         type: select
         options:
           - text: "ss -tulpn"
@@ -159,15 +191,15 @@ sections:
           - text: "ip addr show"
           - text: "ping -a localhost"
           - text: "netstat --list"
-        labels: ["الشبكة"]
-      - q: "أي من العبارات التالية عن SSH صحيحة؟"
+        labels: ["Netzwerk"]
+      - q: "أيٌّ من هذه العبارات عن SSH صحيحة؟"
         type: multiple-choice
         options:
           - text: "SSH يُشفّر الاتصال"
             correct: true
-          - text: "مفاتيح SSH أكثر أمانًا من كلمات المرور"
+          - text: "مفاتيح SSH أكثر أماناً من كلمات المرور"
             correct: true
           - text: "ssh-keygen ينشئ زوج مفاتيح"
             correct: true
-          - text: "SSH يرسل كلمات المرور بنص واضح"
-        labels: ["الشبكة", "الأمان"]
+          - text: "SSH يُرسل كلمات المرور بنص واضح"
+        labels: ["Netzwerk", "Sicherheit"]
