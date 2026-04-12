@@ -40,6 +40,52 @@ sections:
           - ["cat-cmd", "عرض محتوى ملف في الطرفية", "أمر cat"]
         labels: ["أساسيات", "نظام الملفات"]
 
+  - title: "جرّب لينكس الآن — بدون تثبيت"
+    image: "images/section-02-try-linux.svg"
+    explanation: |
+      قبل المتابعة: **هل لديك وصول إلى طرفية لينكس؟**
+
+      لا تحتاج إلى تثبيت نظام تشغيل جديد. هناك طرق سهلة كثيرة للبدء:
+
+      **مباشرة في المتصفح (بدون تنزيل):**
+      - **webminal.org** — طرفية Ubuntu حقيقية في المتصفح، مجانية، بدون تثبيت
+      - **JSLinux (bellard.org/jslinux)** — لينكس مباشرة في المتصفح، بدون تسجيل
+      - **replit.com** — بيئة تطوير إلكترونية مع طرفية لينكس
+
+      **على ويندوز:**
+      - **WSL2 (نظام ويندوز الفرعي للينكس)** — نواة Ubuntu حقيقية مدمجة في ويندوز
+      - افتح PowerShell واكتب: `wsl --install` — ثم شغّل Ubuntu
+
+      **على macOS:**
+      - افتح **Terminal.app** — macOS مبني على Unix، وتعمل تقريباً جميع أوامر لينكس
+      - Finder ← التطبيقات ← الأدوات المساعدة ← Terminal
+
+      **كجهاز افتراضي (للتعلم الأعمق):**
+      - **VirtualBox** (مجاني) + تنزيل Ubuntu ISO ← لينكس في نافذة
+
+      **كحاسوب حقيقي:**
+      - **Raspberry Pi** (~٣٥ دولار) — حاسوب لينكس كامل للتجربة
+
+      **توصية للمبتدئين:** ابدأ بـ **webminal.org** في متصفحك
+      أو ثبّت **WSL2** على ويندوز — بدون مخاطرة، ابدأ فوراً!
+    examples:
+      - q: "uname -s"
+        a: "يعرض نظام التشغيل — في لينكس: 'Linux'، في macOS: 'Darwin'"
+        rel:
+          - ["ar-uname-s", "اسم النظام — يُظهر إذا كان Linux أو Darwin (macOS) إلخ", "علامة -s = system"]
+        labels: ["أساسيات"]
+      - q: "wsl --install"
+        a: "يثبّت WSL2 + Ubuntu على ويندوز ١٠/١١ — ثم استخدم Ubuntu مباشرة داخل ويندوز (شغّل PowerShell كمسؤول)"
+        rel:
+          - ["ar-wsl-install", "تثبيت WSL2 و Ubuntu على ويندوز ١٠/١١", "أمر Windows PowerShell"]
+          - ["ar-wsl2", "نظام ويندوز الفرعي للينكس — نواة لينكس حقيقية مدمجة في ويندوز", "WSL2"]
+        labels: ["أساسيات", "تثبيت"]
+      - q: "bash --version"
+        a: "يعرض إصدار Bash المثبت — يعمل على لينكس وmacOS وWSL"
+        rel:
+          - ["ar-bash-version", "عرض إصدار Bash Shell المثبت", "الأمر bash --version"]
+        labels: ["أساسيات"]
+
   - title: "التوزيعات — لينكس لكل غرض"
     image: "images/section-02-distros.svg"
     explanation: |

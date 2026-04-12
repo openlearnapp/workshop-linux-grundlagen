@@ -39,6 +39,53 @@ sections:
           - ["en-os-release", "File containing distribution and version information", "/etc/os-release"]
         labels: ["Basics", "Filesystem"]
 
+  - title: "Try Linux right now — no installation needed"
+    image: "images/section-02-try-linux.svg"
+    explanation: |
+      Before you go further: **do you already have access to a Linux terminal?**
+
+      You don't need to install a new operating system. There are many easy ways to get started:
+
+      **Instantly in the browser (no download required):**
+      - **webminal.org** — real Ubuntu terminal in the browser, free, no installation
+      - **JSLinux (bellard.org/jslinux)** — Linux running in your browser, no sign-up needed
+      - **replit.com** — online IDE with a full Linux terminal
+
+      **On Windows:**
+      - **WSL2 (Windows Subsystem for Linux)** — a real Ubuntu Linux kernel built into Windows
+      - Open PowerShell and run: `wsl --install` — then launch Ubuntu
+
+      **On macOS:**
+      - Open **Terminal.app** — macOS is Unix-based, almost all Linux commands work
+      - Finder → Applications → Utilities → Terminal
+
+      **As a virtual machine (for deeper learning):**
+      - **VirtualBox** (free) + Ubuntu ISO download → Linux running in a window
+
+      **As a real mini-computer:**
+      - **Raspberry Pi** (~$35) — a full Linux computer, great for experimenting
+
+      **Recommendation for beginners:** Start with **webminal.org** in your browser
+      or install **WSL2** on Windows — no risk, get started immediately!
+    examples:
+      - q: "uname -s"
+        a: "Shows the operating system — on Linux: 'Linux', on macOS: 'Darwin'"
+        rel:
+          - ["en-uname-s", "System name — shows if Linux, Darwin (macOS), etc.", "flag -s = system"]
+        labels: ["Basics"]
+      - q: "wsl --install"
+        a: "Installs WSL2 + Ubuntu on Windows 10/11 — then use Ubuntu directly inside Windows (run in PowerShell as admin)"
+        rel:
+          - ["en-wsl-install", "Install WSL2 and Ubuntu on Windows 10/11", "Windows PowerShell command"]
+          - ["en-wsl2", "Windows Subsystem for Linux — real Linux kernel integrated into Windows", "WSL2"]
+        labels: ["Basics", "Installation"]
+      - q: "bash --version"
+        a: "Shows the installed Bash version — works on Linux, macOS and WSL"
+        rel:
+          - ["en-bash-version", "Show installed Bash shell version", "command bash --version"]
+          - ["en-bash-shell", "Bash — Bourne Again Shell, the default shell on Linux", "Shell"]
+        labels: ["Basics"]
+
   - title: "Distributions — Linux for every purpose"
     image: "images/section-02-distros.svg"
     explanation: |
