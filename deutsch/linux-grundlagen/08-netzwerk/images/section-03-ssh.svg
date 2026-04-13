@@ -1,27 +1,76 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 160" width="640" height="160">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 230">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0d1117"/>
-      <stop offset="100%" stop-color="#161b22"/>
-    </linearGradient>
+    <style>
+      .f { font-family: sans-serif; }
+      .ti { opacity: 0; animation: fadeIn 11s infinite; }
+      .c1 { opacity: 0; animation: fadeIn 11s infinite; animation-delay: 0.4s; }
+      .c2 { opacity: 0; animation: fadeIn 11s infinite; animation-delay: 1.2s; }
+      .c3 { opacity: 0; animation: fadeIn 11s infinite; animation-delay: 2.0s; }
+      .c4 { opacity: 0; animation: fadeIn 11s infinite; animation-delay: 2.8s; }
+      .ft { opacity: 0; animation: fadeIn 11s infinite; animation-delay: 3.4s; }
+      @keyframes fadeIn {
+        0%,2%{opacity:0}
+        7%,87%{opacity:1}
+        92%,100%{opacity:0}
+      }
+    </style>
   </defs>
-  <rect width="640" height="160" fill="url(#bg)" rx="8"/>
-  <!-- Decorative elements -->
-  <circle cx="80" cy="60" r="2" fill="#58a6ff" opacity="0.4"/><circle cx="95" cy="45" r="1.5" fill="#58a6ff" opacity="0.35"/><circle cx="70" cy="100" r="1" fill="#58a6ff" opacity="0.35"/>
-  <circle cx="560" cy="60" r="2" fill="#58a6ff" opacity="0.4"/><circle cx="545" cy="100" r="1.5" fill="#58a6ff" opacity="0.35"/><circle cx="570" cy="45" r="1" fill="#58a6ff" opacity="0.35"/>
-  <!-- Icon -->
-  
-  <!-- Local machine -->
-  <rect x="250" y="55" width="50" height="34" rx="4" fill="#21262d" stroke="#e6edf3" stroke-width="1.5" opacity="0.9"/>
-  <text x="262" y="76" font-family="monospace" font-size="8" fill="#8b949e">local</text>
-  <!-- Encrypted tunnel -->
-  <line x1="305" y1="72" x2="340" y2="72" stroke="#3fb950" stroke-width="2" stroke-dasharray="5,3" opacity="0.8"/>
-  <!-- Lock on tunnel -->
-  <rect x="315" y="64" width="12" height="10" rx="2" fill="#21262d" stroke="#3fb950" stroke-width="1.5"/>
-  <path d="M318 64 L318 60 Q318 55 321 55 Q324 55 324 60 L324 64" fill="none" stroke="#3fb950" stroke-width="1.5"/>
-  <!-- Remote server -->
-  <rect x="345" y="55" width="50" height="34" rx="4" fill="#21262d" stroke="#58a6ff" stroke-width="1.5"/>
-  <text x="351" y="76" font-family="monospace" font-size="8" fill="#58a6ff">server</text>
-  <!-- Accent bar -->
-  <rect x="180" y="152" width="280" height="4" fill="#58a6ff" opacity="0.8" rx="1.5"/>
+
+  <!-- Background -->
+  <rect width="640" height="230" rx="12" fill="#0d1117"/>
+
+  <!-- Header bar -->
+  <rect width="640" height="38" rx="12" fill="#161b22"/>
+  <rect y="26" width="640" height="12" fill="#161b22"/>
+
+  <!-- Header title -->
+  <text class="f ti" x="320" y="24" text-anchor="middle" font-size="13" fill="#e6edf3" font-weight="bold" letter-spacing="1">SSH — sicher auf einen anderen Computer verbinden</text>
+
+  <!-- Card 1: SSH -->
+  <g class="c1">
+    <rect x="16" y="50" width="142" height="158" rx="10" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+    <text x="87" y="88" text-anchor="middle" font-size="30">🔐</text>
+    <text class="f" x="87" y="112" text-anchor="middle" font-size="12" fill="#f0883e" font-weight="bold">SSH</text>
+    <text class="f" x="87" y="128" text-anchor="middle" font-size="10" fill="#8b949e">Sichere</text>
+    <text class="f" x="87" y="141" text-anchor="middle" font-size="10" fill="#8b949e">verschlüsselte</text>
+    <text class="f" x="87" y="154" text-anchor="middle" font-size="10" fill="#8b949e">Verbindung</text>
+    <rect x="26" y="160" width="122" height="26" rx="6" fill="#0d1117"/>
+    <text class="f" x="87" y="178" text-anchor="middle" font-size="9" fill="#f0883e">Secure Shell</text>
+  </g>
+
+  <!-- Card 2: ssh user@host -->
+  <g class="c2">
+    <rect x="170" y="50" width="142" height="158" rx="10" fill="#161b22" stroke="#58a6ff" stroke-width="1.5"/>
+    <text x="241" y="88" text-anchor="middle" font-size="30">🖥️</text>
+    <text class="f" x="241" y="112" text-anchor="middle" font-size="11" fill="#58a6ff" font-weight="bold">ssh user@host</text>
+    <text class="f" x="241" y="130" text-anchor="middle" font-size="10" fill="#8b949e">Verbindung</text>
+    <text class="f" x="241" y="144" text-anchor="middle" font-size="10" fill="#8b949e">aufbauen</text>
+    <rect x="180" y="156" width="122" height="26" rx="6" fill="#0d1117"/>
+    <text class="f" x="241" y="174" text-anchor="middle" font-size="9" fill="#58a6ff">ssh ali@192.168.1.1</text>
+  </g>
+
+  <!-- Card 3: ssh-keygen -->
+  <g class="c3">
+    <rect x="324" y="50" width="142" height="158" rx="10" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+    <text x="395" y="88" text-anchor="middle" font-size="30">🔑</text>
+    <text class="f" x="395" y="112" text-anchor="middle" font-size="12" fill="#3fb950" font-weight="bold">ssh-keygen</text>
+    <text class="f" x="395" y="128" text-anchor="middle" font-size="10" fill="#8b949e">Schlüsselpaar</text>
+    <text class="f" x="395" y="142" text-anchor="middle" font-size="10" fill="#8b949e">erstellen</text>
+    <rect x="334" y="156" width="122" height="26" rx="6" fill="#0d1117"/>
+    <text class="f" x="395" y="174" text-anchor="middle" font-size="9" fill="#3fb950">Passwortlos!</text>
+  </g>
+
+  <!-- Card 4: scp -->
+  <g class="c4">
+    <rect x="478" y="50" width="146" height="158" rx="10" fill="#161b22" stroke="#bc8cff" stroke-width="1.5"/>
+    <text x="551" y="88" text-anchor="middle" font-size="30">📂</text>
+    <text class="f" x="551" y="112" text-anchor="middle" font-size="12" fill="#bc8cff" font-weight="bold">scp</text>
+    <text class="f" x="551" y="128" text-anchor="middle" font-size="10" fill="#8b949e">Dateien sicher</text>
+    <text class="f" x="551" y="142" text-anchor="middle" font-size="10" fill="#8b949e">übertragen</text>
+    <rect x="488" y="156" width="126" height="26" rx="6" fill="#0d1117"/>
+    <text class="f" x="551" y="174" text-anchor="middle" font-size="9" fill="#bc8cff">scp datei user@host</text>
+  </g>
+
+  <!-- Footer -->
+  <text class="f ft" x="320" y="222" text-anchor="middle" font-size="11" fill="#484f58">SSH = sicher · exit = trennen · scp = Dateien übertragen ✓</text>
 </svg>

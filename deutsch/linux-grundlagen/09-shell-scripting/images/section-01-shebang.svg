@@ -1,28 +1,72 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 160" width="640" height="160">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0d1117"/>
-      <stop offset="100%" stop-color="#161b22"/>
-    </linearGradient>
-  </defs>
-  <rect width="640" height="160" fill="url(#bg)" rx="8"/>
-  <!-- Decorative elements -->
-  <circle cx="80" cy="60" r="2" fill="#f0883e" opacity="0.4"/><circle cx="95" cy="45" r="1.5" fill="#f0883e" opacity="0.35"/><circle cx="70" cy="100" r="1" fill="#f0883e" opacity="0.35"/>
-  <circle cx="560" cy="60" r="2" fill="#f0883e" opacity="0.4"/><circle cx="545" cy="100" r="1.5" fill="#f0883e" opacity="0.35"/><circle cx="570" cy="45" r="1" fill="#f0883e" opacity="0.35"/>
-  <!-- Icon -->
-  
-  <!-- Script file -->
-  <rect x="285" y="28" width="70" height="85" rx="4" fill="#161b22" stroke="#30363d" stroke-width="1.5"/>
-  <!-- Shebang line -->
-  <text x="293" y="46" font-family="monospace" font-size="9" fill="#bc8cff">#!/bin/bash</text>
-  <!-- Variable -->
-  <text x="293" y="62" font-family="monospace" font-size="9" fill="#f0883e">NAME=</text>
-  <text x="327" y="62" font-family="monospace" font-size="9" fill="#3fb950">"Linux"</text>
-  <!-- Echo -->
-  <text x="293" y="78" font-family="monospace" font-size="9" fill="#e6edf3">echo</text>
-  <text x="318" y="78" font-family="monospace" font-size="9" fill="#3fb950">$NAME</text>
-  <!-- Run indicator -->
-  <text x="293" y="100" font-family="monospace" font-size="9" fill="#8b949e" opacity="0.7">▶ run</text>
-  <!-- Accent bar -->
-  <rect x="180" y="152" width="280" height="4" fill="#f0883e" opacity="0.8" rx="1.5"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 230" width="640" height="230">
+<style>
+  .f { font-family: sans-serif; }
+  .ti { animation: tia 11s infinite; }
+  @keyframes tia { 0%,3%{opacity:0} 7%,87%{opacity:1} 92%,100%{opacity:0} }
+  .sub { animation: suba 11s infinite; }
+  @keyframes suba { 0%,8%{opacity:0} 12%,87%{opacity:1} 92%,100%{opacity:0} }
+  .c1 { animation: c1a 11s infinite; }
+  @keyframes c1a { 0%,12%{opacity:0} 18%,87%{opacity:1} 92%,100%{opacity:0} }
+  .c2 { animation: c2a 11s infinite; }
+  @keyframes c2a { 0%,30%{opacity:0} 36%,87%{opacity:1} 92%,100%{opacity:0} }
+  .c3 { animation: c3a 11s infinite; }
+  @keyframes c3a { 0%,48%{opacity:0} 54%,87%{opacity:1} 92%,100%{opacity:0} }
+  .c4 { animation: c4a 11s infinite; }
+  @keyframes c4a { 0%,65%{opacity:0} 71%,87%{opacity:1} 92%,100%{opacity:0} }
+  .ft { animation: fta 11s infinite; }
+  @keyframes fta { 0%,78%{opacity:0} 82%,87%{opacity:1} 92%,100%{opacity:0} }
+</style>
+
+<rect width="640" height="230" rx="12" fill="#0d1117"/>
+<rect width="640" height="38" rx="12" fill="#161b22"/>
+<rect y="26" width="640" height="12" fill="#161b22"/>
+<text class="f ti" x="320" y="24" text-anchor="middle" font-size="13" fill="#e6edf3" font-weight="bold" letter-spacing="1">Dein erstes Skript — Shebang und Variablen</text>
+
+<text class="f sub" x="320" y="52" text-anchor="middle" font-size="10" fill="#6e7681">So baut man ein Shell-Skript von Grund auf</text>
+
+<!-- Card 1 -->
+<g class="c1">
+  <rect x="16" y="60" width="142" height="155" rx="10" fill="#0d1520" stroke="#f0883e" stroke-width="2"/>
+  <text x="87" y="100" text-anchor="middle" font-size="28">📜</text>
+  <text class="f" x="87" y="122" text-anchor="middle" font-size="12" fill="#f0883e" font-weight="bold">Shebang</text>
+  <text class="f" x="87" y="141" text-anchor="middle" font-size="9" fill="#8b949e">#!/bin/bash</text>
+  <text class="f" x="87" y="157" text-anchor="middle" font-size="9" fill="#8b949e">sagt welche Shell</text>
+  <text class="f" x="87" y="172" text-anchor="middle" font-size="9" fill="#8b949e">erste Zeile im Skript</text>
+  <text class="f" x="87" y="188" text-anchor="middle" font-size="9" fill="#8b949e">immer erforderlich</text>
+</g>
+
+<!-- Card 2 -->
+<g class="c2">
+  <rect x="166" y="60" width="142" height="155" rx="10" fill="#0d1520" stroke="#58a6ff" stroke-width="2"/>
+  <text x="237" y="100" text-anchor="middle" font-size="28">📝</text>
+  <text class="f" x="237" y="122" text-anchor="middle" font-size="12" fill="#58a6ff" font-weight="bold">Variablen</text>
+  <text class="f" x="237" y="141" text-anchor="middle" font-size="9" fill="#8b949e">name=Alice</text>
+  <text class="f" x="237" y="157" text-anchor="middle" font-size="9" fill="#8b949e">echo $name</text>
+  <text class="f" x="237" y="172" text-anchor="middle" font-size="9" fill="#8b949e">kein Leerzeichen beim</text>
+  <text class="f" x="237" y="188" text-anchor="middle" font-size="9" fill="#8b949e">Zuweisen!</text>
+</g>
+
+<!-- Card 3 -->
+<g class="c3">
+  <rect x="316" y="60" width="142" height="155" rx="10" fill="#0d1520" stroke="#3fb950" stroke-width="2"/>
+  <text x="387" y="100" text-anchor="middle" font-size="28">▶️</text>
+  <text class="f" x="387" y="122" text-anchor="middle" font-size="12" fill="#3fb950" font-weight="bold">Ausführen</text>
+  <text class="f" x="387" y="141" text-anchor="middle" font-size="9" fill="#8b949e">chmod +x skript.sh</text>
+  <text class="f" x="387" y="157" text-anchor="middle" font-size="9" fill="#8b949e">./skript.sh starten</text>
+  <text class="f" x="387" y="172" text-anchor="middle" font-size="9" fill="#8b949e">Ausführrecht</text>
+  <text class="f" x="387" y="188" text-anchor="middle" font-size="9" fill="#8b949e">setzen</text>
+</g>
+
+<!-- Card 4 -->
+<g class="c4">
+  <rect x="466" y="60" width="158" height="155" rx="10" fill="#0d1520" stroke="#bc8cff" stroke-width="2"/>
+  <text x="545" y="100" text-anchor="middle" font-size="28">💬</text>
+  <text class="f" x="545" y="122" text-anchor="middle" font-size="12" fill="#bc8cff" font-weight="bold">echo</text>
+  <text class="f" x="545" y="141" text-anchor="middle" font-size="9" fill="#8b949e">Text ausgeben</text>
+  <text class="f" x="545" y="157" text-anchor="middle" font-size="9" fill="#8b949e">echo "Hallo Welt"</text>
+  <text class="f" x="545" y="172" text-anchor="middle" font-size="9" fill="#8b949e">auf dem Bildschirm</text>
+  <text class="f" x="545" y="188" text-anchor="middle" font-size="9" fill="#8b949e">sichtbar machen</text>
+</g>
+
+<text class="f ft" x="320" y="223" text-anchor="middle" font-size="9" fill="#6e7681">#!/bin/bash — Variablen setzen — chmod +x — ./skript.sh ausführen</text>
 </svg>

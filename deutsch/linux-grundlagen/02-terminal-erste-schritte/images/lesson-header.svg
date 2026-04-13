@@ -1,41 +1,71 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#0d1117"/>
-      <stop offset="100%" stop-color="#1a2540"/>
-    </linearGradient>
-  </defs>
-  <rect width="640" height="360" fill="url(#bg)"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 270" width="640" height="270">
+<style>
+  .f { font-family: sans-serif; }
+  .ti { animation: tia 13s infinite; }
+  @keyframes tia { 0%,3%{opacity:0} 8%,87%{opacity:1} 92%,100%{opacity:0} }
+  .hero { animation: heroa 13s infinite; }
+  @keyframes heroa { 0%,5%{opacity:0} 10%,87%{opacity:1} 92%,100%{opacity:0} }
+  .sub { animation: suba 13s infinite; }
+  @keyframes suba { 0%,18%{opacity:0} 24%,87%{opacity:1} 92%,100%{opacity:0} }
+  .c1 { animation: c1a 13s infinite; }
+  @keyframes c1a { 0%,34%{opacity:0} 40%,87%{opacity:1} 92%,100%{opacity:0} }
+  .c2 { animation: c2a 13s infinite; }
+  @keyframes c2a { 0%,50%{opacity:0} 56%,87%{opacity:1} 92%,100%{opacity:0} }
+  .c3 { animation: c3a 13s infinite; }
+  @keyframes c3a { 0%,64%{opacity:0} 70%,87%{opacity:1} 92%,100%{opacity:0} }
+  .ft { animation: fta 13s infinite; }
+  @keyframes fta { 0%,78%{opacity:0} 82%,87%{opacity:1} 92%,100%{opacity:0} }
+</style>
 
-  <!-- Terminal window -->
-  <rect x="80" y="40" width="480" height="280" rx="8" fill="#161b22" stroke="#30363d" stroke-width="2"/>
-  <!-- Title bar -->
-  <rect x="80" y="40" width="480" height="32" rx="8" fill="#21262d"/>
-  <rect x="80" y="60" width="480" height="12" fill="#21262d"/>
-  <!-- Window buttons -->
-  <circle cx="102" cy="56" r="6" fill="#f85149"/>
-  <circle cx="122" cy="56" r="6" fill="#f0883e"/>
-  <circle cx="142" cy="56" r="6" fill="#3fb950"/>
+<!-- Background -->
+<rect width="640" height="270" rx="12" fill="#0d1117"/>
 
-  <!-- Terminal content -->
-  <text x="100" y="100" font-family="monospace" font-size="14" fill="#8b949e">alice@ubuntu:~$</text>
-  <text x="270" y="100" font-family="monospace" font-size="14" fill="#e6edf3"> pwd</text>
-  <text x="100" y="122" font-family="monospace" font-size="14" fill="#58a6ff">/home/alice</text>
+<!-- Header bar -->
+<rect width="640" height="38" rx="12" fill="#161b22"/>
+<rect y="26" width="640" height="12" fill="#161b22"/>
+<text class="f ti" x="320" y="24" text-anchor="middle" font-size="12" fill="#6e7681" letter-spacing="2">LEKTION 2</text>
 
-  <text x="100" y="152" font-family="monospace" font-size="14" fill="#8b949e">alice@ubuntu:~$</text>
-  <text x="270" y="152" font-family="monospace" font-size="14" fill="#e6edf3"> ls</text>
-  <text x="100" y="174" font-family="monospace" font-size="14" fill="#58a6ff">Documents</text>
-  <text x="210" y="174" font-family="monospace" font-size="14" fill="#58a6ff">Downloads</text>
-  <text x="330" y="174" font-family="monospace" font-size="14" fill="#3fb950">script.sh</text>
+<!-- Hero: prompt symbol + title -->
+<g class="hero">
+  <rect x="272" y="46" width="96" height="54" rx="12" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <text class="f" x="320" y="85" text-anchor="middle" font-size="34" fill="#3fb950" font-weight="bold">&gt;_</text>
+  <text class="f" x="320" y="116" text-anchor="middle" font-size="22" fill="#e6edf3" font-weight="bold">Das Terminal</text>
+  <text class="f" x="320" y="138" text-anchor="middle" font-size="15" fill="#8b949e">erste Schritte</text>
+</g>
 
-  <text x="100" y="204" font-family="monospace" font-size="14" fill="#8b949e">alice@ubuntu:~$</text>
-  <text x="270" y="204" font-family="monospace" font-size="14" fill="#e6edf3"> cd Documents</text>
+<!-- Subtitle -->
+<text class="f sub" x="320" y="158" text-anchor="middle" font-size="12" fill="#3fb950" letter-spacing="0.5">pwd · ls · cd — deine ersten 3 Befehle</text>
 
-  <text x="100" y="234" font-family="monospace" font-size="14" fill="#8b949e">alice@ubuntu:~/Documents$</text>
+<!-- Divider -->
+<line x1="60" y1="172" x2="580" y2="172" stroke="#21262d" stroke-width="1.5"/>
 
-  <!-- Blinking cursor -->
-  <rect x="345" y="222" width="8" height="16" fill="#e6edf3" opacity="0.8"/>
+<!-- CARD 1: pwd -->
+<g class="c1">
+  <rect x="24" y="182" width="182" height="76" rx="10" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+  <text class="f" x="115" y="212" text-anchor="middle" font-size="22" fill="#58a6ff" font-weight="bold">pwd</text>
+  <line x1="44" y1="218" x2="186" y2="218" stroke="#58a6ff" stroke-width="0.5" opacity="0.3"/>
+  <text class="f" x="115" y="235" text-anchor="middle" font-size="11" fill="#e6edf3">Wo bin ich?</text>
+  <text class="f" x="115" y="250" text-anchor="middle" font-size="9" fill="#6e7681">Print Working Directory</text>
+</g>
 
-  <!-- Decorative elements -->
-  <text x="100" y="268" font-family="monospace" font-size="12" fill="#3fb950" opacity="0.5">&gt;_</text>
+<!-- CARD 2: ls -->
+<g class="c2">
+  <rect x="229" y="182" width="182" height="76" rx="10" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <text class="f" x="320" y="212" text-anchor="middle" font-size="22" fill="#3fb950" font-weight="bold">ls</text>
+  <line x1="249" y1="218" x2="391" y2="218" stroke="#3fb950" stroke-width="0.5" opacity="0.3"/>
+  <text class="f" x="320" y="235" text-anchor="middle" font-size="11" fill="#e6edf3">Was ist hier?</text>
+  <text class="f" x="320" y="250" text-anchor="middle" font-size="9" fill="#6e7681">Dateien &amp; Ordner auflisten</text>
+</g>
+
+<!-- CARD 3: cd -->
+<g class="c3">
+  <rect x="434" y="182" width="182" height="76" rx="10" fill="#161b22" stroke="#f0883e" stroke-width="2"/>
+  <text class="f" x="525" y="212" text-anchor="middle" font-size="22" fill="#f0883e" font-weight="bold">cd</text>
+  <line x1="454" y1="218" x2="596" y2="218" stroke="#f0883e" stroke-width="0.5" opacity="0.3"/>
+  <text class="f" x="525" y="235" text-anchor="middle" font-size="11" fill="#e6edf3">Wohin gehe ich?</text>
+  <text class="f" x="525" y="250" text-anchor="middle" font-size="9" fill="#6e7681">Zwischen Ordnern wechseln</text>
+</g>
+
+<!-- Footer tip -->
+<text class="f ft" x="320" y="264" text-anchor="middle" font-size="9" fill="#6e7681">Das Terminal ist dein direkter Draht zum Betriebssystem — keine Maus nötig!</text>
 </svg>

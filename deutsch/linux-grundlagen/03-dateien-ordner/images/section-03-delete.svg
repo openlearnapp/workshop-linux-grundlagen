@@ -1,26 +1,64 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 160" width="640" height="160">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0d1117"/>
-      <stop offset="100%" stop-color="#161b22"/>
-    </linearGradient>
-  </defs>
-  <rect width="640" height="160" fill="url(#bg)" rx="8"/>
-  <!-- Decorative elements -->
-  <circle cx="80" cy="60" r="2" fill="#f0883e" opacity="0.4"/><circle cx="95" cy="45" r="1.5" fill="#f0883e" opacity="0.35"/><circle cx="70" cy="100" r="1" fill="#f0883e" opacity="0.35"/>
-  <circle cx="560" cy="60" r="2" fill="#f0883e" opacity="0.4"/><circle cx="545" cy="100" r="1.5" fill="#f0883e" opacity="0.35"/><circle cx="570" cy="45" r="1" fill="#f0883e" opacity="0.35"/>
-  <!-- Icon -->
-  
-  <!-- Trash can -->
-  <rect x="302" y="50" width="36" height="40" rx="3" fill="#21262d" stroke="#f85149" stroke-width="1.5"/>
-  <line x1="310" y1="58" x2="310" y2="82" stroke="#f85149" stroke-width="1.5" opacity="0.8"/>
-  <line x1="320" y1="58" x2="320" y2="82" stroke="#f85149" stroke-width="1.5" opacity="0.8"/>
-  <line x1="330" y1="58" x2="330" y2="82" stroke="#f85149" stroke-width="1.5" opacity="0.8"/>
-  <!-- Lid -->
-  <rect x="296" y="44" width="48" height="6" rx="2" fill="#21262d" stroke="#f85149" stroke-width="1.5"/>
-  <rect x="314" y="38" width="12" height="8" rx="2" fill="#21262d" stroke="#f85149" stroke-width="1.5"/>
-  <!-- Warning -->
-  <text x="290" y="118" font-family="monospace" font-size="9" fill="#f85149" opacity="0.5">rm -r (careful!)</text>
-  <!-- Accent bar -->
-  <rect x="180" y="152" width="280" height="4" fill="#f0883e" opacity="0.8" rx="1.5"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 210">
+  <style>
+    .f { font-family: sans-serif; }
+    .ti { animation: tia 11s infinite; }
+    @keyframes tia { 0%,3%{opacity:0} 7%,87%{opacity:1} 92%,100%{opacity:0} }
+    .c1 { animation: c1a 11s infinite; }
+    @keyframes c1a { 0%,8%{opacity:0} 14%,87%{opacity:1} 92%,100%{opacity:0} }
+    .c2 { animation: c2a 11s infinite; }
+    @keyframes c2a { 0%,28%{opacity:0} 34%,87%{opacity:1} 92%,100%{opacity:0} }
+    .c3 { animation: c3a 11s infinite; }
+    @keyframes c3a { 0%,48%{opacity:0} 54%,87%{opacity:1} 92%,100%{opacity:0} }
+    .ft { animation: fta 11s infinite; }
+    @keyframes fta { 0%,68%{opacity:0} 72%,87%{opacity:1} 92%,100%{opacity:0} }
+  </style>
+
+  <!-- Background -->
+  <rect width="640" height="210" rx="12" fill="#0d1117"/>
+
+  <!-- Header bar -->
+  <rect width="640" height="38" rx="12" fill="#161b22"/>
+  <rect y="26" width="640" height="12" fill="#161b22"/>
+
+  <!-- Header title -->
+  <text class="f ti" x="320" y="24" text-anchor="middle" font-size="13" fill="#e6edf3" font-weight="bold" letter-spacing="1">LÖSCHEN — rm und rmdir</text>
+
+  <!-- Card 1: rm datei.txt (red) -->
+  <g class="c1">
+    <rect x="16" y="50" width="192" height="143" rx="10" fill="#0d1520" stroke="#f85149" stroke-width="2"/>
+    <text class="f" x="112" y="90" text-anchor="middle" font-size="30">🗑️</text>
+    <text class="f" x="112" y="114" text-anchor="middle" font-size="12" fill="#f85149" font-weight="bold">rm datei.txt</text>
+    <text class="f" x="112" y="132" text-anchor="middle" font-size="9" fill="#8b949e">Datei löschen —</text>
+    <text class="f" x="112" y="147" text-anchor="middle" font-size="9" fill="#f85149" font-weight="bold">unwiderruflich!</text>
+    <rect x="30" y="160" width="164" height="20" rx="5" fill="#2a0d0d"/>
+    <text class="f" x="112" y="174" text-anchor="middle" font-size="9" fill="#f85149">$ rm datei.txt</text>
+  </g>
+
+  <!-- Card 2: rmdir ordner (orange) -->
+  <g class="c2">
+    <rect x="224" y="50" width="192" height="143" rx="10" fill="#0d1520" stroke="#f0883e" stroke-width="2"/>
+    <text class="f" x="320" y="90" text-anchor="middle" font-size="30">📂</text>
+    <text class="f" x="320" y="114" text-anchor="middle" font-size="12" fill="#f0883e" font-weight="bold">rmdir ordner</text>
+    <text class="f" x="320" y="132" text-anchor="middle" font-size="9" fill="#8b949e">Leeren Ordner</text>
+    <text class="f" x="320" y="147" text-anchor="middle" font-size="9" fill="#8b949e">löschen</text>
+    <rect x="238" y="160" width="164" height="20" rx="5" fill="#2a1a0d"/>
+    <text class="f" x="320" y="174" text-anchor="middle" font-size="9" fill="#f0883e">$ rmdir ordner</text>
+  </g>
+
+  <!-- Card 3: rm -ri (green/safe) -->
+  <g class="c3">
+    <rect x="432" y="50" width="192" height="143" rx="10" fill="#0d1520" stroke="#3fb950" stroke-width="2"/>
+    <text class="f" x="528" y="90" text-anchor="middle" font-size="30">⚠️</text>
+    <text class="f" x="528" y="114" text-anchor="middle" font-size="12" fill="#3fb950" font-weight="bold">rm -ri</text>
+    <text class="f" x="528" y="132" text-anchor="middle" font-size="9" fill="#8b949e">Mit Bestätigung</text>
+    <text class="f" x="528" y="147" text-anchor="middle" font-size="9" fill="#3fb950" font-weight="bold">löschen — sicherer!</text>
+    <rect x="446" y="160" width="164" height="20" rx="5" fill="#0d2a10"/>
+    <text class="f" x="528" y="174" text-anchor="middle" font-size="9" fill="#3fb950">$ rm -ri ordner/</text>
+  </g>
+
+  <!-- Footer warning -->
+  <g class="ft">
+    <rect x="16" y="196" width="608" height="1" rx="0" fill="#f85149" opacity="0.3"/>
+    <text class="f" x="320" y="206" text-anchor="middle" font-size="9" fill="#f85149" opacity="0.8">⚠ rm -rf löscht alles ohne Rückfrage — vorsichtig benutzen!</text>
+  </g>
 </svg>

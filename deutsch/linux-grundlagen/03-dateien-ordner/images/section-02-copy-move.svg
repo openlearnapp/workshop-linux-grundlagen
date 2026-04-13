@@ -1,31 +1,63 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 160" width="640" height="160">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0d1117"/>
-      <stop offset="100%" stop-color="#161b22"/>
-    </linearGradient>
-  </defs>
-  <rect width="640" height="160" fill="url(#bg)" rx="8"/>
-  <!-- Decorative elements -->
-  <circle cx="80" cy="60" r="2" fill="#f0883e" opacity="0.4"/><circle cx="95" cy="45" r="1.5" fill="#f0883e" opacity="0.35"/><circle cx="70" cy="100" r="1" fill="#f0883e" opacity="0.35"/>
-  <circle cx="560" cy="60" r="2" fill="#f0883e" opacity="0.4"/><circle cx="545" cy="100" r="1.5" fill="#f0883e" opacity="0.35"/><circle cx="570" cy="45" r="1" fill="#f0883e" opacity="0.35"/>
-  <!-- Icon -->
-  
-  <!-- Source file -->
-  <rect x="250" y="50" width="28" height="34" rx="2" fill="#21262d" stroke="#e6edf3" stroke-width="1.5" opacity="0.9"/>
-  <!-- Copy arrow (dashed — copies) -->
-  <line x1="285" y1="57" x2="320" y2="57" stroke="#58a6ff" stroke-width="1.5" stroke-dasharray="4,3"/>
-  <polyline points="316,52 322,57 316,62" fill="none" stroke="#58a6ff" stroke-width="1.5"/>
-  <!-- Copy target -->
-  <rect x="325" y="42" width="28" height="34" rx="2" fill="#21262d" stroke="#58a6ff" stroke-width="1.5"/>
-  <!-- Move arrow (solid — moves) -->
-  <line x1="285" y1="80" x2="320" y2="80" stroke="#f0883e" stroke-width="1.5"/>
-  <polyline points="316,75 322,80 316,85" fill="none" stroke="#f0883e" stroke-width="1.5"/>
-  <!-- Move target -->
-  <rect x="325" y="66" width="28" height="34" rx="2" fill="#21262d" stroke="#f0883e" stroke-width="1.5"/>
-  <!-- Labels -->
-  <text x="365" y="58" font-family="monospace" font-size="9" fill="#58a6ff" opacity="0.8">cp</text>
-  <text x="365" y="82" font-family="monospace" font-size="9" fill="#f0883e" opacity="0.8">mv</text>
-  <!-- Accent bar -->
-  <rect x="180" y="152" width="280" height="4" fill="#f0883e" opacity="0.8" rx="1.5"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 210">
+  <style>
+    .f { font-family: sans-serif; }
+    .ti { animation: tia 11s infinite; }
+    @keyframes tia { 0%,3%{opacity:0} 7%,87%{opacity:1} 92%,100%{opacity:0} }
+    .c1 { animation: c1a 11s infinite; }
+    @keyframes c1a { 0%,8%{opacity:0} 14%,87%{opacity:1} 92%,100%{opacity:0} }
+    .c2 { animation: c2a 11s infinite; }
+    @keyframes c2a { 0%,28%{opacity:0} 34%,87%{opacity:1} 92%,100%{opacity:0} }
+    .c3 { animation: c3a 11s infinite; }
+    @keyframes c3a { 0%,48%{opacity:0} 54%,87%{opacity:1} 92%,100%{opacity:0} }
+    .ft { animation: fta 11s infinite; }
+    @keyframes fta { 0%,78%{opacity:0} 82%,87%{opacity:1} 92%,100%{opacity:0} }
+  </style>
+
+  <!-- Background -->
+  <rect width="640" height="210" rx="12" fill="#0d1117"/>
+
+  <!-- Header bar -->
+  <rect width="640" height="38" rx="12" fill="#161b22"/>
+  <rect y="26" width="640" height="12" fill="#161b22"/>
+
+  <!-- Header title -->
+  <text class="f ti" x="320" y="24" text-anchor="middle" font-size="13" fill="#e6edf3" font-weight="bold" letter-spacing="1">KOPIEREN UND VERSCHIEBEN — cp und mv</text>
+
+  <!-- Card 1: cp (blue) -->
+  <g class="c1">
+    <rect x="16" y="50" width="192" height="143" rx="10" fill="#0d1520" stroke="#58a6ff" stroke-width="2"/>
+    <text class="f" x="112" y="90" text-anchor="middle" font-size="30">📋</text>
+    <text class="f" x="112" y="114" text-anchor="middle" font-size="13" fill="#58a6ff" font-weight="bold">cp</text>
+    <text class="f" x="112" y="133" text-anchor="middle" font-size="9" fill="#8b949e">Kopiert Dateien.</text>
+    <text class="f" x="112" y="148" text-anchor="middle" font-size="9" fill="#3fb950" font-weight="bold">Original bleibt!</text>
+    <rect x="30" y="160" width="164" height="20" rx="5" fill="#0d1f3a"/>
+    <text class="f" x="112" y="174" text-anchor="middle" font-size="9" fill="#58a6ff">$ cp datei.txt kopie.txt</text>
+  </g>
+
+  <!-- Card 2: mv (orange) -->
+  <g class="c2">
+    <rect x="224" y="50" width="192" height="143" rx="10" fill="#0d1520" stroke="#f0883e" stroke-width="2"/>
+    <text class="f" x="320" y="90" text-anchor="middle" font-size="30">📦</text>
+    <text class="f" x="320" y="114" text-anchor="middle" font-size="13" fill="#f0883e" font-weight="bold">mv</text>
+    <text class="f" x="320" y="133" text-anchor="middle" font-size="9" fill="#8b949e">Verschiebt oder</text>
+    <text class="f" x="320" y="148" text-anchor="middle" font-size="9" fill="#8b949e">umbenennt Dateien</text>
+    <rect x="238" y="160" width="164" height="20" rx="5" fill="#2a1a0d"/>
+    <text class="f" x="320" y="174" text-anchor="middle" font-size="9" fill="#f0883e">$ mv alt.txt neu.txt</text>
+  </g>
+
+  <!-- Card 3: cp -r (green) -->
+  <g class="c3">
+    <rect x="432" y="50" width="192" height="143" rx="10" fill="#0d1520" stroke="#3fb950" stroke-width="2"/>
+    <text class="f" x="528" y="90" text-anchor="middle" font-size="30">🔄</text>
+    <text class="f" x="528" y="114" text-anchor="middle" font-size="13" fill="#3fb950" font-weight="bold">cp -r</text>
+    <text class="f" x="528" y="133" text-anchor="middle" font-size="9" fill="#8b949e">Ganzen Ordner</text>
+    <text class="f" x="528" y="148" text-anchor="middle" font-size="9" fill="#8b949e">kopieren (-r = rekursiv)</text>
+    <rect x="446" y="160" width="164" height="20" rx="5" fill="#0d2a10"/>
+    <text class="f" x="528" y="174" text-anchor="middle" font-size="9" fill="#3fb950">$ cp -r ordner/ backup/</text>
+  </g>
+
+  <!-- Footer -->
+  <g class="ft">
+    <text class="f" x="320" y="204" text-anchor="middle" font-size="9" fill="#484f58">cp = kopieren (Original bleibt) · mv = verschieben/umbenennen · -r = rekursiv für Ordner</text>
+  </g>
 </svg>

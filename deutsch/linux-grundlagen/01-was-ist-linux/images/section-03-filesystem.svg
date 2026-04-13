@@ -1,70 +1,98 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 160" width="640" height="160">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0d1117"/>
-      <stop offset="100%" stop-color="#161b22"/>
-    </linearGradient>
-  </defs>
-  <rect width="640" height="160" fill="url(#bg)" rx="8"/>
-  <!-- Decorative dots -->
-  <circle cx="80" cy="50" r="2" fill="#58a6ff" opacity="0.3"/>
-  <circle cx="560" cy="50" r="2" fill="#58a6ff" opacity="0.3"/>
-  <circle cx="95" cy="110" r="1.5" fill="#3fb950" opacity="0.25"/>
-  <circle cx="545" cy="110" r="1.5" fill="#f0883e" opacity="0.25"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 230" width="640" height="230">
+<style>
+  .f { font-family: sans-serif; }
+  .fm { font-family: monospace; }
+  .ti { animation: tia 11s infinite; }
+  @keyframes tia { 0%,3%{opacity:0} 7%,87%{opacity:1} 92%,100%{opacity:0} }
+  .root { animation: roota 11s infinite; }
+  @keyframes roota { 0%,8%{opacity:0} 13%,87%{opacity:1} 92%,100%{opacity:0} }
+  .n1 { animation: n1a 11s infinite; }
+  @keyframes n1a { 0%,18%{opacity:0} 23%,87%{opacity:1} 92%,100%{opacity:0} }
+  .n2 { animation: n2a 11s infinite; }
+  @keyframes n2a { 0%,30%{opacity:0} 35%,87%{opacity:1} 92%,100%{opacity:0} }
+  .n3 { animation: n3a 11s infinite; }
+  @keyframes n3a { 0%,42%{opacity:0} 47%,87%{opacity:1} 92%,100%{opacity:0} }
+  .n4 { animation: n4a 11s infinite; }
+  @keyframes n4a { 0%,54%{opacity:0} 59%,87%{opacity:1} 92%,100%{opacity:0} }
+  .n5 { animation: n5a 11s infinite; }
+  @keyframes n5a { 0%,66%{opacity:0} 71%,87%{opacity:1} 92%,100%{opacity:0} }
+  .ft { animation: fta 11s infinite; }
+  @keyframes fta { 0%,76%{opacity:0} 80%,87%{opacity:1} 92%,100%{opacity:0} }
+  .tl { animation: tla 11s infinite; }
+  @keyframes tla { 0%,17%{opacity:0} 22%,87%{opacity:0.25} 92%,100%{opacity:0} }
+</style>
 
-  <!-- Root / -->
-  <rect x="295" y="10" width="50" height="22" rx="4" fill="#21262d" stroke="#58a6ff" stroke-width="2"/>
-  <text x="315" y="26" font-family="monospace" font-size="14" fill="#58a6ff" text-anchor="middle">/</text>
+<rect width="640" height="230" rx="12" fill="#0d1117"/>
+<rect width="640" height="38" rx="12" fill="#161b22"/>
+<rect y="26" width="640" height="12" fill="#161b22"/>
+<text class="f ti" x="320" y="24" text-anchor="middle" font-size="13" fill="#e6edf3" font-weight="bold" letter-spacing="1">Das Linux-Dateisystem — alles hat seinen Platz</text>
 
-  <!-- Branches from root -->
-  <line x1="270" y1="32" x2="200" y2="52" stroke="#30363d" stroke-width="1.5"/>
-  <line x1="300" y1="32" x2="270" y2="52" stroke="#30363d" stroke-width="1.5"/>
-  <line x1="320" y1="32" x2="320" y2="52" stroke="#30363d" stroke-width="1.5"/>
-  <line x1="340" y1="32" x2="370" y2="52" stroke="#30363d" stroke-width="1.5"/>
-  <line x1="370" y1="32" x2="440" y2="52" stroke="#30363d" stroke-width="1.5"/>
+<!-- Root node -->
+<g class="root">
+  <rect x="260" y="46" width="120" height="36" rx="8" fill="#f0883e" opacity="0.95"/>
+  <text class="f" x="320" y="60" text-anchor="middle" font-size="11" fill="#0d1117" font-weight="bold">📁  /  (Root)</text>
+  <text class="f" x="320" y="74" text-anchor="middle" font-size="9" fill="#0d1117">Wurzel des Baums</text>
+</g>
 
-  <!-- /bin -->
-  <rect x="178" y="52" width="44" height="20" rx="3" fill="#21262d" stroke="#bc8cff" stroke-width="1.5"/>
-  <text x="186" y="66" font-family="monospace" font-size="10" fill="#bc8cff">bin</text>
+<!-- Vertical trunk -->
+<line class="tl" x1="320" y1="82" x2="320" y2="100" stroke="#f0883e" stroke-width="2"/>
 
-  <!-- /etc -->
-  <rect x="248" y="52" width="44" height="20" rx="3" fill="#21262d" stroke="#58a6ff" stroke-width="1.5"/>
-  <text x="258" y="66" font-family="monospace" font-size="10" fill="#58a6ff">etc</text>
+<!-- Horizontal bar -->
+<line class="tl" x1="70" y1="100" x2="570" y2="100" stroke="#30363d" stroke-width="1.5"/>
 
-  <!-- /home -->
-  <rect x="298" y="52" width="50" height="20" rx="3" fill="#21262d" stroke="#3fb950" stroke-width="2"/>
-  <text x="305" y="66" font-family="monospace" font-size="10" fill="#3fb950" font-weight="bold">home</text>
+<!-- NODE 1: /home -->
+<g class="n1">
+  <line x1="124" y1="100" x2="124" y2="115" stroke="#58a6ff" stroke-width="1.5"/>
+  <rect x="48" y="115" width="152" height="50" rx="8" fill="#0d1520" stroke="#58a6ff" stroke-width="1.5"/>
+  <text class="f" x="124" y="132" text-anchor="middle" font-size="11" fill="#58a6ff" font-weight="bold">🏠  /home</text>
+  <text class="f" x="124" y="148" text-anchor="middle" font-size="9" fill="#8b949e">Dein persönlicher</text>
+  <text class="f" x="124" y="162" text-anchor="middle" font-size="9" fill="#8b949e">Ordner (~)</text>
+</g>
 
-  <!-- /var -->
-  <rect x="353" y="52" width="44" height="20" rx="3" fill="#21262d" stroke="#f0883e" stroke-width="1.5"/>
-  <text x="363" y="66" font-family="monospace" font-size="10" fill="#f0883e">var</text>
+<!-- NODE 2: /etc -->
+<g class="n2">
+  <line x1="251" y1="100" x2="251" y2="115" stroke="#3fb950" stroke-width="1.5"/>
+  <rect x="186" y="115" width="130" height="50" rx="8" fill="#0a1a0d" stroke="#3fb950" stroke-width="1.5"/>
+  <text class="f" x="251" y="132" text-anchor="middle" font-size="11" fill="#3fb950" font-weight="bold">⚙️  /etc</text>
+  <text class="f" x="251" y="148" text-anchor="middle" font-size="9" fill="#8b949e">Einstellungs-</text>
+  <text class="f" x="251" y="162" text-anchor="middle" font-size="9" fill="#8b949e">dateien</text>
+</g>
 
-  <!-- /tmp -->
-  <rect x="418" y="52" width="44" height="20" rx="3" fill="#21262d" stroke="#8b949e" stroke-width="1"/>
-  <text x="428" y="66" font-family="monospace" font-size="10" fill="#8b949e">tmp</text>
+<!-- NODE 3: /bin -->
+<g class="n3">
+  <line x1="370" y1="100" x2="370" y2="115" stroke="#f0883e" stroke-width="1.5"/>
+  <rect x="325" y="115" width="90" height="50" rx="8" fill="#1a0f08" stroke="#f0883e" stroke-width="1.5"/>
+  <text class="f" x="370" y="132" text-anchor="middle" font-size="11" fill="#f0883e" font-weight="bold">🔧 /bin</text>
+  <text class="f" x="370" y="148" text-anchor="middle" font-size="9" fill="#8b949e">Programme</text>
+  <text class="f" x="370" y="162" text-anchor="middle" font-size="9" fill="#8b949e">ls, cd, ...</text>
+</g>
 
-  <!-- Sub-branches from /home -->
-  <line x1="315" y1="72" x2="280" y2="92" stroke="#3fb950" stroke-width="1" opacity="0.6"/>
-  <line x1="328" y1="72" x2="360" y2="92" stroke="#3fb950" stroke-width="1" opacity="0.6"/>
+<!-- NODE 4: /tmp -->
+<g class="n4">
+  <line x1="480" y1="100" x2="480" y2="115" stroke="#f85149" stroke-width="1.5"/>
+  <rect x="432" y="115" width="96" height="50" rx="8" fill="#180a09" stroke="#f85149" stroke-width="1.5"/>
+  <text class="f" x="480" y="132" text-anchor="middle" font-size="11" fill="#f85149" font-weight="bold">🗑️ /tmp</text>
+  <text class="f" x="480" y="148" text-anchor="middle" font-size="9" fill="#8b949e">Temporäre</text>
+  <text class="f" x="480" y="162" text-anchor="middle" font-size="9" fill="#8b949e">Dateien</text>
+</g>
 
-  <!-- /home/user -->
-  <rect x="254" y="92" width="54" height="18" rx="3" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
-  <text x="261" y="105" font-family="monospace" font-size="9" fill="#3fb950">user</text>
+<!-- NODE 5: /dev -->
+<g class="n5">
+  <line x1="566" y1="100" x2="566" y2="115" stroke="#bc8cff" stroke-width="1.5"/>
+  <rect x="534" y="115" width="90" height="50" rx="8" fill="#110d1a" stroke="#bc8cff" stroke-width="1.5"/>
+  <text class="f" x="579" y="132" text-anchor="middle" font-size="11" fill="#bc8cff" font-weight="bold">💾 /dev</text>
+  <text class="f" x="579" y="148" text-anchor="middle" font-size="9" fill="#8b949e">Geräte</text>
+  <text class="f" x="579" y="162" text-anchor="middle" font-size="9" fill="#8b949e">USB, Disk</text>
+</g>
 
-  <!-- /home/reza -->
-  <rect x="336" y="92" width="52" height="18" rx="3" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
-  <text x="343" y="105" font-family="monospace" font-size="9" fill="#3fb950">reza</text>
-
-  <!-- Sub-branches from /home/user -->
-  <line x1="272" y1="110" x2="248" y2="125" stroke="#30363d" stroke-width="1" opacity="0.5"/>
-  <line x1="288" y1="110" x2="310" y2="125" stroke="#30363d" stroke-width="1" opacity="0.5"/>
-
-  <!-- Files under user -->
-  <rect x="226" y="125" width="48" height="15" rx="2" fill="#161b22" stroke="#8b949e" stroke-width="0.8" opacity="0.7"/>
-  <text x="232" y="136" font-family="monospace" font-size="7" fill="#8b949e">Docs/</text>
-  <rect x="290" y="125" width="48" height="15" rx="2" fill="#161b22" stroke="#8b949e" stroke-width="0.8" opacity="0.7"/>
-  <text x="296" y="136" font-family="monospace" font-size="7" fill="#8b949e">.bashrc</text>
-
-  <!-- Accent bar -->
-  <rect x="180" y="152" width="280" height="4" fill="#58a6ff" opacity="0.7" rx="1.5"/>
+<!-- Tip below tree -->
+<g class="ft">
+  <rect x="160" y="178" width="320" height="30" rx="8" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text class="f" x="320" y="192" text-anchor="middle" font-size="9.5" fill="#8b949e">Tipp: </text>
+  <text class="fm" x="359" y="192" font-size="9.5" fill="#f0883e">~</text>
+  <text class="f" x="371" y="192" font-size="9.5" fill="#8b949e"> ist eine Abkürzung für deinen Home-Ordner</text>
+  <text class="f" x="320" y="205" text-anchor="middle" font-size="9" fill="#6e7681">Probier: </text>
+  <text class="fm" x="360" y="205" font-size="9" fill="#3fb950">ls /</text>
+  <text class="f" x="387" y="205" font-size="9" fill="#6e7681"> im Terminal — alle Ordner der Wurzel erscheinen!</text>
+</g>
 </svg>

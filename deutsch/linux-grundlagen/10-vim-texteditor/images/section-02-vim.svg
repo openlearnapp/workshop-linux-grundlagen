@@ -1,23 +1,72 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 160" width="640" height="160">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0d1117"/>
-      <stop offset="100%" stop-color="#161b22"/>
-    </linearGradient>
-  </defs>
-  <rect width="640" height="160" fill="url(#bg)" rx="8"/>
-  <!-- Decorative elements -->
-  <circle cx="80" cy="60" r="2" fill="#3fb950" opacity="0.4"/><circle cx="95" cy="45" r="1.5" fill="#3fb950" opacity="0.35"/><circle cx="70" cy="100" r="1" fill="#3fb950" opacity="0.35"/>
-  <circle cx="560" cy="60" r="2" fill="#3fb950" opacity="0.4"/><circle cx="545" cy="100" r="1.5" fill="#3fb950" opacity="0.35"/><circle cx="570" cy="45" r="1" fill="#3fb950" opacity="0.35"/>
-  <!-- Icon -->
-  
-  <!-- Vim-style diamond shape -->
-  <polygon points="320,30 365,70 320,110 275,70" fill="none" stroke="#3fb950" stroke-width="2" opacity="0.8"/>
-  <polygon points="320,42 353,70 320,98 287,70" fill="#3fb950" opacity="0.06"/>
-  <!-- V letter inside -->
-  <text x="306" y="80" font-family="monospace" font-size="28" font-weight="bold" fill="#3fb950" opacity="0.9">V</text>
-  <!-- Mode indicators -->
-  <text x="268" y="132" font-family="monospace" font-size="8" fill="#3fb950" opacity="0.45">NORMAL  INSERT  VISUAL</text>
-  <!-- Accent bar -->
-  <rect x="180" y="152" width="280" height="4" fill="#3fb950" opacity="0.8" rx="1.5"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 230" width="640" height="230">
+<style>
+  .f { font-family: sans-serif; }
+  .ti { animation: tia 11s infinite; }
+  @keyframes tia { 0%,3%{opacity:0} 7%,87%{opacity:1} 92%,100%{opacity:0} }
+  .sub { animation: suba 11s infinite; }
+  @keyframes suba { 0%,8%{opacity:0} 12%,87%{opacity:1} 92%,100%{opacity:0} }
+  .c1 { animation: c1a 11s infinite; }
+  @keyframes c1a { 0%,12%{opacity:0} 18%,87%{opacity:1} 92%,100%{opacity:0} }
+  .c2 { animation: c2a 11s infinite; }
+  @keyframes c2a { 0%,30%{opacity:0} 36%,87%{opacity:1} 92%,100%{opacity:0} }
+  .c3 { animation: c3a 11s infinite; }
+  @keyframes c3a { 0%,48%{opacity:0} 54%,87%{opacity:1} 92%,100%{opacity:0} }
+  .c4 { animation: c4a 11s infinite; }
+  @keyframes c4a { 0%,65%{opacity:0} 71%,87%{opacity:1} 92%,100%{opacity:0} }
+  .ft { animation: fta 11s infinite; }
+  @keyframes fta { 0%,78%{opacity:0} 82%,87%{opacity:1} 92%,100%{opacity:0} }
+</style>
+
+<rect width="640" height="230" rx="12" fill="#0d1117"/>
+<rect width="640" height="38" rx="12" fill="#161b22"/>
+<rect y="26" width="640" height="12" fill="#161b22"/>
+<text class="f ti" x="320" y="24" text-anchor="middle" font-size="13" fill="#e6edf3" font-weight="bold" letter-spacing="1">vim — der Profi-Editor</text>
+
+<text class="f sub" x="320" y="52" text-anchor="middle" font-size="10" fill="#6e7681">Modi verstehen — Normal, Insert, Speichern, Beenden</text>
+
+<!-- Card 1 -->
+<g class="c1">
+  <rect x="16" y="60" width="142" height="155" rx="10" fill="#0d1520" stroke="#58a6ff" stroke-width="2"/>
+  <text x="87" y="100" text-anchor="middle" font-size="26">📖</text>
+  <text class="f" x="87" y="120" text-anchor="middle" font-size="11" fill="#58a6ff" font-weight="bold">Normal-Mode</text>
+  <text class="f" x="87" y="139" text-anchor="middle" font-size="9" fill="#8b949e">Standard beim Öffnen</text>
+  <text class="f" x="87" y="155" text-anchor="middle" font-size="9" fill="#8b949e">Navigieren möglich</text>
+  <text class="f" x="87" y="170" text-anchor="middle" font-size="9" fill="#8b949e">ESC drücken zum</text>
+  <text class="f" x="87" y="185" text-anchor="middle" font-size="9" fill="#8b949e">Zurückkehren</text>
+</g>
+
+<!-- Card 2 -->
+<g class="c2">
+  <rect x="166" y="60" width="142" height="155" rx="10" fill="#0d1520" stroke="#3fb950" stroke-width="2"/>
+  <text x="237" y="100" text-anchor="middle" font-size="26">✏️</text>
+  <text class="f" x="237" y="120" text-anchor="middle" font-size="11" fill="#3fb950" font-weight="bold">Insert-Mode</text>
+  <text class="f" x="237" y="139" text-anchor="middle" font-size="9" fill="#8b949e">i drücken zum Starten</text>
+  <text class="f" x="237" y="155" text-anchor="middle" font-size="9" fill="#8b949e">Text schreiben</text>
+  <text class="f" x="237" y="170" text-anchor="middle" font-size="9" fill="#8b949e">-- INSERT -- unten</text>
+  <text class="f" x="237" y="185" text-anchor="middle" font-size="9" fill="#8b949e">sichtbar</text>
+</g>
+
+<!-- Card 3 -->
+<g class="c3">
+  <rect x="316" y="60" width="142" height="155" rx="10" fill="#0d1520" stroke="#f0883e" stroke-width="2"/>
+  <text x="387" y="100" text-anchor="middle" font-size="26">💾</text>
+  <text class="f" x="387" y="120" text-anchor="middle" font-size="11" fill="#f0883e" font-weight="bold">Speichern</text>
+  <text class="f" x="387" y="139" text-anchor="middle" font-size="9" fill="#8b949e">:w eingeben</text>
+  <text class="f" x="387" y="155" text-anchor="middle" font-size="9" fill="#8b949e">im Normal-Mode</text>
+  <text class="f" x="387" y="170" text-anchor="middle" font-size="9" fill="#8b949e">dann Enter drücken</text>
+  <text class="f" x="387" y="185" text-anchor="middle" font-size="9" fill="#8b949e">Datei wird gespeichert</text>
+</g>
+
+<!-- Card 4 -->
+<g class="c4">
+  <rect x="466" y="60" width="158" height="155" rx="10" fill="#0d1520" stroke="#bc8cff" stroke-width="2"/>
+  <text x="545" y="100" text-anchor="middle" font-size="26">🚪</text>
+  <text class="f" x="545" y="120" text-anchor="middle" font-size="11" fill="#bc8cff" font-weight="bold">Beenden</text>
+  <text class="f" x="545" y="139" text-anchor="middle" font-size="9" fill="#8b949e">:q! Beenden</text>
+  <text class="f" x="545" y="155" text-anchor="middle" font-size="9" fill="#8b949e">ohne Speichern</text>
+  <text class="f" x="545" y="170" text-anchor="middle" font-size="9" fill="#8b949e">:wq Speichern</text>
+  <text class="f" x="545" y="185" text-anchor="middle" font-size="9" fill="#8b949e">und Beenden</text>
+</g>
+
+<text class="f ft" x="320" y="223" text-anchor="middle" font-size="9" fill="#6e7681">ESC → Normal-Mode · i → Schreiben · :wq → Speichern und beenden</text>
 </svg>

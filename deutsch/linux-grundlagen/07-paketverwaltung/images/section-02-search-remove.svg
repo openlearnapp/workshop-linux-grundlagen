@@ -1,26 +1,61 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 160" width="640" height="160">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 210">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0d1117"/>
-      <stop offset="100%" stop-color="#161b22"/>
-    </linearGradient>
+    <style>
+      .f { font-family: sans-serif; }
+      .ti { opacity: 0; animation: fadeIn 11s infinite; }
+      .c1 { opacity: 0; animation: fadeIn 11s infinite; animation-delay: 0.5s; }
+      .c2 { opacity: 0; animation: fadeIn 11s infinite; animation-delay: 1.4s; }
+      .c3 { opacity: 0; animation: fadeIn 11s infinite; animation-delay: 2.3s; }
+      .ft { opacity: 0; animation: fadeIn 11s infinite; animation-delay: 3.0s; }
+      @keyframes fadeIn {
+        0%,2%{opacity:0}
+        7%,87%{opacity:1}
+        92%,100%{opacity:0}
+      }
+    </style>
   </defs>
-  <rect width="640" height="160" fill="url(#bg)" rx="8"/>
-  <!-- Decorative elements -->
-  <circle cx="80" cy="60" r="2" fill="#3fb950" opacity="0.4"/><circle cx="95" cy="45" r="1.5" fill="#3fb950" opacity="0.35"/><circle cx="70" cy="100" r="1" fill="#3fb950" opacity="0.35"/>
-  <circle cx="560" cy="60" r="2" fill="#3fb950" opacity="0.4"/><circle cx="545" cy="100" r="1.5" fill="#3fb950" opacity="0.35"/><circle cx="570" cy="45" r="1" fill="#3fb950" opacity="0.35"/>
-  <!-- Icon -->
-  
-  <!-- Search magnifying glass -->
-  <circle cx="295" cy="60" r="14" fill="none" stroke="#58a6ff" stroke-width="1.5" opacity="0.8"/>
-  <line x1="305" y1="70" x2="315" y2="80" stroke="#58a6ff" stroke-width="2" opacity="0.8" stroke-linecap="round"/>
-  <!-- Package results -->
-  <rect x="330" y="45" width="50" height="12" rx="2" fill="#21262d" stroke="#3fb950" stroke-width="0.5" opacity="0.9"/>
-  <rect x="330" y="62" width="50" height="12" rx="2" fill="#21262d" stroke="#3fb950" stroke-width="0.5" opacity="0.7"/>
-  <rect x="330" y="79" width="50" height="12" rx="2" fill="#21262d" stroke="#f85149" stroke-width="0.5" opacity="0.7"/>
-  <!-- X on last one (remove) -->
-  <line x1="372" y1="82" x2="378" y2="88" stroke="#f85149" stroke-width="1.5" opacity="0.9"/>
-  <line x1="378" y1="82" x2="372" y2="88" stroke="#f85149" stroke-width="1.5" opacity="0.9"/>
-  <!-- Accent bar -->
-  <rect x="180" y="152" width="280" height="4" fill="#3fb950" opacity="0.8" rx="1.5"/>
+
+  <!-- Background -->
+  <rect width="640" height="210" rx="12" fill="#0d1117"/>
+
+  <!-- Header bar -->
+  <rect width="640" height="38" rx="12" fill="#161b22"/>
+  <rect y="26" width="640" height="12" fill="#161b22"/>
+
+  <!-- Header title -->
+  <text class="f ti" x="320" y="24" text-anchor="middle" font-size="13" fill="#e6edf3" font-weight="bold" letter-spacing="1">Programme suchen, entfernen und aufräumen</text>
+
+  <!-- Card 1: apt search -->
+  <g class="c1">
+    <rect x="20" y="50" width="186" height="140" rx="10" fill="#161b22" stroke="#58a6ff" stroke-width="1.5"/>
+    <text x="113" y="90" text-anchor="middle" font-size="34">🔍</text>
+    <text class="f" x="113" y="114" text-anchor="middle" font-size="13" fill="#58a6ff" font-weight="bold">apt search</text>
+    <text class="f" x="113" y="133" text-anchor="middle" font-size="11" fill="#8b949e">Programme suchen</text>
+    <rect x="40" y="148" width="146" height="26" rx="6" fill="#0d1117"/>
+    <text class="f" x="113" y="166" text-anchor="middle" font-size="10" fill="#58a6ff">apt search vim</text>
+  </g>
+
+  <!-- Card 2: apt autoremove -->
+  <g class="c2">
+    <rect x="227" y="50" width="186" height="140" rx="10" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+    <text x="320" y="90" text-anchor="middle" font-size="34">🧹</text>
+    <text class="f" x="320" y="114" text-anchor="middle" font-size="13" fill="#3fb950" font-weight="bold">apt autoremove</text>
+    <text class="f" x="320" y="130" text-anchor="middle" font-size="10" fill="#8b949e">Nicht mehr benötigte</text>
+    <text class="f" x="320" y="144" text-anchor="middle" font-size="10" fill="#8b949e">Pakete löschen</text>
+    <rect x="247" y="148" width="146" height="26" rx="6" fill="#0d1117"/>
+    <text class="f" x="320" y="166" text-anchor="middle" font-size="10" fill="#3fb950">apt autoremove</text>
+  </g>
+
+  <!-- Card 3: apt show -->
+  <g class="c3">
+    <rect x="434" y="50" width="186" height="140" rx="10" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+    <text x="527" y="90" text-anchor="middle" font-size="34">ℹ️</text>
+    <text class="f" x="527" y="114" text-anchor="middle" font-size="13" fill="#f0883e" font-weight="bold">apt show</text>
+    <text class="f" x="527" y="133" text-anchor="middle" font-size="11" fill="#8b949e">Info über ein Paket</text>
+    <rect x="454" y="148" width="146" height="26" rx="6" fill="#0d1117"/>
+    <text class="f" x="527" y="166" text-anchor="middle" font-size="10" fill="#f0883e">apt show vim</text>
+  </g>
+
+  <!-- Footer -->
+  <text class="f ft" x="320" y="202" text-anchor="middle" font-size="11" fill="#484f58">Regelmäßiges Aufräumen hält dein System sauber ✓</text>
 </svg>

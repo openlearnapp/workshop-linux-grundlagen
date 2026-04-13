@@ -1,25 +1,75 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 160" width="640" height="160">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 230">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0d1117"/>
-      <stop offset="100%" stop-color="#161b22"/>
-    </linearGradient>
+    <style>
+      .f { font-family: sans-serif; }
+      .ti { opacity: 0; animation: fadeIn 11s infinite; }
+      .c1 { opacity: 0; animation: fadeIn 11s infinite; animation-delay: 0.4s; }
+      .c2 { opacity: 0; animation: fadeIn 11s infinite; animation-delay: 1.2s; }
+      .c3 { opacity: 0; animation: fadeIn 11s infinite; animation-delay: 2.0s; }
+      .c4 { opacity: 0; animation: fadeIn 11s infinite; animation-delay: 2.8s; }
+      .ft { opacity: 0; animation: fadeIn 11s infinite; animation-delay: 3.4s; }
+      @keyframes fadeIn {
+        0%,2%{opacity:0}
+        7%,87%{opacity:1}
+        92%,100%{opacity:0}
+      }
+    </style>
   </defs>
-  <rect width="640" height="160" fill="url(#bg)" rx="8"/>
-  <!-- Decorative elements -->
-  <circle cx="80" cy="60" r="2" fill="#3fb950" opacity="0.4"/><circle cx="95" cy="45" r="1.5" fill="#3fb950" opacity="0.35"/><circle cx="70" cy="100" r="1" fill="#3fb950" opacity="0.35"/>
-  <circle cx="560" cy="60" r="2" fill="#3fb950" opacity="0.4"/><circle cx="545" cy="100" r="1.5" fill="#3fb950" opacity="0.35"/><circle cx="570" cy="45" r="1" fill="#3fb950" opacity="0.35"/>
-  <!-- Icon -->
-  
-  <!-- Package box -->
-  <rect x="298" y="45" width="44" height="40" rx="4" fill="#21262d" stroke="#3fb950" stroke-width="2"/>
-  <line x1="320" y1="45" x2="320" y2="85" stroke="#3fb950" stroke-width="1.5" opacity="0.6"/>
-  <line x1="298" y1="65" x2="342" y2="65" stroke="#3fb950" stroke-width="1.5" opacity="0.6"/>
-  <!-- Download arrow -->
-  <line x1="320" y1="20" x2="320" y2="38" stroke="#3fb950" stroke-width="2" opacity="0.9"/>
-  <polyline points="312,32 320,40 328,32" fill="none" stroke="#3fb950" stroke-width="2" opacity="0.9"/>
-  <!-- Install text -->
-  <text x="280" y="110" font-family="monospace" font-size="9" fill="#3fb950" opacity="0.5">apt install pkg</text>
-  <!-- Accent bar -->
-  <rect x="180" y="152" width="280" height="4" fill="#3fb950" opacity="0.8" rx="1.5"/>
+
+  <!-- Background -->
+  <rect width="640" height="230" rx="12" fill="#0d1117"/>
+
+  <!-- Header bar -->
+  <rect width="640" height="38" rx="12" fill="#161b22"/>
+  <rect y="26" width="640" height="12" fill="#161b22"/>
+
+  <!-- Header title -->
+  <text class="f ti" x="320" y="24" text-anchor="middle" font-size="13" fill="#e6edf3" font-weight="bold" letter-spacing="1">apt — der App Store von Linux</text>
+
+  <!-- Card 1: apt install -->
+  <g class="c1">
+    <rect x="16" y="50" width="142" height="158" rx="10" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+    <text x="87" y="88" text-anchor="middle" font-size="30">📦</text>
+    <text class="f" x="87" y="114" text-anchor="middle" font-size="12" fill="#3fb950" font-weight="bold">apt install</text>
+    <text class="f" x="87" y="132" text-anchor="middle" font-size="10" fill="#8b949e">Programm</text>
+    <text class="f" x="87" y="146" text-anchor="middle" font-size="10" fill="#8b949e">installieren</text>
+    <rect x="36" y="158" width="102" height="26" rx="6" fill="#0d1117"/>
+    <text class="f" x="87" y="176" text-anchor="middle" font-size="10" fill="#3fb950">apt install htop</text>
+  </g>
+
+  <!-- Card 2: apt update -->
+  <g class="c2">
+    <rect x="170" y="50" width="142" height="158" rx="10" fill="#161b22" stroke="#58a6ff" stroke-width="1.5"/>
+    <text x="241" y="88" text-anchor="middle" font-size="30">🔄</text>
+    <text class="f" x="241" y="114" text-anchor="middle" font-size="12" fill="#58a6ff" font-weight="bold">apt update</text>
+    <text class="f" x="241" y="132" text-anchor="middle" font-size="10" fill="#8b949e">Paketliste</text>
+    <text class="f" x="241" y="146" text-anchor="middle" font-size="10" fill="#8b949e">aktualisieren</text>
+    <rect x="190" y="158" width="102" height="26" rx="6" fill="#0d1117"/>
+    <text class="f" x="241" y="176" text-anchor="middle" font-size="10" fill="#58a6ff">apt update</text>
+  </g>
+
+  <!-- Card 3: apt upgrade -->
+  <g class="c3">
+    <rect x="324" y="50" width="142" height="158" rx="10" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+    <text x="395" y="88" text-anchor="middle" font-size="30">⬆️</text>
+    <text class="f" x="395" y="114" text-anchor="middle" font-size="12" fill="#f0883e" font-weight="bold">apt upgrade</text>
+    <text class="f" x="395" y="132" text-anchor="middle" font-size="10" fill="#8b949e">Alle Programme</text>
+    <text class="f" x="395" y="146" text-anchor="middle" font-size="10" fill="#8b949e">updaten</text>
+    <rect x="344" y="158" width="102" height="26" rx="6" fill="#0d1117"/>
+    <text class="f" x="395" y="176" text-anchor="middle" font-size="10" fill="#f0883e">apt upgrade</text>
+  </g>
+
+  <!-- Card 4: apt remove -->
+  <g class="c4">
+    <rect x="478" y="50" width="146" height="158" rx="10" fill="#161b22" stroke="#f85149" stroke-width="1.5"/>
+    <text x="551" y="88" text-anchor="middle" font-size="30">🗑️</text>
+    <text class="f" x="551" y="114" text-anchor="middle" font-size="12" fill="#f85149" font-weight="bold">apt remove</text>
+    <text class="f" x="551" y="132" text-anchor="middle" font-size="10" fill="#8b949e">Programm</text>
+    <text class="f" x="551" y="146" text-anchor="middle" font-size="10" fill="#8b949e">entfernen</text>
+    <rect x="498" y="158" width="106" height="26" rx="6" fill="#0d1117"/>
+    <text class="f" x="551" y="176" text-anchor="middle" font-size="10" fill="#f85149">apt remove htop</text>
+  </g>
+
+  <!-- Footer -->
+  <text class="f ft" x="320" y="222" text-anchor="middle" font-size="11" fill="#f0883e">Immer erst 'apt update' dann 'apt install'!</text>
 </svg>

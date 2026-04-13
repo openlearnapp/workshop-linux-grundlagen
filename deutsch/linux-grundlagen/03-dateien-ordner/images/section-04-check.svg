@@ -1,28 +1,76 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 160" width="640" height="160">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0d1117"/>
-      <stop offset="100%" stop-color="#161b22"/>
-    </linearGradient>
-  </defs>
-  <rect width="640" height="160" fill="url(#bg)" rx="8"/>
-  <!-- Decorative elements -->
-  <circle cx="80" cy="60" r="2" fill="#3fb950" opacity="0.4"/><circle cx="95" cy="45" r="1.5" fill="#3fb950" opacity="0.35"/><circle cx="70" cy="100" r="1" fill="#3fb950" opacity="0.35"/>
-  <circle cx="560" cy="60" r="2" fill="#3fb950" opacity="0.4"/><circle cx="545" cy="100" r="1.5" fill="#3fb950" opacity="0.35"/><circle cx="570" cy="45" r="1" fill="#3fb950" opacity="0.35"/>
-  <!-- Icon -->
-    <!-- Terminal window -->
-  <rect x="270" y="30" width="100" height="70" rx="6" fill="#161b22" stroke="#30363d" stroke-width="1.5"/>
-  <rect x="270" y="30" width="100" height="16" rx="6" fill="#21262d"/>
-  <rect x="270" y="40" width="100" height="6" fill="#21262d"/>
-  <circle cx="281" cy="38" r="3" fill="#f85149" opacity="1"/>
-  <circle cx="291" cy="38" r="3" fill="#f0883e" opacity="1"/>
-  <circle cx="301" cy="38" r="3" fill="#3fb950" opacity="1"/>
-  <!-- Prompt -->
-  <text x="280" y="62" font-family="monospace" font-size="10" fill="#8b949e">$</text>
-  <text x="292" y="62" font-family="monospace" font-size="10" fill="#e6edf3">check</text>
-  <!-- Checkmark -->
-  <circle cx="320" cy="120" r="14" fill="none" stroke="#3fb950" stroke-width="2" opacity="0.9"/>
-  <polyline points="312,120 318,126 328,114" fill="none" stroke="#3fb950" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Accent bar -->
-  <rect x="180" y="152" width="280" height="4" fill="#3fb950" opacity="0.8" rx="1.5"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 230">
+  <style>
+    .f { font-family: sans-serif; }
+    .ti { animation: tia 11s infinite; }
+    @keyframes tia { 0%,3%{opacity:0} 7%,87%{opacity:1} 92%,100%{opacity:0} }
+    .c1 { animation: c1a 11s infinite; }
+    @keyframes c1a { 0%,8%{opacity:0} 14%,87%{opacity:1} 92%,100%{opacity:0} }
+    .c2 { animation: c2a 11s infinite; }
+    @keyframes c2a { 0%,28%{opacity:0} 34%,87%{opacity:1} 92%,100%{opacity:0} }
+    .c3 { animation: c3a 11s infinite; }
+    @keyframes c3a { 0%,48%{opacity:0} 54%,87%{opacity:1} 92%,100%{opacity:0} }
+    .c4 { animation: c4a 11s infinite; }
+    @keyframes c4a { 0%,65%{opacity:0} 71%,87%{opacity:1} 92%,100%{opacity:0} }
+    .ft { animation: fta 11s infinite; }
+    @keyframes fta { 0%,78%{opacity:0} 82%,87%{opacity:1} 92%,100%{opacity:0} }
+  </style>
+
+  <!-- Background -->
+  <rect width="640" height="230" rx="12" fill="#0d1117"/>
+
+  <!-- Header bar -->
+  <rect width="640" height="38" rx="12" fill="#161b22"/>
+  <rect y="26" width="640" height="12" fill="#161b22"/>
+
+  <!-- Header title -->
+  <text class="f ti" x="320" y="24" text-anchor="middle" font-size="13" fill="#e6edf3" font-weight="bold" letter-spacing="1">WISSENS-CHECK — Lektion 3 Zusammenfassung</text>
+
+  <!-- Card 1: touch (green) -->
+  <g class="c1">
+    <rect x="10" y="48" width="148" height="165" rx="10" fill="#0d1520" stroke="#3fb950" stroke-width="2"/>
+    <text class="f" x="84" y="88" text-anchor="middle" font-size="30">✏️</text>
+    <text class="f" x="84" y="112" text-anchor="middle" font-size="13" fill="#3fb950" font-weight="bold">touch</text>
+    <text class="f" x="84" y="132" text-anchor="middle" font-size="9" fill="#8b949e">Neue Datei</text>
+    <text class="f" x="84" y="147" text-anchor="middle" font-size="9" fill="#8b949e">erstellen</text>
+    <rect x="22" y="160" width="124" height="22" rx="5" fill="#0d2a10"/>
+    <text class="f" x="84" y="175" text-anchor="middle" font-size="9" fill="#3fb950">$ touch neu.txt</text>
+  </g>
+
+  <!-- Card 2: mkdir -p (blue) -->
+  <g class="c2">
+    <rect x="166" y="48" width="148" height="165" rx="10" fill="#0d1520" stroke="#58a6ff" stroke-width="2"/>
+    <text class="f" x="240" y="88" text-anchor="middle" font-size="30">📁</text>
+    <text class="f" x="240" y="112" text-anchor="middle" font-size="13" fill="#58a6ff" font-weight="bold">mkdir -p</text>
+    <text class="f" x="240" y="132" text-anchor="middle" font-size="9" fill="#8b949e">Ordner-Kette</text>
+    <text class="f" x="240" y="147" text-anchor="middle" font-size="9" fill="#8b949e">erstellen</text>
+    <rect x="178" y="160" width="124" height="22" rx="5" fill="#0d1f3a"/>
+    <text class="f" x="240" y="175" text-anchor="middle" font-size="9" fill="#58a6ff">$ mkdir -p a/b/c</text>
+  </g>
+
+  <!-- Card 3: cp & mv (orange) -->
+  <g class="c3">
+    <rect x="322" y="48" width="148" height="165" rx="10" fill="#0d1520" stroke="#f0883e" stroke-width="2"/>
+    <text class="f" x="396" y="88" text-anchor="middle" font-size="30">📋</text>
+    <text class="f" x="396" y="112" text-anchor="middle" font-size="13" fill="#f0883e" font-weight="bold">cp &amp; mv</text>
+    <text class="f" x="396" y="132" text-anchor="middle" font-size="9" fill="#8b949e">Kopieren und</text>
+    <text class="f" x="396" y="147" text-anchor="middle" font-size="9" fill="#8b949e">verschieben</text>
+    <rect x="334" y="160" width="124" height="22" rx="5" fill="#2a1a0d"/>
+    <text class="f" x="396" y="175" text-anchor="middle" font-size="9" fill="#f0883e">$ cp a.txt b.txt</text>
+  </g>
+
+  <!-- Card 4: rm (red) -->
+  <g class="c4">
+    <rect x="478" y="48" width="152" height="165" rx="10" fill="#0d1520" stroke="#f85149" stroke-width="2"/>
+    <text class="f" x="554" y="88" text-anchor="middle" font-size="30">⚠️</text>
+    <text class="f" x="554" y="112" text-anchor="middle" font-size="13" fill="#f85149" font-weight="bold">rm</text>
+    <text class="f" x="554" y="132" text-anchor="middle" font-size="9" fill="#8b949e">Löschen —</text>
+    <text class="f" x="554" y="147" text-anchor="middle" font-size="9" fill="#f85149" font-weight="bold">ohne Papierkorb!</text>
+    <rect x="492" y="160" width="124" height="22" rx="5" fill="#2a0d0d"/>
+    <text class="f" x="554" y="175" text-anchor="middle" font-size="9" fill="#f85149">$ rm -ri ordner/</text>
+  </g>
+
+  <!-- Footer -->
+  <g class="ft">
+    <text class="f" x="320" y="224" text-anchor="middle" font-size="9" fill="#484f58">Lektion 3 abgeschlossen · Weiter zu Lektion 4: Dateiinhalt lesen</text>
+  </g>
 </svg>

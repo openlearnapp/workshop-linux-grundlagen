@@ -1,68 +1,72 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#0d1117"/>
-      <stop offset="100%" stop-color="#1a2540"/>
-    </linearGradient>
-  </defs>
-  <rect width="640" height="360" fill="url(#bg)"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 280" width="640" height="280">
+<style>
+  .f { font-family: sans-serif; }
+  .ti { animation: tia 13s infinite; }
+  @keyframes tia { 0%,3%{opacity:0} 8%,87%{opacity:1} 92%,100%{opacity:0} }
+  .hero { animation: heroa 13s infinite; }
+  @keyframes heroa { 0%,5%{opacity:0} 10%,87%{opacity:1} 92%,100%{opacity:0} }
+  .sub { animation: suba 13s infinite; }
+  @keyframes suba { 0%,18%{opacity:0} 24%,87%{opacity:1} 92%,100%{opacity:0} }
+  .c1 { animation: c1a 13s infinite; }
+  @keyframes c1a { 0%,34%{opacity:0} 40%,87%{opacity:1} 92%,100%{opacity:0} }
+  .c2 { animation: c2a 13s infinite; }
+  @keyframes c2a { 0%,50%{opacity:0} 56%,87%{opacity:1} 92%,100%{opacity:0} }
+  .c3 { animation: c3a 13s infinite; }
+  @keyframes c3a { 0%,64%{opacity:0} 70%,87%{opacity:1} 92%,100%{opacity:0} }
+  .ft { animation: fta 13s infinite; }
+  @keyframes fta { 0%,78%{opacity:0} 82%,87%{opacity:1} 92%,100%{opacity:0} }
+</style>
 
-  <!-- Tux penguin body -->
-  <ellipse cx="320" cy="200" rx="55" ry="70" fill="#2d333b"/>
-  <!-- Tux belly -->
-  <ellipse cx="320" cy="215" rx="38" ry="50" fill="#e6edf3"/>
-  <!-- Tux head -->
-  <ellipse cx="320" cy="135" rx="40" ry="38" fill="#2d333b"/>
-  <!-- Eyes -->
-  <ellipse cx="307" cy="128" rx="10" ry="12" fill="#e6edf3"/>
-  <ellipse cx="333" cy="128" rx="10" ry="12" fill="#e6edf3"/>
-  <circle cx="309" cy="126" r="5" fill="#0d1117"/>
-  <circle cx="335" cy="126" r="5" fill="#0d1117"/>
-  <!-- Beak -->
-  <ellipse cx="320" cy="143" rx="12" ry="7" fill="#f0883e"/>
-  <!-- Feet -->
-  <ellipse cx="300" cy="272" rx="18" ry="6" fill="#f0883e"/>
-  <ellipse cx="340" cy="272" rx="18" ry="6" fill="#f0883e"/>
+<!-- Background -->
+<rect width="640" height="280" rx="12" fill="#0d1117"/>
 
-  <!-- Server rack left -->
-  <rect x="80" y="120" width="70" height="160" rx="4" fill="#21262d" stroke="#30363d" stroke-width="2"/>
-  <rect x="88" y="130" width="54" height="14" rx="2" fill="#161b22"/>
-  <circle cx="134" cy="137" r="3" fill="#3fb950"/>
-  <rect x="88" y="150" width="54" height="14" rx="2" fill="#161b22"/>
-  <circle cx="134" cy="157" r="3" fill="#3fb950"/>
-  <rect x="88" y="170" width="54" height="14" rx="2" fill="#161b22"/>
-  <circle cx="134" cy="177" r="3" fill="#58a6ff"/>
-  <rect x="88" y="190" width="54" height="14" rx="2" fill="#161b22"/>
-  <circle cx="134" cy="197" r="3" fill="#3fb950"/>
-  <rect x="88" y="210" width="54" height="14" rx="2" fill="#161b22"/>
-  <circle cx="134" cy="217" r="3" fill="#f0883e"/>
-  <rect x="88" y="230" width="54" height="14" rx="2" fill="#161b22"/>
-  <circle cx="134" cy="237" r="3" fill="#3fb950"/>
-  <rect x="88" y="250" width="54" height="14" rx="2" fill="#161b22"/>
-  <circle cx="134" cy="257" r="3" fill="#3fb950"/>
+<!-- Header bar -->
+<rect width="640" height="38" rx="12" fill="#161b22"/>
+<rect y="26" width="640" height="12" fill="#161b22"/>
+<text class="f ti" x="320" y="24" text-anchor="middle" font-size="12" fill="#6e7681" letter-spacing="2">LEKTION 1</text>
 
-  <!-- Server rack right -->
-  <rect x="490" y="120" width="70" height="160" rx="4" fill="#21262d" stroke="#30363d" stroke-width="2"/>
-  <rect x="498" y="130" width="54" height="14" rx="2" fill="#161b22"/>
-  <circle cx="544" cy="137" r="3" fill="#3fb950"/>
-  <rect x="498" y="150" width="54" height="14" rx="2" fill="#161b22"/>
-  <circle cx="544" cy="157" r="3" fill="#58a6ff"/>
-  <rect x="498" y="170" width="54" height="14" rx="2" fill="#161b22"/>
-  <circle cx="544" cy="177" r="3" fill="#3fb950"/>
-  <rect x="498" y="190" width="54" height="14" rx="2" fill="#161b22"/>
-  <circle cx="544" cy="197" r="3" fill="#3fb950"/>
-  <rect x="498" y="210" width="54" height="14" rx="2" fill="#161b22"/>
-  <circle cx="544" cy="217" r="3" fill="#3fb950"/>
-  <rect x="498" y="230" width="54" height="14" rx="2" fill="#161b22"/>
-  <circle cx="544" cy="237" r="3" fill="#f0883e"/>
-  <rect x="498" y="250" width="54" height="14" rx="2" fill="#161b22"/>
-  <circle cx="544" cy="257" r="3" fill="#3fb950"/>
+<!-- Hero section: Tux + Title -->
+<g class="hero">
+  <text x="320" y="92" text-anchor="middle" font-size="52">🐧</text>
+  <text class="f" x="320" y="122" text-anchor="middle" font-size="24" fill="#e6edf3" font-weight="bold">Was ist Linux?</text>
+</g>
 
-  <!-- Decorative dots -->
-  <circle cx="220" cy="310" r="3" fill="#58a6ff" opacity="0.4"/>
-  <circle cx="420" cy="310" r="3" fill="#58a6ff" opacity="0.4"/>
-  <circle cx="180" cy="100" r="2" fill="#3fb950" opacity="0.3"/>
-  <circle cx="460" cy="100" r="2" fill="#3fb950" opacity="0.3"/>
-  <circle cx="550" cy="320" r="2" fill="#f0883e" opacity="0.3"/>
-  <circle cx="90" cy="320" r="2" fill="#f0883e" opacity="0.3"/>
+<!-- Subtitle -->
+<text class="f sub" x="320" y="148" text-anchor="middle" font-size="13" fill="#58a6ff" letter-spacing="0.5">Betriebssystem · Open Source · Überall dabei</text>
+
+<!-- Divider -->
+<line x1="60" y1="162" x2="580" y2="162" stroke="#21262d" stroke-width="1.5"/>
+
+<!-- STAT CARD 1: Webserver -->
+<g class="c1">
+  <rect x="24" y="172" width="182" height="84" rx="10" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+  <text x="52" y="210" font-size="28">🖥️</text>
+  <text class="f" x="90" y="200" font-size="20" fill="#58a6ff" font-weight="bold">96%</text>
+  <text class="f" x="90" y="216" font-size="10" fill="#e6edf3">aller Webserver</text>
+  <text class="f" x="90" y="230" font-size="9" fill="#6e7681">laufen auf Linux</text>
+  <text class="f" x="115" y="248" text-anchor="middle" font-size="9" fill="#58a6ff">Google · Facebook · Amazon</text>
+</g>
+
+<!-- STAT CARD 2: Android -->
+<g class="c2">
+  <rect x="229" y="172" width="182" height="84" rx="10" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <text x="257" y="210" font-size="28">📱</text>
+  <text class="f" x="295" y="200" font-size="20" fill="#3fb950" font-weight="bold">3 Mrd.</text>
+  <text class="f" x="295" y="216" font-size="10" fill="#e6edf3">Android-Geräte</text>
+  <text class="f" x="295" y="230" font-size="9" fill="#6e7681">nutzen Linux</text>
+  <text class="f" x="320" y="248" text-anchor="middle" font-size="9" fill="#3fb950">Dein Handy läuft auf Linux!</text>
+</g>
+
+<!-- STAT CARD 3: Raspberry Pi -->
+<g class="c3">
+  <rect x="434" y="172" width="182" height="84" rx="10" fill="#161b22" stroke="#f0883e" stroke-width="2"/>
+  <text x="462" y="210" font-size="28">🍓</text>
+  <text class="f" x="500" y="200" font-size="14" fill="#f0883e" font-weight="bold">Pi &amp; IoT</text>
+  <text class="f" x="500" y="216" font-size="10" fill="#e6edf3">Raspberry Pi OS</text>
+  <text class="f" x="500" y="230" font-size="9" fill="#6e7681">Basteln &amp; Maker</text>
+  <text class="f" x="525" y="248" text-anchor="middle" font-size="9" fill="#f0883e">Smart Home · Roboter</text>
+</g>
+
+<!-- Footer tip -->
+<text class="f ft" x="320" y="273" text-anchor="middle" font-size="9" fill="#6e7681">Linux läuft auf mehr Geräten als jedes andere Betriebssystem der Welt</text>
 </svg>

@@ -1,28 +1,77 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 160" width="640" height="160">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 230">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0d1117"/>
-      <stop offset="100%" stop-color="#161b22"/>
-    </linearGradient>
+    <style>
+      .f { font-family: sans-serif; }
+      @keyframes fTi  { 0%,3%{opacity:0}  7%,87%{opacity:1} 92%,100%{opacity:0} }
+      @keyframes fSub { 0%,8%{opacity:0} 12%,87%{opacity:1} 92%,100%{opacity:0} }
+      @keyframes fC1  { 0%,12%{opacity:0} 18%,87%{opacity:1} 92%,100%{opacity:0} }
+      @keyframes fC2  { 0%,30%{opacity:0} 36%,87%{opacity:1} 92%,100%{opacity:0} }
+      @keyframes fC3  { 0%,48%{opacity:0} 54%,87%{opacity:1} 92%,100%{opacity:0} }
+      @keyframes fC4  { 0%,65%{opacity:0} 71%,87%{opacity:1} 92%,100%{opacity:0} }
+      @keyframes fFt  { 0%,78%{opacity:0} 82%,87%{opacity:1} 92%,100%{opacity:0} }
+      .ti  { opacity:0; animation: fTi  11s infinite; }
+      .sub { opacity:0; animation: fSub 11s infinite; }
+      .c1  { opacity:0; animation: fC1  11s infinite; }
+      .c2  { opacity:0; animation: fC2  11s infinite; }
+      .c3  { opacity:0; animation: fC3  11s infinite; }
+      .c4  { opacity:0; animation: fC4  11s infinite; }
+      .ft  { opacity:0; animation: fFt  11s infinite; }
+    </style>
   </defs>
-  <rect width="640" height="160" fill="url(#bg)" rx="8"/>
-  <!-- Decorative elements -->
-  <circle cx="80" cy="60" r="2" fill="#3fb950" opacity="0.4"/><circle cx="95" cy="45" r="1.5" fill="#3fb950" opacity="0.35"/><circle cx="70" cy="100" r="1" fill="#3fb950" opacity="0.35"/>
-  <circle cx="560" cy="60" r="2" fill="#3fb950" opacity="0.4"/><circle cx="545" cy="100" r="1.5" fill="#3fb950" opacity="0.35"/><circle cx="570" cy="45" r="1" fill="#3fb950" opacity="0.35"/>
-  <!-- Icon -->
-    <!-- Terminal window -->
-  <rect x="270" y="30" width="100" height="70" rx="6" fill="#161b22" stroke="#30363d" stroke-width="1.5"/>
-  <rect x="270" y="30" width="100" height="16" rx="6" fill="#21262d"/>
-  <rect x="270" y="40" width="100" height="6" fill="#21262d"/>
-  <circle cx="281" cy="38" r="3" fill="#f85149" opacity="1"/>
-  <circle cx="291" cy="38" r="3" fill="#f0883e" opacity="1"/>
-  <circle cx="301" cy="38" r="3" fill="#3fb950" opacity="1"/>
-  <!-- Prompt -->
-  <text x="280" y="62" font-family="monospace" font-size="10" fill="#8b949e">$</text>
-  <text x="292" y="62" font-family="monospace" font-size="10" fill="#e6edf3">check</text>
-  <!-- Checkmark -->
-  <circle cx="320" cy="120" r="14" fill="none" stroke="#3fb950" stroke-width="2" opacity="0.9"/>
-  <polyline points="312,120 318,126 328,114" fill="none" stroke="#3fb950" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Accent bar -->
-  <rect x="180" y="152" width="280" height="4" fill="#3fb950" opacity="0.8" rx="1.5"/>
+
+  <!-- Background -->
+  <rect width="640" height="230" rx="12" fill="#0d1117"/>
+
+  <!-- Header bar -->
+  <rect width="640" height="38" rx="12" fill="#161b22"/>
+  <rect y="26" width="640" height="12" fill="#161b22"/>
+
+  <!-- Title -->
+  <text class="f ti" x="320" y="24" text-anchor="middle" font-size="13" fill="#e6edf3" font-weight="bold" letter-spacing="1">✅ WISSENS-CHECK — LEKTION 5</text>
+
+  <!-- Subtitle -->
+  <text class="f sub" x="320" y="54" text-anchor="middle" font-size="11" fill="#8b949e">Das hast du gelernt!</text>
+
+  <!-- Card 1: rwx (green) -->
+  <g class="c1">
+    <rect x="14" y="64" width="148" height="92" rx="10" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+    <text x="88" y="93" text-anchor="middle" font-size="28">🔑</text>
+    <text class="f" x="88" y="114" text-anchor="middle" font-size="13" fill="#3fb950" font-weight="bold">rwx</text>
+    <text class="f" x="88" y="130" text-anchor="middle" font-size="10" fill="#8b949e">r=lesen · w=schreiben</text>
+    <text class="f" x="88" y="146" text-anchor="middle" font-size="10" fill="#8b949e">x=ausführen</text>
+  </g>
+
+  <!-- Card 2: chmod 755 (orange) -->
+  <g class="c2">
+    <rect x="170" y="64" width="148" height="92" rx="10" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+    <text x="244" y="93" text-anchor="middle" font-size="28">🔢</text>
+    <text class="f" x="244" y="114" text-anchor="middle" font-size="13" fill="#f0883e" font-weight="bold">chmod 755</text>
+    <text class="f" x="244" y="130" text-anchor="middle" font-size="10" fill="#8b949e">Zahlen oder</text>
+    <text class="f" x="244" y="146" text-anchor="middle" font-size="10" fill="#8b949e">Buchstaben</text>
+  </g>
+
+  <!-- Card 3: sudo (purple) -->
+  <g class="c3">
+    <rect x="326" y="64" width="148" height="92" rx="10" fill="#161b22" stroke="#bc8cff" stroke-width="1.5"/>
+    <text x="400" y="93" text-anchor="middle" font-size="28">👑</text>
+    <text class="f" x="400" y="114" text-anchor="middle" font-size="13" fill="#bc8cff" font-weight="bold">sudo</text>
+    <text class="f" x="400" y="130" text-anchor="middle" font-size="10" fill="#8b949e">Admin-Rechte</text>
+    <text class="f" x="400" y="146" text-anchor="middle" font-size="10" fill="#8b949e">nutzen</text>
+  </g>
+
+  <!-- Card 4: chown (orange-warm) -->
+  <g class="c4">
+    <rect x="482" y="64" width="144" height="92" rx="10" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+    <text x="554" y="93" text-anchor="middle" font-size="28">👤</text>
+    <text class="f" x="554" y="114" text-anchor="middle" font-size="13" fill="#f0883e" font-weight="bold">chown</text>
+    <text class="f" x="554" y="130" text-anchor="middle" font-size="10" fill="#8b949e">Besitzer</text>
+    <text class="f" x="554" y="146" text-anchor="middle" font-size="10" fill="#8b949e">ändern</text>
+  </g>
+
+  <!-- Footer -->
+  <g class="ft">
+    <rect x="14" y="167" width="612" height="50" rx="8" fill="#161b22" stroke="#3fb950" stroke-width="1"/>
+    <text class="f" x="320" y="188" text-anchor="middle" font-size="10" fill="#3fb950" font-weight="bold">🎉 Lektion 5 abgeschlossen!</text>
+    <text class="f" x="320" y="207" text-anchor="middle" font-size="10" fill="#8b949e">Du verstehst jetzt Berechtigungen in Linux</text>
+  </g>
 </svg>
