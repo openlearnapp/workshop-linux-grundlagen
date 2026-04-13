@@ -1,52 +1,41 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#0d1117"/>
-      <stop offset="100%" stop-color="#1a2540"/>
-    </linearGradient>
-  </defs>
-  <rect width="640" height="360" fill="url(#bg)"/>
-
-  <!-- Terminal window -->
-  <rect x="60" y="25" width="520" height="310" rx="8" fill="#161b22" stroke="#30363d" stroke-width="2"/>
-  <rect x="60" y="25" width="520" height="30" rx="8" fill="#21262d"/>
-  <rect x="60" y="45" width="520" height="10" fill="#21262d"/>
-  <circle cx="82" cy="40" r="6" fill="#f85149"/>
-  <circle cx="102" cy="40" r="6" fill="#f0883e"/>
-  <circle cx="122" cy="40" r="6" fill="#3fb950"/>
-
-  <!-- cat command -->
-  <text x="80" y="78" font-family="monospace" font-size="13" fill="#8b949e">$</text>
-  <text x="95" y="78" font-family="monospace" font-size="13" fill="#f0883e"> cat</text>
-  <text x="135" y="78" font-family="monospace" font-size="13" fill="#e6edf3"> server.log</text>
-  <text x="80" y="96" font-family="monospace" font-size="11" fill="#8b949e">[2024-01-15 08:30:01] INFO  Server started</text>
-  <text x="80" y="112" font-family="monospace" font-size="11" fill="#8b949e">[2024-01-15 08:30:02] INFO  Port 8080</text>
-  <text x="80" y="128" font-family="monospace" font-size="11" fill="#f85149">[2024-01-15 09:15:33] ERROR Connection refused</text>
-  <text x="80" y="144" font-family="monospace" font-size="11" fill="#8b949e">[2024-01-15 09:15:34] INFO  Retrying...</text>
-
-  <!-- Divider -->
-  <line x1="80" y1="158" x2="560" y2="158" stroke="#30363d" stroke-width="1" stroke-dasharray="4"/>
-
-  <!-- head command -->
-  <text x="80" y="178" font-family="monospace" font-size="13" fill="#8b949e">$</text>
-  <text x="95" y="178" font-family="monospace" font-size="13" fill="#58a6ff"> head</text>
-  <text x="145" y="178" font-family="monospace" font-size="13" fill="#e6edf3"> -n 3 data.csv</text>
-  <text x="80" y="196" font-family="monospace" font-size="11" fill="#3fb950">id,name,score</text>
-  <text x="80" y="212" font-family="monospace" font-size="11" fill="#8b949e">1,alice,95</text>
-  <text x="80" y="228" font-family="monospace" font-size="11" fill="#8b949e">2,bob,87</text>
-
-  <!-- Divider -->
-  <line x1="80" y1="242" x2="560" y2="242" stroke="#30363d" stroke-width="1" stroke-dasharray="4"/>
-
-  <!-- grep command -->
-  <text x="80" y="262" font-family="monospace" font-size="13" fill="#8b949e">$</text>
-  <text x="95" y="262" font-family="monospace" font-size="13" fill="#bc8cff"> grep</text>
-  <text x="145" y="262" font-family="monospace" font-size="13" fill="#e6edf3"> "ERROR" server.log</text>
-  <text x="80" y="280" font-family="monospace" font-size="11" fill="#8b949e">[2024-01-15 09:15:33] </text>
-  <text x="265" y="280" font-family="monospace" font-size="11" fill="#f85149" font-weight="bold">ERROR</text>
-  <text x="313" y="280" font-family="monospace" font-size="11" fill="#8b949e"> Connection refused</text>
-
-  <!-- Cursor -->
-  <text x="80" y="308" font-family="monospace" font-size="13" fill="#8b949e">$</text>
-  <rect x="95" y="296" width="8" height="15" fill="#e6edf3" opacity="0.7"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 270">
+<style>
+.f{font-family:sans-serif}
+.ti{animation:tia 11s infinite}@keyframes tia{0%,3%{opacity:0}7%,87%{opacity:1}92%,100%{opacity:0}}
+.c1{animation:c1a 11s infinite}@keyframes c1a{0%,12%{opacity:0}18%,87%{opacity:1}92%,100%{opacity:0}}
+.c2{animation:c2a 11s infinite}@keyframes c2a{0%,30%{opacity:0}36%,87%{opacity:1}92%,100%{opacity:0}}
+.c3{animation:c3a 11s infinite}@keyframes c3a{0%,48%{opacity:0}54%,87%{opacity:1}92%,100%{opacity:0}}
+.ft{animation:fta 11s infinite}@keyframes fta{0%,78%{opacity:0}82%,87%{opacity:1}92%,100%{opacity:0}}
+</style>
+<rect width="640" height="270" rx="12" fill="#0d1117"/>
+<rect width="640" height="56" rx="12" fill="#161b22"/>
+<rect y="44" width="640" height="12" fill="#161b22"/>
+<text class="f ti" x="320" y="28" text-anchor="middle" font-size="22">📖</text>
+<text class="f ti" x="320" y="46" text-anchor="middle" font-size="17" font-weight="bold" fill="#e6edf3">محتوى الملف</text>
+<text class="f ti" x="320" y="62" text-anchor="middle" font-size="11" fill="#8b949e">cat · less · head · tail · grep</text>
+<g class="c1">
+<rect x="24" y="76" width="184" height="130" rx="8" fill="#0d1520"/>
+<rect x="24" y="76" width="184" height="4" rx="2" fill="#58a6ff"/>
+<text class="f" x="116" y="108" text-anchor="middle" font-size="26">📖</text>
+<text class="f" x="116" y="133" text-anchor="middle" font-size="14" font-weight="bold" fill="#58a6ff">القراءة</text>
+<text class="f" x="116" y="153" text-anchor="middle" font-size="12" fill="#8b949e">cat, less, more</text>
+</g>
+<g class="c2">
+<rect x="228" y="76" width="184" height="130" rx="8" fill="#1a0f08"/>
+<rect x="228" y="76" width="184" height="4" rx="2" fill="#f0883e"/>
+<text class="f" x="320" y="108" text-anchor="middle" font-size="26">✂️</text>
+<text class="f" x="320" y="133" text-anchor="middle" font-size="14" font-weight="bold" fill="#f0883e">الاستخراج</text>
+<text class="f" x="320" y="153" text-anchor="middle" font-size="12" fill="#8b949e">head &amp; tail</text>
+</g>
+<g class="c3">
+<rect x="432" y="76" width="184" height="130" rx="8" fill="#0a1a0d"/>
+<rect x="432" y="76" width="184" height="4" rx="2" fill="#3fb950"/>
+<text class="f" x="524" y="108" text-anchor="middle" font-size="26">🔍</text>
+<text class="f" x="524" y="133" text-anchor="middle" font-size="14" font-weight="bold" fill="#3fb950">البحث</text>
+<text class="f" x="524" y="153" text-anchor="middle" font-size="12" fill="#8b949e">grep</text>
+</g>
+<g class="ft">
+<rect x="24" y="220" width="592" height="32" rx="6" fill="#161b22"/>
+<text class="f" x="320" y="241" text-anchor="middle" font-size="12" fill="#8b949e">cat · less · grep — أدوات أساسية للعمل مع الملفات</text>
+</g>
 </svg>

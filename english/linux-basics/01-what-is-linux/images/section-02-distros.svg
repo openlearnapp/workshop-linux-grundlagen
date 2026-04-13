@@ -1,30 +1,55 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 160" width="640" height="160">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0d1117"/>
-      <stop offset="100%" stop-color="#161b22"/>
-    </linearGradient>
-  </defs>
-  <rect width="640" height="160" fill="url(#bg)" rx="8"/>
-  <!-- Decorative elements -->
-  <circle cx="80" cy="60" r="2" fill="#58a6ff" opacity="0.4"/><circle cx="95" cy="45" r="1.5" fill="#58a6ff" opacity="0.35"/><circle cx="70" cy="100" r="1" fill="#58a6ff" opacity="0.35"/>
-  <circle cx="560" cy="60" r="2" fill="#58a6ff" opacity="0.4"/><circle cx="545" cy="100" r="1.5" fill="#58a6ff" opacity="0.35"/><circle cx="570" cy="45" r="1" fill="#58a6ff" opacity="0.35"/>
-  <!-- Icon -->
-  
-  <!-- Distro circles -->
-  <circle cx="280" cy="70" r="22" fill="none" stroke="#f0883e" stroke-width="2" opacity="0.9"/>
-  <circle cx="320" cy="55" r="22" fill="none" stroke="#3fb950" stroke-width="2" opacity="0.9"/>
-  <circle cx="360" cy="70" r="22" fill="none" stroke="#bc8cff" stroke-width="2" opacity="0.9"/>
-  <!-- Connection lines -->
-  <line x1="280" y1="92" x2="280" y2="105" stroke="#f0883e" stroke-width="1.5" opacity="0.6"/>
-  <line x1="320" y1="77" x2="320" y2="105" stroke="#3fb950" stroke-width="1.5" opacity="0.6"/>
-  <line x1="360" y1="92" x2="360" y2="105" stroke="#bc8cff" stroke-width="1.5" opacity="0.6"/>
-  <!-- Base line -->
-  <line x1="260" y1="105" x2="380" y2="105" stroke="#30363d" stroke-width="1.5"/>
-  <!-- Dots inside circles -->
-  <circle cx="280" cy="70" r="4" fill="#f0883e" opacity="0.7"/>
-  <circle cx="320" cy="55" r="4" fill="#3fb950" opacity="0.7"/>
-  <circle cx="360" cy="70" r="4" fill="#bc8cff" opacity="0.7"/>
-  <!-- Accent bar -->
-  <rect x="180" y="152" width="280" height="4" fill="#58a6ff" opacity="0.8" rx="1.5"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 230">
+  <defs><style>
+    .f{font-family:sans-serif;}
+    .ti{animation:tia 11s infinite}@keyframes tia{0%,3%{opacity:0}7%,87%{opacity:1}92%,100%{opacity:0}}
+    .c1{animation:c1a 11s infinite}@keyframes c1a{0%,12%{opacity:0}18%,87%{opacity:1}92%,100%{opacity:0}}
+    .c2{animation:c2a 11s infinite}@keyframes c2a{0%,30%{opacity:0}36%,87%{opacity:1}92%,100%{opacity:0}}
+    .c3{animation:c3a 11s infinite}@keyframes c3a{0%,48%{opacity:0}54%,87%{opacity:1}92%,100%{opacity:0}}
+    .c4{animation:c4a 11s infinite}@keyframes c4a{0%,65%{opacity:0}71%,87%{opacity:1}92%,100%{opacity:0}}
+    .ft{animation:fta 11s infinite}@keyframes fta{0%,78%{opacity:0}82%,87%{opacity:1}92%,100%{opacity:0}}
+  </style></defs>
+  <rect width="640" height="230" rx="12" fill="#0d1117"/>
+  <rect width="640" height="44" rx="12" fill="#161b22"/>
+  <rect y="32" width="640" height="12" fill="#161b22"/>
+  <g class="ti">
+    <text x="320" y="20" class="f" font-size="13" font-weight="bold" fill="#e6edf3" text-anchor="middle">Linux Distributions (Distros)</text>
+    <text x="320" y="36" class="f" font-size="10" fill="#6e7681" text-anchor="middle">All share the same kernel — like different cars with the same engine</text>
+  </g>
+  <!-- Card 1: Ubuntu (orange) -->
+  <g class="c1">
+    <rect x="10" y="50" width="148" height="164" rx="8" fill="#1a0f08" stroke="#f0883e" stroke-width="1"/>
+    <rect x="20" y="58" width="128" height="18" rx="4" fill="#f0883e"/>
+    <text x="84" y="71" class="f" font-size="9" font-weight="bold" fill="#0d1117" text-anchor="middle">Recommendation #1</text>
+    <text x="84" y="107" class="f" font-size="28" text-anchor="middle">🟠</text>
+    <text x="84" y="129" class="f" font-size="12" font-weight="bold" fill="#f0883e" text-anchor="middle">Ubuntu</text>
+    <text x="84" y="147" class="f" font-size="10" fill="#8b949e" text-anchor="middle">For beginners</text>
+    <text x="84" y="163" class="f" font-size="10" fill="#8b949e" text-anchor="middle">★★★★★</text>
+  </g>
+  <!-- Card 2: Debian (blue) -->
+  <g class="c2">
+    <rect x="166" y="50" width="148" height="164" rx="8" fill="#0d1520" stroke="#58a6ff" stroke-width="1"/>
+    <text x="240" y="103" class="f" font-size="28" text-anchor="middle">🔵</text>
+    <text x="240" y="125" class="f" font-size="12" font-weight="bold" fill="#58a6ff" text-anchor="middle">Debian</text>
+    <text x="240" y="143" class="f" font-size="10" fill="#8b949e" text-anchor="middle">For servers</text>
+    <text x="240" y="159" class="f" font-size="10" fill="#8b949e" text-anchor="middle">Very stable</text>
+  </g>
+  <!-- Card 3: Raspberry Pi OS (red) -->
+  <g class="c3">
+    <rect x="322" y="50" width="148" height="164" rx="8" fill="#180a0a" stroke="#f85149" stroke-width="1"/>
+    <text x="396" y="103" class="f" font-size="28" text-anchor="middle">🍓</text>
+    <text x="396" y="125" class="f" font-size="12" font-weight="bold" fill="#f85149" text-anchor="middle">Raspberry Pi OS</text>
+    <text x="396" y="143" class="f" font-size="10" fill="#8b949e" text-anchor="middle">For the mini-PC</text>
+    <text x="396" y="159" class="f" font-size="10" fill="#8b949e" text-anchor="middle">Makers &amp; IoT</text>
+  </g>
+  <!-- Card 4: Kali Linux (gray) -->
+  <g class="c4">
+    <rect x="478" y="50" width="148" height="164" rx="8" fill="#161b22" stroke="#6e7681" stroke-width="1"/>
+    <text x="552" y="103" class="f" font-size="28" text-anchor="middle">🔐</text>
+    <text x="552" y="125" class="f" font-size="12" font-weight="bold" fill="#6e7681" text-anchor="middle">Kali Linux</text>
+    <text x="552" y="143" class="f" font-size="10" fill="#8b949e" text-anchor="middle">For security pros</text>
+    <text x="552" y="159" class="f" font-size="10" fill="#8b949e" text-anchor="middle">⚠ Learn basics first!</text>
+  </g>
+  <g class="ft">
+    <text x="320" y="224" class="f" font-size="10" fill="#6e7681" text-anchor="middle">In this course you'll learn commands that work on ALL Linux variants!</text>
+  </g>
 </svg>

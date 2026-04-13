@@ -1,87 +1,44 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 270">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#0d1117"/>
-      <stop offset="100%" stop-color="#1a2540"/>
-    </linearGradient>
+    <style>
+      .f{font-family:sans-serif}
+      .ti{animation:tia 11s infinite}@keyframes tia{0%,3%{opacity:0}7%,87%{opacity:1}92%,100%{opacity:0}}
+      .c1{animation:c1a 11s infinite}@keyframes c1a{0%,12%{opacity:0}18%,87%{opacity:1}92%,100%{opacity:0}}
+      .c2{animation:c2a 11s infinite}@keyframes c2a{0%,30%{opacity:0}36%,87%{opacity:1}92%,100%{opacity:0}}
+      .c3{animation:c3a 11s infinite}@keyframes c3a{0%,48%{opacity:0}54%,87%{opacity:1}92%,100%{opacity:0}}
+      .ft{animation:fta 11s infinite}@keyframes fta{0%,78%{opacity:0}82%,87%{opacity:1}92%,100%{opacity:0}}
+    </style>
   </defs>
-  <rect width="640" height="360" fill="url(#bg)"/>
-
-  <!-- Editor window -->
-  <rect x="60" y="25" width="520" height="310" rx="8" fill="#161b22" stroke="#30363d" stroke-width="2"/>
-  <!-- Title bar -->
-  <rect x="60" y="25" width="520" height="32" rx="8" fill="#21262d"/>
-  <rect x="60" y="45" width="520" height="12" fill="#21262d"/>
-  <circle cx="82" cy="41" r="6" fill="#f85149"/>
-  <circle cx="102" cy="41" r="6" fill="#f0883e"/>
-  <circle cx="122" cy="41" r="6" fill="#3fb950"/>
-  <text x="320" y="45" font-family="monospace" font-size="11" fill="#8b949e" text-anchor="middle">backup.sh</text>
-
-  <!-- Line numbers gutter -->
-  <rect x="60" y="57" width="35" height="278" fill="#0d1117" opacity="0.5"/>
-
-  <!-- Line numbers -->
-  <text x="85" y="78" font-family="monospace" font-size="11" fill="#484f58" text-anchor="end">1</text>
-  <text x="85" y="98" font-family="monospace" font-size="11" fill="#484f58" text-anchor="end">2</text>
-  <text x="85" y="118" font-family="monospace" font-size="11" fill="#484f58" text-anchor="end">3</text>
-  <text x="85" y="138" font-family="monospace" font-size="11" fill="#484f58" text-anchor="end">4</text>
-  <text x="85" y="158" font-family="monospace" font-size="11" fill="#484f58" text-anchor="end">5</text>
-  <text x="85" y="178" font-family="monospace" font-size="11" fill="#484f58" text-anchor="end">6</text>
-  <text x="85" y="198" font-family="monospace" font-size="11" fill="#484f58" text-anchor="end">7</text>
-  <text x="85" y="218" font-family="monospace" font-size="11" fill="#484f58" text-anchor="end">8</text>
-  <text x="85" y="238" font-family="monospace" font-size="11" fill="#484f58" text-anchor="end">9</text>
-  <text x="85" y="258" font-family="monospace" font-size="11" fill="#484f58" text-anchor="end">10</text>
-  <text x="85" y="278" font-family="monospace" font-size="11" fill="#484f58" text-anchor="end">11</text>
-  <text x="85" y="298" font-family="monospace" font-size="11" fill="#484f58" text-anchor="end">12</text>
-  <text x="85" y="318" font-family="monospace" font-size="11" fill="#484f58" text-anchor="end">13</text>
-
-  <!-- Code content -->
-  <!-- Line 1: shebang -->
-  <text x="100" y="78" font-family="monospace" font-size="12" fill="#8b949e">#!/bin/bash</text>
-
-  <!-- Line 2: comment -->
-  <text x="100" y="98" font-family="monospace" font-size="12" fill="#484f58"># Backup script</text>
-
-  <!-- Line 3: empty -->
-
-  <!-- Line 4: variable -->
-  <text x="100" y="138" font-family="monospace" font-size="12" fill="#e6edf3">SRC</text>
-  <text x="130" y="138" font-family="monospace" font-size="12" fill="#f0883e">=</text>
-  <text x="140" y="138" font-family="monospace" font-size="12" fill="#a5d6ff">"/home/alice"</text>
-
-  <!-- Line 5: variable -->
-  <text x="100" y="158" font-family="monospace" font-size="12" fill="#e6edf3">DEST</text>
-  <text x="140" y="158" font-family="monospace" font-size="12" fill="#f0883e">=</text>
-  <text x="150" y="158" font-family="monospace" font-size="12" fill="#a5d6ff">"/backup/$(date +%F)"</text>
-
-  <!-- Line 6: empty -->
-
-  <!-- Line 7: if -->
-  <text x="100" y="198" font-family="monospace" font-size="12" fill="#ff7b72">if</text>
-  <text x="120" y="198" font-family="monospace" font-size="12" fill="#e6edf3"> [ ! -d </text>
-  <text x="195" y="198" font-family="monospace" font-size="12" fill="#a5d6ff">"$DEST"</text>
-  <text x="255" y="198" font-family="monospace" font-size="12" fill="#e6edf3"> ]; </text>
-  <text x="285" y="198" font-family="monospace" font-size="12" fill="#ff7b72">then</text>
-
-  <!-- Line 8: mkdir -->
-  <text x="120" y="218" font-family="monospace" font-size="12" fill="#e6edf3">  mkdir -p </text>
-  <text x="220" y="218" font-family="monospace" font-size="12" fill="#a5d6ff">"$DEST"</text>
-
-  <!-- Line 9: fi -->
-  <text x="100" y="238" font-family="monospace" font-size="12" fill="#ff7b72">fi</text>
-
-  <!-- Line 10: empty -->
-
-  <!-- Line 11: cp -->
-  <text x="100" y="278" font-family="monospace" font-size="12" fill="#e6edf3">cp -r </text>
-  <text x="155" y="278" font-family="monospace" font-size="12" fill="#a5d6ff">"$SRC"</text>
-  <text x="210" y="278" font-family="monospace" font-size="12" fill="#e6edf3"> </text>
-  <text x="215" y="278" font-family="monospace" font-size="12" fill="#a5d6ff">"$DEST"</text>
-
-  <!-- Line 12: echo -->
-  <text x="100" y="298" font-family="monospace" font-size="12" fill="#79c0ff">echo</text>
-  <text x="140" y="298" font-family="monospace" font-size="12" fill="#a5d6ff"> "Backup OK: $DEST"</text>
-
-  <!-- Line 13: cursor -->
-  <rect x="100" y="306" width="8" height="14" fill="#e6edf3" opacity="0.7"/>
+  <rect width="640" height="270" rx="12" fill="#0d1117"/>
+  <rect width="640" height="56" rx="12" fill="#161b22"/>
+  <rect y="44" width="640" height="12" fill="#161b22"/>
+  <g class="ti">
+    <text x="320" y="22" class="f" font-size="13" fill="#8b949e" text-anchor="middle" font-weight="bold">📜 Shell Scripting Basics</text>
+    <text x="320" y="42" class="f" font-size="12" fill="#58a6ff" text-anchor="middle">Shebang · Variables · if · Loops</text>
+  </g>
+  <g class="c1">
+    <rect x="20" y="68" width="185" height="134" rx="10" fill="#1a0f08"/>
+    <rect x="20" y="68" width="185" height="4" rx="2" fill="#f0883e"/>
+    <text x="112" y="108" class="f" font-size="30" text-anchor="middle">📜</text>
+    <text x="112" y="133" class="f" font-size="15" fill="#f0883e" text-anchor="middle" font-weight="bold">Scripts</text>
+    <text x="112" y="154" class="f" font-size="12" fill="#8b949e" text-anchor="middle">#!/bin/bash</text>
+  </g>
+  <g class="c2">
+    <rect x="228" y="68" width="185" height="134" rx="10" fill="#0d1520"/>
+    <rect x="228" y="68" width="185" height="4" rx="2" fill="#58a6ff"/>
+    <text x="320" y="108" class="f" font-size="30" text-anchor="middle">🤔</text>
+    <text x="320" y="133" class="f" font-size="15" fill="#58a6ff" text-anchor="middle" font-weight="bold">if-conditions</text>
+    <text x="320" y="154" class="f" font-size="12" fill="#8b949e" text-anchor="middle">If... then...</text>
+  </g>
+  <g class="c3">
+    <rect x="436" y="68" width="185" height="134" rx="10" fill="#0a1a0d"/>
+    <rect x="436" y="68" width="185" height="4" rx="2" fill="#3fb950"/>
+    <text x="528" y="108" class="f" font-size="30" text-anchor="middle">🔁</text>
+    <text x="528" y="133" class="f" font-size="15" fill="#3fb950" text-anchor="middle" font-weight="bold">Loops</text>
+    <text x="528" y="154" class="f" font-size="12" fill="#8b949e" text-anchor="middle">for &amp; while</text>
+  </g>
+  <g class="ft">
+    <rect x="20" y="218" width="600" height="36" rx="8" fill="#161b22"/>
+    <text x="320" y="241" class="f" font-size="12" fill="#8b949e" text-anchor="middle">Automate repetitive tasks with shell scripts</text>
+  </g>
 </svg>

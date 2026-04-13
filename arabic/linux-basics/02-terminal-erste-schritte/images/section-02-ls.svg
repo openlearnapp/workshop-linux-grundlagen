@@ -1,27 +1,51 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 160" width="640" height="160">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0d1117"/>
-      <stop offset="100%" stop-color="#161b22"/>
-    </linearGradient>
-  </defs>
-  <rect width="640" height="160" fill="url(#bg)" rx="8"/>
-  <!-- Decorative elements -->
-  <circle cx="80" cy="60" r="2" fill="#3fb950" opacity="0.4"/><circle cx="95" cy="45" r="1.5" fill="#3fb950" opacity="0.35"/><circle cx="70" cy="100" r="1" fill="#3fb950" opacity="0.35"/>
-  <circle cx="560" cy="60" r="2" fill="#3fb950" opacity="0.4"/><circle cx="545" cy="100" r="1.5" fill="#3fb950" opacity="0.35"/><circle cx="570" cy="45" r="1" fill="#3fb950" opacity="0.35"/>
-  <!-- Icon -->
-  
-  <!-- File grid -->
-  <rect x="275" y="35" width="36" height="28" rx="3" fill="#21262d" stroke="#58a6ff" stroke-width="1.5"/>
-  <text x="281" y="53" font-family="monospace" font-size="8" fill="#58a6ff">Docs</text>
-  <rect x="318" y="35" width="36" height="28" rx="3" fill="#21262d" stroke="#3fb950" stroke-width="1.5"/>
-  <text x="321" y="53" font-family="monospace" font-size="8" fill="#3fb950">img/</text>
-  <rect x="275" y="70" width="36" height="28" rx="3" fill="#21262d" stroke="#e6edf3" stroke-width="0.5" opacity="0.9"/>
-  <text x="278" y="88" font-family="monospace" font-size="8" fill="#8b949e">.bash</text>
-  <rect x="318" y="70" width="36" height="28" rx="3" fill="#21262d" stroke="#f0883e" stroke-width="1.5"/>
-  <text x="322" y="88" font-family="monospace" font-size="8" fill="#f0883e">run.sh</text>
-  <!-- ls command above -->
-  <text x="297" y="25" font-family="monospace" font-size="11" fill="#3fb950" opacity="0.7">ls -la</text>
-  <!-- Accent bar -->
-  <rect x="180" y="152" width="280" height="4" fill="#3fb950" opacity="0.8" rx="1.5"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 230">
+<style>
+.f{font-family:sans-serif}
+.ti{animation:tia 11s infinite}@keyframes tia{0%,3%{opacity:0}7%,87%{opacity:1}92%,100%{opacity:0}}
+.c1{animation:c1a 11s infinite}@keyframes c1a{0%,12%{opacity:0}18%,87%{opacity:1}92%,100%{opacity:0}}
+.c2{animation:c2a 11s infinite}@keyframes c2a{0%,30%{opacity:0}36%,87%{opacity:1}92%,100%{opacity:0}}
+.c3{animation:c3a 11s infinite}@keyframes c3a{0%,48%{opacity:0}54%,87%{opacity:1}92%,100%{opacity:0}}
+.c4{animation:c4a 11s infinite}@keyframes c4a{0%,65%{opacity:0}71%,87%{opacity:1}92%,100%{opacity:0}}
+.ft{animation:fta 11s infinite}@keyframes fta{0%,78%{opacity:0}82%,87%{opacity:1}92%,100%{opacity:0}}
+</style>
+<rect width="640" height="230" rx="12" fill="#0d1117"/>
+<rect width="640" height="46" rx="12" fill="#161b22"/>
+<rect y="34" width="640" height="12" fill="#161b22"/>
+<text class="f ti" x="320" y="28" text-anchor="middle" font-size="14" font-weight="bold" fill="#e6edf3">ls — شاهد ما في المجلد</text>
+<g class="c1">
+<rect x="16" y="56" width="142" height="118" rx="8" fill="#0d1520"/>
+<rect x="16" y="56" width="142" height="4" rx="2" fill="#58a6ff"/>
+<text class="f" x="87" y="82" text-anchor="middle" font-size="22">📋</text>
+<text class="f" x="87" y="104" text-anchor="middle" font-size="18" font-weight="bold" fill="#58a6ff">ls</text>
+<text class="f" x="87" y="122" text-anchor="middle" font-size="11" fill="#8b949e">قائمة الملفات</text>
+<text class="f" x="87" y="138" text-anchor="middle" font-size="11" fill="#8b949e">والمجلدات</text>
+</g>
+<g class="c2">
+<rect x="168" y="56" width="142" height="118" rx="8" fill="#0a1a0d"/>
+<rect x="168" y="56" width="142" height="4" rx="2" fill="#3fb950"/>
+<text class="f" x="239" y="82" text-anchor="middle" font-size="22">🔍</text>
+<text class="f" x="239" y="104" text-anchor="middle" font-size="18" font-weight="bold" fill="#3fb950">ls -l</text>
+<text class="f" x="239" y="122" text-anchor="middle" font-size="11" fill="#8b949e">التفاصيل: الصلاحيات</text>
+<text class="f" x="239" y="138" text-anchor="middle" font-size="11" fill="#8b949e">الحجم · التاريخ</text>
+</g>
+<g class="c3">
+<rect x="320" y="56" width="142" height="118" rx="8" fill="#1a0f08"/>
+<rect x="320" y="56" width="142" height="4" rx="2" fill="#f0883e"/>
+<text class="f" x="391" y="82" text-anchor="middle" font-size="22">👁️</text>
+<text class="f" x="391" y="104" text-anchor="middle" font-size="18" font-weight="bold" fill="#f0883e">ls -a</text>
+<text class="f" x="391" y="122" text-anchor="middle" font-size="11" fill="#8b949e">الملفات المخفية</text>
+<text class="f" x="391" y="138" text-anchor="middle" font-size="11" fill="#8b949e">(.bashrc وغيرها)</text>
+</g>
+<g class="c4">
+<rect x="472" y="56" width="152" height="118" rx="8" fill="#110d1a"/>
+<rect x="472" y="56" width="152" height="4" rx="2" fill="#bc8cff"/>
+<text class="f" x="548" y="82" text-anchor="middle" font-size="22">✨</text>
+<text class="f" x="548" y="104" text-anchor="middle" font-size="18" font-weight="bold" fill="#bc8cff">ls -la</text>
+<text class="f" x="548" y="122" text-anchor="middle" font-size="11" fill="#8b949e">كل شيء معاً</text>
+<text class="f" x="548" y="138" text-anchor="middle" font-size="11" fill="#bc8cff">الخيار الشامل!</text>
+</g>
+<g class="ft">
+<rect x="16" y="186" width="608" height="28" rx="6" fill="#161b22"/>
+<text class="f" x="320" y="205" text-anchor="middle" font-size="11" fill="#8b949e">ls = قائمة · -l = صيغة طويلة · -a = جميع الملفات · -h = قابل للقراءة</text>
+</g>
 </svg>

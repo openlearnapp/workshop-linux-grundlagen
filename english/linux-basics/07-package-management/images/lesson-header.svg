@@ -1,87 +1,44 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 270">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#0d1117"/>
-      <stop offset="100%" stop-color="#1a2540"/>
-    </linearGradient>
+    <style>
+      .f{font-family:sans-serif}
+      .ti{animation:tia 11s infinite}@keyframes tia{0%,3%{opacity:0}7%,87%{opacity:1}92%,100%{opacity:0}}
+      .c1{animation:c1a 11s infinite}@keyframes c1a{0%,12%{opacity:0}18%,87%{opacity:1}92%,100%{opacity:0}}
+      .c2{animation:c2a 11s infinite}@keyframes c2a{0%,30%{opacity:0}36%,87%{opacity:1}92%,100%{opacity:0}}
+      .c3{animation:c3a 11s infinite}@keyframes c3a{0%,48%{opacity:0}54%,87%{opacity:1}92%,100%{opacity:0}}
+      .ft{animation:fta 11s infinite}@keyframes fta{0%,78%{opacity:0}82%,87%{opacity:1}92%,100%{opacity:0}}
+    </style>
   </defs>
-  <rect width="640" height="360" fill="url(#bg)"/>
-
-  <!-- Package box 1 - large center -->
-  <g transform="translate(260, 60)">
-    <!-- Box top face -->
-    <polygon points="60,0 120,25 60,50 0,25" fill="#58a6ff" opacity="0.3" stroke="#58a6ff" stroke-width="1.5"/>
-    <!-- Box front face -->
-    <polygon points="0,25 60,50 60,120 0,95" fill="#58a6ff" opacity="0.2" stroke="#58a6ff" stroke-width="1.5"/>
-    <!-- Box right face -->
-    <polygon points="60,50 120,25 120,95 60,120" fill="#58a6ff" opacity="0.15" stroke="#58a6ff" stroke-width="1.5"/>
-    <!-- Tape -->
-    <line x1="60" y1="0" x2="60" y2="50" stroke="#58a6ff" stroke-width="2"/>
-    <line x1="60" y1="50" x2="60" y2="120" stroke="#58a6ff" stroke-width="2" opacity="0.5"/>
-    <!-- Label -->
-    <text x="60" y="90" font-family="monospace" font-size="14" fill="#58a6ff" text-anchor="middle" font-weight="bold">apt</text>
+  <rect width="640" height="270" rx="12" fill="#0d1117"/>
+  <rect width="640" height="56" rx="12" fill="#161b22"/>
+  <rect y="44" width="640" height="12" fill="#161b22"/>
+  <g class="ti">
+    <text x="320" y="22" class="f" font-size="13" fill="#8b949e" text-anchor="middle" font-weight="bold">📦 Package Management</text>
+    <text x="320" y="42" class="f" font-size="12" fill="#58a6ff" text-anchor="middle">apt · dpkg · snap — Linux App Store</text>
   </g>
-
-  <!-- Package box 2 - left -->
-  <g transform="translate(80, 120)">
-    <polygon points="45,0 90,18 45,36 0,18" fill="#3fb950" opacity="0.3" stroke="#3fb950" stroke-width="1.5"/>
-    <polygon points="0,18 45,36 45,90 0,72" fill="#3fb950" opacity="0.2" stroke="#3fb950" stroke-width="1.5"/>
-    <polygon points="45,36 90,18 90,72 45,90" fill="#3fb950" opacity="0.15" stroke="#3fb950" stroke-width="1.5"/>
-    <line x1="45" y1="0" x2="45" y2="36" stroke="#3fb950" stroke-width="2"/>
-    <line x1="45" y1="36" x2="45" y2="90" stroke="#3fb950" stroke-width="2" opacity="0.5"/>
-    <text x="45" y="68" font-family="monospace" font-size="12" fill="#3fb950" text-anchor="middle" font-weight="bold">dnf</text>
+  <g class="c1">
+    <rect x="20" y="68" width="185" height="134" rx="10" fill="#0a1a0d"/>
+    <rect x="20" y="68" width="185" height="4" rx="2" fill="#3fb950"/>
+    <text x="112" y="108" class="f" font-size="30" text-anchor="middle">📦</text>
+    <text x="112" y="133" class="f" font-size="16" fill="#3fb950" text-anchor="middle" font-weight="bold">apt</text>
+    <text x="112" y="154" class="f" font-size="12" fill="#8b949e" text-anchor="middle">Main tool</text>
   </g>
-
-  <!-- Package box 3 - right -->
-  <g transform="translate(470, 120)">
-    <polygon points="45,0 90,18 45,36 0,18" fill="#f0883e" opacity="0.3" stroke="#f0883e" stroke-width="1.5"/>
-    <polygon points="0,18 45,36 45,90 0,72" fill="#f0883e" opacity="0.2" stroke="#f0883e" stroke-width="1.5"/>
-    <polygon points="45,36 90,18 90,72 45,90" fill="#f0883e" opacity="0.15" stroke="#f0883e" stroke-width="1.5"/>
-    <line x1="45" y1="0" x2="45" y2="36" stroke="#f0883e" stroke-width="2"/>
-    <line x1="45" y1="36" x2="45" y2="90" stroke="#f0883e" stroke-width="2" opacity="0.5"/>
-    <text x="45" y="68" font-family="monospace" font-size="12" fill="#f0883e" text-anchor="middle" font-weight="bold">snap</text>
+  <g class="c2">
+    <rect x="228" y="68" width="185" height="134" rx="10" fill="#0d1520"/>
+    <rect x="228" y="68" width="185" height="4" rx="2" fill="#58a6ff"/>
+    <text x="320" y="108" class="f" font-size="30" text-anchor="middle">🔧</text>
+    <text x="320" y="133" class="f" font-size="16" fill="#58a6ff" text-anchor="middle" font-weight="bold">dpkg</text>
+    <text x="320" y="154" class="f" font-size="12" fill="#8b949e" text-anchor="middle">Direct install</text>
   </g>
-
-  <!-- Small packages scattered -->
-  <g transform="translate(190, 200)">
-    <polygon points="25,0 50,10 25,20 0,10" fill="#bc8cff" opacity="0.3" stroke="#bc8cff" stroke-width="1"/>
-    <polygon points="0,10 25,20 25,50 0,40" fill="#bc8cff" opacity="0.2" stroke="#bc8cff" stroke-width="1"/>
-    <polygon points="25,20 50,10 50,40 25,50" fill="#bc8cff" opacity="0.15" stroke="#bc8cff" stroke-width="1"/>
-    <text x="25" y="38" font-family="monospace" font-size="8" fill="#bc8cff" text-anchor="middle">dpkg</text>
+  <g class="c3">
+    <rect x="436" y="68" width="185" height="134" rx="10" fill="#110d1a"/>
+    <rect x="436" y="68" width="185" height="4" rx="2" fill="#bc8cff"/>
+    <text x="528" y="108" class="f" font-size="30" text-anchor="middle">🔵</text>
+    <text x="528" y="133" class="f" font-size="16" fill="#bc8cff" text-anchor="middle" font-weight="bold">snap</text>
+    <text x="528" y="154" class="f" font-size="12" fill="#8b949e" text-anchor="middle">Universal packages</text>
   </g>
-
-  <g transform="translate(400, 200)">
-    <polygon points="25,0 50,10 25,20 0,10" fill="#f85149" opacity="0.3" stroke="#f85149" stroke-width="1"/>
-    <polygon points="0,10 25,20 25,50 0,40" fill="#f85149" opacity="0.2" stroke="#f85149" stroke-width="1"/>
-    <polygon points="25,20 50,10 50,40 25,50" fill="#f85149" opacity="0.15" stroke="#f85149" stroke-width="1"/>
-    <text x="25" y="38" font-family="monospace" font-size="8" fill="#f85149" text-anchor="middle">pacman</text>
+  <g class="ft">
+    <rect x="20" y="218" width="600" height="36" rx="8" fill="#161b22"/>
+    <text x="320" y="241" class="f" font-size="12" fill="#8b949e" text-anchor="middle">apt is like an App Store — find, install, remove programs easily</text>
   </g>
-
-  <!-- Download arrows -->
-  <g transform="translate(290, 210)">
-    <line x1="30" y1="0" x2="30" y2="40" stroke="#3fb950" stroke-width="2"/>
-    <polygon points="20,35 30,50 40,35" fill="#3fb950"/>
-  </g>
-
-  <!-- Progress bar -->
-  <rect x="140" y="280" width="360" height="30" rx="6" fill="#21262d" stroke="#30363d" stroke-width="1"/>
-  <rect x="143" y="283" width="250" height="24" rx="4" fill="#58a6ff" opacity="0.6"/>
-  <text x="320" y="300" font-family="monospace" font-size="12" fill="#e6edf3" text-anchor="middle">install [==================>    ] 72%</text>
-
-  <!-- Checkmark icons -->
-  <circle cx="120" y="330" r="10" fill="none" stroke="#3fb950" stroke-width="1.5" cy="330"/>
-  <polyline points="114,330 118,335 127,325" fill="none" stroke="#3fb950" stroke-width="2"/>
-  <text x="138" y="335" font-family="monospace" font-size="10" fill="#8b949e">nginx</text>
-
-  <circle cx="240" cy="330" r="10" fill="none" stroke="#3fb950" stroke-width="1.5"/>
-  <polyline points="234,330 238,335 247,325" fill="none" stroke="#3fb950" stroke-width="2"/>
-  <text x="258" y="335" font-family="monospace" font-size="10" fill="#8b949e">git</text>
-
-  <circle cx="340" cy="330" r="10" fill="none" stroke="#3fb950" stroke-width="1.5"/>
-  <polyline points="334,330 338,335 347,325" fill="none" stroke="#3fb950" stroke-width="2"/>
-  <text x="358" y="335" font-family="monospace" font-size="10" fill="#8b949e">curl</text>
-
-  <circle cx="440" cy="330" r="10" fill="none" stroke="#f0883e" stroke-width="1.5"/>
-  <text x="440" y="334" font-family="monospace" font-size="10" fill="#f0883e" text-anchor="middle">...</text>
-  <text x="458" y="335" font-family="monospace" font-size="10" fill="#8b949e">nodejs</text>
 </svg>

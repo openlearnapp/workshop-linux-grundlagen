@@ -1,78 +1,43 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#0d1117"/>
-      <stop offset="100%" stop-color="#1a2540"/>
-    </linearGradient>
-  </defs>
-  <rect width="640" height="360" fill="url(#bg)"/>
-
-  <!-- Router (center) -->
-  <rect x="270" y="130" width="100" height="60" rx="8" fill="#21262d" stroke="#58a6ff" stroke-width="2"/>
-  <!-- Router antennas -->
-  <line x1="295" y1="130" x2="285" y2="105" stroke="#58a6ff" stroke-width="2"/>
-  <circle cx="285" cy="102" r="4" fill="#58a6ff"/>
-  <line x1="345" y1="130" x2="355" y2="105" stroke="#58a6ff" stroke-width="2"/>
-  <circle cx="355" cy="102" r="4" fill="#58a6ff"/>
-  <!-- Router LEDs -->
-  <circle cx="290" cy="155" r="3" fill="#3fb950"/>
-  <circle cx="305" cy="155" r="3" fill="#3fb950"/>
-  <circle cx="320" cy="155" r="3" fill="#f0883e"/>
-  <circle cx="335" cy="155" r="3" fill="#3fb950"/>
-  <circle cx="350" cy="155" r="3" fill="#8b949e"/>
-  <!-- Router ports -->
-  <rect x="284" y="168" width="12" height="8" rx="1" fill="#30363d"/>
-  <rect x="300" y="168" width="12" height="8" rx="1" fill="#30363d"/>
-  <rect x="316" y="168" width="12" height="8" rx="1" fill="#30363d"/>
-  <rect x="332" y="168" width="12" height="8" rx="1" fill="#30363d"/>
-  <rect x="348" y="168" width="12" height="8" rx="1" fill="#30363d"/>
-
-  <!-- Connection lines -->
-  <!-- Router to Server -->
-  <line x1="320" y1="130" x2="320" y2="50" stroke="#30363d" stroke-width="2" stroke-dasharray="6,3"/>
-  <!-- Router to Client 1 -->
-  <line x1="270" y1="176" x2="120" y2="260" stroke="#30363d" stroke-width="2" stroke-dasharray="6,3"/>
-  <!-- Router to Client 2 -->
-  <line x1="370" y1="176" x2="520" y2="260" stroke="#30363d" stroke-width="2" stroke-dasharray="6,3"/>
-  <!-- Router to Client 3 (wireless) -->
-  <line x1="320" y1="190" x2="320" y2="260" stroke="#30363d" stroke-width="2" stroke-dasharray="3,5"/>
-
-  <!-- Server (top) -->
-  <rect x="280" y="15" width="80" height="40" rx="6" fill="#21262d" stroke="#3fb950" stroke-width="2"/>
-  <rect x="290" y="25" width="24" height="6" rx="2" fill="#161b22"/>
-  <rect x="290" y="35" width="24" height="6" rx="2" fill="#161b22"/>
-  <circle cx="348" cy="28" r="3" fill="#3fb950"/>
-  <circle cx="348" cy="38" r="3" fill="#3fb950"/>
-  <text x="320" y="68" font-family="monospace" font-size="10" fill="#3fb950" text-anchor="middle">192.168.1.1</text>
-
-  <!-- Client 1 (laptop - left) -->
-  <rect x="75" y="260" width="90" height="55" rx="6" fill="#21262d" stroke="#f0883e" stroke-width="2"/>
-  <rect x="85" y="268" width="70" height="38" rx="2" fill="#161b22"/>
-  <rect x="70" y="315" width="100" height="6" rx="3" fill="#30363d"/>
-  <text x="120" y="340" font-family="monospace" font-size="10" fill="#f0883e" text-anchor="middle">192.168.1.10</text>
-
-  <!-- Client 2 (desktop - right) -->
-  <rect x="485" y="260" width="70" height="55" rx="4" fill="#21262d" stroke="#bc8cff" stroke-width="2"/>
-  <rect x="492" y="267" width="56" height="38" rx="2" fill="#161b22"/>
-  <rect x="510" y="315" width="20" height="12" rx="2" fill="#30363d"/>
-  <rect x="498" y="327" width="44" height="4" rx="2" fill="#30363d"/>
-  <text x="520" y="348" font-family="monospace" font-size="10" fill="#bc8cff" text-anchor="middle">192.168.1.20</text>
-
-  <!-- Client 3 (mobile - center bottom) -->
-  <rect x="300" y="265" width="40" height="65" rx="6" fill="#21262d" stroke="#58a6ff" stroke-width="2"/>
-  <rect x="306" y="275" width="28" height="40" rx="2" fill="#161b22"/>
-  <circle cx="320" cy="322" r="3" fill="#30363d"/>
-  <text x="320" y="348" font-family="monospace" font-size="10" fill="#58a6ff" text-anchor="middle">192.168.1.30</text>
-
-  <!-- Wireless signal arcs -->
-  <path d="M305 248 Q280 240 280 220" fill="none" stroke="#58a6ff" stroke-width="1" opacity="0.4"/>
-  <path d="M335 248 Q360 240 360 220" fill="none" stroke="#58a6ff" stroke-width="1" opacity="0.4"/>
-  <path d="M298 240 Q265 228 265 205" fill="none" stroke="#58a6ff" stroke-width="1" opacity="0.25"/>
-  <path d="M342 240 Q375 228 375 205" fill="none" stroke="#58a6ff" stroke-width="1" opacity="0.25"/>
-
-  <!-- Data packets animated feel -->
-  <circle cx="195" cy="218" r="4" fill="#f0883e" opacity="0.7"/>
-  <circle cx="445" cy="218" r="4" fill="#bc8cff" opacity="0.7"/>
-  <circle cx="320" cy="225" r="4" fill="#58a6ff" opacity="0.7"/>
-  <circle cx="320" cy="85" r="4" fill="#3fb950" opacity="0.7"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 270">
+<defs><style>
+.f{font-family:sans-serif}
+.ti{animation:tia 11s infinite}@keyframes tia{0%,3%{opacity:0}7%,87%{opacity:1}92%,100%{opacity:0}}
+.c1{animation:c1a 11s infinite}@keyframes c1a{0%,12%{opacity:0}18%,87%{opacity:1}92%,100%{opacity:0}}
+.c2{animation:c2a 11s infinite}@keyframes c2a{0%,30%{opacity:0}36%,87%{opacity:1}92%,100%{opacity:0}}
+.c3{animation:c3a 11s infinite}@keyframes c3a{0%,48%{opacity:0}54%,87%{opacity:1}92%,100%{opacity:0}}
+.ft{animation:fta 11s infinite}@keyframes fta{0%,78%{opacity:0}82%,87%{opacity:1}92%,100%{opacity:0}}
+</style></defs>
+<rect width="640" height="270" rx="12" fill="#0d1117"/>
+<rect width="640" height="64" rx="12" fill="#161b22"/>
+<rect y="52" width="640" height="12" fill="#161b22"/>
+<g class="ti">
+  <text x="320" y="26" text-anchor="middle" class="f" font-size="24">🌐</text>
+  <text x="320" y="48" text-anchor="middle" class="f" font-size="17" font-weight="bold" fill="#e6edf3">شبکه</text>
+  <text x="320" y="73" text-anchor="middle" class="f" font-size="11" fill="#8b949e">ping · ip · curl · wget · SSH</text>
+</g>
+<g class="c1">
+  <rect x="20" y="88" width="185" height="118" rx="8" fill="#0d1520" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="112" y="116" text-anchor="middle" class="f" font-size="26">📡</text>
+  <text x="112" y="140" text-anchor="middle" class="f" font-size="13" font-weight="bold" fill="#58a6ff">بررسی</text>
+  <text x="112" y="158" text-anchor="middle" class="f" font-size="10" fill="#8b949e">ping · ip · ss</text>
+  <text x="112" y="174" text-anchor="middle" class="f" font-size="9" fill="#58a6ff" opacity="0.7">وضعیت شبکه</text>
+</g>
+<g class="c2">
+  <rect x="228" y="88" width="185" height="118" rx="8" fill="#0a1a0d" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="320" y="116" text-anchor="middle" class="f" font-size="26">📥</text>
+  <text x="320" y="140" text-anchor="middle" class="f" font-size="13" font-weight="bold" fill="#3fb950">دانلود</text>
+  <text x="320" y="158" text-anchor="middle" class="f" font-size="10" fill="#8b949e">curl · wget</text>
+  <text x="320" y="174" text-anchor="middle" class="f" font-size="9" fill="#3fb950" opacity="0.7">دریافت از اینترنت</text>
+</g>
+<g class="c3">
+  <rect x="435" y="88" width="185" height="118" rx="8" fill="#1a0f08" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="527" y="116" text-anchor="middle" class="f" font-size="26">🔐</text>
+  <text x="527" y="140" text-anchor="middle" class="f" font-size="13" font-weight="bold" fill="#f0883e">اتصال</text>
+  <text x="527" y="158" text-anchor="middle" class="f" font-size="10" fill="#8b949e">SSH</text>
+  <text x="527" y="174" text-anchor="middle" class="f" font-size="9" fill="#f0883e" opacity="0.7">ایمن و رمزنگاری‌شده</text>
+</g>
+<g class="ft">
+  <rect x="20" y="222" width="600" height="34" rx="6" fill="#161b22"/>
+  <text x="320" y="244" text-anchor="middle" class="f" font-size="10" fill="#8b949e">ابزارهای شبکه لینوکس برای هر توسعه‌دهنده‌ای ضروری است</text>
+</g>
 </svg>

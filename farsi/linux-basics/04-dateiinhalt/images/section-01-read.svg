@@ -1,26 +1,43 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 160" width="640" height="160">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0d1117"/>
-      <stop offset="100%" stop-color="#161b22"/>
-    </linearGradient>
-  </defs>
-  <rect width="640" height="160" fill="url(#bg)" rx="8"/>
-  <!-- Decorative elements -->
-  <circle cx="80" cy="60" r="2" fill="#58a6ff" opacity="0.4"/><circle cx="95" cy="45" r="1.5" fill="#58a6ff" opacity="0.35"/><circle cx="70" cy="100" r="1" fill="#58a6ff" opacity="0.35"/>
-  <circle cx="560" cy="60" r="2" fill="#58a6ff" opacity="0.4"/><circle cx="545" cy="100" r="1.5" fill="#58a6ff" opacity="0.35"/><circle cx="570" cy="45" r="1" fill="#58a6ff" opacity="0.35"/>
-  <!-- Icon -->
-  
-  <!-- Document with text lines -->
-  <rect x="290" y="30" width="60" height="75" rx="4" fill="#161b22" stroke="#30363d" stroke-width="1.5"/>
-  <line x1="300" y1="48" x2="340" y2="48" stroke="#58a6ff" stroke-width="2" opacity="0.9"/>
-  <line x1="300" y1="58" x2="332" y2="58" stroke="#8b949e" stroke-width="1.5" opacity="0.7"/>
-  <line x1="300" y1="68" x2="338" y2="68" stroke="#8b949e" stroke-width="1.5" opacity="0.7"/>
-  <line x1="300" y1="78" x2="325" y2="78" stroke="#8b949e" stroke-width="1.5" opacity="0.7"/>
-  <line x1="300" y1="88" x2="336" y2="88" stroke="#8b949e" stroke-width="1.5" opacity="0.7"/>
-  <!-- Eye icon (reading) -->
-  <ellipse cx="320" cy="122" rx="16" ry="10" fill="none" stroke="#58a6ff" stroke-width="1.5" opacity="0.8"/>
-  <circle cx="320" cy="122" r="5" fill="#58a6ff" opacity="0.6"/>
-  <!-- Accent bar -->
-  <rect x="180" y="152" width="280" height="4" fill="#58a6ff" opacity="0.8" rx="1.5"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 210">
+<defs>
+<style>
+.f{font-family:sans-serif;}
+.ti{animation:tia 11s infinite}@keyframes tia{0%,3%{opacity:0}7%,87%{opacity:1}92%,100%{opacity:0}}
+.c1{animation:c1a 11s infinite}@keyframes c1a{0%,12%{opacity:0}18%,87%{opacity:1}92%,100%{opacity:0}}
+.c2{animation:c2a 11s infinite}@keyframes c2a{0%,30%{opacity:0}36%,87%{opacity:1}92%,100%{opacity:0}}
+.c3{animation:c3a 11s infinite}@keyframes c3a{0%,48%{opacity:0}54%,87%{opacity:1}92%,100%{opacity:0}}
+.ft{animation:fta 11s infinite}@keyframes fta{0%,78%{opacity:0}82%,87%{opacity:1}92%,100%{opacity:0}}
+</style>
+</defs>
+<rect width="640" height="210" rx="12" fill="#0d1117"/>
+<rect width="640" height="52" rx="12" fill="#161b22"/>
+<rect y="40" width="640" height="12" fill="#161b22"/>
+<g class="ti">
+  <text x="320" y="32" text-anchor="middle" class="f" font-size="13" font-weight="bold" fill="#e6edf3">cat، less و more — خواندن فایل‌ها</text>
+</g>
+<g class="c1">
+  <rect x="20" y="62" width="185" height="110" rx="8" fill="#0d1520" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="112" y="88" text-anchor="middle" class="f" font-size="22">📄</text>
+  <text x="112" y="108" text-anchor="middle" class="f" font-size="14" font-weight="bold" fill="#58a6ff">cat</text>
+  <text x="112" y="124" text-anchor="middle" class="f" font-size="10" fill="#8b949e">محتوا را</text>
+  <text x="112" y="139" text-anchor="middle" class="f" font-size="10" fill="#8b949e">فوری نشان بده</text>
+</g>
+<g class="c2">
+  <rect x="228" y="62" width="185" height="110" rx="8" fill="#110d1a" stroke="#bc8cff" stroke-width="1.5"/>
+  <text x="320" y="88" text-anchor="middle" class="f" font-size="22">📜</text>
+  <text x="320" y="108" text-anchor="middle" class="f" font-size="14" font-weight="bold" fill="#bc8cff">less</text>
+  <text x="320" y="124" text-anchor="middle" class="f" font-size="10" fill="#8b949e">با کلیدهای جهت اسکرول کن</text>
+  <text x="320" y="139" text-anchor="middle" class="f" font-size="10" fill="#8b949e">q برای خروج</text>
+</g>
+<g class="c3">
+  <rect x="435" y="62" width="185" height="110" rx="8" fill="#1a0f08" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="527" y="88" text-anchor="middle" class="f" font-size="22">📃</text>
+  <text x="527" y="108" text-anchor="middle" class="f" font-size="14" font-weight="bold" fill="#f0883e">more</text>
+  <text x="527" y="124" text-anchor="middle" class="f" font-size="10" fill="#8b949e">صفحه به صفحه</text>
+  <text x="527" y="139" text-anchor="middle" class="f" font-size="10" fill="#8b949e">مرور کن</text>
+</g>
+<g class="ft">
+  <rect x="20" y="184" width="600" height="18" rx="4" fill="#161b22"/>
+  <text x="320" y="197" text-anchor="middle" class="f" font-size="10" fill="#8b949e">cat file.txt · less file.txt · more file.txt</text>
+</g>
 </svg>
