@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Terminal Heroes – Linux Grundlagen Quiz</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;font-family:'Outfit',sans-serif;overflow:hidden;
+  background:#04040C;color:#fff;user-select:none}
+
+/* ── 3D World ── */
+#world{position:fixed;inset:0;perspective:900px;perspective-origin:50% 40%}
+#scene{width:100%;height:100%;transform-style:preserve-3d}
+
+/* ── Canvas bg ── */
+#bgCanvas{position:absolute;inset:0;width:100%;height:100%}
+
+/* ── UI Layer (flat, on top) ── */
+#ui{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;
+  justify-content:flex-start;padding:16px 16px 16px;gap:10px;pointer-events:none}
+#ui>*{pointer-events:all}
+
+/* ── Back link ── */
+.back-link{position:fixed;top:14px;left:16px;font-size:11px;font-weight:700;
+  color:rgba(0,255,65,.4);text-decoration:none;letter-spacing:1px;
+  transition:color .2s;z-index:100}
+.back-link:hover{color:rgba(0,255,65,.8)}
+
+/* ── Header ── */
+.hdr{text-align:center}
+.hdr-tag{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(0,255,65,.5);font-weight:700}
+.hdr-title{font-size:18px;font-weight:900;letter-spacing:-.5px;margin-top:2px}
+.hdr-cmd{font-family:monospace;font-size:28px;font-weight:900;letter-spacing:2px;
+  text-shadow:0 0 20px currentColor;margin-top:4px;transition:color .4s,text-shadow .4s}
+.hdr-sub{font-size:12px;color:rgba(255,255,255,.35);margin-top:3px}
+
+/* ── Mission tabs ── */
+.m-tabs{display:flex;gap:4px;background:rgba(255,255,255,.05);padding:4px;border-radius:10px}
+.m-tab{padding:5px 12px;border-radius:7px;border:none;font-family:'Outfit',sans-serif;
+  font-size:11px;font-weight:700;cursor:pointer;background:transparent;color:rgba(255,255,255,.3);
+  transition:all .2s;letter-spacing:.3px}
+.m-tab.on{background:rgba(0,255,65,.15);color:#00FF41;border:1px solid rgba(0,255,65,.3)}
+.m-tab.done{color:rgba(0,255,65,.5)}
+
+/* ── 3D Cards Stage ── */
+#cardsStage{
+  position:absolute;
+  width:100%;height:100%;
+  transform-style:preserve-3d;
+}
+
+/* ── Single 3D Card ── */
+.card3d{
+  position:absolute;width:220px;height:140px;
+  transform-style:preserve-3d;cursor:pointer;
+}
+.card3d .face{
+  position:absolute;inset:0;border-radius:18px;
+  backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  display:flex;flex-direction:column;justify-content:center;align-items:flex-start;
+  padding:18px;
+}
+.card3d .front{
+  background:#0D1117;
+  border:1.5px solid rgba(255,255,255,.1);
+  box-shadow:0 20px 60px rgba(0,0,0,.7);
+  transition:border-color .2s,box-shadow .2s;
+}
+.card3d .back{
+  background:#0D2010;
+  border:1.5px solid rgba(74,222,128,.5);
+  transform:rotateY(180deg);
+  box-shadow:0 20px 60px rgba(0,0,0,.7),0 0 40px rgba(74,222,128,.3);
+  display:flex;align-items:center;justify-content:center;
+}
+.card3d .back-content{text-align:center}
+.card3d .back-check{font-size:36px;margin-bottom:8px}
+.card3d .back-text{font-size:13px;font-weight:700;color:#4ade80;line-height:1.3}
+.card3d.wrong .front{border-color:rgba(248,113,113,.6);
+  box-shadow:0 20px 60px rgba(0,0,0,.7),0 0 30px rgba(248,113,113,.2)}
+
+.card-num{font-size:11px;font-weight:700;color:rgba(255,255,255,.25);letter-spacing:1px;
+  margin-bottom:6px;font-family:monospace}
+.card-text{font-size:14px;font-weight:700;color:#fff;line-height:1.35}
+.card-sub{font-size:11px;color:rgba(255,255,255,.35);margin-top:5px;font-family:monospace;letter-spacing:.3px}
+
+/* Scanlines on cards */
+.card3d .front::before{content:'';position:absolute;inset:0;border-radius:18px;
+  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,255,65,.025) 3px,transparent 4px);
+  pointer-events:none}
+
+/* ── Lückentext panel ── */
+.lueck-box{
+  background:#0D1117;border:1.5px solid rgba(0,255,65,.25);border-radius:20px;
+  padding:24px 24px;
+  box-shadow:0 30px 80px rgba(0,0,0,.7),0 0 0 1px rgba(0,255,65,.06) inset,0 -4px 0 rgba(0,255,65,.1);
+  transform:rotateX(4deg) translateZ(30px);
+}
+.t-dots{display:flex;gap:6px;margin-bottom:14px}
+.t-dot{width:10px;height:10px;border-radius:50%}
+.t-line{font-family:monospace;font-size:17px;color:rgba(255,255,255,.75);display:flex;align-items:center;flex-wrap:wrap;gap:2px}
+.t-pr{color:rgba(0,255,65,.7)}
+.t-blank{display:inline-block;min-width:70px;border-bottom:2px solid #00FF41;color:#00FF41;
+  font-size:17px;font-weight:900;margin:0 4px;padding:2px 8px;text-align:center;
+  transition:all .3s;font-family:monospace}
+.t-blank.filled{background:rgba(0,255,65,.1);border-radius:6px;border-bottom-width:1px}
+.t-out{margin-top:14px;border-top:1px solid rgba(255,255,255,.06);padding-top:12px;
+  font-size:13px;color:rgba(0,255,65,.75);font-family:monospace;white-space:pre;
+  opacity:0;transition:opacity .4s;min-height:36px;line-height:1.8}
+.t-out.show{opacity:1}
+.choices-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.cmd-badge{padding:10px 20px;border-radius:10px;border:1.5px solid;cursor:pointer;
+  font-family:monospace;font-size:15px;font-weight:800;transition:all .2s;letter-spacing:.5px;
+  transform-style:preserve-3d}
+.cmd-badge:hover{transform:translateY(-3px) translateZ(10px) scale(1.05);filter:brightness(1.3)}
+
+/* ── Output Rätsel ── */
+.out-line{font-size:13px;color:rgba(0,255,65,.8);line-height:1.7;opacity:0;
+  transform:translateX(-8px);transition:opacity .2s,transform .2s}
+.out-line.show{opacity:1;transform:translateX(0)}
+.out-btn{padding:10px 22px;border-radius:10px;background:#0D1117;border:1.5px solid rgba(255,255,255,.12);
+  cursor:pointer;font-family:monospace;font-size:14px;font-weight:700;color:rgba(255,255,255,.65);
+  transition:all .2s;letter-spacing:.5px}
+.out-btn:hover{border-color:rgba(0,255,65,.5);color:#00FF41;transform:translateY(-2px) translateZ(8px)}
+.out-btn.ok{border-color:#4ade80;background:rgba(74,222,128,.12);color:#4ade80}
+.out-btn.no{border-color:rgba(248,113,113,.4);color:rgba(248,113,113,.6)}
+
+/* ── Error detector ── */
+.err-lbl{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:rgba(255,85,85,.7);margin-bottom:10px}
+.err-cmd{font-family:monospace;font-size:20px;font-weight:900;color:rgba(255,255,255,.9);
+  display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+.err-token.hl{text-decoration:underline wavy #FF5555;color:#FF8888;animation:hl-pulse 1.2s infinite}
+@keyframes hl-pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.err-token.fixed{color:#00FF41;text-decoration:none!important;animation:none}
+.fix-text{margin-top:12px;font-size:13px;color:rgba(0,255,65,.8);font-family:monospace;
+  background:rgba(0,255,65,.06);border-radius:8px;padding:10px;opacity:0;transition:opacity .4s}
+.fix-text.show{opacity:1}
+.err-opt{padding:12px 16px;border-radius:12px;background:#0D1117;border:1.5px solid rgba(255,255,255,.08);
+  cursor:pointer;font-size:13px;font-weight:600;color:rgba(255,255,255,.55);transition:all .2s;
+  display:flex;align-items:center;gap:8px;transform-style:preserve-3d}
+.err-opt::before{content:'';width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.18);
+  flex-shrink:0;transition:all .2s}
+.err-opt:hover{border-color:rgba(255,255,255,.25);color:#fff;transform:translateX(4px) translateZ(6px)}
+.err-opt:hover::before{background:rgba(255,255,255,.5)}
+.err-opt.ok{border-color:#4ade80;color:#4ade80;background:rgba(74,222,128,.07)}
+.err-opt.ok::before{background:#4ade80;box-shadow:0 0 8px rgba(74,222,128,.6)}
+.err-opt.no{border-color:rgba(248,113,113,.3);color:rgba(248,113,113,.5)}
+
+/* ── Builder ── */
+.bldr-display{background:#0D1117;border:1.5px solid rgba(0,255,65,.25);border-radius:12px;
+  padding:12px 16px;font-family:monospace;min-height:46px;display:flex;align-items:center;
+  gap:4px;flex-wrap:wrap;margin-bottom:12px;
+  box-shadow:0 20px 50px rgba(0,0,0,.6);transform:rotateX(2deg) translateZ(20px)}
+.bldr-pr{color:rgba(0,255,65,.5);font-size:13px;white-space:nowrap}
+.bldr-token{font-size:16px;font-weight:800;font-family:monospace;animation:pop3d .3s cubic-bezier(.34,1.56,.64,1)}
+@keyframes pop3d{from{transform:scale(.4) translateZ(-20px);opacity:0}to{transform:scale(1) translateZ(0);opacity:1}}
+.bldr-cur{width:2px;height:18px;background:#00FF41;animation:blink .8s step-end infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.blk{padding:9px 18px;border-radius:10px;background:#0D1117;border:1.5px solid;cursor:pointer;
+  font-family:monospace;font-size:14px;font-weight:800;transition:all .2s;letter-spacing:.3px;
+  transform-style:preserve-3d}
+.blk:hover:not(.used){transform:translateY(-4px) translateZ(14px) rotateX(-5deg);filter:brightness(1.3);
+  box-shadow:0 10px 20px rgba(0,0,0,.5)}
+.blk.used{opacity:.2;pointer-events:none;transform:translateZ(-10px) scale(.92)}
+.blk.err{animation:blk-err .3s ease}
+@keyframes blk-err{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.run-btn{padding:11px 30px;border-radius:100px;border:none;cursor:pointer;font-family:'Outfit',sans-serif;
+  font-size:14px;font-weight:800;background:linear-gradient(135deg,#00AA30,#00FF41);color:#000;
+  box-shadow:0 4px 20px rgba(0,255,65,.35);opacity:0;pointer-events:none;transition:all .2s;
+  transform-style:preserve-3d}
+.run-btn.rdy{opacity:1;pointer-events:all;animation:glow 1.5s ease-in-out infinite;transform:translateZ(10px)}
+@keyframes glow{0%,100%{box-shadow:0 4px 20px rgba(0,255,65,.35)}50%{box-shadow:0 4px 32px rgba(0,255,65,.75)}}
+.run-btn:hover{transform:translateY(-3px) translateZ(16px);box-shadow:0 10px 32px rgba(0,255,65,.55)}
+.bldr-out{background:#0D1117;border:1px solid rgba(0,255,65,.15);border-radius:10px;
+  padding:12px;font-family:monospace;font-size:13px;color:rgba(0,255,65,.8);white-space:pre;
+  opacity:0;transition:opacity .4s;line-height:1.8;transform:rotateX(1deg) translateZ(5px)}
+.bldr-out.show{opacity:1}
+
+/* ── Panel helper ── */
+.panel-wrap{
+  position:absolute;left:50%;top:50%;
+  transform-style:preserve-3d;
+}
+
+/* ── Bottom bar ── */
+.btm{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:660px;
+  flex-wrap:wrap;gap:8px}
+.score-lbl{font-size:12px;color:rgba(255,255,255,.3);font-weight:700;font-family:monospace}
+.btn-nxt{padding:11px 28px;border-radius:100px;border:none;cursor:pointer;
+  font-family:'Outfit',sans-serif;font-size:14px;font-weight:800;
+  background:linear-gradient(135deg,#7C3AED,#A855F7);color:#fff;
+  box-shadow:0 4px 16px rgba(124,58,237,.4);display:none;
+  transform-style:preserve-3d;transition:all .2s}
+.btn-nxt.show{display:block}
+.btn-nxt:hover{transform:translateY(-2px) translateZ(8px);box-shadow:0 8px 24px rgba(124,58,237,.5)}
+
+/* ── Progress ── */
+.prog-bar{position:fixed;bottom:0;left:0;right:0;height:3px;background:rgba(255,255,255,.05)}
+.prog-fill{height:100%;background:linear-gradient(90deg,#00AA30,#00FF41);width:0%;transition:width .5s}
+
+/* ── Result ── */
+.result-overlay{position:fixed;inset:0;background:rgba(4,4,12,.92);display:flex;
+  align-items:center;justify-content:center;z-index:1000;opacity:0;pointer-events:none;transition:opacity .4s;
+  perspective:800px}
+.result-overlay.show{opacity:1;pointer-events:all}
+.result-box{background:#0D1117;border:2px solid rgba(0,255,65,.4);border-radius:24px;
+  padding:40px 48px;text-align:center;max-width:380px;
+  box-shadow:0 0 80px rgba(0,255,65,.2),0 40px 80px rgba(0,0,0,.6);
+  transform:rotateX(5deg) translateZ(20px)}
+.res-icon{font-size:52px;margin-bottom:12px}
+.res-title{font-size:26px;font-weight:900;margin-bottom:8px}
+.res-score{font-size:52px;font-weight:900;color:#00FF41;font-family:monospace;margin:12px 0;
+  text-shadow:0 0 20px rgba(0,255,65,.5)}
+.res-sub{font-size:13px;color:rgba(255,255,255,.4);margin-bottom:20px}
+.res-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.res-restart{padding:11px 24px;border-radius:100px;border:1.5px solid rgba(0,255,65,.4);
+  background:transparent;color:#00FF41;font-family:'Outfit',sans-serif;font-size:14px;font-weight:700;
+  cursor:pointer;transition:all .2s}
+.res-restart:hover{background:rgba(0,255,65,.1);transform:translateY(-2px)}
+.res-workshop{padding:11px 24px;border-radius:100px;border:1.5px solid rgba(255,255,255,.15);
+  background:transparent;color:rgba(255,255,255,.5);font-family:'Outfit',sans-serif;font-size:14px;font-weight:700;
+  cursor:pointer;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center}
+.res-workshop:hover{border-color:rgba(255,255,255,.3);color:#fff;transform:translateY(-2px)}
+</style>
+</head>
+<body>
+
+<a class="back-link" href="https://open-learn.app/#/add?source=open-learn.app/workshop-linux-grundlagen/">
+  ← Workshop
+</a>
+
+<!-- ── 3D World ── -->
+<div id="world">
+  <div id="scene">
+    <canvas id="bgCanvas"></canvas>
+    <div id="cardsStage"></div>
+  </div>
+</div>
+
+<!-- ── UI Layer ── -->
+<div id="ui">
+  <div class="hdr">
+    <div class="hdr-tag">Linux Grundlagen · Lektion 2 · Terminal Heroes</div>
+    <div class="hdr-cmd" id="hdrCmd" style="color:#00FF41">pwd</div>
+    <div class="hdr-sub" id="hdrSub">Was macht dieser Befehl?</div>
+  </div>
+  <div class="m-tabs" id="mTabs">
+    <button class="m-tab on"  onclick="goM(0)">Command Quiz</button>
+    <button class="m-tab"     onclick="goM(1)">Lückentext</button>
+    <button class="m-tab"     onclick="goM(2)">Output Rätsel</button>
+    <button class="m-tab"     onclick="goM(3)">Fehler Detektor</button>
+    <button class="m-tab"     onclick="goM(4)">Command Builder</button>
+  </div>
+</div>
+
+<!-- ── Bottom UI ── -->
+<div style="position:fixed;bottom:12px;left:50%;transform:translateX(-50%);z-index:50;pointer-events:none">
+  <div class="btm" style="pointer-events:all">
+    <div class="score-lbl" id="scoreLbl">Punkte: 0</div>
+    <button class="btn-nxt" id="btnNxt" onclick="nextQ()">Weiter →</button>
+  </div>
+</div>
+
+<!-- ── Progress ── -->
+<div class="prog-bar"><div class="prog-fill" id="pFill"></div></div>
+
+<!-- ── Result ── -->
+<div class="result-overlay" id="resOverlay">
+  <div class="result-box">
+    <div class="res-icon">🚀</div>
+    <div class="res-title">Terminal Hero!</div>
+    <div class="res-score" id="resScore">0/0</div>
+    <div class="res-sub" id="resSub">Alle Missionen abgeschlossen!</div>
+    <div class="res-btns">
+      <button class="res-restart" onclick="restart()">↺ Nochmal</button>
+      <a class="res-workshop" href="https://open-learn.app/#/add?source=open-learn.app/workshop-linux-grundlagen/">
+        Workshop öffnen →
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════
+// DATA  — abgeleitet aus Lektion 2, content.yaml
+// ═══════════════════════════════════════════════════
+const CC={safe:'#00FF41',nav:'#00AAFF',file:'#FFAA00',danger:'#FF5555',edit:'#AA55FF'};
+
+const QUIZ=[
+  {cmd:'pwd', col:CC.safe, ans:0, choices:[
+    {t:'Zeigt deinen aktuellen Ordner-Pfad', d:'Print Working Directory'},
+    {t:'Wechselt zu einem Ordner',           d:'Change Directory'},
+    {t:'Listet alle Dateien auf',            d:'List files'},
+    {t:'Zeigt deinen Benutzernamen',         d:'Who am I'},
+  ]},
+  {cmd:'ls -la', col:CC.safe, ans:1, choices:[
+    {t:'Letzten Befehl nochmal ausführen',         d:'Repeat last action'},
+    {t:'Alle Dateien inkl. versteckte + Details',  d:'List All, Long format'},
+    {t:'Alle Dateien im /la löschen',              d:'Delete files'},
+    {t:'Wechselt nach /la',                        d:'Change dir'},
+  ]},
+  {cmd:'cd ..', col:CC.nav, ans:2, choices:[
+    {t:'Zeigt den aktuellen Pfad an',        d:'Show path'},
+    {t:'Zwei Ordner gleichzeitig nach oben', d:'Two levels up'},
+    {t:'Einen Ordner nach oben gehen',       d:'One level up — parent dir'},
+    {t:'Zum Home-Ordner springen',           d:'Go home ~'},
+  ]},
+  {cmd:'cd -', col:CC.nav, ans:3, choices:[
+    {t:'Ordner namens "-" erstellen',    d:'Create dir -'},
+    {t:'Einen Ordner nach oben',         d:'One level up'},
+    {t:'Zum Root-Verzeichnis',           d:'Go to /'},
+    {t:'Zum zuletzt besuchten Ordner',   d:'Go back — like browser ←'},
+  ]},
+  {cmd:'whoami', col:CC.safe, ans:0, choices:[
+    {t:'Zeigt deinen Benutzernamen an', d:'Current user name'},
+    {t:'Listet alle Benutzer auf',      d:'List users'},
+    {t:'Erstellt neuen Benutzer',       d:'Create user'},
+    {t:'Wechselt zum Admin-Modus',      d:'Switch to root'},
+  ]},
+  {cmd:'ls -lh /var/log', col:CC.safe, ans:2, choices:[
+    {t:'Löscht alle Log-Dateien',             d:'rm -rf — NEIN!'},
+    {t:'Öffnet Logs im Editor',               d:'Edit mode'},
+    {t:'Log-Dateien mit lesbaren Größen',     d:'Human-readable: KB/MB/GB'},
+    {t:'Zählt alle Log-Zeilen',               d:'Count lines'},
+  ]},
+];
+
+const LUECKEN=[
+  {pre:'alice@ubuntu:~$ ',post:' -la /var/log',
+   ans:'ls',choices:[{t:'ls',c:CC.safe},{t:'cd',c:CC.nav},{t:'pwd',c:CC.safe},{t:'rm',c:CC.danger}],
+   out:'total 156\n-rw-r--r-- 1 root root  8192 Apr 14 syslog\n-rw-r--r-- 1 root root 24576 Apr 14 kern.log'},
+  {pre:'alice@ubuntu:~$ ',post:' ..',
+   ans:'cd',choices:[{t:'ls',c:CC.safe},{t:'cd',c:CC.nav},{t:'cat',c:CC.file},{t:'rm',c:CC.danger}],
+   out:'alice@ubuntu:/home$'},
+  {pre:'alice@ubuntu:/home/alice/projekte$ ',post:'',
+   ans:'pwd',choices:[{t:'pwd',c:CC.safe},{t:'ls',c:CC.safe},{t:'cd',c:CC.nav},{t:'date',c:CC.safe}],
+   out:'/home/alice/projekte'},
+];
+
+const OUTPUTS=[
+  {lines:['/home/alice'],q:'Welcher Befehl erzeugte diesen Output?',ans:0,
+   choices:[{t:'pwd'},{t:'ls'},{t:'whoami'},{t:'date'}]},
+  {lines:['total 32','drwxr-xr-x 3 alice alice 4096 Apr 14 10:23 .',
+    'drwxr-xr-x 8 alice alice 4096 Apr 14 09:15 ..',
+    '-rw-r--r-- 1 alice alice  220 Apr 14 .bashrc',
+    '-rw-r--r-- 1 alice alice 3526 Apr 14 .profile',
+    'drwxr-xr-x 2 alice alice 4096 Apr 14 projekte'],
+   q:'Welcher Befehl erzeugte diesen Output?',ans:1,
+   choices:[{t:'ls'},{t:'ls -la'},{t:'pwd'},{t:'ls -l'}]},
+  {lines:['alice'],q:'Welcher Befehl erzeugte diesen Output?',ans:2,
+   choices:[{t:'date'},{t:'hostname'},{t:'whoami'},{t:'id'}]},
+];
+
+const ERRORS=[
+  {tokens:[{t:'ls'},{t:' '},{t:'-La',e:true},{t:' /home'}],
+   hint:'Flag -L gibt es nicht bei ls. Korrekt: -la (Kleinbuchstabe l)',
+   fixed:'ls -la /home',
+   choices:[
+    {t:'Flag -L existiert nicht — muss -la sein',ok:true},
+    {t:'Pfad /home ist falsch',ok:false},
+    {t:'ls braucht sudo',ok:false},
+    {t:'Alles korrekt',ok:false}]},
+  {tokens:[{t:'CD',e:true},{t:' /home/alice'}],
+   hint:'Linux-Befehle sind immer klein. CD gibt es nicht — nur cd.',
+   fixed:'cd /home/alice',
+   choices:[
+    {t:'Pfad muss mit ~ beginnen',ok:false},
+    {t:'Befehle immer klein schreiben: cd nicht CD',ok:true},
+    {t:'Anführungszeichen fehlen',ok:false},
+    {t:'Alles korrekt',ok:false}]},
+  {tokens:[{t:'cd /home/alice/projekte'},{t:' && '},{t:'pwd'}],
+   hint:null,fixed:null,
+   choices:[
+    {t:'&& funktioniert nur bei Fehlern',ok:false},
+    {t:'cd und pwd darf man nicht kombinieren',ok:false},
+    {t:'Anführungszeichen um den Pfad fehlen',ok:false},
+    {t:'Nichts falsch — gültiger Befehl!',ok:true}]},
+];
+
+const BUILDER=[
+  {task:'Zeige alle Dateien inkl. versteckter Dateien mit Details',
+   blocks:[{t:'ls',c:CC.safe},{t:'-l',c:CC.safe},{t:'-a',c:CC.safe},{t:'-la',c:CC.safe},{t:'/etc',c:CC.file},{t:'/home',c:CC.file}],
+   sol:['ls','-la'],
+   out:'total 32\n-rw-r--r-- 1 alice alice  220 Apr 14 .bashrc\n-rw-r--r-- 1 alice alice 3526 Apr 14 .profile\ndrwxr-xr-x 2 alice alice 4096 Apr 14 projekte'},
+  {task:'Wechsle direkt in den System-Log-Ordner',
+   blocks:[{t:'cd',c:CC.nav},{t:'ls',c:CC.safe},{t:'/var/log',c:CC.file},{t:'/etc',c:CC.file},{t:'~',c:CC.nav},{t:'..',c:CC.nav}],
+   sol:['cd','/var/log'],
+   out:'alice@ubuntu:/var/log$'},
+  {task:'Zeig deinen aktuellen Ordner-Pfad an',
+   blocks:[{t:'pwd',c:CC.safe},{t:'ls',c:CC.safe},{t:'cd',c:CC.nav},{t:'whoami',c:CC.safe},{t:'~',c:CC.nav},{t:'-la',c:CC.safe}],
+   sol:['pwd'],
+   out:'/home/alice/projekte'},
+];
+
+// ═══════════════════════════════════════════════════
+// BACKGROUND — Neon Perspective Grid
+// ═══════════════════════════════════════════════════
+const bgC=document.getElementById('bgCanvas');
+const bgX=bgC.getContext('2d');
+let bgT=0;
+
+function resizeBg(){bgC.width=window.innerWidth;bgC.height=window.innerHeight;}
+window.addEventListener('resize',resizeBg);resizeBg();
+
+const NSTARS=Array.from({length:80},()=>({
+  x:Math.random(),y:Math.random()*.6,
+  r:.5+Math.random()*1.5,ph:Math.random()*6,sp:.5+Math.random()*1.5
+}));
+
+function renderBg(t){
+  const w=bgC.width,h=bgC.height;
+  bgX.fillStyle='#04040C';bgX.fillRect(0,0,w,h);
+
+  // Stars
+  NSTARS.forEach(s=>{
+    const a=s.r*.5*(0.5+0.5*Math.sin(t*s.sp+s.ph));
+    bgX.fillStyle=`rgba(180,200,255,${a})`;
+    bgX.beginPath();bgX.arc(w*s.x,h*s.y,s.r,0,Math.PI*2);bgX.fill();
+  });
+
+  // Perspective grid
+  const vx=w*.5,vy=h*.6;
+  bgX.save();bgX.globalCompositeOperation='lighter';
+  for(let i=0;i<10;i++){
+    const yy=vy+(h-vy)*((i/10)**1.5);
+    bgX.strokeStyle='rgba(0,255,65,0.18)';bgX.lineWidth=.7;
+    bgX.globalAlpha=.4*(1-i/10);
+    bgX.beginPath();bgX.moveTo(0,yy);bgX.lineTo(w,yy);bgX.stroke();
+  }
+  for(let i=-10;i<=10;i++){
+    bgX.globalAlpha=.15;bgX.strokeStyle='rgba(0,255,65,0.25)';
+    bgX.beginPath();bgX.moveTo(vx+i*w*.13,h);bgX.lineTo(vx,vy);bgX.stroke();
+  }
+  const hg=bgX.createRadialGradient(vx,vy,0,vx,vy,w*.7);
+  hg.addColorStop(0,'rgba(0,255,65,.06)');hg.addColorStop(1,'rgba(0,0,0,0)');
+  bgX.globalAlpha=1;bgX.fillStyle=hg;bgX.fillRect(0,0,w,h);
+  bgX.globalCompositeOperation='source-over';bgX.restore();
+
+  // Scan lines
+  bgX.globalAlpha=.04;
+  for(let y=0;y<h;y+=3){bgX.fillStyle='#000';bgX.fillRect(0,y,w,1);}
+  bgX.globalAlpha=1;
+}
+
+// ═══════════════════════════════════════════════════
+// 3D CARD SYSTEM
+// ═══════════════════════════════════════════════════
+function make3DCard(idx,total,content){
+  const el=document.createElement('div');
+  el.className='card3d';el.id='card3d_'+idx;
+
+  const angle=(idx/(total-1)-.5)*22;
+  const spread=280;
+  const posX=(idx/(total-1)-.5)*spread;
+  const posY=Math.abs(idx-(total-1)/2)*8;
+  const posZ=-Math.abs(idx-(total-1)/2)*20;
+
+  el.style.cssText=`
+    left:calc(50% - 110px + ${posX}px);
+    top:calc(50% - 70px + ${posY}px + 30px);
+    transform:translateZ(${posZ}px) rotateY(${angle*.5}deg) rotateX(5deg);
+  `;
+  el.innerHTML=`
+    <div class="face front">
+      <div class="card-num">OPTION ${String.fromCharCode(65+idx)}</div>
+      <div class="card-text">${content.t}</div>
+      <div class="card-sub">${content.d}</div>
+    </div>
+    <div class="face back">
+      <div class="back-content">
+        <div class="back-check">✓</div>
+        <div class="back-text">Richtig!</div>
+      </div>
+    </div>`;
+
+  el.addEventListener('mousemove',e=>{
+    const r=el.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width-.5;
+    const y=(e.clientY-r.top)/r.height-.5;
+    el.style.transform=`
+      translateZ(${posZ+25}px)
+      rotateY(${angle*.5+x*16}deg)
+      rotateX(${5-y*12}deg)
+      scale(1.05)`;
+  });
+  el.addEventListener('mouseleave',()=>{
+    el.style.transition='transform .5s cubic-bezier(.34,1.56,.64,1)';
+    el.style.transform=`translateZ(${posZ}px) rotateY(${angle*.5}deg) rotateX(5deg)`;
+    setTimeout(()=>el.style.transition='',500);
+  });
+  return el;
+}
+
+function flipCard(el,correct){
+  el.style.transition='transform .6s cubic-bezier(.34,1.56,.64,1)';
+  if(correct){
+    el.style.transform='translateZ(50px) rotateY(180deg) scale(1.06)';
+  } else {
+    el.classList.add('wrong');
+    gsap.to(el,{rotateY:10,duration:.06,yoyo:true,repeat:5,ease:'none'});
+  }
+}
+
+// ═══════════════════════════════════════════════════
+// STATE & SCENE TILT
+// ═══════════════════════════════════════════════════
+let curM=0,curQ=0,score=0,totQ=0,locked=false,builtToks=[];
+const TOTAL=QUIZ.length+LUECKEN.length+OUTPUTS.length+ERRORS.length+BUILDER.length;
+
+let sceneRX=0,sceneRY=0,targetRX=0,targetRY=0;
+window.addEventListener('mousemove',e=>{
+  targetRY=(e.clientX/window.innerWidth-.5)*6;
+  targetRX=-(e.clientY/window.innerHeight-.5)*4;
+});
+
+// ═══════════════════════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════════════════════
+function goM(m){
+  curM=m;curQ=0;locked=false;
+  document.querySelectorAll('.m-tab').forEach((t,i)=>t.classList.toggle('on',i===m));
+  clearStage();renderMission();
+}
+function clearStage(){document.getElementById('cardsStage').innerHTML='';}
+function markTabDone(m){document.querySelectorAll('.m-tab')[m].classList.add('done');}
+
+function updateProg(){
+  document.getElementById('pFill').style.width=(totQ/TOTAL*100)+'%';
+  document.getElementById('scoreLbl').textContent='Punkte: '+score;
+}
+
+function nextQ(){
+  document.getElementById('btnNxt').classList.remove('show');
+  if(curM===0){curQ++;if(curQ>=QUIZ.length){markTabDone(0);goM(1);return;}locked=false;renderM1();}
+  else if(curM===1){curQ++;if(curQ>=LUECKEN.length){markTabDone(1);goM(2);return;}locked=false;renderM2();}
+  else if(curM===2){curQ++;if(curQ>=OUTPUTS.length){markTabDone(2);goM(3);return;}locked=false;renderM3();}
+  else if(curM===3){curQ++;if(curQ>=ERRORS.length){markTabDone(3);goM(4);return;}locked=false;renderM4();}
+  else if(curM===4){curQ++;if(curQ>=BUILDER.length){markTabDone(4);showResult();return;}locked=false;renderM5();}
+}
+
+// ═══════════════════════════════════════════════════
+// MISSION 1 — Command Quiz (3D Cards)
+// ═══════════════════════════════════════════════════
+function renderM1(){
+  const q=QUIZ[curQ];
+  const cmd=document.getElementById('hdrCmd');
+  cmd.textContent=q.cmd;cmd.style.color=q.col;cmd.style.textShadow=`0 0 20px ${q.col}`;
+  document.getElementById('hdrSub').textContent='Was macht dieser Befehl? — '+(curQ+1)+'/'+QUIZ.length;
+  clearStage();
+  const stage=document.getElementById('cardsStage');
+  q.choices.forEach((c,i)=>{
+    const card=make3DCard(i,4,c);
+    card.onclick=()=>pickM1(i);
+    stage.appendChild(card);
+    gsap.from(card,{rotateX:-30,translateZ:-200,opacity:0,duration:.5,delay:i*.1,ease:'back.out(1.4)'});
+  });
+  document.getElementById('btnNxt').classList.remove('show');
+}
+
+function pickM1(i){
+  if(locked)return;locked=true;totQ++;
+  const q=QUIZ[curQ];
+  document.querySelectorAll('.card3d').forEach((c,j)=>{
+    if(j===q.ans)flipCard(c,true);
+    else if(j===i&&i!==q.ans)flipCard(c,false);
+  });
+  if(i===q.ans)score++;
+  updateProg();
+  document.getElementById('btnNxt').classList.add('show');
+}
+
+// ═══════════════════════════════════════════════════
+// PANEL HELPER
+// ═══════════════════════════════════════════════════
+function injectPanel(html){
+  clearStage();
+  const stage=document.getElementById('cardsStage');
+  const wrap=document.createElement('div');
+  wrap.className='panel-wrap';
+  wrap.style.cssText='position:absolute;left:50%;top:50%;transform:translateX(-50%) translateY(-50%);width:min(580px,90vw)';
+  wrap.innerHTML=html;
+  stage.appendChild(wrap);
+  gsap.from(wrap,{y:20,opacity:0,duration:.4,ease:'back.out(1.4)'});
+  return wrap;
+}
+
+// ═══════════════════════════════════════════════════
+// MISSION 2 — Lückentext
+// ═══════════════════════════════════════════════════
+function renderM2(){
+  const d=LUECKEN[curQ];
+  document.getElementById('hdrCmd').textContent='Lückentext';
+  document.getElementById('hdrCmd').style.color=CC.safe;
+  document.getElementById('hdrCmd').style.textShadow=`0 0 20px ${CC.safe}`;
+  document.getElementById('hdrSub').textContent='Welcher Befehl gehört in die Lücke? '+(curQ+1)+'/'+LUECKEN.length;
+  const w=injectPanel(`
+  <div class="lueck-box">
+    <div class="t-dots">
+      <div class="t-dot" style="background:#FF5F56"></div>
+      <div class="t-dot" style="background:#FFBD2E"></div>
+      <div class="t-dot" style="background:#27C93F"></div>
+    </div>
+    <div class="t-line">
+      <span class="t-pr">${d.pre}</span>
+      <span class="t-blank" id="tb">___</span>
+      <span style="color:rgba(255,255,255,.65);font-family:monospace;font-size:17px">${d.post}</span>
+    </div>
+    <div class="t-out" id="tout"></div>
+    <div class="choices-row">
+      ${d.choices.map((c,i)=>`<button class="cmd-badge" style="color:${c.c};border-color:${c.c}40;background:${c.c}0D"
+        onclick="pickM2('${c.t}')" id="cb${i}">${c.t}</button>`).join('')}
+    </div>
+  </div>`);
+  gsap.fromTo(w.querySelectorAll('.cmd-badge'),{scale:.7,opacity:0},{scale:1,opacity:1,stagger:.08,duration:.3,ease:'back.out(1.6)'});
+  document.getElementById('btnNxt').classList.remove('show');
+}
+
+function pickM2(val){
+  if(locked)return;locked=true;totQ++;
+  const d=LUECKEN[curQ];
+  const tb=document.getElementById('tb');
+  tb.textContent=val;tb.classList.add('filled');
+  if(val===d.ans){
+    score++;tb.style.color=CC.safe;
+    const tout=document.getElementById('tout');
+    tout.textContent=d.out;tout.classList.add('show');
+    gsap.fromTo(tout,{y:6},{y:0,duration:.3});
+  } else {
+    tb.style.color=CC.danger;
+  }
+  updateProg();document.getElementById('btnNxt').classList.add('show');
+}
+
+// ═══════════════════════════════════════════════════
+// MISSION 3 — Output Rätsel
+// ═══════════════════════════════════════════════════
+function renderM3(){
+  const d=OUTPUTS[curQ];
+  document.getElementById('hdrCmd').textContent='Output-Rätsel';
+  document.getElementById('hdrCmd').style.color=CC.safe;
+  document.getElementById('hdrCmd').style.textShadow=`0 0 20px ${CC.safe}`;
+  document.getElementById('hdrSub').textContent=d.q+' — '+(curQ+1)+'/'+OUTPUTS.length;
+  injectPanel(`
+  <div style="background:#0D1117;border:1.5px solid rgba(0,255,65,.2);border-radius:18px;
+    padding:18px 20px;margin-bottom:12px;font-family:monospace;box-shadow:0 30px 80px rgba(0,0,0,.7)">
+    ${d.lines.map((l,i)=>`<div class="out-line" id="ol${i}">${l}</div>`).join('')}
+  </div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap">
+    ${d.choices.map((c,i)=>`<button class="out-btn" onclick="pickM3(${i})" id="ob${i}">${c.t}</button>`).join('')}
+  </div>`);
+  d.lines.forEach((_,i)=>setTimeout(()=>document.getElementById('ol'+i)?.classList.add('show'),i*130));
+  gsap.fromTo(document.querySelectorAll('.out-btn'),{y:10,opacity:0},{y:0,opacity:1,stagger:.08,duration:.3,delay:.3,ease:'back.out'});
+  document.getElementById('btnNxt').classList.remove('show');
+}
+
+function pickM3(i){
+  if(locked)return;locked=true;totQ++;
+  const d=OUTPUTS[curQ];
+  document.querySelectorAll('.out-btn').forEach((b,j)=>{
+    if(j===d.ans)b.classList.add('ok');
+    else if(j===i&&i!==d.ans)b.classList.add('no');
+  });
+  if(i===d.ans){score++;gsap.to('#ob'+i,{scale:1.07,duration:.2,yoyo:true,repeat:1});}
+  else{gsap.to('#ob'+i,{x:-5,duration:.06,yoyo:true,repeat:4,ease:'none'});}
+  updateProg();document.getElementById('btnNxt').classList.add('show');
+}
+
+// ═══════════════════════════════════════════════════
+// MISSION 4 — Fehler Detektor
+// ═══════════════════════════════════════════════════
+function renderM4(){
+  const d=ERRORS[curQ];
+  document.getElementById('hdrCmd').textContent='Fehler-Detektor';
+  document.getElementById('hdrCmd').style.color=CC.danger;
+  document.getElementById('hdrCmd').style.textShadow=`0 0 20px ${CC.danger}`;
+  document.getElementById('hdrSub').textContent='Finde den Fehler — '+(curQ+1)+'/'+ERRORS.length;
+  const cmdHtml=d.tokens.map(t=>`<span class="err-token${t.e?' hl':''}">${t.t}</span>`).join('');
+  injectPanel(`
+  <div style="background:#0D1117;border:1.5px solid rgba(255,85,85,.3);border-radius:18px;
+    padding:20px;margin-bottom:14px;box-shadow:0 30px 80px rgba(0,0,0,.7),0 0 30px rgba(255,85,85,.06)">
+    <div class="err-lbl">Analysiere diesen Befehl:</div>
+    <div class="err-cmd">${cmdHtml}</div>
+    <div class="fix-text" id="ftxt"></div>
+  </div>
+  <div style="display:grid;gap:7px">
+    ${d.choices.map((c,i)=>`<div class="err-opt" onclick="pickM4(${i})" id="eo${i}">${c.t}</div>`).join('')}
+  </div>`);
+  gsap.fromTo(document.querySelectorAll('.err-opt'),{x:-14,opacity:0},{x:0,opacity:1,stagger:.08,duration:.3,ease:'back.out'});
+  document.getElementById('btnNxt').classList.remove('show');
+}
+
+function pickM4(i){
+  if(locked)return;locked=true;totQ++;
+  const d=ERRORS[curQ];
+  document.querySelectorAll('.err-opt').forEach((e,j)=>{
+    if(d.choices[j].ok)e.classList.add('ok');
+    else if(j===i&&!d.choices[i].ok)e.classList.add('no');
+  });
+  if(d.choices[i].ok){
+    score++;
+    const ft=document.getElementById('ftxt');
+    ft.textContent=d.fixed
+      ? `Richtig! Korrekte Version: ${d.fixed}\n→ ${d.hint}`
+      : 'Richtig! Der Befehl ist tatsächlich korrekt.';
+    ft.classList.add('show');
+    document.querySelectorAll('.err-token.hl').forEach(t=>t.classList.add('fixed'));
+    gsap.to('#eo'+i,{scale:1.02,duration:.2,yoyo:true,repeat:1});
+  } else {
+    gsap.to('#eo'+i,{x:-5,duration:.06,yoyo:true,repeat:4,ease:'none'});
+  }
+  updateProg();document.getElementById('btnNxt').classList.add('show');
+}
+
+// ═══════════════════════════════════════════════════
+// MISSION 5 — Command Builder
+// ═══════════════════════════════════════════════════
+function renderM5(){
+  builtToks=[];
+  const d=BUILDER[curQ];
+  document.getElementById('hdrCmd').textContent='Command Builder';
+  document.getElementById('hdrCmd').style.color=CC.nav;
+  document.getElementById('hdrCmd').style.textShadow=`0 0 20px ${CC.nav}`;
+  document.getElementById('hdrSub').textContent='Baue den richtigen Befehl — '+(curQ+1)+'/'+BUILDER.length;
+  injectPanel(`
+  <div style="background:rgba(0,170,255,.07);border:1px solid rgba(0,170,255,.2);border-radius:12px;
+    padding:12px 16px;margin-bottom:12px;font-size:14px;font-weight:700;line-height:1.4">
+    🎯 ${d.task}
+  </div>
+  <div class="bldr-display">
+    <span class="bldr-pr">alice@ubuntu:~$&nbsp;</span>
+    <span id="bArea"></span>
+    <div class="bldr-cur"></div>
+  </div>
+  <div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px">
+    ${d.blocks.map((b,i)=>`<div class="blk" style="color:${b.c};border-color:${b.c}40;background:${b.c}0D"
+      onclick="addBlk('${b.t}',${i})" id="blk${i}">${b.t}</div>`).join('')}
+  </div>
+  <div style="display:flex;gap:8px;align-items:center;margin-bottom:12px">
+    <button class="run-btn" id="runBtn" onclick="runBldr()">▶ Ausführen</button>
+    <button onclick="resetBldr()" style="padding:9px 14px;border-radius:10px;background:transparent;
+      border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.35);font-size:12px;
+      cursor:pointer;font-family:Outfit,sans-serif">↺ Reset</button>
+  </div>
+  <div class="bldr-out" id="bOut"></div>`);
+  gsap.fromTo(document.querySelectorAll('.blk'),{scale:.7,opacity:0},{scale:1,opacity:1,stagger:.06,duration:.3,ease:'back.out(1.6)'});
+  document.getElementById('btnNxt').classList.remove('show');
+}
+
+function addBlk(val,idx){
+  if(locked)return;
+  const d=BUILDER[curQ];
+  const area=document.getElementById('bArea');
+  const next=[...builtToks,val].join(' ');
+  const sol=d.sol.join(' ');
+  if(!sol.startsWith(next)&&next!==sol){
+    const blkEl=document.getElementById('blk'+idx);
+    blkEl.classList.add('err');
+    setTimeout(()=>blkEl.classList.remove('err'),350);
+    return;
+  }
+  builtToks.push(val);
+  const span=document.createElement('span');
+  span.className='bldr-token';
+  span.style.color=d.blocks[idx].c;
+  span.textContent=(builtToks.length>1?' ':'')+val;
+  area.appendChild(span);
+  document.getElementById('blk'+idx).classList.add('used');
+  if(builtToks.join(' ')===sol){document.getElementById('runBtn').classList.add('rdy');}
+}
+
+function resetBldr(){
+  builtToks=[];document.getElementById('bArea').innerHTML='';
+  document.getElementById('runBtn').classList.remove('rdy');
+  document.querySelectorAll('.blk').forEach(b=>b.classList.remove('used','err'));
+}
+
+function runBldr(){
+  if(locked)return;locked=true;totQ++;score++;
+  const d=BUILDER[curQ];
+  const out=document.getElementById('bOut');
+  out.textContent=d.out;out.classList.add('show');
+  gsap.fromTo(out,{y:8,opacity:0},{y:0,opacity:1,duration:.4,ease:'back.out'});
+  updateProg();document.getElementById('btnNxt').classList.add('show');
+}
+
+// ═══════════════════════════════════════════════════
+// RESULT
+// ═══════════════════════════════════════════════════
+function showResult(){
+  const pct=totQ>0?Math.round(score/totQ*100):0;
+  document.getElementById('resScore').textContent=score+'/'+totQ;
+  document.getElementById('resSub').textContent=
+    pct>=80?'Terminal Hero! Bereit für die nächste Lektion 🚀':
+    pct>=50?'Gut gemacht — noch ein bisschen Übung 💪':'Weiter üben — du schaffst das! 🌱';
+  document.getElementById('resOverlay').classList.add('show');
+  gsap.from('.result-box',{scale:.8,opacity:0,rotateX:-20,duration:.5,ease:'back.out(1.4)'});
+}
+
+function restart(){
+  curM=0;curQ=0;score=0;totQ=0;locked=false;builtToks=[];
+  document.getElementById('resOverlay').classList.remove('show');
+  document.getElementById('pFill').style.width='0%';
+  document.querySelectorAll('.m-tab').forEach((t,i)=>{
+    t.classList.toggle('on',i===0);t.classList.remove('done');
+  });
+  goM(0);
+}
+
+// ═══════════════════════════════════════════════════
+// MISSION ROUTER
+// ═══════════════════════════════════════════════════
+function renderMission(){
+  if(curM===0)renderM1();
+  else if(curM===1)renderM2();
+  else if(curM===2)renderM3();
+  else if(curM===3)renderM4();
+  else if(curM===4)renderM5();
+}
+
+// ═══════════════════════════════════════════════════
+// RENDER LOOP
+// ═══════════════════════════════════════════════════
+let last=0;
+function loop(ts){
+  const dt=Math.min((ts-last)/1000,.05);last=ts;bgT+=dt;
+  renderBg(bgT);
+  sceneRX+=(targetRX-sceneRX)*.06;
+  sceneRY+=(targetRY-sceneRY)*.06;
+  document.getElementById('scene').style.transform=
+    `rotateX(${sceneRX}deg) rotateY(${sceneRY}deg)`;
+  requestAnimationFrame(loop);
+}
+
+window.addEventListener('load',()=>{
+  goM(0);
+  requestAnimationFrame(ts=>{last=ts;loop(ts);});
+});
+window.addEventListener('keydown',e=>{if(e.key===' '&&locked){e.preventDefault();nextQ();}});
+</script>
+</body>
+</html>
