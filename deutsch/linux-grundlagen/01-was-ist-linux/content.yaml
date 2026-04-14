@@ -31,20 +31,17 @@ sections:
       Super! Jetzt weißt du schon, was Linux ist.
     examples:
       - q: "uname -r"
-        image: "images/cmd-uname-r.svg"
         a: "Zeigt die Version des Linux-Kerns an (z.B. 5.15.0-91-generic) — der Kern ist das Herzstück von Linux"
         rel:
           - ["uname", "Unix Name — Systeminformationen anzeigen", "Befehl"]
           - ["uname-r", "Kernel-Release-Version ausgeben", "Flag -r = release"]
         labels: ["Basics"]
       - q: "uname -a"
-        image: "images/cmd-uname-a.svg"
         a: "Alle Systeminformationen auf einmal: Kernel-Version, Computername und mehr"
         rel:
           - ["uname-a", "Alle Systeminfos (All)", "Flag -a = all"]
         labels: ["Basics"]
       - q: "cat /etc/os-release"
-        image: "images/cmd-cat-os-release.svg"
         a: "Zeigt welche Linux-Version installiert ist (z.B. Ubuntu 22.04)"
         rel:
           - ["os-release", "Datei mit Distribution und Versionsinformationen", "/etc/os-release"]
@@ -79,20 +76,17 @@ sections:
       Kein Risiko, kein Download — einfach loslegen!
     examples:
       - q: "uname -s"
-        image: "images/cmd-uname-s.svg"
         a: "Zeigt das Betriebssystem an — bei Linux steht da 'Linux', bei macOS steht 'Darwin'"
         rel:
           - ["uname-s", "System name — zeigt ob Linux, Darwin (macOS), etc.", "Flag -s = system"]
         labels: ["Basics"]
       - q: "wsl --install"
-        image: "images/cmd-wsl-install.svg"
         a: "Installiert WSL2 (Windows Subsystem for Linux) und Ubuntu auf Windows — gibt Linux in Windows!"
         rel:
           - ["wsl-install", "WSL2 und Ubuntu auf Windows 10/11 installieren", "Windows PowerShell Befehl"]
           - ["wsl2", "Windows Subsystem for Linux — Linux direkt in Windows integriert", "WSL2"]
         labels: ["Basics", "Installation"]
       - q: "bash --version"
-        image: "images/cmd-bash-version.svg"
         a: "Zeigt die installierte Bash-Version — Bash ist das Programm, das deine Befehle versteht"
         rel:
           - ["bash-version", "Bash-Shell-Version anzeigen", "Befehl bash --version"]
@@ -121,20 +115,17 @@ sections:
       Das ist das Tolle: Einmal lernen, überall anwenden!
     examples:
       - q: "lsb_release -a"
-        image: "images/cmd-lsb-release.svg"
         a: "Zeigt welche Linux-Variante (Distribution) und welche Version installiert ist"
         rel:
           - ["lsb-release", "Linux Standard Base Informationen anzeigen", "Befehl lsb_release"]
           - ["lsb-a-flag", "Alle verfügbaren LSB-Infos ausgeben", "Flag -a"]
         labels: ["Basics"]
       - q: "hostnamectl"
-        image: "images/cmd-hostnamectl.svg"
         a: "Zeigt den Computernamen, das Betriebssystem und die Kernel-Version übersichtlich an"
         rel:
           - ["hostnamectl", "Hostname und Systeminformationen verwalten", "Befehl"]
         labels: ["Basics"]
       - q: "arch"
-        image: "images/cmd-arch.svg"
         a: "Zeigt den Prozessor-Typ an — z.B. x86_64 bedeutet: 64-Bit-Computer (der normale PC/Laptop)"
         rel:
           - ["arch-cmd", "Prozessorarchitektur anzeigen", "Befehl arch"]
@@ -166,21 +157,18 @@ sections:
       Probier es aus! Tippe `ls /` im Terminal, um den Inhalt der Wurzel zu sehen.
     examples:
       - q: "ls /"
-        image: "images/cmd-ls-root.svg"
         a: "Zeigt alle Ordner ganz oben im Dateisystem — die Wurzel (Root) des Baums"
         rel:
           - ["ls-cmd", "List — Verzeichnisinhalt anzeigen", "Befehl ls"]
           - ["root-dir", "Das oberste Verzeichnis des Linux-Dateisystems", "/ (Root)"]
         labels: ["Dateisystem"]
       - q: "ls /etc | head -5"
-        image: "images/cmd-ls-etc-head.svg"
         a: "Zeigt die ersten 5 Einträge im Einstellungs-Ordner /etc"
         rel:
           - ["etc-dir", "Konfigurationsdateien des Systems", "Verzeichnis /etc"]
           - ["pipe-head", "Ausgabe durch pipe an head weitergeben", "| head -5"]
         labels: ["Dateisystem", "Konfiguration"]
       - q: "echo $HOME"
-        image: "images/cmd-echo-home.svg"
         a: "Zeigt den Pfad zu deinem persönlichen Ordner an (z.B. /home/alice)"
         rel:
           - ["echo-cmd", "Text oder Variable im Terminal ausgeben", "Befehl echo"]

@@ -1,44 +1,30 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 210">
-<style>
-.f{font-family:sans-serif}
-.ti{animation:tia 11s infinite}@keyframes tia{0%,3%{opacity:0}7%,87%{opacity:1}92%,100%{opacity:0}}
-.c1{animation:c1a 11s infinite}@keyframes c1a{0%,12%{opacity:0}18%,87%{opacity:1}92%,100%{opacity:0}}
-.c2{animation:c2a 11s infinite}@keyframes c2a{0%,30%{opacity:0}36%,87%{opacity:1}92%,100%{opacity:0}}
-.c3{animation:c3a 11s infinite}@keyframes c3a{0%,48%{opacity:0}54%,87%{opacity:1}92%,100%{opacity:0}}
-.c4{animation:c4a 11s infinite}@keyframes c4a{0%,65%{opacity:0}71%,87%{opacity:1}92%,100%{opacity:0}}
-.ft{animation:fta 11s infinite}@keyframes fta{0%,78%{opacity:0}82%,87%{opacity:1}92%,100%{opacity:0}}
-</style>
-<rect width="640" height="210" rx="12" fill="#0d1117"/>
-<rect width="640" height="44" rx="12" fill="#161b22"/>
-<rect x="0" y="32" width="640" height="12" fill="#161b22"/>
-<text class="f ti" x="320" y="28" text-anchor="middle" fill="#e6edf3" font-size="15" font-weight="bold">Aliases و .bashrc — خصّص لينوكس الخاص بك</text>
-<!-- Card 1: orange -->
-<g class="c1">
-<rect x="24" y="54" width="183" height="110" rx="9" fill="#1a0f08"/>
-<rect x="24" y="54" width="183" height="4" rx="2" fill="#f0883e"/>
-<text class="f" x="115" y="84" text-anchor="middle" font-size="22">⚡</text>
-<text class="f" x="115" y="107" text-anchor="middle" fill="#f0883e" font-size="13" font-weight="bold">alias</text>
-<text class="f" x="115" y="122" text-anchor="middle" fill="#8b949e" font-size="11">أنشئ اختصاراتك / الخاصة</text>
-</g>
-<!-- Card 2: blue -->
-<g class="c2">
-<rect x="228" y="54" width="184" height="110" rx="9" fill="#0d1520"/>
-<rect x="228" y="54" width="184" height="4" rx="2" fill="#58a6ff"/>
-<text class="f" x="320" y="84" text-anchor="middle" font-size="22">🏠</text>
-<text class="f" x="320" y="107" text-anchor="middle" fill="#58a6ff" font-size="13" font-weight="bold">.bashrc</text>
-<text class="f" x="320" y="122" text-anchor="middle" fill="#8b949e" font-size="11">يُحمَّل في كل / مرة تبدأ</text>
-</g>
-<!-- Card 3: green -->
-<g class="c3">
-<rect x="433" y="54" width="183" height="110" rx="9" fill="#0a1a0d"/>
-<rect x="433" y="54" width="183" height="4" rx="2" fill="#3fb950"/>
-<text class="f" x="524" y="84" text-anchor="middle" font-size="22">🔄</text>
-<text class="f" x="524" y="107" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">source ~/.bashrc</text>
-<text class="f" x="524" y="122" text-anchor="middle" fill="#8b949e" font-size="11">فعّل التغييرات / فوراً</text>
-</g>
-<!-- Footer -->
-<g class="ft">
-<rect x="24" y="176" width="592" height="22" rx="8" fill="#161b22"/>
-<text class="f" x="320" y="192" text-anchor="middle" fill="#8b949e" font-size="11">alias ll='ls -la' — أضفه لـ .bashrc لاختصارات دائمة!</text>
-</g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 160" width="640" height="160">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#161b22"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="160" fill="url(#bg)" rx="8"/>
+  <!-- Decorative elements -->
+  <circle cx="80" cy="60" r="2" fill="#58a6ff" opacity="0.4"/><circle cx="95" cy="45" r="1.5" fill="#58a6ff" opacity="0.35"/><circle cx="70" cy="100" r="1" fill="#58a6ff" opacity="0.35"/>
+  <circle cx="560" cy="60" r="2" fill="#58a6ff" opacity="0.4"/><circle cx="545" cy="100" r="1.5" fill="#58a6ff" opacity="0.35"/><circle cx="570" cy="45" r="1" fill="#58a6ff" opacity="0.35"/>
+  <!-- Icon -->
+  
+  <!-- .bashrc file -->
+  <rect x="285" y="30" width="70" height="75" rx="4" fill="#161b22" stroke="#30363d" stroke-width="1.5"/>
+  <text x="298" y="46" font-family="monospace" font-size="8" fill="#8b949e"># .bashrc</text>
+  <text x="293" y="60" font-family="monospace" font-size="7" fill="#bc8cff">alias</text>
+  <text x="318" y="60" font-family="monospace" font-size="7" fill="#e6edf3">ll=</text>
+  <text x="330" y="60" font-family="monospace" font-size="7" fill="#3fb950">"ls -la"</text>
+  <text x="293" y="74" font-family="monospace" font-size="7" fill="#bc8cff">alias</text>
+  <text x="318" y="74" font-family="monospace" font-size="7" fill="#e6edf3">gs=</text>
+  <text x="330" y="74" font-family="monospace" font-size="7" fill="#3fb950">"git s"</text>
+  <text x="293" y="88" font-family="monospace" font-size="7" fill="#bc8cff">export</text>
+  <text x="324" y="88" font-family="monospace" font-size="7" fill="#f0883e">PATH</text>
+  <!-- Gear icon -->
+  <circle cx="320" cy="125" r="10" fill="none" stroke="#58a6ff" stroke-width="1.5" opacity="0.6"/>
+  <circle cx="320" cy="125" r="4" fill="#58a6ff" opacity="0.45"/>
+  <!-- Accent bar -->
+  <rect x="180" y="152" width="280" height="4" fill="#58a6ff" opacity="0.8" rx="1.5"/>
 </svg>
